@@ -1,6 +1,6 @@
 -r requirements-lite.txt
 # Optional abstractive summarization. Transformers is pinned below major release
 # 5 because that release does not provide the summarization pipeline API used here.
-transformers>=4.46,<5
+transformers>=5.16.1,<6
 torch>=2.2,<3
 sentencepiece>=0.2,<1
