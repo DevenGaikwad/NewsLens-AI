@@ -43,7 +43,7 @@ All proposal commits passed CodeQL. Twelve passed the presentation build. Pull r
 
 ## Commit-metadata privacy note
 
-The four owner-created `main` commits expose a personal Gmail author/committer address in public Git metadata. Dependabot commits use GitHub noreply addresses. History was not rewritten or force-pushed. For future commits, the owner should enable GitHub's private noreply email and configure Git/GitHub Desktop to use it.
+The owner-created `main` commits expose a personal Gmail author/committer address in public Git metadata. Dependabot commits use GitHub noreply addresses. History was not rewritten or force-pushed. For future commits, the owner should enable GitHub's private noreply email and configure Git/GitHub Desktop to use it.
 
 ## Preserved private-release evidence
 
