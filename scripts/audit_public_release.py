@@ -7,12 +7,22 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import subprocess
 from zipfile import ZipFile
 
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "reports" / "results" / "public_release_scan.json"
 MODEL = ROOT / "models" / "fake_news_pipeline.joblib"
+
+EXIT_CLEAN = 0
+EXIT_PUBLICATION_GATE = 2
+EXIT_SAFETY_VIOLATION = 3
+
+PROHIBITED_PUBLIC_PATHS = {
+    Path("models/confidence_calibration.json"),
+    Path("models/fake_news_pipeline.joblib"),
+}
 
 FORBIDDEN_NAMES = {
     ".env",
@@ -76,8 +86,28 @@ PERSONAL_DATA_PATTERNS = {
 MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 
 
-def relative_files() -> list[Path]:
-    return sorted(path for path in ROOT.rglob("*") if path.is_file())
+def relative_files(*, tracked_only: bool = False) -> list[Path]:
+    if not tracked_only:
+        return sorted(path for path in ROOT.rglob("*") if path.is_file())
+
+    try:
+        completed = subprocess.run(
+            ["git", "ls-files", "-z", "--cached"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+        )
+    except (OSError, subprocess.CalledProcessError) as exc:
+        raise RuntimeError(
+            "Tracked-file scanning requires a readable Git worktree."
+        ) from exc
+
+    tracked = completed.stdout.decode("utf-8", errors="surrogateescape").split("\0")
+    return sorted(
+        path
+        for relative in tracked
+        if relative and (path := ROOT / relative).is_file()
+    )
 
 
 def text_payloads(path: Path):
@@ -97,12 +127,17 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Return success when the tree is safe even though documented publication gates remain.",
     )
+    parser.add_argument(
+        "--tracked-files",
+        action="store_true",
+        help="Scan only Git-tracked files, excluding checkout metadata and untracked runner files.",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
-    files = relative_files()
+    files = relative_files(tracked_only=args.tracked_files)
     forbidden: list[str] = []
     secret_findings: list[dict[str, str]] = []
     personal_data_findings: list[dict[str, str]] = []
@@ -113,7 +148,8 @@ def main() -> int:
     for path in files:
         relative = path.relative_to(ROOT)
         if (
-            path.name in FORBIDDEN_NAMES
+            relative in PROHIBITED_PUBLIC_PATHS
+            or path.name in FORBIDDEN_NAMES
             or any(part in FORBIDDEN_PARTS for part in relative.parts)
             or any(path.name.endswith(suffix) for suffix in FORBIDDEN_SUFFIXES)
         ):
@@ -252,11 +288,13 @@ def main() -> int:
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(report, indent=2))
-    if report["public_release_ready"]:
-        return 0
+    if not report["safe_tree_scan_passed"]:
+        return EXIT_SAFETY_VIOLATION
     if args.allow_publication_gates and report["safe_tree_scan_passed"]:
-        return 0
-    return 2
+        return EXIT_CLEAN
+    if report["publication_gates"]:
+        return EXIT_PUBLICATION_GATE
+    return EXIT_CLEAN
 
 
 if __name__ == "__main__":

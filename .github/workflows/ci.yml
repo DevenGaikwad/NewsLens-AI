@@ -21,13 +21,24 @@ jobs:
       - run: pip install -r requirements-lite.txt
       - name: Compile Python sources
         run: python -m compileall -q app.py pages src ui tests scripts training
-      - name: Confirm packaged classifier is available
+      - name: Confirm private classifier artifacts are excluded
         run: |
-          test -f models/fake_news_pipeline.joblib || {
-            echo "The public-staging repository intentionally excludes the classifier. CI remains blocked until redistribution rights are resolved."
+          if test -f models/fake_news_pipeline.joblib || test -f models/confidence_calibration.json; then
+            echo "::error title=Private artifact detected::The public repository must exclude the classifier and private calibration artifacts."
             exit 1
-          }
-      - run: python -m pytest -q
+          fi
+          echo "::notice title=Private classifier gate::The public repository intentionally excludes the classifier and private calibration. Functional classifier tests require the owner's private local artifacts."
+          {
+            echo "### Private classifier gate"
+            echo
+            echo "The public repository intentionally excludes the packaged classifier and private calibration."
+            echo "Model-independent tests run below; four private-artifact tests remain explicitly deselected until redistribution rights are resolved."
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Run model-independent Python tests
+        run: python -m pytest -q --strict-markers -m "not private_model"
+      - name: Report private-artifact test gate
+        run: |
+          echo "::notice title=Private-artifact tests unavailable::Classifier loading, calibrated inference, and model-bound diagnostics require the owner's private local artifacts and were not run in this public workflow."
 
   public-release-scan:
     runs-on: ubuntu-latest
@@ -36,8 +47,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Scan staged tree while retaining documented publication gates
-        run: python scripts/audit_public_release.py --allow-publication-gates
+      - name: Scan committed public tree while retaining documented publication gates
+        run: python scripts/audit_public_release.py --tracked-files --allow-publication-gates
 
   presentation-build:
     runs-on: ubuntu-latest

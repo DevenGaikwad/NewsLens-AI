@@ -37,6 +37,7 @@ def test_controlled_benchmark_has_three_candidates_and_no_partition_leakage() ->
     assert summary["selection"]["packaged_model_unchanged"] is True
 
 
+@pytest.mark.private_model
 def test_calibration_improves_production_brier_and_ece() -> None:
     evidence = _json("reports/calibration_validation.json")["production_model"]
     assert evidence["calibrated_brier_score"] < evidence["uncalibrated_brier_score"]
@@ -49,6 +50,7 @@ def test_calibration_improves_production_brier_and_ece() -> None:
     assert calibration.editorial_review_threshold == 0.59
 
 
+@pytest.mark.private_model
 def test_input_diagnostics_expose_vocabulary_and_scope_signals(sample_article: str) -> None:
     model = load_model()
     result = assess_input(sample_article, model)

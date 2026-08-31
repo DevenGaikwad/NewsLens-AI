@@ -8,6 +8,7 @@ from src.fake_news_predictor import ModelLoadError, load_model, predict_credibil
 from src.model_diagnostics import assess_input
 
 
+@pytest.mark.private_model
 def test_packaged_model_loads_without_retraining(sample_article: str) -> None:
     model = load_model()
     result = predict_credibility(sample_article, model)
@@ -25,6 +26,7 @@ def test_packaged_model_loads_without_retraining(sample_article: str) -> None:
     assert set(result.explanation) == {"supports_misleading", "supports_reliable"}
 
 
+@pytest.mark.private_model
 def test_validation_selected_threshold_can_require_editorial_review() -> None:
     model = load_model()
     text = (Path(__file__).resolve().parents[1] / "data/sample/uncertain_style_article.txt").read_text(
