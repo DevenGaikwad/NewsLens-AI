@@ -1,8 +1,8 @@
 # NewsLens AI deployment and audit report
 
-Audit date: 25 August 2026 (IST)  
+Audit updated: 1 September 2026 (IST)  
 Owner and author: Deven Sachin Gaikwad  
-Release state: **verified Streamlit release candidate; public functional deployment blocked at documented gates**
+Release state: **public GitHub publication verified; functional deployment blocked at documented gates**
 
 ## Outcome
 
@@ -10,7 +10,7 @@ The uploaded `NewsLens_AI/` package remains the authoritative implementation. Th
 
 The owner confirmed sole ownership of the original NewsLens AI components. The source-visible release uses the repository's proprietary All Rights Reserved notice and preserves third-party attributions without inventing a licence for external datasets, publications, packages, or trained artifacts.
 
-No GitHub repository, Streamlit Community Cloud application, or Vercel project was created or deployed. The intended repository is `DevenGaikwad/NewsLens-AI`, but it does not exist and the connected GitHub application exposes no repository-creation action.
+The model-excluded source is published at `https://github.com/DevenGaikwad/NewsLens-AI` under the verified owner `DevenGaikwad`. The publication baseline is `30470c6767352c02db9aa0484f97f5473304f845`; focused CI semantics were verified at `8694b0ec86331a1be7d56a84f94ef270383bbfa6`. No Streamlit Community Cloud application or Vercel project was created or deployed.
 
 ## Current verification results
 
@@ -27,7 +27,10 @@ No GitHub repository, Streamlit Community Cloud application, or Vercel project w
 | Visitor privacy | A second browser context could not view the first visitor's archive |
 | Unexpected browser failures | 0 console errors and 0 failed responses after preserving 32 known Streamlit nested-route probes separately |
 | Python dependency integrity | `pip check` found no broken requirements |
-| Public source-tree scan | 249 files; 0 forbidden files, secrets, personal-data patterns, local paths, broken local Markdown links, or internal new-tab mechanisms |
+| Public GitHub Python CI | 52 model-independent tests passed; 4 private-artifact tests explicitly deselected |
+| Public committed-tree scan | 247 files; 0 forbidden files, secrets, personal-data patterns, local paths, broken local Markdown links, or internal new-tab mechanisms |
+| GitHub CodeQL | Python and JavaScript/TypeScript analyses passed |
+| Git-history safety | No historical-only prohibited paths or secret-bearing blobs through the verified CI commit |
 
 ## Model evidence
 
@@ -72,7 +75,7 @@ Thirty-two 404 responses are retained for route-relative Streamlit `/_stcore/hea
 
 The `web/` source implements the approved beige/brown editorial identity, responsive navigation, responsible-use language, documentation and GitHub links, and the `/app` iframe using `NEXT_PUBLIC_STREAMLIT_APP_URL` plus `?embed=true`. Static Python tests cover its URL policy, CSP headers, iframe sandbox, design tokens, and non-duplication of the ML application.
 
-The retained 16 August 2026 web-browser record shows all five widths, 44-pixel targets, mobile menu, same-tab fallback, security headers, and zero console errors. Content and styling changed after that record. This workspace could not download the lockfile-pinned npm dependencies, so the current source has not been rerun through `npm ci`, TypeScript, production build, unsafe-origin rejection, or the browser audit. Those checks are mandatory before Vercel deployment.
+The retained 16 August 2026 web-browser record shows all five widths, 44-pixel targets, mobile menu, same-tab fallback, security headers, and zero console errors. The exact committed source now passes `npm ci`, lint, and production build in GitHub Actions. Production-origin browser, unsafe-origin, console, iframe, and platform-log checks remain mandatory after an approved Streamlit URL exists and Vercel deployment is separately authorised.
 
 ## Security and privacy controls
 
@@ -115,17 +118,15 @@ Official references:
 
 | Destination | State |
 |---|---|
-| Public GitHub repository | Intended `DevenGaikwad/NewsLens-AI`; repository absent; no connector creation action |
-| Canonical Git history | Unavailable; history-wide scan not possible |
+| Public GitHub repository | `https://github.com/DevenGaikwad/NewsLens-AI`; public, owned by `DevenGaikwad`, and verified on `main` |
+| Canonical Git history | Inspected through the verified CI commit; no historical-only prohibited paths or secret-bearing blobs |
 | Streamlit Community Cloud | Not deployed; model redistribution gate unresolved |
-| Vercel | Not deployed; current web build and final Streamlit URL pending |
+| Vercel | Not deployed; current web install/lint/build passed, but the final Streamlit URL and deployment authorisation remain pending |
 
 Required next actions:
 
-1. Create an empty public `DevenGaikwad/NewsLens-AI` repository without initializing a README, licence, or `.gitignore`.
-2. Provide documentary redistribution permission or explicit applicable licence terms before the model or calibration artifact is committed or hosted.
-3. Push only the model-excluded public package, inspect the resulting Git history, and complete GitHub security checks.
-4. Run the current Next.js install/type/build/unsafe-origin/browser gates in a package-network-enabled environment.
-5. After the model gate clears, deploy Streamlit first, verify logs and cross-visitor isolation, deploy Vercel, and update README links with real production URLs.
+1. Provide documentary redistribution permission or explicit applicable licence terms before the model or calibration artifact is committed or hosted.
+2. After the model gate clears and deployment is separately authorised, deploy Streamlit first and verify logs, privacy isolation, and the production browser workflow.
+3. Supply the verified Streamlit URL to `NEXT_PUBLIC_STREAMLIT_APP_URL`, deploy Vercel, repeat the integrated browser/security checks, and update README links with real production URLs.
 
 No production success is claimed at this checkpoint.

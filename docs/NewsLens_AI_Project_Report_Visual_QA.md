@@ -34,4 +34,4 @@ The screenshots retain the approved warm beige, ivory, muted-brown, and charcoal
 
 ## Publication boundary
 
-This visual-QA result covers document and screenshot presentation only. It does not clear the separate GitHub-creation, Git-history, live-hosting, or model-redistribution gates documented in `docs/DEPLOYMENT_CHECKPOINT.md`.
+This visual-QA result covers document and screenshot presentation only. GitHub publication and history verification are recorded separately; this result does not clear the remaining live-hosting or model-redistribution gates documented in `docs/DEPLOYMENT_CHECKPOINT.md`.

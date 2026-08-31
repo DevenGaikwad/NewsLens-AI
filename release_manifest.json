@@ -14,10 +14,10 @@
     "presentation_root": "web"
   },
   "checkpoint": {
-    "generated_at": "2026-08-25T04:13:42+05:30",
+    "generated_at": "2026-09-01T00:52:00+05:30",
     "authoritative_tree": "NewsLens-AI/",
     "checkpoint_document": "docs/DEPLOYMENT_CHECKPOINT.md",
-    "release_state": "verified Streamlit release candidate; public functional deployment gated"
+    "release_state": "public GitHub publication verified; functional deployment gated"
   },
   "verification": {
     "pytest": {
@@ -55,10 +55,10 @@
     "presentation_web": {
       "source_contracts": "passed in packaged Python tests",
       "retained_browser_evidence_date": "2026-08-16",
-      "current_source_dependency_install": "not run; package registry unavailable in this workspace",
-      "current_source_typescript": "pending package-network-enabled environment",
-      "current_source_production_build": "pending package-network-enabled environment",
-      "current_source_browser_audit": "pending package-network-enabled environment",
+      "current_source_dependency_install": "passed in GitHub Actions",
+      "current_source_lint": "passed in GitHub Actions",
+      "current_source_production_build": "passed in GitHub Actions",
+      "current_source_browser_audit": "pending approved deployment environment",
       "retained_browser_evidence": "reports/release_audit/web/web_browser_audit.json"
     },
     "dependency_security": {
@@ -93,7 +93,7 @@
     },
     "public_tree_scan": {
       "status": "passed_with_publication_gates",
-      "files_scanned": 249,
+      "files_scanned": 247,
       "forbidden_files": 0,
       "secret_findings": 0,
       "personal_data_findings": 0,
@@ -101,6 +101,18 @@
       "broken_local_markdown_links": 0,
       "internal_navigation_findings": 0,
       "evidence": "reports/results/public_release_scan.json"
+    },
+    "github_actions": {
+      "verified_ci_commit": "8694b0ec86331a1be7d56a84f94ef270383bbfa6",
+      "python_compilation": "passed",
+      "model_independent_tests_passed": 52,
+      "private_artifact_tests_deselected": 4,
+      "public_release_scan": "passed",
+      "codeql_python": "passed",
+      "codeql_javascript_typescript": "passed",
+      "nextjs_dependency_install": "passed",
+      "nextjs_lint": "passed",
+      "nextjs_production_build": "passed"
     }
   },
   "model": {
@@ -117,14 +129,14 @@
   },
   "deployment": {
     "github": {
-      "status": "blocked_repository_not_created",
+      "status": "published_and_verified",
       "authenticated_account": "DevenGaikwad",
       "repository_name": "NewsLens-AI",
-      "repository_url": null,
-      "intended_repository_url": "https://github.com/DevenGaikwad/NewsLens-AI",
-      "repository_creation_capability_available": false,
+      "repository_url": "https://github.com/DevenGaikwad/NewsLens-AI",
+      "visibility": "public",
       "branch": "main",
-      "commit_sha": null
+      "publication_baseline_commit_sha": "30470c6767352c02db9aa0484f97f5473304f845",
+      "verified_ci_commit_sha": "8694b0ec86331a1be7d56a84f94ef270383bbfa6"
     },
     "streamlit": {
       "status": "blocked_pending_model_redistribution_permission",
@@ -132,7 +144,7 @@
       "entrypoint": "app.py"
     },
     "vercel": {
-      "status": "blocked_pending_current_web_checks_and_streamlit_url",
+      "status": "blocked_pending_streamlit_url_and_deployment_authorisation",
       "url": null,
       "project_root": "web",
       "public_environment_variable": "NEXT_PUBLIC_STREAMLIT_APP_URL"
@@ -161,11 +173,10 @@
     }
   },
   "publication_gates": [
-    "The intended DevenGaikwad/NewsLens-AI repository has not been created.",
     "Packaged model and calibration redistribution permission or an applicable licence is unconfirmed.",
-    "Canonical Git history is unavailable for a history-wide secrets scan.",
-    "Current-source Next.js install, type, build, unsafe-origin, and browser gates remain pending.",
-    "Streamlit and Vercel production URLs are not deployed or verified."
+    "Functional Streamlit hosting is blocked while the approved private classifier cannot be published.",
+    "Vercel requires the final verified Streamlit URL and separate deployment authorisation.",
+    "Production browser, privacy, console, and platform-log checks remain pending until deployment."
   ],
-  "next_safe_action": "Create the empty public DevenGaikwad/NewsLens-AI repository, inspect its history, run the current presentation gates, and provide documentary model-redistribution evidence before functional deployment."
+  "next_safe_action": "Obtain documentary model-redistribution permission or an applicable licence before committing or hosting the model or calibration artifacts."
 }

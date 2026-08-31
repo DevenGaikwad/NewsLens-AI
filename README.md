@@ -5,6 +5,8 @@
 ![Python 3.12](https://img.shields.io/badge/Python-3.12-40352C?style=flat-square)
 ![Streamlit](https://img.shields.io/badge/Runtime-Streamlit-6D5947?style=flat-square)
 ![Tests](https://img.shields.io/badge/Tests-56%20passing-6D5947?style=flat-square)
+[![CI](https://github.com/DevenGaikwad/NewsLens-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/DevenGaikwad/NewsLens-AI/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/DevenGaikwad/NewsLens-AI/actions/workflows/codeql.yml/badge.svg)](https://github.com/DevenGaikwad/NewsLens-AI/actions/workflows/codeql.yml)
 ![Model publication](https://img.shields.io/badge/Model%20publication-blocked-813F39?style=flat-square)
 ![Rights](https://img.shields.io/badge/Original%20components-All%20Rights%20Reserved-1A1917?style=flat-square)
 
@@ -21,13 +23,14 @@ The classifier detects patterns associated with its ISOT training labels. It doe
 | Item | Status |
 |---|---|
 | Local Streamlit application | Verified private runtime; 56 packaged checks and current five-width browser audit pass |
-| GitHub repository | Repository not created; intended URL: <https://github.com/DevenGaikwad/NewsLens-AI> |
+| GitHub repository | [Public source repository](https://github.com/DevenGaikwad/NewsLens-AI) published and verified on `main` |
+| Public GitHub CI | 52 model-independent checks pass; 4 private-artifact checks are explicitly gated |
 | Streamlit Community Cloud | Not deployed; no production URL recorded |
-| Vercel Hobby presentation site | Source prepared; not deployed; current-source dependency install/build awaits an unrestricted package-network environment |
+| Vercel Hobby presentation site | Source prepared; not deployed; current-source `npm ci`, lint, and production build pass in GitHub Actions |
 | Model redistribution | Blocked pending documentary permission or applicable licence terms |
 | Public release package | Source and documentation only; model and private calibration artefact excluded |
 
-The Python/Streamlit product has passed its current local test, integration, browser, privacy, export, and visual checks. Functional public hosting remains pending the documented model-redistribution and external-service gates. The current Next.js source has static contract coverage, but its dependency installation and production build were not rerun in this restricted package-network environment. No placeholder URL is presented as a live deployment.
+The Python/Streamlit product has passed its current private local test, integration, browser, privacy, export, and visual checks. The public repository separately compiles the Python source and runs every model-independent test while reporting the four private-artifact checks as gated. Functional public hosting remains pending the documented model-redistribution and external-service gates. The exact committed Next.js source passes dependency installation, lint, and production build in GitHub Actions. No placeholder URL is presented as a live deployment.
 
 ## Why this project matters
 

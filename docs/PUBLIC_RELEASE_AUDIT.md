@@ -1,53 +1,61 @@
 # Public-release and deployment audit
 
-Audit date: 25 August 2026 (IST)  
-Status: **protected publication staging; public push and functional hosting gated**
+Audit updated: 1 September 2026 (IST)  
+Status: **public GitHub publication verified; functional hosting gated**
 
-## Verified in the current source tree
+## Verified GitHub publication
 
-- The authoritative package remains a Streamlit application with `app.py` as the runtime entry point.
-- All six product areas render through native same-tab Streamlit navigation.
-- The 56 packaged checks, including all 29 established checks, passed in Python 3.12.13 with zero failures, errors, or skips.
-- Project verification compiled 65 Python files and passed backend, model-evidence, branding, document-media, release-language, and screenshot-integrity checks.
-- The current Chromium audit passed direct routes, refresh, back/forward, keyboard activation, same-tab navigation, article analysis, summarization, classification, calibrated confidence, explainability, human review, downloads, analytics, drift readiness, and cross-visitor archive isolation.
-- Streamlit showed no horizontal page overflow at 360, 390, 768, 1366, or 1920 pixels.
-- All 15 current beige/brown interface screenshots were recaptured, visually inspected, and SHA-256 indexed.
-- Public history defaults to temporary per-session SQLite. A second browser context could not view the first context's record.
-- Runtime entry points do not import `training/`; the application loads the packaged model and never retrains it.
-- The model remains byte-for-byte unchanged at SHA-256 `e9dd8368a4eec1ea5111da6c002889a146af98acba06742d2795486977d93dcb`.
-- The controlled private benchmark uses separate calibration, validation-policy, and untouched final-test partitions. The final-test error record now contains the 19 current misclassifications as hashes and aggregate fields only.
-- `pip check` reports no broken requirements. The dated 24 August dependency audit records zero known vulnerabilities for the pinned Python environment and Next.js lockfile; the matching requirement and lockfile hashes are preserved in its evidence file.
-- Four privacy-scrubbed DOCX publications rendered to 170 pages in total and returned zero high, medium, or low accessibility findings. The 77-page project-report PDF reopened successfully and matches the final DOCX render.
-- The three-sheet research workbook has 17 valid formulas, zero formula errors, and no observed clipping in its rendered sheets.
-- The current source-tree scanner examined 249 files and found zero forbidden files, secrets, personal-data patterns, absolute local paths, broken local Markdown links, or internal new-tab mechanisms.
+- Canonical repository: `https://github.com/DevenGaikwad/NewsLens-AI`.
+- Owner: `DevenGaikwad`; visibility: public; default branch: `main`.
+- Model-excluded publication baseline: `30470c6767352c02db9aa0484f97f5473304f845`.
+- Verified CI-semantics commit: `8694b0ec86331a1be7d56a84f94ef270383bbfa6`.
+- The public tree contains 247 tracked files.
+- `models/` contains only `README.md` and `model_metadata.json`.
+- The private classifier, private calibration, raw ISOT data, release ZIPs, runtime databases, credentials, caches, and user history are absent.
+- The complete Git history through the verified CI commit contains no historical-only prohibited path or secret-bearing blob.
+- All six README-local PNG images load, and all 31 local README documentation links resolve.
+- `CITATION.cff`, All Rights Reserved ownership language, author records, notices, and third-party attribution files remain present.
 
-## Browser-console interpretation
+## Current GitHub checks
 
-The Streamlit audit recorded 32 route-relative 404 responses for nested `/_stcore/health` and `/_stcore/host-config` probes. They are retained as known Streamlit development-server route probes. The audit recorded zero unexpected console errors and zero unexpected failed responses, and every route and workflow assertion passed. Production-origin console output and platform logs must still be checked after deployment.
+| Check | Result |
+|---|---|
+| Python source compilation | Passed |
+| Model-independent pytest selection | 52 passed |
+| Private-artifact pytest selection | 4 explicitly deselected and reported as requiring owner-private artifacts |
+| Public committed-tree scan | Passed; 247 files and zero safety findings |
+| Deliberate prohibited fixtures | Committed `.env` and private calibration fixtures each returned hard failure exit code `3` |
+| Next.js dependency installation | `npm ci` passed |
+| Next.js lint | Passed |
+| Next.js production build | Passed |
+| CodeQL Python | Passed |
+| CodeQL JavaScript/TypeScript | Passed |
+| Dependency review | Correctly skipped on the direct `main` push; configured for pull requests |
+| Dependabot pull requests | None open at this checkpoint |
 
-## Presentation-shell verification limit
+The public workflow does not use `continue-on-error`. It fails if a private model or calibration artifact is committed, and it preserves the existing secret, personal-data, forbidden-file, navigation, legal-file, and link checks. The scanner's tracked-file mode excludes GitHub runner metadata under `.git/` because that metadata is not repository content; archive-mode scanning remains strict.
 
-The repository retains a 16 August 2026 Next.js browser/build record showing the required five widths, 44-pixel targets, mobile menu, same-tab `/app` navigation, accessible iframe title, `?embed=true`, restricted iframe sandbox, security headers, exact design tokens, and zero console errors. The current `web/` source has since received content and styling changes.
+## Preserved private-release evidence
 
-This workspace could not download the lockfile-pinned npm packages because package-registry access is restricted. Therefore, the current source has not been revalidated with `npm ci`, TypeScript, a production build, the unsafe-origin rejection build, or the current browser audit. Those checks remain mandatory in a package-network-enabled environment; the dated evidence is not represented as a current-source build result.
+- The authoritative package remains a Streamlit application with `app.py` as its runtime entry point.
+- All six product areas use native same-tab Streamlit navigation.
+- The preserved private suite has 56 passing checks, including classifier loading, calibrated inference, and model-bound diagnostics.
+- The retained Chromium audit covers the five required widths, analysis, summarisation, classification, calibrated confidence, explainability, review, exports, analytics, drift readiness, and cross-visitor isolation.
+- Fifteen current interface screenshots are visually reviewed and SHA-256 indexed.
+- Four privacy-scrubbed DOCX publications render to 170 pages in total with zero accessibility findings.
+- The private model integrity hash remains `e9dd8368a4eec1ea5111da6c002889a146af98acba06742d2795486977d93dcb`.
 
-## Evidence
+These private-runtime results are not falsely represented as executable public CI results because the public repository intentionally excludes the classifier and calibration.
 
-- `reports/results/pytest_results.xml`
-- `reports/results/project_verification.json`
-- `reports/release_audit/streamlit/streamlit_browser_audit.json`
-- `reports/results/ui_screenshot_manifest.json`
-- `reports/results/public_release_scan.json`
-- `reports/results/dependency_security_audit.json`
-- `docs/NewsLens_AI_Project_Report_Visual_QA.md`
-- `docs/NewsLens_AI_Final_Citation_Audit.md`
+## Presentation-shell status
 
-## Publication gates
+The exact committed `web/` source now passes dependency installation, lint, and production build in GitHub Actions. The retained browser evidence remains dated 16 August 2026. Production-origin browser behavior, iframe integration, console output, and platform logs require an approved Streamlit URL and a separately authorised Vercel deployment.
 
-1. **Canonical target not created.** The connected account is `DevenGaikwad`, and `DevenGaikwad/NewsLens-AI` does not exist. The available GitHub connector does not expose repository creation.
-2. **Model redistribution rights unconfirmed.** The reviewed official ISOT page and dataset-description PDF provide description, download, and citation guidance but no explicit trained-artifact redistribution licence. The model and its dataset-derived calibration parameters remain private, Git-ignored, and excluded from public archives.
-3. **Canonical Git history unavailable.** No public repository exists, so a history-wide secrets and runtime-data scan cannot yet be performed.
-4. **Live URLs unavailable.** Streamlit and Vercel have not been deployed, so README links, production console output, and platform logs cannot be verified.
-5. **Current presentation build pending.** The current `web/` source needs the package-network-enabled checks listed above.
+## Remaining publication and deployment gates
 
-Functional public deployment must stop until the repository and model-rights gates are cleared. Afterward, scan the genuine Git history, run the current Next.js gates, deploy Streamlit first, set only the public Streamlit origin in `NEXT_PUBLIC_STREAMLIT_APP_URL`, deploy Vercel, repeat the deployed browser/privacy/log checks, and update README links with real URLs.
+1. **Model redistribution rights remain unconfirmed.** The official ISOT materials reviewed for this release do not state an explicit trained-artifact redistribution licence. The model and its dataset-derived calibration remain private and Git-ignored.
+2. **Functional Streamlit hosting remains blocked.** The approved classifier cannot run from the model-excluded public tree.
+3. **Vercel integration remains blocked.** It requires the final verified Streamlit URL and separate deployment authorisation.
+4. **Production verification remains pending.** Deployed browser, privacy, console, and platform-log checks cannot run before deployment.
+
+No Streamlit or Vercel deployment is claimed. The exact next safe action is to obtain documentary model-redistribution permission or an applicable licence before committing or hosting either private artifact.

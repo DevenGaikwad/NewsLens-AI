@@ -101,7 +101,7 @@ Drift readiness monitors article length, vocabulary coverage, OOV rate, predicte
 
 The approved zero-cost academic architecture is a public GitHub repository, Streamlit Community Cloud for `app.py`, and Vercel Hobby for the lightweight Next.js shell under `web/`. The shell reads only `NEXT_PUBLIC_STREAMLIT_APP_URL` and embeds `?embed=true`.
 
-Public functional deployment is pending because redistribution permission for the packaged model and dataset-derived calibration parameters is unresolved. Public packages exclude both artefacts. No live repository, Streamlit URL, or Vercel URL is claimed before verification.
+The public source repository is verified at `https://github.com/DevenGaikwad/NewsLens-AI`. Functional deployment remains pending because redistribution permission for the packaged model and dataset-derived calibration parameters is unresolved; public source excludes both artefacts. No Streamlit or Vercel production URL is claimed before verification.
 
 ## Limitations and Marathi roadmap
 
