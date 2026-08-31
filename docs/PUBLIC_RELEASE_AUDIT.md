@@ -31,9 +31,19 @@ Status: **public GitHub publication verified; functional hosting gated**
 | CodeQL Python | Passed |
 | CodeQL JavaScript/TypeScript | Passed |
 | Dependency review | Correctly skipped on the direct `main` push; configured for pull requests |
-| Dependabot pull requests | None open at this checkpoint |
+| Dependabot pull requests | 13 open; 0 merged or closed by this audit |
 
 The public workflow does not use `continue-on-error`. It fails if a private model or calibration artifact is committed, and it preserves the existing secret, personal-data, forbidden-file, navigation, legal-file, and link checks. The scanner's tracked-file mode excludes GitHub runner metadata under `.git/` because that metadata is not repository content; archive-mode scanning remains strict.
+
+## Dependabot review
+
+The 13 proposals remain open and unmerged. Six are major-version proposals (`transformers`, TypeScript, `@types/node`, `actions/checkout`, `actions/setup-node`, and `actions/dependency-review-action`); three are minor or lower-bound changes (`trafilatura`, `matplotlib`, and `torch`); and four are patch or mixed compatible-line proposals (`sentencepiece`, React, Next.js, and the combined ReactDOM/types update).
+
+All proposal commits passed CodeQL. Twelve passed the presentation build. Pull request 12 fails `npm ci` because it proposes ReactDOM 19.2.8 while leaving React at 19.2.4, which does not satisfy ReactDOM's peer requirement. The common Python and public-scan failures were produced by the original pre-correction workflow and therefore do not demonstrate dependency incompatibility. Dependency review is unavailable because GitHub's dependency graph is not enabled for this repository. No proposal was merged, closed, rebased, or modified during this audit.
+
+## Commit-metadata privacy note
+
+The four owner-created `main` commits expose a personal Gmail author/committer address in public Git metadata. Dependabot commits use GitHub noreply addresses. History was not rewritten or force-pushed. For future commits, the owner should enable GitHub's private noreply email and configure Git/GitHub Desktop to use it.
 
 ## Preserved private-release evidence
 

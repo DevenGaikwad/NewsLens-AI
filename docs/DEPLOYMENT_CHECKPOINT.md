@@ -46,6 +46,8 @@ The publication baseline contains the verified model-excluded release. The focus
 | Next.js dependency installation | `npm ci` passed in GitHub Actions |
 | Next.js lint | Passed in GitHub Actions |
 | Next.js production build | Passed in GitHub Actions |
+| Dependabot proposals | 13 open and unmerged; 12 presentation builds pass, while PR 12 has a genuine React/ReactDOM peer conflict |
+| Commit email privacy | Four owner-created commits expose a personal Gmail address; no history rewrite was performed |
 | Streamlit Chromium audit | Six areas, same-tab routes, direct routes, refresh, back/forward, keyboard use, analysis, confidence, explanation, review, downloads, analytics, drift, and visitor isolation passed in the retained private release audit |
 | Responsive Streamlit widths | 360, 390, 768, 1366, and 1920 pixels; no horizontal overflow in the retained audit |
 | Documentation | 4 DOCX files, 170 rendered pages, and 0 high/medium/low accessibility findings in the retained release evidence |

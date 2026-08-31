@@ -112,7 +112,13 @@
       "codeql_javascript_typescript": "passed",
       "nextjs_dependency_install": "passed",
       "nextjs_lint": "passed",
-      "nextjs_production_build": "passed"
+      "nextjs_production_build": "passed",
+      "dependabot_open_pull_requests": 13,
+      "dependabot_pull_requests_merged": 0,
+      "dependabot_presentation_builds_passed": 12,
+      "dependabot_known_build_failure": "PR 12: ReactDOM 19.2.8 requires React 19.2.8 but the proposal retains React 19.2.4",
+      "dependency_review_limitation": "GitHub dependency graph is not enabled",
+      "owner_commit_email_privacy": "personal Gmail metadata visible in four owner commits; future noreply configuration recommended"
     }
   },
   "model": {
