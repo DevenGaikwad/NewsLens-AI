@@ -1,0 +1,12 @@
+# CODEOWNERS controls review routing; it does not create or prove copyright ownership.
+* @DevenGaikwad
+
+/.github/ @DevenGaikwad
+/LICENSE @DevenGaikwad
+/COPYRIGHT.md @DevenGaikwad
+/SECURITY.md @DevenGaikwad
+/CITATION.cff @DevenGaikwad
+/app.py @DevenGaikwad
+/src/ @DevenGaikwad
+/models/ @DevenGaikwad
+/web/ @DevenGaikwad

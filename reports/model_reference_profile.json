@@ -1,0 +1,35 @@
+{
+  "article_word_count": {
+    "mean": 447.927,
+    "median": 396.0,
+    "p01": 50.0,
+    "p05": 82.0,
+    "p95": 944.0999999999999,
+    "p99": 1454.1999999999998
+  },
+  "calibrated_confidence": {
+    "mean": 0.9932850597662143,
+    "median": 0.999971804743353,
+    "p05": 0.9849648087199488
+  },
+  "domain_mismatch_rule": "Heuristic warning when unigram vocabulary coverage is below the reference p01 or article length is outside the reference p01-p99 interval.",
+  "label_distribution": {
+    "misleading": 0.5,
+    "reliable": 0.5
+  },
+  "minimum_observations": 20,
+  "model_version": "isot-tfidf-lr-v1.0.0",
+  "predicted_class_distribution": {
+    "misleading": 0.4952063359733222,
+    "reliable": 0.5047936640266778
+  },
+  "profile_sample_rows": 2000,
+  "reference_rows": 19200,
+  "schema_version": 1,
+  "vocabulary_coverage": {
+    "mean": 0.5227785378603071,
+    "median": 0.5208431986723607,
+    "p01": 0.4050549744862,
+    "p05": 0.4378514230165834
+  }
+}

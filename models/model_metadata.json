@@ -1,0 +1,56 @@
+{
+  "model_version": "isot-tfidf-lr-v1.0.0",
+  "champion_model": "Logistic Regression",
+  "pipeline": "TF-IDF word 1-2 grams + Logistic Regression",
+  "artifact_sha256": "e9dd8368a4eec1ea5111da6c002889a146af98acba06742d2795486977d93dcb",
+  "packaged_model_unchanged": true,
+  "runtime_confidence": {
+    "method": "Platt scaling",
+    "private_artifact": "models/confidence_calibration.json",
+    "editorial_review_threshold": 0.59,
+    "threshold_source": "1,200-row held-out validation-policy subset",
+    "model_hash_binding_required": true,
+    "note": "Calibration measures reliability against benchmark labels, not factual verification."
+  },
+  "best_params": {
+    "classifier__C": 2.0
+  },
+  "selection_rule": "Retain Logistic Regression when Linear SVC's macro-F1 advantage on the 1,200-row validation-policy partition is below 0.01; the untouched final test is excluded from model retention, calibration, and threshold selection.",
+  "selection_partition": "validation policy",
+  "selection_evidence": {
+    "logistic_regression_macro_f1": 0.994999986111014,
+    "linear_svc_macro_f1": 0.9974999982638292,
+    "linear_svc_advantage": 0.0025000121528151453,
+    "retention_tolerance": 0.01
+  },
+  "dataset": "ISOT Fake News Dataset",
+  "dataset_url": "https://onlineacademiccommunity.uvic.ca/isot/2022/11/27/fake-news-detection-datasets/",
+  "training_sample_rows": 24000,
+  "train_rows": 19200,
+  "original_holdout_rows": 4800,
+  "quarantined_holdout_rows": 2,
+  "validation_rows": 2399,
+  "calibration_rows": 1199,
+  "threshold_policy_rows": 1200,
+  "test_rows": 2399,
+  "final_test_rows": 2399,
+  "class_mapping": {
+    "0": "reliable",
+    "1": "misleading"
+  },
+  "feature_leakage_controls": [
+    "exact duplicate removal before partitioning",
+    "deterministic word-five-gram candidate screening with exact Jaccard verification",
+    "two contaminated holdout rows quarantined before validation and final-test use",
+    "zero detected cross-partition near-duplicate pairs after controls",
+    "source and subject columns excluded",
+    "Reuters and byline markers neutralised consistently",
+    "TF-IDF fitted only inside the training Pipeline",
+    "final test excluded from fitting, calibration, model retention, and threshold selection"
+  ],
+  "true_csv_sha256": "ba0844414a65dc6ae7402b8eee5306da24b6b56488d6767135af466c7dcb2775",
+  "fake_csv_sha256": "bebf8bcfe95678bf2c732bf413a2ce5f621af0102c82bf08083b2e5d3c693d0c",
+  "random_seed": 42,
+  "benchmark_evidence": "reports/model_benchmark_summary.json",
+  "limitations": "ISOT outlet, topic, period, and writing-style artefacts remain. Approximate near-duplicate screening is not exhaustive, and the final test is in-domain. This system estimates linguistic credibility risk; it is not an evidence-retrieval fact-checker and does not prove truth."
+}

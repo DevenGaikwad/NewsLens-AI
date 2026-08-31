@@ -1,0 +1,46 @@
+{
+  "release_root": "NewsLens-AI",
+  "files_scanned": 249,
+  "forbidden_files": [],
+  "secret_findings": [],
+  "personal_data_findings": [],
+  "absolute_local_path_findings": [],
+  "broken_local_markdown_links": [],
+  "internal_navigation_findings": [],
+  "deployment_placeholders": {
+    "github_owner": [],
+    "repository_url": [],
+    "streamlit_url": [
+      ".github/workflows/ci.yml",
+      "docs/DEPLOYMENT.md",
+      "docs/DEPLOYMENT_VALUES_TO_FILL.md",
+      "web/url-policy.ts"
+    ],
+    "vercel_url": [
+      "docs/DEPLOYMENT_VALUES_TO_FILL.md"
+    ]
+  },
+  "legal_policy": {
+    "required_files_missing": [],
+    "proprietary_notice_present": true,
+    "explicitly_not_open_source": true,
+    "superseded_license_recommendation_absent": true,
+    "passed": true
+  },
+  "model_artifact": {
+    "path": "models/fake_news_pipeline.joblib",
+    "exists": true,
+    "size_bytes": 819447,
+    "sha256": "e9dd8368a4eec1ea5111da6c002889a146af98acba06742d2795486977d93dcb",
+    "expected_artifact_id": "isot-tfidf-lr-v1.0.0",
+    "blocked_from_git_by_gitignore": true,
+    "public_redistribution_rights_confirmed": false
+  },
+  "publication_gates": [
+    "Live Streamlit URL is unresolved.",
+    "Packaged model redistribution rights and explicit artifact license are unconfirmed.",
+    "Canonical Git history is unavailable for history-wide secret scanning."
+  ],
+  "safe_tree_scan_passed": true,
+  "public_release_ready": false
+}

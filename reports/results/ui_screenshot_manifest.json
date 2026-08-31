@@ -1,0 +1,114 @@
+{
+  "interface_name": "NewsLens AI warm editorial newsroom",
+  "design_system": "Warm editorial newsroom",
+  "capture_date": "2026-08-24",
+  "generated_at_utc": "2026-08-24T22:30:18.091867+00:00",
+  "source_css": "ui/theme.py::GLOBAL_CSS",
+  "captures": [
+    {
+      "filename": "01_home.png",
+      "width": 1440,
+      "height": 900,
+      "size_bytes": 185198,
+      "sha256": "478491d77ecf475d91722f9612005682c0cca7f48ed7b3b2e777180d4beca324"
+    },
+    {
+      "filename": "02_analysis_input.png",
+      "width": 1440,
+      "height": 1000,
+      "size_bytes": 154037,
+      "sha256": "5050e39a8666f2888f7a5d15319ca7b9d72f7835110f90c0023a2f0b40dbe2e7"
+    },
+    {
+      "filename": "03_summary_and_risk_results.png",
+      "width": 1440,
+      "height": 930,
+      "size_bytes": 144163,
+      "sha256": "abc0148a0fd60a7dad99186a45b531942dc9043ac3f43f377430ca4b9a416032"
+    },
+    {
+      "filename": "04_explainability_and_downloads.png",
+      "width": 1440,
+      "height": 940,
+      "size_bytes": 124481,
+      "sha256": "d3c9acb806153738eb89d89462b174f4397c3d73ca15313b733beac31396125b"
+    },
+    {
+      "filename": "05_editorial_review_required.png",
+      "width": 1440,
+      "height": 840,
+      "size_bytes": 137866,
+      "sha256": "ba8d739cbf13b8359858956bd414b2d774f00de3516003c9bb260fd5f61ff43b"
+    },
+    {
+      "filename": "06_model_accountability.png",
+      "width": 1440,
+      "height": 925,
+      "size_bytes": 158670,
+      "sha256": "e273cd47c409f31304443ba30d9cfc29ff4cac626c44c1395d797ae2eca6e441"
+    },
+    {
+      "filename": "07_model_benchmarking.png",
+      "width": 1440,
+      "height": 940,
+      "size_bytes": 103936,
+      "sha256": "4b4f257539e00212d3e498f4dbbcf50fd4fdeb79753af80ad00d4d48cef853d0"
+    },
+    {
+      "filename": "08_calibration_reliability.png",
+      "width": 1440,
+      "height": 1350,
+      "size_bytes": 254789,
+      "sha256": "9348575e780608c6216a98146c389b1cb735f77a2d722bb0ef330916471a4987"
+    },
+    {
+      "filename": "09_dataset_analysis.png",
+      "width": 1440,
+      "height": 960,
+      "size_bytes": 169870,
+      "sha256": "d345eb7a49b11e54ddfd5349b7f48245b4b79764e15ab846a796ed52aeae8fb8"
+    },
+    {
+      "filename": "10_newsroom_analytics.png",
+      "width": 1440,
+      "height": 1320,
+      "size_bytes": 195510,
+      "sha256": "e9619113f51615719c6672f03606e0ee4dd2fc9fbcaa2d76637872c7f45749bc"
+    },
+    {
+      "filename": "11_drift_readiness.png",
+      "width": 1440,
+      "height": 1000,
+      "size_bytes": 155328,
+      "sha256": "39489ff352fd3a525f43dcb2eab2081c6ec396492381ec3652b2cbff4a600412"
+    },
+    {
+      "filename": "12_editorial_review_workflow.png",
+      "width": 1440,
+      "height": 945,
+      "size_bytes": 119303,
+      "sha256": "14d40ffbcd5e1c2a7e07fcd1f8b519d6accb8ef073bd0add630a0156a13065f5"
+    },
+    {
+      "filename": "13_research_about.png",
+      "width": 1440,
+      "height": 945,
+      "size_bytes": 161715,
+      "sha256": "df6ed603fb54c8d6166cc9e1862d0317efe38966388af195daf14c9750d53578"
+    },
+    {
+      "filename": "14_home_mobile.png",
+      "width": 390,
+      "height": 844,
+      "size_bytes": 79306,
+      "sha256": "5de29ee2d75b520c22ed556ad3589ba2238b4da4448b1bed2b9292c8570f9a73"
+    },
+    {
+      "filename": "15_analysis_mobile.png",
+      "width": 390,
+      "height": 844,
+      "size_bytes": 73849,
+      "sha256": "43668282dc8d2fc0ed19353453d2ec533d6312664d71be3c82fd2a895446a33d"
+    }
+  ]
+}

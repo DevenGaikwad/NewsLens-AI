@@ -1,0 +1,118 @@
+{
+  "misleading": [
+    {
+      "term": "video",
+      "coefficient": 7.83353
+    },
+    {
+      "term": "just",
+      "coefficient": 6.29243
+    },
+    {
+      "term": "image",
+      "coefficient": 6.16592
+    },
+    {
+      "term": "featured",
+      "coefficient": 6.04674
+    },
+    {
+      "term": "featured image",
+      "coefficient": 6.0094
+    },
+    {
+      "term": "read",
+      "coefficient": 5.59004
+    },
+    {
+      "term": "gop",
+      "coefficient": 5.01436
+    },
+    {
+      "term": "obama",
+      "coefficient": 5.00949
+    },
+    {
+      "term": "america",
+      "coefficient": 4.57244
+    },
+    {
+      "term": "president trump",
+      "coefficient": 4.43829
+    },
+    {
+      "term": "watch",
+      "coefficient": 4.22382
+    },
+    {
+      "term": "getty",
+      "coefficient": 4.17464
+    },
+    {
+      "term": "hillary",
+      "coefficient": 4.08666
+    },
+    {
+      "term": "getty images",
+      "coefficient": 4.0378
+    }
+  ],
+  "reliable": [
+    {
+      "term": "wire service",
+      "coefficient": -17.94314
+    },
+    {
+      "term": "service",
+      "coefficient": -16.36464
+    },
+    {
+      "term": "wire",
+      "coefficient": -15.95573
+    },
+    {
+      "term": "said",
+      "coefficient": -11.12699
+    },
+    {
+      "term": "washington wire",
+      "coefficient": -8.15466
+    },
+    {
+      "term": "president donald",
+      "coefficient": -4.86375
+    },
+    {
+      "term": "washington",
+      "coefficient": -4.74418
+    },
+    {
+      "term": "wednesday",
+      "coefficient": -4.35139
+    },
+    {
+      "term": "tuesday",
+      "coefficient": -4.04826
+    },
+    {
+      "term": "thursday",
+      "coefficient": -4.02657
+    },
+    {
+      "term": "service president",
+      "coefficient": -3.85561
+    },
+    {
+      "term": "nov number",
+      "coefficient": -3.49905
+    },
+    {
+      "term": "nov",
+      "coefficient": -3.49702
+    },
+    {
+      "term": "republican",
+      "coefficient": -3.46048
+    }
+  ]
+}

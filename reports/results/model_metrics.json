@@ -1,0 +1,36 @@
+{
+  "accuracy": 0.992080033347228,
+  "brier_score": 0.00629194057155315,
+  "calibration_method": "Platt scaling",
+  "confusion_matrix": [
+    [
+      1196,
+      4
+    ],
+    [
+      15,
+      1184
+    ]
+  ],
+  "editorial_review_threshold": 0.59,
+  "expected_calibration_error": 0.005295486797854702,
+  "macro_f1": 0.9920798351780009,
+  "macro_precision": 0.9921232695799169,
+  "macro_recall": 0.9920781206561023,
+  "mean_inference_ms_per_article": 0.5027614481037547,
+  "misleading_f1": 0.9920402178466695,
+  "misleading_precision": 0.9966329966329966,
+  "misleading_recall": 0.987489574645538,
+  "misleading_support": 1199,
+  "positive_class": "misleading (1)",
+  "pr_auc": 0.9994228189888477,
+  "random_seed": 42,
+  "reliable_f1": 0.9921194525093322,
+  "reliable_precision": 0.9876135425268373,
+  "reliable_recall": 0.9966666666666667,
+  "reliable_support": 1200,
+  "roc_auc": 0.9994808173477898,
+  "test_samples": 2399,
+  "train_samples": 19200,
+  "validation_samples": 2399
+}

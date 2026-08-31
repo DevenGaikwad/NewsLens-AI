@@ -1,0 +1,50 @@
+name: Bug report
+description: Report a reproducible non-sensitive NewsLens AI defect.
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include secrets, exploit details, private article text, uploads, or personal analysis history. Security vulnerabilities belong in a private GitHub Security Advisory.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Product area
+      options:
+        - News Desk
+        - Analyse Article
+        - Model Accountability
+        - Dataset Analysis
+        - Editorial Archive
+        - Research & About
+        - Vercel presentation website
+        - Documentation or packaging
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Safe reproduction steps
+      description: Use synthetic/non-private content and omit credentials.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system, browser, Python/Node version, and local or hosted context.
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I removed secrets, private data, personal history, and exploit details from this public report.
+          required: true

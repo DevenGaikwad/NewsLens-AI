@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you reference NewsLens AI in academic or professional work, please cite the original project and author."
+title: "NewsLens AI"
+type: software
+authors:
+  - family-names: "Gaikwad"
+    given-names: "Deven Sachin"
+abstract: "A Streamlit research application for news summarisation, explainable linguistic credibility-risk estimation, model accountability and dataset analysis."
+keywords:
+  - natural-language-processing
+  - news-summarisation
+  - credibility-risk
+  - explainable-ai
+  - streamlit

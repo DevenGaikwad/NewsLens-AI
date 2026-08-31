@@ -1,0 +1,30 @@
+Test ID,Module,Input,Expected result,Actual result,Status,Remarks
+TC-01,Preprocessing,"Reuters lead, URL, control byte","Source shortcut, URL, and control byte removed","All assertions passed",Pass,Automated pytest
+TC-02,Preprocessing,"Mixed case and repeated whitespace","Deterministic normalised model text/hash","All assertions passed",Pass,Automated pytest
+TC-03,Summarization,Packaged 158-word article,"Short summary is non-empty and compressed","Summary compressed and order preserved",Pass,Automated pytest
+TC-04,Summarization,Short versus detailed control,"Detailed output is at least as long as short","Length relation passed",Pass,Automated pytest
+TC-05,Summarization,"Empty text and article repeated 30 times","No crash; empty/long handling works","Both cases passed",Pass,Automated pytest
+TC-06,Prediction,Packaged saved pipeline,"Load without fitting; valid probabilities and explanation","Model loaded and assertions passed",Pass,Automated pytest
+TC-07,Prediction,Missing Joblib path,"Actionable ModelLoadError","Expected error returned",Pass,Automated pytest
+TC-08,Database,Duplicate article hash,"One row; second insert returns original ID","Duplicate detected",Pass,Temporary SQLite database
+TC-09,Database,"Insert, search, read, delete, clear","CRUD operations succeed","All CRUD assertions passed",Pass,Temporary SQLite database
+TC-10,URL validation,"Malformed, localhost, and private IP URLs","Reject with safe user-facing error","All blocked",Pass,No live network needed
+TC-11,URL extraction,Mock public HTML article,"BeautifulSoup fallback extracts title/author/body","Fallback extracted 40+ words",Pass,Mocked HTTP and DNS
+TC-12,File upload,UTF-8 TXT article,"Return cleaned article text","Text parsed",Pass,In-memory upload
+TC-13,File upload,"Empty TXT and unsupported PNG","Raise FileParseError","Both rejected",Pass,Automated pytest
+TC-14,Export,Analysis payload to JSON,"Round-trip parse","Parsed with matching title",Pass,Automated pytest
+TC-15,Export,Analysis payload to PDF,"Valid PDF with at least one page","pypdf opened output",Pass,Automated pytest
+TC-16,Streamlit startup,Home page,"No uncaught Streamlit exception","Started",Pass,AppTest
+TC-17,Streamlit startup,Analyse Article page,"No uncaught Streamlit exception","Started",Pass,AppTest
+TC-18,Streamlit startup,Model Accountability page,"No uncaught Streamlit exception","Started with measured artifacts",Pass,AppTest
+TC-19,Streamlit startup,Dataset Analysis page,"No uncaught Streamlit exception","Started with measured figures",Pass,AppTest
+TC-20,Streamlit startup,Editorial Archive page,"No uncaught Streamlit exception","Started",Pass,AppTest
+TC-21,Streamlit startup,Research & About page,"No uncaught Streamlit exception","Started",Pass,AppTest
+TC-22,Packaged verification suite,All established and hardening checks,"Zero failures; zero errors; zero skips","56 passed in 5.90 seconds",Pass,"All 29 established checks remain; 27 hardening checks cover calibration, review, privacy, analytics, drift and release policy"
+TC-23,Classifier final evaluation,"2,399 untouched final-test ISOT examples","Metrics calculated and saved","Macro F1 0.992080; ROC-AUC 0.999481; confusion [[1196,4],[15,1184]]",Pass,"Seed 42 controlled run; model selection, calibration and review threshold use separate validation subsets"
+TC-24,Editorial assets,"Logo, masthead, attribution record","All local assets exist and are non-empty","Static assertions passed",Pass,No external runtime image dependency
+TC-25,Editorial theme,Warm design-token contract,"Required ivory, brown, charcoal, and semantic tokens present","Static assertions passed",Pass,Centralised in ui/theme.py
+TC-26,Editorial palette integrity,Shared theme source,"Only the approved warm paper and restrained semantic visual system is used","Static assertions passed",Pass,Protects the warm editorial design contract
+TC-27,Top navigation,All working page routes,"Every page is linked by the reusable navigation","Static assertions passed",Pass,Desktop/mobile shared component
+TC-28,Shared page shell,Home plus five secondary pages,"Every page calls configure_page with the correct active state","Static assertions passed",Pass,Consistent theme and navigation
+TC-29,Responsible result language,Analysis/components/about sources,"Credibility verdict, verification warning, and system limits remain explicit","Static assertions passed",Pass,Meaning is not represented by colour alone

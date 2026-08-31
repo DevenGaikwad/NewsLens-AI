@@ -1,0 +1,682 @@
+{
+  "same_tab_navigation": [
+    {
+      "label": "News Desk",
+      "path": "/",
+      "tabs_before": 1,
+      "tabs_after": 1,
+      "passed": true
+    },
+    {
+      "label": "Analyse Article",
+      "path": "/analyse-article",
+      "tabs_before": 1,
+      "tabs_after": 1,
+      "passed": true
+    },
+    {
+      "label": "Model Accountability",
+      "path": "/model-accountability",
+      "tabs_before": 1,
+      "tabs_after": 1,
+      "passed": true
+    },
+    {
+      "label": "Dataset Analysis",
+      "path": "/dataset-analysis",
+      "tabs_before": 1,
+      "tabs_after": 1,
+      "passed": true
+    },
+    {
+      "label": "Editorial Archive",
+      "path": "/editorial-archive",
+      "tabs_before": 1,
+      "tabs_after": 1,
+      "passed": true
+    },
+    {
+      "label": "Research & About",
+      "path": "/research-about",
+      "tabs_before": 1,
+      "tabs_after": 1,
+      "passed": true
+    }
+  ],
+  "direct_routes": {
+    "News Desk": {
+      "path": "/",
+      "title": "NewsLens AI | News Desk",
+      "passed": true
+    },
+    "Analyse Article": {
+      "path": "/analyse-article",
+      "title": "NewsLens AI | Analyse Article",
+      "passed": true
+    },
+    "Model Accountability": {
+      "path": "/model-accountability",
+      "title": "NewsLens AI | Model Accountability",
+      "passed": true
+    },
+    "Dataset Analysis": {
+      "path": "/dataset-analysis",
+      "title": "NewsLens AI | Dataset Analysis",
+      "passed": true
+    },
+    "Editorial Archive": {
+      "path": "/editorial-archive",
+      "title": "NewsLens AI | Editorial Archive",
+      "passed": true
+    },
+    "Research & About": {
+      "path": "/research-about",
+      "title": "NewsLens AI | Research & About",
+      "passed": true
+    }
+  },
+  "viewports": {
+    "360": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "horizontalOverflow": false,
+      "minimumInteractiveHeight": 16
+    },
+    "390": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "horizontalOverflow": false,
+      "minimumInteractiveHeight": 16
+    },
+    "768": {
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "horizontalOverflow": false,
+      "minimumInteractiveHeight": 16
+    },
+    "1366": {
+      "scrollWidth": 1366,
+      "clientWidth": 1366,
+      "horizontalOverflow": false,
+      "minimumInteractiveHeight": 16
+    },
+    "1920": {
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "horizontalOverflow": false,
+      "minimumInteractiveHeight": 16
+    }
+  },
+  "console_errors": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/analyse-article"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/analyse-article"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/analyse-article"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/analyse-article"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/analyse-article"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/analyse-article"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/model-accountability"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/model-accountability"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/model-accountability"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/model-accountability"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/research-about"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/research-about"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/research-about"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/research-about"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/analyse-article"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/analyse-article"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/model-accountability"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/model-accountability"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/research-about"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://localhost:8511/research-about"
+    }
+  ],
+  "failed_responses": [
+    {
+      "status": 404,
+      "url": "http://localhost:8511/analyse-article/_stcore/host-config",
+      "page": "http://localhost:8511/analyse-article"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/analyse-article/_stcore/health",
+      "page": "http://localhost:8511/analyse-article"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/analyse-article/_stcore/health",
+      "page": "http://localhost:8511/analyse-article"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/analyse-article/_stcore/host-config",
+      "page": "http://localhost:8511/analyse-article"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/analyse-article/_stcore/host-config",
+      "page": "http://localhost:8511/analyse-article"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/analyse-article/_stcore/health",
+      "page": "http://localhost:8511/analyse-article"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/model-accountability/_stcore/host-config",
+      "page": "http://localhost:8511/model-accountability"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/model-accountability/_stcore/health",
+      "page": "http://localhost:8511/model-accountability"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/model-accountability/_stcore/health",
+      "page": "http://localhost:8511/model-accountability"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/model-accountability/_stcore/host-config",
+      "page": "http://localhost:8511/model-accountability"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/dataset-analysis/_stcore/host-config",
+      "page": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/dataset-analysis/_stcore/health",
+      "page": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/dataset-analysis/_stcore/health",
+      "page": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/dataset-analysis/_stcore/host-config",
+      "page": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/editorial-archive/_stcore/host-config",
+      "page": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/editorial-archive/_stcore/health",
+      "page": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/editorial-archive/_stcore/health",
+      "page": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/editorial-archive/_stcore/host-config",
+      "page": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/research-about/_stcore/host-config",
+      "page": "http://localhost:8511/research-about"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/research-about/_stcore/health",
+      "page": "http://localhost:8511/research-about"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/research-about/_stcore/host-config",
+      "page": "http://localhost:8511/research-about"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/research-about/_stcore/health",
+      "page": "http://localhost:8511/research-about"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/analyse-article/_stcore/health",
+      "page": "http://localhost:8511/analyse-article"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/analyse-article/_stcore/host-config",
+      "page": "http://localhost:8511/analyse-article"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/model-accountability/_stcore/host-config",
+      "page": "http://localhost:8511/model-accountability"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/model-accountability/_stcore/health",
+      "page": "http://localhost:8511/model-accountability"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/dataset-analysis/_stcore/host-config",
+      "page": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/dataset-analysis/_stcore/health",
+      "page": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/editorial-archive/_stcore/health",
+      "page": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/editorial-archive/_stcore/host-config",
+      "page": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/research-about/_stcore/health",
+      "page": "http://localhost:8511/research-about"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/research-about/_stcore/host-config",
+      "page": "http://localhost:8511/research-about"
+    }
+  ],
+  "browser_history": {
+    "back": true,
+    "forward": true,
+    "refresh": true
+  },
+  "analysis": {
+    "summary": true,
+    "classification": true,
+    "calibrated_confidence": true,
+    "calibration_policy": true,
+    "explainability": true,
+    "no_undefined_chart_titles": true,
+    "json_download": true,
+    "pdf_download": true
+  },
+  "session_a_archive": true,
+  "newsroom_analytics": true,
+  "drift_insufficient_observations": true,
+  "privacy_safe_analytics_csv_download": true,
+  "session_a_archive_csv_download": true,
+  "human_review_workflow": true,
+  "cross_visitor_isolation": {
+    "visitor_b_empty": true,
+    "visitor_a_record_hidden": true
+  },
+  "keyboard_navigation": {
+    "focus": true,
+    "enter_activation": true,
+    "tabs_unchanged": true
+  },
+  "six_sections": {
+    "News Desk": {
+      "title": "NewsLens AI | News Desk",
+      "content_markers": [
+        "A two-layer news intelligence engine"
+      ],
+      "marker_visible": true,
+      "rendered": true
+    },
+    "Analyse Article": {
+      "title": "NewsLens AI | Analyse Article",
+      "content_markers": [
+        "Article source and analysis settings"
+      ],
+      "marker_visible": true,
+      "rendered": true
+    },
+    "Model Accountability": {
+      "title": "NewsLens AI | Model Accountability",
+      "content_markers": [
+        "Model Accountability"
+      ],
+      "marker_visible": true,
+      "rendered": true
+    },
+    "Dataset Analysis": {
+      "title": "NewsLens AI | Dataset Analysis",
+      "content_markers": [
+        "Dataset Analysis"
+      ],
+      "marker_visible": true,
+      "rendered": true
+    },
+    "Editorial Archive": {
+      "title": "NewsLens AI | Editorial Archive",
+      "content_markers": [
+        "Personal Editorial Archive",
+        "No archived analyses yet"
+      ],
+      "marker_visible": true,
+      "rendered": true
+    },
+    "Research & About": {
+      "title": "NewsLens AI | Research & About",
+      "content_markers": [
+        "Research & About"
+      ],
+      "marker_visible": true,
+      "rendered": true
+    }
+  },
+  "all_same_tab": true,
+  "all_viewports_no_overflow": true,
+  "all_six_sections": true,
+  "known_streamlit_route_probes": [
+    {
+      "status": 404,
+      "url": "http://localhost:8511/analyse-article/_stcore/host-config",
+      "page": "http://localhost:8511/analyse-article"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/analyse-article/_stcore/health",
+      "page": "http://localhost:8511/analyse-article"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/analyse-article/_stcore/health",
+      "page": "http://localhost:8511/analyse-article"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/analyse-article/_stcore/host-config",
+      "page": "http://localhost:8511/analyse-article"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/analyse-article/_stcore/host-config",
+      "page": "http://localhost:8511/analyse-article"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/analyse-article/_stcore/health",
+      "page": "http://localhost:8511/analyse-article"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/model-accountability/_stcore/host-config",
+      "page": "http://localhost:8511/model-accountability"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/model-accountability/_stcore/health",
+      "page": "http://localhost:8511/model-accountability"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/model-accountability/_stcore/health",
+      "page": "http://localhost:8511/model-accountability"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/model-accountability/_stcore/host-config",
+      "page": "http://localhost:8511/model-accountability"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/dataset-analysis/_stcore/host-config",
+      "page": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/dataset-analysis/_stcore/health",
+      "page": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/dataset-analysis/_stcore/health",
+      "page": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/dataset-analysis/_stcore/host-config",
+      "page": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/editorial-archive/_stcore/host-config",
+      "page": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/editorial-archive/_stcore/health",
+      "page": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/editorial-archive/_stcore/health",
+      "page": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/editorial-archive/_stcore/host-config",
+      "page": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/research-about/_stcore/host-config",
+      "page": "http://localhost:8511/research-about"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/research-about/_stcore/health",
+      "page": "http://localhost:8511/research-about"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/research-about/_stcore/host-config",
+      "page": "http://localhost:8511/research-about"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/research-about/_stcore/health",
+      "page": "http://localhost:8511/research-about"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/analyse-article/_stcore/health",
+      "page": "http://localhost:8511/analyse-article"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/analyse-article/_stcore/host-config",
+      "page": "http://localhost:8511/analyse-article"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/model-accountability/_stcore/host-config",
+      "page": "http://localhost:8511/model-accountability"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/model-accountability/_stcore/health",
+      "page": "http://localhost:8511/model-accountability"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/dataset-analysis/_stcore/host-config",
+      "page": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/dataset-analysis/_stcore/health",
+      "page": "http://localhost:8511/dataset-analysis"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/editorial-archive/_stcore/health",
+      "page": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/editorial-archive/_stcore/host-config",
+      "page": "http://localhost:8511/editorial-archive"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/research-about/_stcore/health",
+      "page": "http://localhost:8511/research-about"
+    },
+    {
+      "status": 404,
+      "url": "http://localhost:8511/research-about/_stcore/host-config",
+      "page": "http://localhost:8511/research-about"
+    }
+  ],
+  "unexpected_failed_responses": [],
+  "unexpected_console_errors": []
+}

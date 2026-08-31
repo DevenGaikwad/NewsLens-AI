@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">NewsLens AI mark</title>
+  <rect x="8" y="6" width="42" height="50" fill="#FAF8F2" stroke="#090909" stroke-width="3"/>
+  <path d="M17 18h24M17 26h24M17 34h15M17 42h12" stroke="#6D5947" stroke-width="3" stroke-linecap="square"/>
+  <circle cx="45" cy="43" r="10" fill="#EAE4D8" stroke="#090909" stroke-width="3"/>
+  <path d="m52 50 7 7" stroke="#090909" stroke-width="4" stroke-linecap="square"/>
+  <path d="m40 43 3 3 6-7" fill="none" stroke="#496454" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"/>
+</svg>

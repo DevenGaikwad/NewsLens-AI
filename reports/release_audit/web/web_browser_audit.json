@@ -1,0 +1,100 @@
+{
+  "viewports": {
+    "360": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "horizontalOverflow": false,
+      "cardsSingleColumn": true,
+      "mobileMenuVisible": true,
+      "heroHeadingClearOfArtwork": true,
+      "touchTargetViolations": [],
+      "overflowElements": []
+    },
+    "390": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "horizontalOverflow": false,
+      "cardsSingleColumn": true,
+      "mobileMenuVisible": true,
+      "heroHeadingClearOfArtwork": true,
+      "touchTargetViolations": [],
+      "overflowElements": []
+    },
+    "768": {
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "horizontalOverflow": false,
+      "cardsSingleColumn": true,
+      "mobileMenuVisible": true,
+      "heroHeadingClearOfArtwork": true,
+      "touchTargetViolations": [],
+      "overflowElements": []
+    },
+    "1366": {
+      "scrollWidth": 1366,
+      "clientWidth": 1366,
+      "horizontalOverflow": false,
+      "cardsSingleColumn": true,
+      "mobileMenuVisible": true,
+      "heroHeadingClearOfArtwork": true,
+      "touchTargetViolations": [],
+      "overflowElements": []
+    },
+    "1920": {
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "horizontalOverflow": false,
+      "cardsSingleColumn": true,
+      "mobileMenuVisible": true,
+      "heroHeadingClearOfArtwork": true,
+      "touchTargetViolations": [],
+      "overflowElements": []
+    }
+  },
+  "console_errors": [],
+  "security_headers": {
+    "values": {
+      "content-security-policy": "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; frame-src https://your-app.streamlit.app; img-src 'self' data: blob:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; upgrade-insecure-requests",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "permissions-policy": "camera=(), geolocation=(), microphone=(), payment=(), usb=()",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "strict-transport-security": "max-age=63072000; includeSubDomains; preload"
+    },
+    "all_present": true,
+    "frame_src_restricted": true,
+    "frame_ancestors_restricted": true
+  },
+  "mobile_menu": {
+    "opened": true,
+    "app_link_visible": true
+  },
+  "embedded_app": {
+    "same_tab": true,
+    "iframe_title": "NewsLens AI Streamlit application",
+    "iframe_src": "https://your-app.streamlit.app/?embed=true",
+    "embed_parameter": true,
+    "sandbox": "allow-downloads allow-forms allow-popups allow-same-origin allow-scripts",
+    "referrer_policy": "strict-origin-when-cross-origin",
+    "sandbox_is_restricted": true,
+    "supported_placeholder_shape": true,
+    "fallback_same_tab": true,
+    "fallback_touch_target_height": 46
+  },
+  "design_tokens": {
+    "#F3F0E8": true,
+    "#EAE4D8": true,
+    "#FAF8F2": true,
+    "#D8CCBA": true,
+    "#A89984": true,
+    "#6D5947": true,
+    "#40352C": true,
+    "#1A1917": true,
+    "#090909": true,
+    "#D4CEC2": true,
+    "#393631": true
+  },
+  "all_viewports_no_overflow": true,
+  "all_hero_headings_clear_artwork": true,
+  "all_touch_targets_at_least_44px": true
+}

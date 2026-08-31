@@ -1,0 +1,10 @@
+{
+  "raw_rows": 44898,
+  "clean_rows": 37883,
+  "training_sample_rows": 24000,
+  "duplicates_removed": 5713,
+  "conflicting_label_rows_removed": 0,
+  "short_or_empty_rows_removed": 1302,
+  "reliable_rows": 12000,
+  "misleading_rows": 12000
+}

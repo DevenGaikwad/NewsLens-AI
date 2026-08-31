@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900" role="img" aria-labelledby="title desc">
+  <title id="title">NewsLens AI editorial masthead illustration</title>
+  <desc id="desc">An original warm-toned composition of newspaper pages, rules, a magnifying lens, and credibility annotations.</desc>
+  <rect width="900" height="900" fill="#EAE4D8"/>
+  <path d="M0 110 900 0v130L0 240Z" fill="#D8CCBA" opacity=".62"/>
+  <path d="M0 750 900 625v275H0Z" fill="#D8CCBA" opacity=".72"/>
+  <g transform="translate(115 120) rotate(-5 310 310)">
+    <rect x="0" y="0" width="600" height="650" fill="#FAF8F2" stroke="#090909" stroke-width="6"/>
+    <rect x="35" y="38" width="530" height="60" fill="#090909"/>
+    <text x="55" y="80" fill="#FAF8F2" font-family="Georgia,serif" font-size="36" font-weight="700">THE NEWS INTELLIGENCE DESK</text>
+    <line x1="35" y1="128" x2="565" y2="128" stroke="#090909" stroke-width="3"/>
+    <text x="35" y="175" fill="#40352C" font-family="Georgia,serif" font-size="34" font-weight="700">Signal, context and uncertainty.</text>
+    <text x="35" y="208" fill="#77736C" font-family="Arial,sans-serif" font-size="16" letter-spacing="2">LOCAL ANALYSIS • EXPLAINABLE MODEL • PRIVATE ARCHIVE</text>
+    <rect x="35" y="245" width="245" height="170" fill="#D8CCBA"/>
+    <path d="M55 385 105 315l48 36 52-81 53 115Z" fill="#A89984"/>
+    <circle cx="110" cy="285" r="20" fill="#F3F0E8"/>
+    <g stroke="#6D5947" stroke-width="7">
+      <line x1="310" y1="260" x2="555" y2="260"/>
+      <line x1="310" y1="290" x2="555" y2="290"/>
+      <line x1="310" y1="320" x2="515" y2="320"/>
+      <line x1="310" y1="350" x2="555" y2="350"/>
+      <line x1="310" y1="380" x2="490" y2="380"/>
+    </g>
+    <line x1="35" y1="455" x2="565" y2="455" stroke="#090909" stroke-width="3"/>
+    <g stroke="#A89984" stroke-width="6">
+      <line x1="35" y1="495" x2="260" y2="495"/>
+      <line x1="35" y1="525" x2="260" y2="525"/>
+      <line x1="35" y1="555" x2="240" y2="555"/>
+      <line x1="325" y1="495" x2="565" y2="495"/>
+      <line x1="325" y1="525" x2="565" y2="525"/>
+      <line x1="325" y1="555" x2="535" y2="555"/>
+      <line x1="35" y1="602" x2="565" y2="602"/>
+    </g>
+  </g>
+  <g transform="translate(545 505)">
+    <circle cx="90" cy="90" r="83" fill="#F3F0E8" fill-opacity=".9" stroke="#090909" stroke-width="14"/>
+    <circle cx="90" cy="90" r="54" fill="none" stroke="#6D5947" stroke-width="5" stroke-dasharray="6 10"/>
+    <path d="m151 151 112 112" stroke="#090909" stroke-width="24" stroke-linecap="square"/>
+    <path d="m56 92 24 24 47-57" fill="none" stroke="#496454" stroke-width="15" stroke-linecap="square" stroke-linejoin="miter"/>
+  </g>
+  <g fill="#40352C" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="3">
+    <text x="75" y="842">SUMMARISE</text>
+    <text x="282" y="842">CLASSIFY</text>
+    <text x="470" y="842">EXPLAIN</text>
+    <text x="655" y="842">ARCHIVE</text>
+  </g>
+  <g fill="#090909">
+    <rect x="210" y="831" width="8" height="8" transform="rotate(45 214 835)"/>
+    <rect x="400" y="831" width="8" height="8" transform="rotate(45 404 835)"/>
+    <rect x="590" y="831" width="8" height="8" transform="rotate(45 594 835)"/>
+  </g>
+</svg>

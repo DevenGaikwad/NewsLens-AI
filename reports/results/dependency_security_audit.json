@@ -1,0 +1,75 @@
+{
+  "audit_date": "2026-08-24",
+  "current_revalidation_date": "2026-08-25",
+  "environment": {
+    "python": "3.12.13",
+    "pip": "25.0.1",
+    "node": "24.19.0",
+    "npm": "11.9.0"
+  },
+  "evidence_hashes": {
+    "requirements-lite.txt": "ee15cadae469fb990bbc864d1696b45ab9626814e752371044c679851bc5690d",
+    "requirements.txt": "fbbd0bd90dfa61dfd7955f28515a56765bad42597b035a1c24528a9ad38dde85",
+    "web/package-lock.json": "db9e6dd86df4288f8d60b8e59e93f5477147d8d5ec60ea70a6f85b33631f2e30"
+  },
+  "python": {
+    "requirements_file": "requirements-lite.txt",
+    "pip_check": {
+      "broken_requirements": 0,
+      "status": "passed_current_environment"
+    },
+    "pip_audit": {
+      "dependencies_audited": 74,
+      "known_vulnerabilities": 0,
+      "status": "passed_dated_audit",
+      "current_online_refresh": "not completed because the workspace blocked vulnerability-service network access",
+      "interpretation": "The dated result applies to the recorded requirements hash; rerun against a live advisory service before deployment."
+    },
+    "targeted_updates": [
+      {
+        "package": "pypdf",
+        "from": "6.10.0",
+        "to": "6.15.0",
+        "reason": "Resolved advisories reported by the dated live dependency audit."
+      },
+      {
+        "package": "pytest",
+        "from": "8.4.2",
+        "to": "9.0.3",
+        "reason": "Resolved the advisory reported by the dated live dependency audit."
+      }
+    ]
+  },
+  "javascript": {
+    "lockfile": "web/package-lock.json",
+    "npm_audit_omit_dev": {
+      "dependencies_total": 60,
+      "production_dependencies": 16,
+      "development_dependencies": 6,
+      "optional_dependencies": 39,
+      "known_vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "status": "passed_dated_audit",
+      "current_online_refresh": "not completed because the workspace could not access the npm registry"
+    }
+  },
+  "current_local_verification": {
+    "pytest_passed": 56,
+    "pytest_failed": 0,
+    "pytest_errors": 0,
+    "pytest_skipped": 0,
+    "project_verification_passed": true,
+    "pip_check_passed": true,
+    "streamlit_browser_audit_passed": true,
+    "next_current_source_dependency_install": false,
+    "next_current_source_typescript": null,
+    "next_current_source_production_build": null,
+    "reason": "Current-source npm checks require a package-network-enabled environment."
+  }
+}

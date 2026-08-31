@@ -1,0 +1,19 @@
+{
+  "dataset": "XSum test split",
+  "dataset_url": "https://huggingface.co/datasets/EdinburghNLP/xsum",
+  "sample_size": 150,
+  "random_seed": 42,
+  "method": "TF-IDF centroid extractive - Medium",
+  "rouge1_precision": 0.098031,
+  "rouge1_recall": 0.439227,
+  "rouge1_f1": 0.153559,
+  "rouge2_precision": 0.017256,
+  "rouge2_recall": 0.089341,
+  "rouge2_f1": 0.027824,
+  "rougeL_precision": 0.065309,
+  "rougeL_recall": 0.297377,
+  "rougeL_f1": 0.10253,
+  "mean_compression_ratio_pct": 70.6572,
+  "mean_latency_ms": 3.368,
+  "qualitative_note": "XSum references are highly abstractive one-sentence summaries. Extractive overlap is therefore conservative; ROUGE does not by itself measure factual consistency or readability."
+}

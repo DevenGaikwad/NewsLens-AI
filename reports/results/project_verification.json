@@ -1,0 +1,522 @@
+{
+  "generated_at_utc": "2026-08-24T23:11:11.523845+00:00",
+  "scope": "NewsLens AI dependency-light project verification",
+  "python_compilation": {
+    "status": "passed",
+    "files_checked": 65
+  },
+  "editorial_ui_contracts": {
+    "status": "passed",
+    "count": 6,
+    "checks": [
+      "test_every_page_uses_the_shared_editorial_shell",
+      "test_interface_keeps_responsible_prediction_language",
+      "test_local_editorial_assets_exist_and_are_attributed",
+      "test_navigation_exposes_every_working_page",
+      "test_theme_contains_required_warm_design_tokens",
+      "test_theme_uses_only_approved_editorial_palette"
+    ]
+  },
+  "backend_integration": {
+    "status": "passed",
+    "sample": "data/sample/misleading_style_article.txt",
+    "original_words": 143,
+    "summary_words": 28,
+    "prediction_label": "Higher misleading-content risk indicated",
+    "calibrated_confidence": 0.9929,
+    "calibration_method": "Platt scaling",
+    "editorial_review_threshold": 0.59,
+    "local_explanation_terms": 16,
+    "sqlite_duplicate_detection": "passed",
+    "sqlite_search_reopen_delete": "passed",
+    "json_round_trip": "passed",
+    "editorial_review": "passed",
+    "analytics_privacy": "passed",
+    "drift_insufficient_observations": "passed",
+    "pdf_pages": 1,
+    "rows_after_delete_and_clear": 0
+  },
+  "factual_consistency": {
+    "status": "passed",
+    "dataset_arithmetic": {
+      "raw_rows": 44898,
+      "duplicates_removed": 5713,
+      "short_or_empty_rows_removed": 1302,
+      "clean_rows": 37883,
+      "training_sample_rows": 24000,
+      "reliable_rows": 12000,
+      "misleading_rows": 12000
+    },
+    "confusion_matrix": [
+      [
+        1196,
+        4
+      ],
+      [
+        15,
+        1184
+      ]
+    ],
+    "derived_accuracy": 0.99208,
+    "reported_accuracy": 0.992080033347228,
+    "roc_auc": 0.9994808173477898,
+    "pr_auc": 0.9994228189888477,
+    "validation_rows": 2399,
+    "calibration_method": "Platt scaling",
+    "editorial_review_threshold": 0.59,
+    "cross_partition_near_duplicate_findings": 0
+  },
+  "visual_asset_integrity": {
+    "status": "passed",
+    "diagrams": {
+      "count": 13,
+      "files": [
+        {
+          "filename": "01_overall_system_architecture.png",
+          "width": 2437,
+          "height": 1396,
+          "size_bytes": 207410
+        },
+        {
+          "filename": "02_end_to_end_data_flow.png",
+          "width": 2437,
+          "height": 1396,
+          "size_bytes": 176776
+        },
+        {
+          "filename": "03_dfd_level_0.png",
+          "width": 2437,
+          "height": 1396,
+          "size_bytes": 152607
+        },
+        {
+          "filename": "04_dfd_level_1.png",
+          "width": 2437,
+          "height": 1396,
+          "size_bytes": 160326
+        },
+        {
+          "filename": "05_use_case_diagram.png",
+          "width": 2437,
+          "height": 1396,
+          "size_bytes": 210521
+        },
+        {
+          "filename": "06_activity_diagram.png",
+          "width": 2437,
+          "height": 1396,
+          "size_bytes": 167440
+        },
+        {
+          "filename": "07_sequence_diagram.png",
+          "width": 2437,
+          "height": 1396,
+          "size_bytes": 130139
+        },
+        {
+          "filename": "08_component_module_diagram.png",
+          "width": 2437,
+          "height": 1396,
+          "size_bytes": 201957
+        },
+        {
+          "filename": "09_ml_training_pipeline.png",
+          "width": 2437,
+          "height": 1396,
+          "size_bytes": 254708
+        },
+        {
+          "filename": "10_combined_inference_pipeline.png",
+          "width": 2437,
+          "height": 1396,
+          "size_bytes": 183296
+        },
+        {
+          "filename": "11_sqlite_er_diagram.png",
+          "width": 2437,
+          "height": 1396,
+          "size_bytes": 207643
+        },
+        {
+          "filename": "12_streamlit_navigation_diagram.png",
+          "width": 2437,
+          "height": 1396,
+          "size_bytes": 188850
+        },
+        {
+          "filename": "13_deployment_diagram.png",
+          "width": 2437,
+          "height": 1396,
+          "size_bytes": 194742
+        }
+      ]
+    },
+    "figures": {
+      "count": 18,
+      "files": [
+        {
+          "filename": "average_sentence_length.png",
+          "width": 1683,
+          "height": 923,
+          "size_bytes": 50016
+        },
+        {
+          "filename": "calibration_reliability.png",
+          "width": 1387,
+          "height": 968,
+          "size_bytes": 140735
+        },
+        {
+          "filename": "class_distribution.png",
+          "width": 1321,
+          "height": 835,
+          "size_bytes": 48466
+        },
+        {
+          "filename": "confusion_matrix.png",
+          "width": 1269,
+          "height": 961,
+          "size_bytes": 65466
+        },
+        {
+          "filename": "duplicate_record_analysis.png",
+          "width": 1660,
+          "height": 843,
+          "size_bytes": 57142
+        },
+        {
+          "filename": "feature_importance.png",
+          "width": 2287,
+          "height": 1109,
+          "size_bytes": 130352
+        },
+        {
+          "filename": "missing_values_heatmap.png",
+          "width": 1574,
+          "height": 676,
+          "size_bytes": 69509
+        },
+        {
+          "filename": "model_benchmark_confusion_matrices.png",
+          "width": 2337,
+          "height": 693,
+          "size_bytes": 104580
+        },
+        {
+          "filename": "model_comparison.png",
+          "width": 1938,
+          "height": 916,
+          "size_bytes": 68606
+        },
+        {
+          "filename": "ngram_frequency_comparison.png",
+          "width": 2653,
+          "height": 1495,
+          "size_bytes": 180086
+        },
+        {
+          "filename": "numerical_feature_correlation.png",
+          "width": 1402,
+          "height": 1112,
+          "size_bytes": 125732
+        },
+        {
+          "filename": "research_matrix_preview.png",
+          "width": 1592,
+          "height": 1399,
+          "size_bytes": 232391
+        },
+        {
+          "filename": "roc_pr_curves.png",
+          "width": 2165,
+          "height": 903,
+          "size_bytes": 97184
+        },
+        {
+          "filename": "subject_distribution.png",
+          "width": 2063,
+          "height": 998,
+          "size_bytes": 117760
+        },
+        {
+          "filename": "title_length_distribution.png",
+          "width": 1683,
+          "height": 923,
+          "size_bytes": 64525
+        },
+        {
+          "filename": "top_ngrams.png",
+          "width": 2126,
+          "height": 943,
+          "size_bytes": 91670
+        },
+        {
+          "filename": "vocabulary_size_comparison.png",
+          "width": 1341,
+          "height": 827,
+          "size_bytes": 55753
+        },
+        {
+          "filename": "word_count_distribution.png",
+          "width": 1627,
+          "height": 907,
+          "size_bytes": 68122
+        }
+      ]
+    },
+    "screenshots": {
+      "count": 15,
+      "files": [
+        {
+          "filename": "01_home.png",
+          "width": 1440,
+          "height": 900,
+          "size_bytes": 185198
+        },
+        {
+          "filename": "02_analysis_input.png",
+          "width": 1440,
+          "height": 1000,
+          "size_bytes": 154037
+        },
+        {
+          "filename": "03_summary_and_risk_results.png",
+          "width": 1440,
+          "height": 930,
+          "size_bytes": 144163
+        },
+        {
+          "filename": "04_explainability_and_downloads.png",
+          "width": 1440,
+          "height": 940,
+          "size_bytes": 124481
+        },
+        {
+          "filename": "05_editorial_review_required.png",
+          "width": 1440,
+          "height": 840,
+          "size_bytes": 137866
+        },
+        {
+          "filename": "06_model_accountability.png",
+          "width": 1440,
+          "height": 925,
+          "size_bytes": 158670
+        },
+        {
+          "filename": "07_model_benchmarking.png",
+          "width": 1440,
+          "height": 940,
+          "size_bytes": 103936
+        },
+        {
+          "filename": "08_calibration_reliability.png",
+          "width": 1440,
+          "height": 1350,
+          "size_bytes": 254789
+        },
+        {
+          "filename": "09_dataset_analysis.png",
+          "width": 1440,
+          "height": 960,
+          "size_bytes": 169870
+        },
+        {
+          "filename": "10_newsroom_analytics.png",
+          "width": 1440,
+          "height": 1320,
+          "size_bytes": 195510
+        },
+        {
+          "filename": "11_drift_readiness.png",
+          "width": 1440,
+          "height": 1000,
+          "size_bytes": 155328
+        },
+        {
+          "filename": "12_editorial_review_workflow.png",
+          "width": 1440,
+          "height": 945,
+          "size_bytes": 119303
+        },
+        {
+          "filename": "13_research_about.png",
+          "width": 1440,
+          "height": 945,
+          "size_bytes": 161715
+        },
+        {
+          "filename": "14_home_mobile.png",
+          "width": 390,
+          "height": 844,
+          "size_bytes": 79306
+        },
+        {
+          "filename": "15_analysis_mobile.png",
+          "width": 390,
+          "height": 844,
+          "size_bytes": 73849
+        }
+      ]
+    }
+  },
+  "branding_consistency": {
+    "status": "passed",
+    "primary_name": "NewsLens AI",
+    "filesystem_root": "NewsLens-AI",
+    "documents_checked": [
+      "NewsLens_AI_Project_Report.docx",
+      "NewsLens_AI_Setup_and_Run_Guide.docx",
+      "NewsLens_AI_Code_Explanation_and_Developer_Guide.docx",
+      "NewsLens_AI_Complete_Concepts_Methodologies_and_Terminology_Guide.docx"
+    ],
+    "runtime_brand_files_checked": 9,
+    "legacy_branding_matches": 0
+  },
+  "release_language_audit": {
+    "status": "passed",
+    "text_files_scanned": 143,
+    "documents_scanned": 4,
+    "prohibited_release_history_matches": 0
+  },
+  "document_media_integrity": {
+    "status": "passed",
+    "NewsLens_AI_Code_Explanation_and_Developer_Guide.docx": {
+      "verified_raster_media": 8
+    },
+    "NewsLens_AI_Complete_Concepts_Methodologies_and_Terminology_Guide.docx": {
+      "verified_raster_media": 12
+    },
+    "NewsLens_AI_Project_Report.docx": {
+      "verified_raster_media": 42
+    },
+    "NewsLens_AI_Setup_and_Run_Guide.docx": {
+      "verified_raster_media": 4
+    }
+  },
+  "interface_layout_verification": {
+    "status": "passed",
+    "manifest": "reports/results/ui_screenshot_manifest.json",
+    "interface_name": "NewsLens AI warm editorial newsroom",
+    "design_system": "Warm editorial newsroom",
+    "capture_date": "2026-08-24",
+    "captures": [
+      {
+        "filename": "01_home.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "478491d77ecf475d91722f9612005682c0cca7f48ed7b3b2e777180d4beca324"
+      },
+      {
+        "filename": "02_analysis_input.png",
+        "width": 1440,
+        "height": 1000,
+        "sha256": "5050e39a8666f2888f7a5d15319ca7b9d72f7835110f90c0023a2f0b40dbe2e7"
+      },
+      {
+        "filename": "03_summary_and_risk_results.png",
+        "width": 1440,
+        "height": 930,
+        "sha256": "abc0148a0fd60a7dad99186a45b531942dc9043ac3f43f377430ca4b9a416032"
+      },
+      {
+        "filename": "04_explainability_and_downloads.png",
+        "width": 1440,
+        "height": 940,
+        "sha256": "d3c9acb806153738eb89d89462b174f4397c3d73ca15313b733beac31396125b"
+      },
+      {
+        "filename": "05_editorial_review_required.png",
+        "width": 1440,
+        "height": 840,
+        "sha256": "ba8d739cbf13b8359858956bd414b2d774f00de3516003c9bb260fd5f61ff43b"
+      },
+      {
+        "filename": "06_model_accountability.png",
+        "width": 1440,
+        "height": 925,
+        "sha256": "e273cd47c409f31304443ba30d9cfc29ff4cac626c44c1395d797ae2eca6e441"
+      },
+      {
+        "filename": "07_model_benchmarking.png",
+        "width": 1440,
+        "height": 940,
+        "sha256": "4b4f257539e00212d3e498f4dbbcf50fd4fdeb79753af80ad00d4d48cef853d0"
+      },
+      {
+        "filename": "08_calibration_reliability.png",
+        "width": 1440,
+        "height": 1350,
+        "sha256": "9348575e780608c6216a98146c389b1cb735f77a2d722bb0ef330916471a4987"
+      },
+      {
+        "filename": "09_dataset_analysis.png",
+        "width": 1440,
+        "height": 960,
+        "sha256": "d345eb7a49b11e54ddfd5349b7f48245b4b79764e15ab846a796ed52aeae8fb8"
+      },
+      {
+        "filename": "10_newsroom_analytics.png",
+        "width": 1440,
+        "height": 1320,
+        "sha256": "e9619113f51615719c6672f03606e0ee4dd2fc9fbcaa2d76637872c7f45749bc"
+      },
+      {
+        "filename": "11_drift_readiness.png",
+        "width": 1440,
+        "height": 1000,
+        "sha256": "39489ff352fd3a525f43dcb2eab2081c6ec396492381ec3652b2cbff4a600412"
+      },
+      {
+        "filename": "12_editorial_review_workflow.png",
+        "width": 1440,
+        "height": 945,
+        "sha256": "14d40ffbcd5e1c2a7e07fcd1f8b519d6accb8ef073bd0add630a0156a13065f5"
+      },
+      {
+        "filename": "13_research_about.png",
+        "width": 1440,
+        "height": 945,
+        "sha256": "df6ed603fb54c8d6166cc9e1862d0317efe38966388af195daf14c9750d53578"
+      },
+      {
+        "filename": "14_home_mobile.png",
+        "width": 390,
+        "height": 844,
+        "sha256": "5de29ee2d75b520c22ed556ad3589ba2238b4da4448b1bed2b9292c8570f9a73"
+      },
+      {
+        "filename": "15_analysis_mobile.png",
+        "width": 390,
+        "height": 844,
+        "sha256": "43668282dc8d2fc0ed19353453d2ec533d6312664d71be3c82fd2a895446a33d"
+      }
+    ],
+    "desktop_capture_width": 1440,
+    "mobile_viewport": "390x844 responsive viewport capture",
+    "checks": [
+      "exact ui/theme.py CSS imported",
+      "shared component class names rendered",
+      "no page-level horizontal overflow",
+      "no overflowing headings",
+      "all local images loaded",
+      "all screenshot byte sizes and SHA-256 hashes match the manifest"
+    ],
+    "canonical_live_capture_script": "scripts/capture_streamlit_screenshots.py"
+  },
+  "packaged_pytest_run": {
+    "status": "passed",
+    "tests": 56,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "evidence": "reports/results/pytest_results.xml"
+  },
+  "verification_runtime_dependencies": {
+    "streamlit": "1.59.2",
+    "plotly": "6.9.0",
+    "requests": "2.34.2",
+    "pytest": "9.0.3",
+    "playwright": "available"
+  }
+}

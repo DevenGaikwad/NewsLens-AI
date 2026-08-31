@@ -1,0 +1,348 @@
+{
+  "baseline_reproduction": {
+    "accuracy": 0.9935416666666667,
+    "holdout_rows": 4800,
+    "macro_f1": 0.9935416327490262,
+    "model_sha256": "e9dd8368a4eec1ea5111da6c002889a146af98acba06742d2795486977d93dcb",
+    "status": "passed"
+  },
+  "calibration": {
+    "editorial_review_threshold": 0.59,
+    "method": "Platt scaling",
+    "score_source": "Logistic Regression decision_function",
+    "test_auto_decision_coverage": 0.9983326385994165,
+    "test_brier_score": 0.00629194057155315,
+    "test_editorial_review_rate": 0.0016673614005835447,
+    "test_expected_calibration_error": 0.005295486797854702,
+    "test_selective_accuracy": 0.992901878914405,
+    "test_selective_accuracy_wilson_lower_95": 0.9886614968906229,
+    "threshold_rule": "Lowest validation-policy confidence threshold with >=80% coverage and 95% Wilson lower accuracy bound >=99%; deterministic fallback documented."
+  },
+  "dataset": {
+    "clean_rows": 37883,
+    "conflicting_label_rows_removed": 0,
+    "dataset_name": "ISOT Fake News Dataset",
+    "duplicates_removed": 5713,
+    "fake_csv_sha256": "bebf8bcfe95678bf2c732bf413a2ce5f621af0102c82bf08083b2e5d3c693d0c",
+    "misleading_rows": 12000,
+    "random_seed": 42,
+    "raw_rows": 44898,
+    "reliable_rows": 12000,
+    "sample_rows": 24000,
+    "short_or_empty_rows_removed": 1302,
+    "training_sample_rows": 24000,
+    "true_csv_sha256": "ba0844414a65dc6ae7402b8eee5306da24b6b56488d6767135af466c7dcb2775"
+  },
+  "generated_at_utc": "2026-08-24T22:18:01+00:00",
+  "leakage_audit": {
+    "candidate_pairs_screened": 41994,
+    "cross_partition_pairs_after_controls": 0,
+    "cross_train_holdout_pairs_before_controls": 2,
+    "method": "Eight minimum word-five-gram CRC32 signatures plus exact Jaccard verification",
+    "near_duplicate_pairs": 17,
+    "similarity_threshold": 0.9
+  },
+  "models": [
+    {
+      "calibration_method": "Platt scaling on held-out validation-calibration rows",
+      "hyperparameters": {
+        "classifier__C": 2.0
+      },
+      "mean_inference_ms_per_article": 0.5027614481037547,
+      "metrics": {
+        "accuracy": 0.992080033347228,
+        "brier_score": 0.00629194057155315,
+        "confusion_matrix": [
+          [
+            1196,
+            4
+          ],
+          [
+            15,
+            1184
+          ]
+        ],
+        "expected_calibration_error": 0.005295486797854702,
+        "macro_f1": 0.9920798351780009,
+        "macro_precision": 0.9921232695799169,
+        "macro_recall": 0.9920781206561023,
+        "misleading_f1": 0.9920402178466695,
+        "misleading_precision": 0.9966329966329966,
+        "misleading_recall": 0.987489574645538,
+        "misleading_support": 1199,
+        "pr_auc": 0.9994228189888477,
+        "reliable_f1": 0.9921194525093322,
+        "reliable_precision": 0.9876135425268373,
+        "reliable_recall": 0.9966666666666667,
+        "reliable_support": 1200,
+        "roc_auc": 0.9994808173477898
+      },
+      "model": "Logistic Regression",
+      "model_size_bytes": 819447,
+      "policy_metrics": {
+        "accuracy": 0.995,
+        "brier_score": 0.0032876569254355835,
+        "confusion_matrix": [
+          [
+            598,
+            2
+          ],
+          [
+            4,
+            596
+          ]
+        ],
+        "expected_calibration_error": 0.005097561217271755,
+        "macro_f1": 0.9949999861110725,
+        "macro_precision": 0.9950055000611118,
+        "macro_recall": 0.995,
+        "misleading_f1": 0.994991652754591,
+        "misleading_precision": 0.9966555183946488,
+        "misleading_recall": 0.9933333333333333,
+        "misleading_support": 600,
+        "pr_auc": 0.999941940049672,
+        "reliable_f1": 0.9950083194675541,
+        "reliable_precision": 0.9933554817275747,
+        "reliable_recall": 0.9966666666666667,
+        "reliable_support": 600,
+        "roc_auc": 0.9999416666666667
+      },
+      "reliability": {
+        "mean_predicted_probability": [
+          0.001846,
+          0.140569,
+          0.264233,
+          0.368184,
+          0.460053,
+          0.537631,
+          0.647134,
+          0.740645,
+          0.849873,
+          0.998192
+        ],
+        "observed_positive_rate": [
+          0.004195,
+          0.444444,
+          0.333333,
+          0.666667,
+          0.75,
+          1.0,
+          1.0,
+          0.777778,
+          1.0,
+          0.998273
+        ]
+      },
+      "uncalibrated_brier_score": 0.01046447229000761,
+      "uncalibrated_expected_calibration_error": 0.044798704151884215
+    },
+    {
+      "calibration_method": "Platt scaling on held-out validation-calibration rows",
+      "hyperparameters": {
+        "classifier__C": 1.0
+      },
+      "mean_inference_ms_per_article": 0.6144338474358827,
+      "metrics": {
+        "accuracy": 0.9945810754481034,
+        "brier_score": 0.004059028125305727,
+        "confusion_matrix": [
+          [
+            1197,
+            3
+          ],
+          [
+            10,
+            1189
+          ]
+        ],
+        "expected_calibration_error": 0.004451042541996124,
+        "macro_f1": 0.9945810151869539,
+        "macro_precision": 0.994599108667004,
+        "macro_recall": 0.9945798582151794,
+        "misleading_f1": 0.9945629443747386,
+        "misleading_precision": 0.99748322147651,
+        "misleading_recall": 0.9916597164303587,
+        "misleading_support": 1199,
+        "pr_auc": 0.9998483507099877,
+        "reliable_f1": 0.9945990859991691,
+        "reliable_precision": 0.9917149958574979,
+        "reliable_recall": 0.9975,
+        "reliable_support": 1200,
+        "roc_auc": 0.999851264943008
+      },
+      "model": "Linear SVC",
+      "model_size_bytes": 816274,
+      "policy_metrics": {
+        "accuracy": 0.9975,
+        "brier_score": 0.0017565788184910377,
+        "confusion_matrix": [
+          [
+            599,
+            1
+          ],
+          [
+            2,
+            598
+          ]
+        ],
+        "expected_calibration_error": 0.0033800730777325274,
+        "macro_f1": 0.9974999982638877,
+        "macro_precision": 0.9975013819482832,
+        "macro_recall": 0.9975,
+        "misleading_f1": 0.9974979149291076,
+        "misleading_precision": 0.998330550918197,
+        "misleading_recall": 0.9966666666666667,
+        "misleading_support": 600,
+        "pr_auc": 0.999983448117539,
+        "reliable_f1": 0.9975020815986678,
+        "reliable_precision": 0.9966722129783694,
+        "reliable_recall": 0.9983333333333333,
+        "reliable_support": 600,
+        "roc_auc": 0.9999833333333333
+      },
+      "reliability": {
+        "mean_predicted_probability": [
+          0.001249,
+          0.185257,
+          0.244843,
+          0.362905,
+          0.459686,
+          0.527936,
+          0.761795,
+          0.855348,
+          0.998778
+        ],
+        "observed_positive_rate": [
+          0.004167,
+          0.0,
+          0.666667,
+          1.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0,
+          0.998299
+        ]
+      },
+      "uncalibrated_brier_score": null,
+      "uncalibrated_expected_calibration_error": null
+    },
+    {
+      "calibration_method": "Platt scaling on held-out validation-calibration rows",
+      "hyperparameters": {
+        "classifier__alpha": 0.1
+      },
+      "mean_inference_ms_per_article": 1.3146725964977455,
+      "metrics": {
+        "accuracy": 0.9608170070862859,
+        "brier_score": 0.029562220826762534,
+        "confusion_matrix": [
+          [
+            1161,
+            39
+          ],
+          [
+            55,
+            1144
+          ]
+        ],
+        "expected_calibration_error": 0.009858787104860092,
+        "macro_f1": 0.9608150393959108,
+        "macro_precision": 0.9609013519375362,
+        "macro_recall": 0.9608142201834863,
+        "misleading_f1": 0.9605373635600336,
+        "misleading_precision": 0.967032967032967,
+        "misleading_recall": 0.9541284403669725,
+        "misleading_support": 1199,
+        "pr_auc": 0.9920969189108748,
+        "reliable_f1": 0.9610927152317881,
+        "reliable_precision": 0.9547697368421053,
+        "reliable_recall": 0.9675,
+        "reliable_support": 1200,
+        "roc_auc": 0.9915644981929386
+      },
+      "model": "Multinomial Naive Bayes",
+      "model_size_bytes": 1674812,
+      "policy_metrics": {
+        "accuracy": 0.9725,
+        "brier_score": 0.02335400117277503,
+        "confusion_matrix": [
+          [
+            583,
+            17
+          ],
+          [
+            16,
+            584
+          ]
+        ],
+        "expected_calibration_error": 0.012840463161175946,
+        "macro_f1": 0.9724999809027646,
+        "macro_precision": 0.9725013125036459,
+        "macro_recall": 0.9725,
+        "misleading_f1": 0.9725228975853455,
+        "misleading_precision": 0.9717138103161398,
+        "misleading_recall": 0.9733333333333334,
+        "misleading_support": 600,
+        "pr_auc": 0.9948172232334656,
+        "reliable_f1": 0.9724770642201835,
+        "reliable_precision": 0.9732888146911519,
+        "reliable_recall": 0.9716666666666667,
+        "reliable_support": 600,
+        "roc_auc": 0.9945416666666667
+      },
+      "reliability": {
+        "mean_predicted_probability": [
+          0.009369,
+          0.143359,
+          0.250417,
+          0.334436,
+          0.451542,
+          0.547473,
+          0.654156,
+          0.752259,
+          0.861217,
+          0.991254
+        ],
+        "observed_positive_rate": [
+          0.015654,
+          0.16,
+          0.206897,
+          0.37931,
+          0.590909,
+          0.695652,
+          0.592593,
+          0.756757,
+          0.896552,
+          0.99422
+        ]
+      },
+      "uncalibrated_brier_score": 0.02971132579625666,
+      "uncalibrated_expected_calibration_error": 0.016258953434461754
+    }
+  ],
+  "partitions": {
+    "calibration_rows": 1199,
+    "original_holdout_rows": 4800,
+    "quarantined_holdout_rows": 2,
+    "test_index_sha256": "c23f48d39e84334253333429d5325941fbc071cc73ad6202deec25908642eb31",
+    "test_rows": 2399,
+    "threshold_policy_rows": 1200,
+    "train_index_sha256": "03a7181cfeb7c76052df3eb28f9c1e1a9b14b0f4f2cb2cf1df16b0ea0aaa4a23",
+    "train_rows": 19200,
+    "validation_index_sha256": "e9c024f2429acdb89a660f7994c125024fbe20aebc9e183bab40a7a248b048ca",
+    "validation_rows": 2399
+  },
+  "responsible_use": "Metrics and calibration are relative to dataset labels. They do not establish factual truth.",
+  "schema_version": 1,
+  "scope": "Controlled private benchmark; raw data excluded from deliverables",
+  "selection": {
+    "linear_svc_policy_macro_f1_advantage": 0.0025000121528151453,
+    "macro_f1_tolerance": 0.01,
+    "packaged_model_unchanged": true,
+    "rationale": "Linear SVC's validation-policy macro-F1 advantage is below the predeclared 0.01 tolerance; Logistic Regression therefore remains selected for direct coefficient explanations, compact deployment and an unchanged verified production artefact.",
+    "selected_model": "Logistic Regression",
+    "selected_model_artifact": "models/fake_news_pipeline.joblib",
+    "selection_partition": "validation policy"
+  }
+}
