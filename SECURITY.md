@@ -4,9 +4,14 @@
 
 Security fixes target the public `main` branch.
 
+The public and active repository is
+[`DevenGaikwad/NewsLens-AI`](https://github.com/DevenGaikwad/NewsLens-AI).
+
 ## Reporting a vulnerability
 
-Use the repository's private GitHub Security Advisory workflow. Do not post secrets, exploit details, personal article history or private URLs in a public issue.
+Report vulnerabilities through GitHub private vulnerability reporting. Do not
+post sensitive vulnerability information, secrets, exploit details, personal
+article history or private URLs in a public issue.
 
 Include the affected component, reproduction steps, impact and a minimal safe proof of concept. Maintainers should acknowledge a report before public disclosure and publish remediation details through GitHub advisories and releases.
 
@@ -21,10 +26,10 @@ Include the affected component, reproduction steps, impact and a minimal safe pr
 
 No response-time guarantee is asserted until repository maintainers publish one.
 
-The intended repository is `DevenGaikwad/NewsLens-AI`, but it is not live yet.
-Add the verified URL and any intentionally public security contact only after
-repository creation. Never send passwords, personal access tokens, recovery
-codes, private keys, or production secrets with a report.
+NewsLens AI is not currently publicly deployed through Streamlit or Vercel.
+The public repository does not imply that a hosted application is available.
+Never send passwords, personal access tokens, recovery codes, private keys, or
+production secrets with a report.
 
 ## Coordinated disclosure workflow
 
@@ -34,6 +39,5 @@ codes, private keys, or production secrets with a report.
 3. Allow the owner to validate and remediate the issue before public disclosure.
 4. Publish an advisory or release note only after remediation and coordination.
 
-Public GitHub issues are appropriate for non-sensitive bugs only. If private
-reporting is not yet enabled, wait for the canonical repository/security contact
-rather than disclosing exploit details publicly.
+Public GitHub issues are appropriate for non-sensitive bugs only. Use private
+vulnerability reporting for security-sensitive information.

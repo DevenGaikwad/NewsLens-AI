@@ -3,6 +3,14 @@
 Audit updated: 1 September 2026 (IST)  
 Status: **public GitHub publication verified; functional hosting gated**
 
+> **Historical snapshot.** This audit records the original public release at
+> commit `39a14a772258f06f45fbe01d3c82b6facd805cc5`. Its 247-file count and
+> Dependency Graph status describe the release-time state. The repository has
+> subsequently received verified maintenance, so those release-time settings
+> must not be treated as the current live configuration. The current
+> model-licensing decision is documented in
+> [`PUBLIC_DEPLOYMENT_MODEL_LICENSE_AUDIT.md`](PUBLIC_DEPLOYMENT_MODEL_LICENSE_AUDIT.md).
+
 ## Verified GitHub publication
 
 - Canonical repository: `https://github.com/DevenGaikwad/NewsLens-AI`.

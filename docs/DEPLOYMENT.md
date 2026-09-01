@@ -1,17 +1,29 @@
 # Deployment guide
 
-## Publication prerequisites
+## Current status
 
-Before any public push, use the confirmed GitHub owner `DevenGaikwad`, clear the packaged-model
-redistribution gate, preserve the approved proprietary repository notice, run
-the release audit, and replace all deployment sentinels. The public-staging
-archive excludes the model and private calibration parameters and is not deployable. Never request or paste a
+- GitHub publication is complete at
+  [`DevenGaikwad/NewsLens-AI`](https://github.com/DevenGaikwad/NewsLens-AI) on
+  the protected `main` branch.
+- The GitHub release and free repository security configuration are complete.
+- Streamlit deployment is postponed because no legally redistributable public
+  model and complete rights chain have been approved.
+- Vercel deployment is postponed and remains downstream of a verified
+  Streamlit deployment.
+
+The public repository excludes the private model and private calibration
+parameters and is not currently deployable as the functional application.
+Preserve the approved proprietary repository notice. Never request or paste a
 password, recovery code, private key, or personal access token into chat or
 documentation.
 
 ## Streamlit Community Cloud
 
-1. Create the public GitHub repository `NewsLens-AI` and push the reviewed release to `main`.
+These instructions are postponed until the external model-redistribution
+blocker is resolved and deployment is separately authorised.
+
+1. Use the existing public repository, branch `main`, only after a suitable
+   public model and its complete rights chain are verified.
 2. Confirm `app.py` and `requirements.txt` are at the repository root.
 3. In Community Cloud, create an app from the repository, branch `main`, entrypoint `app.py` and Python 3.12.
 4. Do not set `NEWSLENS_HISTORY_MODE=persistent` for the public multi-user app.
@@ -28,6 +40,9 @@ If documentary model rights remain unclear, stop before this section.
 ## Vercel
 
 Use only a personal, non-commercial Vercel Hobby account whose dashboard shows a zero base price, no paid trial, and no required payment method for the selected workflow. Stop if a payment, upgrade, billable integration, or commercial plan is required.
+
+These instructions are also postponed. Do not begin Vercel configuration until
+a verified Streamlit URL exists and Vercel deployment is separately authorised.
 
 1. Import the same GitHub repository into Vercel.
 2. Set the project root directory to `web/` and keep the detected Next.js build settings.
