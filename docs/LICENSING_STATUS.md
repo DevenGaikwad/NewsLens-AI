@@ -26,8 +26,8 @@ has been applied to original NewsLens AI material.
 | Research papers | Third-party scholarship | Cite; do not redistribute full papers unless separately permitted |
 | ISOT and XSum datasets | External datasets under their own terms | Raw records excluded; follow official sources and current terms |
 | Pretrained checkpoints | Third-party artifacts | Download separately where applicable; retain upstream terms |
-| `fake_news_pipeline.joblib` | Locally trained binary with unresolved public redistribution basis | Private/local package only; excluded from public staging and Git |
-| `confidence_calibration.json` | Dataset-derived Platt parameters bound to the private model | Private/local package only; excluded from public staging and Git |
+| `fake_news_pipeline.joblib` | Locally trained binary with unresolved public redistribution basis | Private/local package only; excluded from the public repository and all public release artifacts |
+| `confidence_calibration.json` | Dataset-derived Platt parameters bound to the private model | Private/local package only; excluded from the public repository and all public release artifacts |
 
 ## Open questions
 
