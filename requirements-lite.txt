@@ -9,7 +9,7 @@ matplotlib==3.10.8
 seaborn==0.13.2
 requests==2.34.2
 beautifulsoup4==4.15.0
-trafilatura==2.1.0
+trafilatura==2.2.0
 pypdf==6.15.0
 reportlab==4.4.9
 pytest==9.0.3
