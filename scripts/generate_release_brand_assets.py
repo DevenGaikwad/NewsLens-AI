@@ -230,7 +230,7 @@ def system_architecture() -> Path:
     draw.text((98, 765), "Licensed data → leakage controls → three-model benchmark → calibration fitting → fixed artefacts", font=box_font, fill=INK)
     draw.text(
         (98, 814),
-        "The optional Next.js site is a presentation shell only. GitHub is the intended canonical release history after owner publication.",
+        "GitHub is the active canonical release history; Streamlit and Vercel remain blocked pending a legally redistributable public model.",
         font=note_font,
         fill=CHARCOAL,
     )
