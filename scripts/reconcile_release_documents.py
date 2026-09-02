@@ -96,11 +96,19 @@ def set_paragraph(paragraph, text: str, *, style: str | None = None) -> None:
     paragraph.add_run(text)
 
 
-def set_by_prefix(doc: Document, prefix: str, text: str, *, style: str | None = None) -> None:
-    paragraph = find_paragraph(doc, startswith=prefix, required=False)
-    if paragraph is not None:
-        set_paragraph(paragraph, text, style=style)
-        return
+def set_by_prefix(
+    doc: Document,
+    prefix: str,
+    text: str,
+    *,
+    style: str | None = None,
+    alternate_prefixes: Sequence[str] = (),
+) -> None:
+    for candidate in (prefix, *alternate_prefixes):
+        paragraph = find_paragraph(doc, startswith=candidate, required=False)
+        if paragraph is not None:
+            set_paragraph(paragraph, text, style=style)
+            return
     # Idempotence matters because the same documents are reconciled once before
     # the audit and again only if the comprehensive audit actually passes.
     existing = find_paragraph(doc, exact=normalised(text), required=False)
@@ -202,8 +210,9 @@ def update_common_metadata(doc: Document) -> None:
     doc.core_properties.author = PUBLIC_AUTHOR
     doc.core_properties.last_modified_by = ""
     doc.core_properties.comments = (
-        "Sanitized public-release documentation; publication and functional hosting remain "
-        "blocked until the documented owner and model-redistribution gates clear."
+        "Sanitized documentation for the active public GitHub repository; Streamlit and Vercel "
+        "remain undeployed until a legally redistributable public model and complete rights "
+        "chain are verified."
     )
     doc.core_properties.keywords = (
         "NewsLens AI, NLP, linguistic credibility risk, summarization, calibration, "
@@ -215,10 +224,13 @@ def update_common_metadata(doc: Document) -> None:
 
 def update_cover_metadata(table) -> None:
     values = {
-        "Document status": "GitHub-ready public documentation; publication pending owner action",
+        "Document status": (
+            "Public GitHub repository active; Streamlit and Vercel blocked pending a legally "
+            "redistributable public model"
+        ),
         "Author and developer": PUBLIC_AUTHOR,
         "Copyright": PUBLIC_COPYRIGHT,
-        "Repository": f"Intended canonical repository: {INTENDED_REPOSITORY} (not yet created)",
+        "Repository": f"Canonical public repository: {INTENDED_REPOSITORY} (active)",
         "Document updated": UPDATED_DATE,
     }
     for row in table.rows[1:]:
@@ -398,10 +410,10 @@ def reconcile_report(*, audit_passed: bool) -> Path:
         doc,
         "NewsLens AI was designed and developed by",
         f"NewsLens AI was designed and developed by {PUBLIC_AUTHOR}. {PUBLIC_COPYRIGHT} "
-        f"The intended canonical repository is {INTENDED_REPOSITORY}; it has not yet been "
-        "created. Functional public hosting remains blocked until documentary permission or "
-        "an explicit applicable licence confirms that the ISOT-derived model and calibration "
-        "artefacts may be redistributed and hosted.",
+        f"The canonical sanitized public source repository is {INTENDED_REPOSITORY}. The private "
+        "ISOT-derived model and its calibration remain excluded. Functional Streamlit and Vercel "
+        "hosting remains blocked until a legally redistributable public model and complete rights "
+        "chain are verified.",
     )
     set_by_prefix(
         doc,
@@ -441,11 +453,13 @@ def reconcile_report(*, audit_passed: bool) -> Path:
     set_by_prefix(
         doc,
         "GitHub is canonical;",
-        f"After owner publication, {INTENDED_REPOSITORY} is intended to be canonical for code, "
-        "documentation, issues, releases and deployment history. Vercel is only the presentation "
+        f"{INTENDED_REPOSITORY} is the canonical active public repository for code, documentation, "
+        "issues, releases and deployment history. Vercel is only the presentation "
         "shell and Streamlit Community Cloud would run app.py with temporary visitor-isolated "
         "SQLite. This architecture is a target, not a live-deployment claim; functional hosting "
-        "is blocked by the model-redistribution decision record.",
+        "is blocked until a legally redistributable public model and complete rights chain are "
+        "verified.",
+        alternate_prefixes=("After owner publication,",),
     )
     set_by_prefix(
         doc,
@@ -928,17 +942,18 @@ def reconcile_developer_guide(*, audit_passed: bool) -> Path:
         doc,
         "Vercel provides the editorial",
         "Vercel is the intended editorial presentation shell while Streamlit Community Cloud would "
-        "run the unchanged Python/ML application from app.py. Neither service is claimed live in "
-        "this staging document.",
+        "run the unchanged Python/ML application from app.py. Neither Streamlit nor Vercel is "
+        "currently deployed.",
+        alternate_prefixes=("Vercel is the intended editorial",),
     )
     set_by_prefix(
         doc,
         "The public Streamlit UI defaults",
-        f"The public Streamlit UI defaults to temporary per-session SQLite and makes no durable-"
-        f"history promise. {INTENDED_REPOSITORY} is the intended canonical repository, but it has "
-        "not yet been created. Public push and functional hosting remain blocked because the "
-        "ISOT-derived Joblib and matching calibration redistribution basis is unresolved. The public "
-        "staging archive excludes both artifacts; no runtime retraining or mock classifier is used.",
+        f"The intended public Streamlit deployment defaults to temporary per-session SQLite and "
+        f"makes no durable-history promise. {INTENDED_REPOSITORY} is the canonical active public "
+        "repository. Functional hosting remains blocked until a legally redistributable public "
+        "model and complete rights chain are verified. The public repository excludes the private "
+        "model and matching calibration; no runtime retraining or mock classifier is used.",
     )
     set_by_prefix(
         doc,
@@ -1175,8 +1190,10 @@ def reconcile_concepts_guide(*, audit_passed: bool) -> Path:
     set_by_prefix(
         doc,
         "Streamlit Community Cloud. A service",
-        "Streamlit Community Cloud is the intended service for branch main and app.py after the "
-        "repository exists and release gates clear. NewsLens AI is not claimed deployed in this guide.",
+        "Streamlit Community Cloud is the intended service for branch main and app.py only after a "
+        "legally redistributable public model and complete rights chain are verified and deployment "
+        "is separately authorized. NewsLens AI is not currently deployed through Streamlit or Vercel.",
+        alternate_prefixes=("Streamlit Community Cloud is the intended service",),
     )
     set_by_prefix(
         doc,
@@ -1372,20 +1389,23 @@ def reconcile_setup_guide(*, audit_passed: bool) -> Path:
     set_by_prefix(
         doc,
         "GitHub is the canonical public source",
-        f"After publication, {INTENDED_REPOSITORY} is intended to be canonical. The target Streamlit "
+        f"{INTENDED_REPOSITORY} is the canonical active public repository. The future Streamlit "
         "Community Cloud configuration is branch main, entrypoint app.py and root requirements.txt; "
         "Vercel uses web/ and exposes only NEXT_PUBLIC_STREAMLIT_APP_URL. The session history default "
         "is temporary visitor-isolated SQLite. No live deployment is claimed, and functional hosting "
-        "must not proceed until the derived-model redistribution basis is documented.",
+        "must not proceed until a legally redistributable public model and complete rights chain are "
+        "verified.",
+        alternate_prefixes=("After publication,",),
     )
     set_by_prefix(
         doc,
         "Publication gate:",
-        "Publication gate: do not publish secrets, visitor data, generated databases, raw datasets, "
-        "the private Joblib or confidence_calibration.json. The public staging package intentionally "
-        "cannot run classification; do not retrain, mock or replace the model to bypass this gate. "
-        "Create the empty public repository and update live links only after the owner completes the "
-        "documented repository and rights steps.",
+        "Public-artifact and deployment gate: do not publish secrets, visitor data, generated "
+        "databases, raw datasets, the private Joblib or confidence_calibration.json. The public "
+        "repository excludes those artifacts and cannot currently run classification; do not "
+        "retrain, mock or replace the model to bypass this gate. GitHub publication is complete, "
+        "but functional hosting must remain blocked until a legally redistributable public model "
+        "and complete rights chain are verified.",
     )
     old_probs = find_paragraph(doc, exact="Probabilities sum to approximately 100%.", required=False)
     if old_probs is not None:
