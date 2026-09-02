@@ -503,8 +503,8 @@ def navigation():
 
 
 def deployment():
-    fig, ax = canvas("Figure 4.10 · Target public deployment architecture", "GitHub becomes canonical after owner publication; functional hosting remains blocked until model redistribution is resolved.")
-    box(ax, 0.04, 0.67, 0.19, 0.13, "Intended public GitHub", color=NAVY, detail="code · docs · issues · releases", size=9)
+    fig, ax = canvas("Figure 4.10 · Target public deployment architecture", "Public GitHub repository active; Streamlit and Vercel remain blocked pending a legally redistributable public model.")
+    box(ax, 0.04, 0.67, 0.19, 0.13, "Active public GitHub", color=NAVY, detail="code · docs · issues · releases", size=9)
     box(ax, 0.31, 0.67, 0.20, 0.13, "Vercel website", color=CYAN, detail="web/ · Next.js presentation shell", size=9)
     box(ax, 0.59, 0.67, 0.24, 0.13, "Streamlit Community Cloud", color=BLUE, detail="main · app.py · Python 3.12", size=9)
     box(ax, 0.04, 0.35, 0.19, 0.13, "Visitor browser", color=CYAN, detail="responsive landing + /app", size=9)
