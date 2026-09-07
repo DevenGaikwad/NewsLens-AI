@@ -10,8 +10,10 @@ idempotent so the final audit result can be recorded after execution.
 from __future__ import annotations
 
 import argparse
+from io import BytesIO
 from pathlib import Path
 from typing import Iterable, Sequence
+from zipfile import ZipFile
 
 from PIL import Image
 from docx import Document
@@ -90,6 +92,10 @@ def clear_paragraph(paragraph) -> None:
 
 
 def set_paragraph(paragraph, text: str, *, style: str | None = None) -> None:
+    if normalised(paragraph.text) == normalised(text) and (
+        style is None or paragraph.style.name == style
+    ):
+        return
     clear_paragraph(paragraph)
     if style:
         paragraph.style = style
@@ -114,7 +120,7 @@ def set_by_prefix(
     existing = find_paragraph(doc, exact=normalised(text), required=False)
     if existing is None:
         raise ValueError(f"Required paragraph not found and replacement absent: {prefix!r}")
-    if style:
+    if style and existing.style.name != style:
         existing.style = style
 
 
@@ -306,6 +312,32 @@ def replace_picture_by_caption(
 ) -> None:
     caption = find_paragraph(doc, startswith=caption_prefix)
     paragraph = image_paragraph_before(caption)
+    expected_image = path.read_bytes()
+    embedded_images = []
+    embedded_parts = []
+    for blip in paragraph._p.xpath(".//a:blip"):
+        relationship_id = blip.get(qn("r:embed"))
+        if relationship_id and relationship_id in doc.part.rels:
+            relationship = doc.part.rels[relationship_id]
+            if not relationship.is_external and hasattr(relationship.target_part, "blob"):
+                embedded_images.append(relationship.target_part.blob)
+                embedded_parts.append(relationship.target_part)
+    if embedded_images == [expected_image]:
+        return
+    if len(embedded_parts) == 1:
+        target_part = embedded_parts[0]
+        target_references = 0
+        for blip in doc.element.body.xpath(".//a:blip"):
+            relationship_id = blip.get(qn("r:embed"))
+            if relationship_id and relationship_id in doc.part.rels:
+                relationship = doc.part.rels[relationship_id]
+                if not relationship.is_external and relationship.target_part is target_part:
+                    target_references += 1
+        if target_references == 1:
+            target_part._blob = expected_image
+            if hasattr(target_part, "_image"):
+                target_part._image = None
+            return
     old_relationships = [
         blip.get(qn("r:embed")) for blip in paragraph._p.xpath(".//a:blip")
     ]
@@ -375,8 +407,19 @@ def common_document_finish(doc: Document, output: Path) -> None:
         update_fields = OxmlElement("w:updateFields")
         settings.append(update_fields)
     update_fields.set(qn("w:val"), "true")
+    candidate_buffer = BytesIO()
+    doc.save(candidate_buffer)
+    candidate_bytes = candidate_buffer.getvalue()
+    with ZipFile(output) as current_package, ZipFile(BytesIO(candidate_bytes)) as candidate_package:
+        current_names = current_package.namelist()
+        candidate_names = candidate_package.namelist()
+        package_unchanged = current_names == candidate_names and all(
+            current_package.read(name) == candidate_package.read(name) for name in current_names
+        )
+    if package_unchanged:
+        return
     temporary = output.with_suffix(".reconciled.docx")
-    doc.save(temporary)
+    temporary.write_bytes(candidate_bytes)
     temporary.replace(output)
 
 
