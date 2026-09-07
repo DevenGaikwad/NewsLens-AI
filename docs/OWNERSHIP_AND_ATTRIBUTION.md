@@ -17,8 +17,9 @@ root proprietary notice or applicable law expressly allows it.
 
 Academic or professional references should identify **NewsLens AI** and
 **Deven Sachin Gaikwad**. GitHub's “Cite this repository” metadata is provided
-through `CITATION.cff`; the canonical repository URL will be added only after
-the intended `DevenGaikwad/NewsLens-AI` repository exists and is verified.
+through `CITATION.cff`; the canonical public repository is active at
+https://github.com/DevenGaikwad/NewsLens-AI. Streamlit and Vercel deployment
+remain blocked pending a legally redistributable public model.
 
 ## Third-party boundary
 
