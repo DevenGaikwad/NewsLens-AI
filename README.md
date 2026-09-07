@@ -331,7 +331,7 @@ Functional deployment must not proceed until the model/calibration redistributio
 
 Designed and developed by **Deven Sachin Gaikwad**.
 
-Preferred citation metadata is in [`CITATION.cff`](CITATION.cff). Repository publication is intended at <https://github.com/DevenGaikwad/NewsLens-AI> after the documented repository and model-rights gates clear.
+Preferred citation metadata is in [`CITATION.cff`](CITATION.cff). The canonical public GitHub repository is active at <https://github.com/DevenGaikwad/NewsLens-AI>. Streamlit and Vercel deployment remain blocked pending a legally redistributable public model.
 
 © 2026 Deven Sachin Gaikwad. All Rights Reserved.
 

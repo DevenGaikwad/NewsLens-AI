@@ -369,7 +369,7 @@ def add_cover(doc: Document, title: str, subtitle: str, document_type: str) -> N
         ("Copyright", COPYRIGHT_NOTICE),
         ("Runtime", "Streamlit · Python 3.12 · app.py"),
         ("Model boundary", "Linguistic credibility-risk estimate; not a verified fact-check"),
-        ("Repository", "Canonical public URL added only after owner approval"),
+        ("Repository", "Public GitHub repository active; Streamlit and Vercel blocked pending a legally redistributable public model"),
         ("Document updated", "16 August 2026"),
     ]
     add_table(doc, ["Field", "Value"], meta, [2.25, 4.25], font_size=8.4, header_fill=PALE)
@@ -578,7 +578,7 @@ def build_report() -> Path:
         "Publication-Staging Note",
         [
             "This sanitized public report documents the NewsLens AI research application, its implementation, measured evidence, limitations and deployment architecture. Personal academic identifiers and signature fields are intentionally excluded.",
-            f"NewsLens AI was designed and developed by {PROJECT_AUTHOR}. {COPYRIGHT_NOTICE} GitHub will become the canonical publication record only after owner approval. The packaged model must not be redistributed publicly until documentary permission or an explicit applicable licence is confirmed.",
+            f"NewsLens AI was designed and developed by {PROJECT_AUTHOR}. {COPYRIGHT_NOTICE} The public GitHub repository is active. Streamlit and Vercel deployment remain blocked pending a legally redistributable public model. The packaged model must not be redistributed publicly until documentary permission or an explicit applicable licence is confirmed.",
         ],
         context_lines=[
             "NewsLens AI · Publication-staging documentation",

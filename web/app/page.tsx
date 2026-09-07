@@ -89,7 +89,7 @@ export default function Home() {
       <section id="documentation" className="sectionShell sectionBlock" aria-labelledby="docs-title">
         <div className="sectionHeading">
           <div><p className="eyebrow">Publication record</p><h2 id="docs-title">Documentation and research.</h2></div>
-          <p>Code, methodology, testing evidence, issues, releases and deployment history are staged for the canonical public repository after the remaining release gates are cleared.</p>
+          <p>Code, methodology, testing evidence, issues and releases are available through the active canonical public repository. Streamlit and Vercel deployment remain blocked pending a legally redistributable public model.</p>
         </div>
         <div className="documentGrid">
           {documentationLinks.map(([label, path]) => (
