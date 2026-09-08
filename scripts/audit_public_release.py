@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import re
 import subprocess
+import sys
 from zipfile import ZipFile
 
 
@@ -85,6 +86,70 @@ PERSONAL_DATA_PATTERNS = {
 }
 MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 
+CONSOLE_COUNT_FIELDS = (
+    ("forbidden_files", "forbidden files"),
+    ("secret_findings", "secret findings"),
+    ("personal_data_findings", "personal-data findings"),
+    ("absolute_local_path_findings", "absolute-path findings"),
+    ("broken_local_markdown_links", "broken-link findings"),
+    ("internal_navigation_findings", "navigation findings"),
+)
+
+
+def _safe_report_text(value: str, *, label: str) -> str:
+    """Redact a report value when its text itself resembles sensitive data."""
+    sensitive = (
+        any(pattern.search(value) for pattern in SECRET_PATTERNS.values())
+        or any(pattern.search(value) for pattern in PERSONAL_DATA_PATTERNS.values())
+        or LOCAL_PATH.search(value) is not None
+    )
+    if not sensitive:
+        return value
+    digest = hashlib.sha256(value.encode("utf-8", errors="surrogatepass")).hexdigest()[:12]
+    return f"[redacted-{label}:{digest}]"
+
+
+def _safe_report_path(path: Path | str) -> str:
+    return _safe_report_text(str(path), label="path")
+
+
+def _exit_code(report: dict[str, object], *, allow_publication_gates: bool) -> int:
+    if not report["safe_tree_scan_passed"]:
+        return EXIT_SAFETY_VIOLATION
+    if allow_publication_gates:
+        return EXIT_CLEAN
+    if report["publication_gates"]:
+        return EXIT_PUBLICATION_GATE
+    return EXIT_CLEAN
+
+
+def _print_console_summary(
+    *,
+    files_scanned: int,
+    finding_counts: dict[str, int],
+    publication_gate_count: int,
+    exit_code: int,
+) -> None:
+    """Emit only fixed labels and aggregate integers to CI logs."""
+    if exit_code == EXIT_CLEAN:
+        status = "PASS"
+    elif exit_code == EXIT_PUBLICATION_GATE:
+        status = "BLOCKED"
+    else:
+        status = "FAIL"
+
+    print(f"Public release audit: {status}")
+    print(f"Files scanned: {files_scanned}")
+    for key, label in CONSOLE_COUNT_FIELDS:
+        print(f"{label}: {finding_counts[key]}")
+    print(f"Publication gates: {publication_gate_count}")
+    print(f"Exit status: {exit_code}")
+    if exit_code != EXIT_CLEAN:
+        print(
+            "Remediation: inspect the sanitized machine-readable report locally; "
+            "do not copy finding details into CI logs."
+        )
+
 
 def relative_files(*, tracked_only: bool = False) -> list[Path]:
     if not tracked_only:
@@ -135,7 +200,7 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def main() -> int:
+def _run_audit() -> int:
     args = parse_args()
     files = relative_files(tracked_only=args.tracked_files)
     forbidden: list[str] = []
@@ -153,20 +218,22 @@ def main() -> int:
             or any(part in FORBIDDEN_PARTS for part in relative.parts)
             or any(path.name.endswith(suffix) for suffix in FORBIDDEN_SUFFIXES)
         ):
-            forbidden.append(str(relative))
+            forbidden.append(_safe_report_path(relative))
         if relative == Path("scripts/audit_public_release.py"):
             continue
         for payload in text_payloads(path):
             for name, pattern in SECRET_PATTERNS.items():
                 if pattern.search(payload):
-                    secret_findings.append({"file": str(relative), "pattern": name})
+                    secret_findings.append(
+                        {"file": _safe_report_path(relative), "pattern": name}
+                    )
             for name, pattern in PERSONAL_DATA_PATTERNS.items():
                 if pattern.search(payload):
                     personal_data_findings.append(
-                        {"file": str(relative), "pattern": name}
+                        {"file": _safe_report_path(relative), "pattern": name}
                     )
             if LOCAL_PATH.search(payload):
-                local_paths.append(str(relative))
+                local_paths.append(_safe_report_path(relative))
 
         if path.suffix.lower() == ".md":
             markdown = path.read_text(encoding="utf-8", errors="ignore")
@@ -177,7 +244,12 @@ def main() -> int:
                 resolved = (path.parent / target).resolve()
                 if not resolved.exists():
                     broken_local_links.append(
-                        {"file": str(relative), "target": raw_target.strip()}
+                        {
+                            "file": _safe_report_path(relative),
+                            "target": _safe_report_text(
+                                raw_target.strip(), label="link-target"
+                            ),
+                        }
                     )
 
     runtime_navigation_files = [ROOT / "app.py", *sorted((ROOT / "pages").glob("*.py")), *sorted((ROOT / "ui").glob("*.py"))]
@@ -185,7 +257,9 @@ def main() -> int:
         text = path.read_text(encoding="utf-8")
         for pattern in ('target="_blank"', "window.open(", "st.link_button("):
             if pattern in text:
-                navigation_findings.append(f"{path.relative_to(ROOT)}: {pattern}")
+                navigation_findings.append(
+                    f"{_safe_report_path(path.relative_to(ROOT))}: {pattern}"
+                )
 
     placeholders = {"github_owner": [], "repository_url": [], "streamlit_url": [], "vercel_url": []}
     for path in files:
@@ -196,13 +270,13 @@ def main() -> int:
             continue
         text = path.read_text(encoding="utf-8", errors="ignore")
         if any(token in text for token in ("[GITHUB_USERNAME]", "github.com/OWNER/NewsLens-AI")):
-            placeholders["github_owner"].append(relative)
+            placeholders["github_owner"].append(_safe_report_path(relative))
         if "[GITHUB_REPOSITORY_URL — TO BE PROVIDED]" in text:
-            placeholders["repository_url"].append(relative)
+            placeholders["repository_url"].append(_safe_report_path(relative))
         if any(token in text for token in ("YOUR-APP.streamlit.app", "[STREAMLIT_URL — TO BE PROVIDED]")):
-            placeholders["streamlit_url"].append(relative)
+            placeholders["streamlit_url"].append(_safe_report_path(relative))
         if "[VERCEL_URL — TO BE PROVIDED]" in text:
-            placeholders["vercel_url"].append(relative)
+            placeholders["vercel_url"].append(_safe_report_path(relative))
 
     model_record = {
         "path": str(MODEL.relative_to(ROOT)),
@@ -287,14 +361,38 @@ def main() -> int:
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps(report, indent=2))
-    if not report["safe_tree_scan_passed"]:
+    exit_code = _exit_code(
+        report, allow_publication_gates=args.allow_publication_gates
+    )
+    finding_counts = {
+        "forbidden_files": len(forbidden),
+        "secret_findings": len(secret_findings),
+        "personal_data_findings": len(personal_data_findings),
+        "absolute_local_path_findings": len(set(local_paths)),
+        "broken_local_markdown_links": len(broken_local_links),
+        "internal_navigation_findings": len(navigation_findings),
+    }
+    _print_console_summary(
+        files_scanned=len(files),
+        finding_counts=finding_counts,
+        publication_gate_count=len(gates),
+        exit_code=exit_code,
+    )
+    return exit_code
+
+
+def main() -> int:
+    try:
+        return _run_audit()
+    except Exception:
+        print("Public release audit: ERROR", file=sys.stderr)
+        print(
+            "The audit could not complete safely. Inspect the failure locally; "
+            "exception details are intentionally omitted from logs.",
+            file=sys.stderr,
+        )
+        print(f"Exit status: {EXIT_SAFETY_VIOLATION}", file=sys.stderr)
         return EXIT_SAFETY_VIOLATION
-    if args.allow_publication_gates and report["safe_tree_scan_passed"]:
-        return EXIT_CLEAN
-    if report["publication_gates"]:
-        return EXIT_PUBLICATION_GATE
-    return EXIT_CLEAN
 
 
 if __name__ == "__main__":
