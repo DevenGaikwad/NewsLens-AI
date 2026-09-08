@@ -96,7 +96,7 @@ def split_sentences(text: str) -> list[str]:
         return []
     cleaned = re.sub(r"\s+", " ", cleaned)
     boundaries = re.compile(
-        r"(?<=[.!?])\s+(?=(?:[\"'“‘(]?)[A-Z0-9])|(?<=;)\s+(?=[A-Z])"
+        r"(?<=[.!?]) (?=(?:[\"'“‘(]?)[A-Z0-9])|(?<=;) (?=[A-Z])"
     )
     parts = [part.strip() for part in boundaries.split(cleaned) if part.strip()]
     if len(parts) == 1 and len(cleaned) > 600:
