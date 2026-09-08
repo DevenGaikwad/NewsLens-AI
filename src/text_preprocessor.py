@@ -18,6 +18,48 @@ URL_PATTERN = re.compile(r"https?://\S+|www\.\S+", flags=re.IGNORECASE)
 CONTROL_PATTERN = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
 
 
+def _normalize_line_boundaries(value: str) -> str:
+    """Normalize CR/LF boundaries in one forward pass.
+
+    Whitespace touching a line boundary is removed, while one intentional blank
+    line between paragraphs is retained.  The scan caps pending line breaks at
+    two so long blank-line runs cannot expand the output.
+    """
+
+    parts: list[str] = []
+    line_start = 0
+    index = 0
+    pending_breaks = 0
+    length = len(value)
+
+    while index < length:
+        char = value[index]
+        if char not in "\r\n":
+            index += 1
+            continue
+
+        line = value[line_start:index].strip()
+        if line:
+            if parts:
+                parts.append("\n\n" if pending_breaks >= 2 else "\n")
+            parts.append(line)
+            pending_breaks = 1
+        elif parts:
+            pending_breaks = min(2, pending_breaks + 1)
+
+        if char == "\r" and index + 1 < length and value[index + 1] == "\n":
+            index += 1
+        index += 1
+        line_start = index
+
+    line = value[line_start:].strip()
+    if line:
+        if parts:
+            parts.append("\n\n" if pending_breaks >= 2 else "\n")
+        parts.append(line)
+    return "".join(parts)
+
+
 def clean_article_text(text: str, remove_source_markers: bool = True) -> str:
     """Clean article text without stemming away information needed for display.
 
@@ -33,9 +75,7 @@ def clean_article_text(text: str, remove_source_markers: bool = True) -> str:
         value = REUTERS_LEAD.sub("", value)
         value = WIRE_MARKERS.sub("wire-service", value)
     value = re.sub(r"[ \t]+", " ", value)
-    value = re.sub(r"\s*\n\s*", "\n", value)
-    value = re.sub(r"\n{3,}", "\n\n", value)
-    return value.strip()
+    return _normalize_line_boundaries(value)
 
 
 def text_for_model(text: str) -> str:
