@@ -1,5 +1,6 @@
 """Tests for shared cleaning, statistics, and deterministic hashing."""
 
+import re
 from time import perf_counter
 
 import pytest
@@ -64,6 +65,122 @@ def test_line_normalization_preserves_sentence_splitting() -> None:
     normalized = clean_article_text(raw, remove_source_markers=False)
     assert split_sentences(raw) == expected
     assert split_sentences(normalized) == expected
+
+
+@pytest.mark.parametrize(
+    ("raw", "expected"),
+    [
+        pytest.param("", [], id="empty"),
+        pytest.param("One ordinary sentence.", ["One ordinary sentence."], id="single-sentence"),
+        pytest.param(
+            "First sentence. Second sentence? Third sentence! Fourth clause; Final clause.",
+            ["First sentence.", "Second sentence?", "Third sentence!", "Fourth clause;", "Final clause."],
+            id="period-question-exclamation-semicolon",
+        ),
+        pytest.param("Really?! Next... Another!", ["Really?!", "Next...", "Another!"], id="repeated-punctuation"),
+        pytest.param("First. Second?", ["First.", "Second?"], id="one-space"),
+        pytest.param("First.     Second?", ["First.", "Second?"], id="multiple-spaces"),
+        pytest.param(
+            "First.\tSecond?\nThird!\u2003Fourth.",
+            ["First.", "Second?", "Third!", "Fourth."],
+            id="ascii-and-unicode-whitespace",
+        ),
+        pytest.param(
+            "Dr. Smith met Prof. Jones. Next topic.",
+            ["Dr.", "Smith met Prof.", "Jones.", "Next topic."],
+            id="existing-abbreviation-behaviour",
+        ),
+        pytest.param(
+            "J. Smith paid 3.14 dollars. Next item.",
+            ["J.", "Smith paid 3.14 dollars.", "Next item."],
+            id="initial-and-decimal",
+        ),
+        pytest.param(
+            'First. "Second starts." Third.',
+            ["First.", '"Second starts." Third.'],
+            id="quoted-sentence",
+        ),
+        pytest.param(
+            "First. (Second begins.) Third.",
+            ["First.", "(Second begins.) Third."],
+            id="parenthesized-sentence",
+        ),
+        pytest.param(
+            "Café résumé. Über alles? Ελληνικά κείμενο. Next.",
+            ["Café résumé. Über alles? Ελληνικά κείμενο.", "Next."],
+            id="unicode-content",
+        ),
+        pytest.param(
+            "This text has no sentence-ending punctuation",
+            ["This text has no sentence-ending punctuation"],
+            id="no-boundary",
+        ),
+    ],
+)
+def test_sentence_boundary_semantics_are_preserved(raw: str, expected: list[str]) -> None:
+    assert split_sentences(raw) == expected
+
+
+def test_sentence_boundary_input_is_normalized_to_single_spaces() -> None:
+    raw = "First.\t \n\u2003Second?\r\n\tThird!"
+    cleaned = clean_article_text(raw, remove_source_markers=False)
+    normalized = re.sub(r"\s+", " ", cleaned)
+
+    assert normalized == "First. Second? Third!"
+    assert all(char == " " or not char.isspace() for char in normalized)
+    assert "  " not in normalized
+    assert split_sentences(raw) == split_sentences(normalized)
+
+
+def test_sentence_order_and_repeat_preprocessing_are_stable() -> None:
+    raw = "Alpha first.\r\nBeta second?\n\nGamma third!"
+    expected = ["Alpha first.", "Beta second?", "Gamma third!"]
+
+    first_pass = split_sentences(raw)
+    assert first_pass == expected
+    assert split_sentences(" ".join(first_pass)) == expected
+
+
+def test_sentence_split_preserves_a_very_long_sentence() -> None:
+    sentence = "A" * 250_000
+    assert split_sentences(sentence) == [sentence]
+
+
+@pytest.mark.parametrize(
+    "payload",
+    [
+        pytest.param("Start." + " " * 300_000 + "lowercase", id="spaces-after-punctuation"),
+        pytest.param("word" + "\t" * 300_000 + "word", id="whitespace-without-punctuation"),
+        pytest.param("Dr. A. " * 40_000, id="abbreviation-like-fragments"),
+        pytest.param("Really?!     " * 30_000, id="punctuation-and-spaces"),
+        pytest.param("Sentence one. Sentence two? " * 20_000, id="normalized-article"),
+        pytest.param("Alpha.\u2003Beta?\u2009" * 30_000, id="unicode-whitespace"),
+        pytest.param("x" * 500_000, id="no-split-point"),
+        pytest.param("A. B? C! " * 40_000, id="alternating-boundaries"),
+    ],
+)
+def test_sentence_split_handles_large_adversarial_inputs_without_delay(payload: str) -> None:
+    started = perf_counter()
+    sentences = split_sentences(payload)
+    elapsed = perf_counter() - started
+
+    assert isinstance(sentences, list)
+    assert elapsed < 5.0
+
+
+def test_sentence_split_runtime_growth_is_bounded() -> None:
+    durations: list[float] = []
+    for size in (50_000, 100_000, 200_000):
+        samples = []
+        payload = "Start." + " " * size + "lowercase"
+        for _ in range(3):
+            started = perf_counter()
+            assert split_sentences(payload) == ["Start. lowercase"]
+            samples.append(perf_counter() - started)
+        durations.append(min(samples))
+
+    for previous, current in zip(durations, durations[1:]):
+        assert current <= previous * 3.5 + 0.05
 
 
 @pytest.mark.parametrize(
