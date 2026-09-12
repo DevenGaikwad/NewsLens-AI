@@ -4,7 +4,7 @@
 
 ![Python 3.12](https://img.shields.io/badge/Python-3.12-40352C?style=flat-square)
 ![Streamlit](https://img.shields.io/badge/Runtime-Streamlit-6D5947?style=flat-square)
-![Tests](https://img.shields.io/badge/Tests-56%20passing-6D5947?style=flat-square)
+![Public tests](https://img.shields.io/badge/Public%20tests-144%20passing-6D5947?style=flat-square)
 [![CI](https://github.com/DevenGaikwad/NewsLens-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/DevenGaikwad/NewsLens-AI/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/DevenGaikwad/NewsLens-AI/actions/workflows/codeql.yml/badge.svg)](https://github.com/DevenGaikwad/NewsLens-AI/actions/workflows/codeql.yml)
 ![Model publication](https://img.shields.io/badge/Model%20publication-blocked-813F39?style=flat-square)
@@ -22,15 +22,17 @@ The classifier detects patterns associated with its ISOT training labels. It doe
 
 | Item | Status |
 |---|---|
-| Local Streamlit application | Verified private runtime; 56 packaged checks and current five-width browser audit pass |
+| Local Streamlit application | Retained private-release evidence: 56 packaged checks and a five-width browser audit; private artifacts are unavailable in public CI |
 | GitHub repository | [Public source repository](https://github.com/DevenGaikwad/NewsLens-AI) published and verified on `main` |
-| Public GitHub CI | 52 model-independent checks pass; 4 private-artifact checks are explicitly gated |
+| Public GitHub CI | 144 model-independent tests pass; 4 private-artifact tests are explicitly deselected |
 | Streamlit Community Cloud | Not deployed; no production URL recorded |
 | Vercel Hobby presentation site | Source prepared; not deployed; current-source `npm ci`, lint, and production build pass in GitHub Actions |
 | Model redistribution | Blocked pending documentary permission or applicable licence terms |
 | Public release package | Source and documentation only; model and private calibration artefact excluded |
 
-The Python/Streamlit product has passed its current private local test, integration, browser, privacy, export, and visual checks. The public repository separately compiles the Python source and runs every model-independent test while reporting the four private-artifact checks as gated. Functional public hosting remains pending the documented model-redistribution and external-service gates. The exact committed Next.js source passes dependency installation, lint, and production build in GitHub Actions. No placeholder URL is presented as a live deployment.
+The Python/Streamlit product retains private-release test, integration, browser, privacy, export, and visual evidence. These historical results are not a fresh validation of private artifacts on current `main`. The public repository separately compiles the Python source and runs every model-independent test while reporting the four private-artifact checks as gated. Functional public hosting remains pending the documented model-redistribution and external-service gates. The exact committed Next.js source passes dependency installation, lint, and production build in GitHub Actions. No placeholder URL is presented as a live deployment.
+
+The [1 September public release](https://github.com/DevenGaikwad/NewsLens-AI/releases/tag/public-release-2026-09-01), dated audit records, and packaged DOCX/PDF publications describe historical snapshots. Their test counts and dependency versions must not be read as current-main values. Current validation is documented in [`docs/TESTING.md`](docs/TESTING.md); current dependency pins and ranges are in `requirements-lite.txt`, `requirements.txt`, and `web/package-lock.json`.
 
 ## Why this project matters
 
@@ -114,7 +116,7 @@ The private evaluation reconstructs a fixed seed-42 balanced 24,000-row ISOT sam
 | Linear SVC | 0.994581 | 0.994581 | 0.999851 | 0.004059 | 0.004451 | 0.614 |
 | Multinomial Naive Bayes | 0.960817 | 0.960815 | 0.991564 | 0.029562 | 0.009859 | 1.315 |
 
-Logistic Regression remains selected. Linear SVC's macro-F1 advantage is 0.002501, below the predefined 0.01 tolerance. The selected model preserves the verified production artefact, compact deployment, and direct signed-coefficient explanations. The final test contains 2,399 rows and is not used for fitting, calibration, or threshold selection.
+Logistic Regression remains selected. The saved selection record uses Linear SVC's validation-policy macro-F1 advantage of approximately 0.002500, below the predefined 0.01 tolerance; the final-test macro-F1 difference in the table is 0.002501. The selected model preserves the verified production artefact, compact deployment, and direct signed-coefficient explanations. The final test contains 2,399 rows and is not used for model selection, fitting, calibration, or threshold selection.
 
 Evidence:
 

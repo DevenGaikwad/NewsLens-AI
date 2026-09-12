@@ -91,8 +91,9 @@ downloaded and no custom or synthetic substitute was created to force a result.
   datasets.
 - No public-model architecture, artifact, calibration, metrics, or comparison
   is claimed because training was prohibited by the licence gate.
-- The existing 52 public model-independent tests and four private-artifact-gated
-  tests remain the applicable baseline; no test was weakened.
+- The audit-time baseline was 52 public model-independent tests and four
+  private-artifact-gated tests; no test was weakened. Current public test counts
+  are maintained in [TESTING.md](TESTING.md).
 - Streamlit functional deployment remains blocked. Vercel remains downstream of
   a verified Streamlit URL and was not started.
 

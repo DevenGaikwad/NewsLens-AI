@@ -55,7 +55,7 @@ This is an academic prototype, not an authenticated newsroom records system. Clo
 
 ## Evidence and limitations
 
-The controlled benchmark compares Logistic Regression, Linear SVC, and Multinomial Naive Bayes on identical partitions. Logistic Regression remains selected: its final-test macro F1 is 0.992080, within 0.002501 of Linear SVC and inside the predefined 0.01 tolerance, while preserving the verified model artefact and direct coefficient explanations. Platt scaling improves Brier score from 0.010464 to 0.006292 and ten-bin expected calibration error from 0.044799 to 0.005295 on the final test.
+The controlled benchmark compares Logistic Regression, Linear SVC, and Multinomial Naive Bayes on identical partitions. Logistic Regression remains selected because Linear SVC's validation-policy macro-F1 advantage of approximately 0.002500 is below the predefined 0.01 tolerance, preserving the verified model artefact and direct coefficient explanations. Its final-test macro F1 is 0.992080, within 0.002501 of Linear SVC; that untouched partition did not select the model. Platt scaling improves Brier score from 0.010464 to 0.006292 and ten-bin expected calibration error from 0.044799 to 0.005295 on the final test.
 
 These high same-dataset scores may reflect ISOT outlet, topic, period, and writing-style artefacts. The dataset is English-heavy and political. Random-split performance does not establish cross-publisher, cross-event, regional, or future reliability. Calibration measures agreement with benchmark labels, not factual verification.
 

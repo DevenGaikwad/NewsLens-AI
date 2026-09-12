@@ -10,7 +10,7 @@ The application has two independent NLP branches. After safe extraction and cons
 
 For evaluation, I reconstructed a fixed seed-42 24,000-row balanced ISOT sample. Exact duplicates were removed before sampling. A deterministic approximate word-five-gram screen found 17 near-duplicate pairs and two train/holdout contaminations; I quarantined only the contaminated holdout rows and kept remaining near-duplicate groups within one partition. The final split has 19,200 training, 2,399 validation, and 2,399 untouched test rows. The validation set is divided into 1,199 calibration and 1,200 threshold-policy rows.
 
-I compared Logistic Regression, Linear SVC, and Multinomial Naive Bayes using identical partitions and training-only vectoriser fitting. Linear SVC had the highest final-test macro F1 at 0.994581; Logistic Regression achieved 0.992080, only 0.002501 lower. It remains selected under the predefined 0.01 tolerance because the verified artefact stays unchanged, the model is compact, and its signed coefficients support direct local explanations.
+I compared Logistic Regression, Linear SVC, and Multinomial Naive Bayes using identical partitions and training-only vectoriser fitting. Linear SVC had the highest final-test macro F1 at 0.994581; Logistic Regression achieved 0.992080, only 0.002501 lower. Selection used the separate validation-policy macro-F1 advantage of approximately 0.002500, below the predefined 0.01 tolerance. Logistic Regression preserves the verified artefact, compact deployment, and direct signed-coefficient explanations.
 
 The native Logistic Regression score is not presented as a reliable probability. Platt scaling is fitted only on calibration rows. On the final test, Brier score improves from 0.010464 to 0.006292 and ten-bin ECE from 0.044799 to 0.005295. A separate validation-policy subset selects a 0.59 calibrated-confidence threshold. Below it, or for inadequate/out-of-scope inputs, the system returns `Editorial review required`.
 
@@ -125,7 +125,7 @@ TF-IDF is CPU-efficient, interpretable, reproducible, and suitable for a zero-co
 
 ### 4. Why select Logistic Regression when Linear SVC scored higher?
 
-The SVC macro-F1 advantage is 0.002501, below the predefined 0.01 tolerance. Logistic Regression preserves the verified compact artefact and direct signed-coefficient explanations. Both require calibration for probability UX; the selected model has a validated Platt mapping.
+The SVC validation-policy macro-F1 advantage is approximately 0.002500, below the predefined 0.01 tolerance; its final-test advantage is 0.002501. Logistic Regression preserves the verified compact artefact and direct signed-coefficient explanations. Both require calibration for probability UX; the selected model has a validated Platt mapping.
 
 ### 5. What is macro F1?
 
