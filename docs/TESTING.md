@@ -39,7 +39,7 @@ The retained private-release Streamlit 1.59.2 Chromium run passed all functional
 
 ## Evidence boundaries
 
-The public-release scan currently covers 248 tracked files with zero forbidden-file, secret, personal-data, local-path, broken-local-link or navigation findings. It reports two intentional publication gates for the private model and calibration. CodeQL analyzes Python and JavaScript/TypeScript; dependency review runs on pull requests with `fail-on-severity: high` and intentionally skips push events. Successful workflow runs do not by themselves prove that repository-wide alert collections are empty or that every dependency-graph manifest is current.
+The public-release scan currently covers 248 tracked files with zero forbidden-file, secret, personal-data, local-path, broken-local-link or navigation findings. It reports two intentional publication gates: the unresolved live Streamlit URL and unconfirmed packaged-model redistribution rights. CodeQL analyzes Python and JavaScript/TypeScript; dependency review runs on pull requests with `fail-on-severity: high` and intentionally skips push events. Successful workflow runs do not by themselves prove that repository-wide alert collections are empty or that every dependency-graph manifest is current.
 
 Dated release audits and packaged DOCX/PDF documents retain their original environment and benchmark evidence. They are historical records; use the current manifests and lockfile for installation. The public repository cannot freshly rerun private-model tests, benchmark evaluation, or private-runtime browser checks without the owner's excluded artifacts and the applicable redistribution approval.
 
