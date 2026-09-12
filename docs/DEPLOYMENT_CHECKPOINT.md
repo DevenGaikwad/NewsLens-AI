@@ -5,6 +5,10 @@ Authoritative public repository: `https://github.com/DevenGaikwad/NewsLens-AI`
 Owner: Deven Sachin Gaikwad  
 State: **public GitHub publication verified; functional deployment gated**
 
+> Historical 1 September checkpoint. Counts, dependency state, and verification
+> below describe that snapshot. See [TESTING.md](TESTING.md) and the root README
+> for current public validation; this checkpoint does not certify current private artifacts.
+
 ## Confirmed release decisions
 
 - NewsLens AI is the sole product name.

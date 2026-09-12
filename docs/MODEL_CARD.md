@@ -41,6 +41,10 @@ Every comparison candidate uses the same training rows and training-only TF-IDF 
 | Logistic Regression | 0.992080 | **Selected:** verified artefact, calibrated confidence and direct XAI |
 | Multinomial Naive Bayes | 0.960815 | Classical probabilistic baseline |
 
+The table compares untouched final-test results. The saved selection decision
+uses validation-policy macro-F1: Linear SVC's advantage was approximately
+0.002500, below the 0.01 tolerance. Final-test results did not select the model.
+
 ## Actual champion evaluation
 
 | Metric | Value |

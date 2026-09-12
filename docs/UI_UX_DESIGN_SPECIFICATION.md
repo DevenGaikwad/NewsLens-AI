@@ -116,6 +116,8 @@ privacy, literature, and academic context in a readable long-form structure.
   six focused interface contracts, and the final 56-check packaged suite,
   including the 29 established checks.
 
-The complete packaged suite was executed in the tested Python 3.12 environment:
+The historical private packaged suite was executed in the tested Python 3.12 environment:
 `56 passed, 0 failed, 0 skipped`. Run `python -m pytest -q` after installing
-`requirements.txt` to repeat the release check.
+`requirements.txt` only in an authorized private environment with the required artifacts.
+Current public CI runs 144 model-independent tests and explicitly deselects four
+private-artifact tests; see [TESTING.md](TESTING.md).

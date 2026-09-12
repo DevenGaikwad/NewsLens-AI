@@ -6,12 +6,12 @@ distributed by each dependency or source.
 
 ## Runtime and development dependencies
 
-The following direct-package identifiers were read from the installed Python
-3.12 distribution metadata and `web/package-lock.json` on 16 August 2026. The
+The following direct-package versions were reconciled with the Python 3.12
+lightweight environment and `web/package-lock.json` on 12 September 2026. The
 licence files shipped by each package remain controlling; this summary neither
 relicenses the packages nor replaces their notices.
 
-| Direct dependency | Staged version | Licence identifier/metadata |
+| Direct dependency | Current version | Licence identifier/metadata |
 |---|---:|---|
 | Streamlit | 1.59.2 | Apache-2.0 |
 | pandas | 2.2.3 | BSD licence metadata |
@@ -19,22 +19,26 @@ relicenses the packages nor replaces their notices.
 | scikit-learn | 1.8.0 | BSD-3-Clause |
 | Joblib | 1.5.3 | BSD-3-Clause |
 | Plotly | 6.9.0 | MIT |
-| Matplotlib | 3.10.8 | Matplotlib/PSF-style licence metadata |
+| Matplotlib | 3.11.1 | Matplotlib/PSF-style licence metadata |
 | Seaborn | 0.13.2 | BSD licence classifier |
 | Requests | 2.34.2 | Apache-2.0 |
 | Beautiful Soup | 4.15.0 | MIT |
-| Trafilatura | 2.1.0 | Apache-2.0 |
-| pypdf | 6.15.0 | BSD-3-Clause |
+| Trafilatura | 2.2.0 | Apache-2.0 |
+| pypdf | 6.16.1 | BSD-3-Clause |
 | ReportLab | 4.4.9 | BSD licence metadata |
 | pytest | 9.0.3 | MIT |
-| Playwright (audit-only) | 1.55.0 | Apache-2.0 |
-| Next.js | 16.3.1 | MIT |
-| React / React DOM | 19.2.4 | MIT |
-| TypeScript | 5.9.3 | Apache-2.0 |
-| Node/React type packages | lockfile versions | MIT |
+| Next.js | 16.3.4 | MIT |
+| React / React DOM | 19.2.8 | MIT |
+| TypeScript | 7.0.2 | Apache-2.0 |
+| `@types/node` | 24.13.3 | MIT |
+| `@types/react` | 19.2.18 | MIT |
+| `@types/react-dom` | 19.2.7 | MIT |
 
-The optional full profile also declares version ranges for Transformers,
-PyTorch, and SentencePiece. Their exact resolved releases and shipped licence
+The retained 16 August browser audit used Playwright 1.55.0 (Apache-2.0);
+that audit-only version is historical and is not a current runtime dependency.
+
+The optional full profile declares Transformers `>=4.46,<5`,
+PyTorch `>=2.2,<3`, and SentencePiece `>=0.2.2,<1`. Their exact resolved releases and shipped licence
 files must be recorded from the environment used for an approved public build;
 they were not installed merely to manufacture a licence inventory.
 
