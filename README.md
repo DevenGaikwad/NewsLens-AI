@@ -32,7 +32,7 @@ The classifier detects patterns associated with its ISOT training labels. It doe
 
 The Python/Streamlit product retains private-release test, integration, browser, privacy, export, and visual evidence. These historical results are not a fresh validation of private artifacts on current `main`. The public repository separately compiles the Python source and runs every model-independent test while reporting the four private-artifact checks as gated. Functional public hosting remains pending the documented model-redistribution and external-service gates. The exact committed Next.js source passes dependency installation, lint, and production build in GitHub Actions. No placeholder URL is presented as a live deployment.
 
-The [1 September public release](https://github.com/DevenGaikwad/NewsLens-AI/releases/tag/public-release-2026-09-01), dated audit records, and packaged DOCX/PDF publications describe historical snapshots. Their test counts and dependency versions must not be read as current-main values. Current validation is documented in [`docs/TESTING.md`](docs/TESTING.md); current dependency pins and ranges are in `requirements-lite.txt`, `requirements.txt`, and `web/package-lock.json`.
+The [1 September public release](https://github.com/DevenGaikwad/NewsLens-AI/releases/tag/public-release-2026-09-01) and dated audit records describe historical snapshots. The tracked DOCX guides and project PDF were reconciled on 13 September 2026 with current public validation; their August benchmarks and private-release evidence remain historical. Current validation is documented in [`docs/TESTING.md`](docs/TESTING.md); current dependency pins and ranges are in `requirements-lite.txt`, `requirements.txt`, and `web/package-lock.json`.
 
 ## Why this project matters
 
@@ -260,10 +260,11 @@ The application uses session-isolated temporary history by default. `NEWSLENS_HI
 ## Testing and verification
 
 ```bash
-python -m pytest -q
-python scripts/verify_project.py
-python scripts/audit_public_release.py --allow-publication-gates
+python -m pytest -q --strict-markers -m "not private_model"
+python scripts/audit_public_release.py --tracked-files --allow-publication-gates
 ```
+
+The public commands intentionally exclude four private-model tests. `scripts/verify_project.py` is a historical private-release verifier and requires the excluded, owner-approved artifacts; it is not the public-suite entry point. Current CI and both CodeQL Action v4 language analyses pass. Successful checks do not alone establish zero open historical security alerts.
 
 The controlled benchmark requires checksum-verified official ISOT CSVs in a private directory:
 
@@ -318,7 +319,7 @@ Public GitHub repository
 
 NewsLens AI is designed for a zero-cost academic deployment architecture based on a public GitHub repository, Streamlit Community Cloud for the Python application, and Vercel Hobby for the presentation website. Hosting remains subject to providers' current free-tier limits and non-commercial-use conditions. No payment, paid trial, custom domain, paid database, paid analytics, or billable overage is authorised.
 
-Functional deployment must not proceed until the model/calibration redistribution gate is resolved. The Next.js shell must not be represented as the complete ML application without a working Streamlit runtime.
+Neither service is deployed and no GitHub deployment or environment is recorded. Functional deployment must not proceed until the live Streamlit URL is resolved and model/calibration redistribution rights are confirmed. The Next.js shell must not be represented as the complete ML application without a working Streamlit runtime.
 
 ## Future roadmap
 
