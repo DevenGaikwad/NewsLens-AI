@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1975" viewBox="0 0 1000 1975" role="img" aria-labelledby="title desc" preserveAspectRatio="xMidYMid meet">
+  <title id="title">NewsLens AI runtime processing and editorial accountability flow</title>
+  <desc id="desc">Pasted text, a public URL, TXT, or a text-based PDF is safely extracted and preprocessed. The original cleaned article then enters independent summarisation and classification paths. Their outputs form an editorial result, followed by session-isolated SQLite review and archive, aggregate analytics, and drift readiness. Dataset preparation, benchmarking, calibration fitting, and evaluation remain offline. Runtime never imports training modules and never retrains.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#765B45"/>
+    </marker>
+    <style>
+      .heading { font-family: Georgia, "Times New Roman", serif; fill: #2F2924; font-weight: 700; }
+      .body { font-family: Arial, Helvetica, sans-serif; fill: #3B342F; }
+      .eyebrow { font-family: Arial, Helvetica, sans-serif; fill: #765B45; font-weight: 700; letter-spacing: 1.5px; }
+      .box { fill: #FFFDF8; stroke: #765B45; stroke-width: 2.5; }
+      .soft { fill: #EFE3D3; stroke: #765B45; stroke-width: 2.5; }
+      .accent { fill: #765B45; }
+      .line { fill: none; stroke: #765B45; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrow); }
+      .split { fill: none; stroke: #765B45; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+      .bullet { fill: #A77C57; }
+    </style>
+  </defs>
+
+  <rect x="2" y="2" width="996" height="1971" rx="28" fill="#F7F1E8" stroke="#D7C7B3" stroke-width="4"/>
+
+  <text x="60" y="58" class="heading" font-size="38">Runtime Processing and</text>
+  <text x="60" y="100" class="heading" font-size="38">Editorial Accountability Flow</text>
+  <text x="60" y="137" class="body" font-size="22">Independent ML paths · human review · privacy-safe operational evidence</text>
+
+  <g transform="translate(0 25)">
+  <rect x="70" y="155" width="860" height="150" rx="18" class="box"/>
+  <circle cx="120" cy="205" r="27" class="accent"/>
+  <text x="120" y="214" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#FFFDF8">1</text>
+  <text x="165" y="204" class="heading" font-size="32">User input</text>
+  <text x="165" y="250" class="body" font-size="25">Pasted text · public URL · TXT · text-based PDF</text>
+
+  <path d="M 500 305 L 500 350" class="line"/>
+
+  <rect x="70" y="370" width="860" height="135" rx="18" class="soft"/>
+  <circle cx="120" cy="420" r="27" class="accent"/>
+  <text x="120" y="429" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#FFFDF8">2</text>
+  <text x="165" y="418" class="heading" font-size="31">Safe extraction and preprocessing</text>
+  <text x="165" y="462" class="body" font-size="23">Validate · extract · clean · preserve the original article for classification</text>
+
+  <path d="M 500 505 L 500 550 L 265 550 L 265 585" class="split"/>
+  <path d="M 500 550 L 735 550 L 735 585" class="line"/>
+  <path d="M 265 550 L 265 585" class="line"/>
+
+  <rect x="65" y="600" width="400" height="350" rx="20" class="box"/>
+  <text x="95" y="648" class="eyebrow" font-size="18">INDEPENDENT PATH A</text>
+  <text x="95" y="700" class="heading" font-size="32">Summarisation</text>
+  <circle cx="108" cy="758" r="6" class="bullet"/>
+  <text x="132" y="767" class="body" font-size="25">Extractive summarisation</text>
+  <circle cx="108" cy="818" r="6" class="bullet"/>
+  <text x="132" y="827" class="body" font-size="25">Optional DistilBART</text>
+  <rect x="95" y="870" width="340" height="48" rx="12" fill="#F7F1E8"/>
+  <text x="265" y="901" text-anchor="middle" class="body" font-size="20">Produces the selected-length summary</text>
+
+  <rect x="535" y="600" width="400" height="350" rx="20" class="box"/>
+  <text x="565" y="648" class="eyebrow" font-size="18">INDEPENDENT PATH B</text>
+  <text x="565" y="700" class="heading" font-size="32">Classification</text>
+  <circle cx="578" cy="751" r="6" class="bullet"/>
+  <text x="602" y="760" class="body" font-size="23">Saved TF-IDF</text>
+  <circle cx="578" cy="796" r="6" class="bullet"/>
+  <text x="602" y="805" class="body" font-size="23">Logistic Regression</text>
+  <circle cx="578" cy="841" r="6" class="bullet"/>
+  <text x="602" y="850" class="body" font-size="23">Private Platt calibration</text>
+  <circle cx="578" cy="886" r="6" class="bullet"/>
+  <text x="602" y="895" class="body" font-size="23">Validation-selected abstention</text>
+  <circle cx="578" cy="931" r="6" class="bullet"/>
+  <text x="602" y="940" class="body" font-size="23">Local coefficient explanation</text>
+
+  <path d="M 265 950 L 265 1005 L 500 1005" class="split"/>
+  <path d="M 735 950 L 735 1005 L 500 1005 L 500 1040" class="line"/>
+
+  <rect x="180" y="1055" width="640" height="135" rx="20" class="soft"/>
+  <circle cx="230" cy="1105" r="27" class="accent"/>
+  <text x="230" y="1114" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#FFFDF8">3</text>
+  <text x="275" y="1103" class="heading" font-size="32">Editorial result</text>
+  <text x="275" y="1148" class="body" font-size="22">Independent summary and classification evidence</text>
+
+  <path d="M 500 1190 L 500 1235" class="line"/>
+
+  <rect x="180" y="1250" width="640" height="125" rx="20" class="box"/>
+  <circle cx="230" cy="1300" r="27" class="accent"/>
+  <text x="230" y="1309" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#FFFDF8">4</text>
+  <text x="275" y="1298" class="heading" font-size="30">Session-isolated SQLite</text>
+  <text x="275" y="1340" class="body" font-size="22">Visitor-scoped review and archive</text>
+
+  <path d="M 500 1375 L 500 1420" class="line"/>
+
+  <rect x="180" y="1435" width="640" height="125" rx="20" class="box"/>
+  <circle cx="230" cy="1485" r="27" class="accent"/>
+  <text x="230" y="1494" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#FFFDF8">5</text>
+  <text x="275" y="1483" class="heading" font-size="30">Aggregate analytics</text>
+  <text x="275" y="1525" class="body" font-size="22">Privacy-safe operational evidence and drift readiness</text>
+
+  <rect x="70" y="1625" width="860" height="185" rx="20" fill="#EADCC9" stroke="#765B45" stroke-width="3" stroke-dasharray="12 9"/>
+  <text x="105" y="1672" class="eyebrow" font-size="19">CLEARLY SEPARATED · OFFLINE ONLY</text>
+  <text x="105" y="1725" class="heading" font-size="30">Training and evaluation boundary</text>
+  <text x="105" y="1770" class="body" font-size="23">Dataset preparation · benchmarking · calibration fitting · evaluation</text>
+
+  <rect x="70" y="1840" width="860" height="78" rx="18" fill="#3B342F"/>
+  <text x="500" y="1878" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#FFFDF8">RUNTIME GUARANTEE</text>
+  <text x="500" y="1906" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#FFFDF8">Never imports training modules · never retrains</text>
+  </g>
+</svg>
