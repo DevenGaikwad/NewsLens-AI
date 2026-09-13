@@ -334,4 +334,3 @@ Preferred citation metadata is in [`CITATION.cff`](CITATION.cff). The canonical 
 © 2026 Deven Sachin Gaikwad. All Rights Reserved.
 
 The original project components are proprietary and source-visible; [`LICENSE`](LICENSE) is explicitly not an open-source licence. Third-party packages, datasets, papers, and tools retain their own terms. Public visibility does not grant permission to copy, redistribute, sell, sublicense, or submit this project as another person's work.
-
