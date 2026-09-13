@@ -63,31 +63,26 @@ High-volume newsrooms must triage long articles, developing claims, community su
 
 ![NewsLens AI system architecture](assets/github/system-architecture.png)
 
-```text
-User input
-   |
-   +-- text / public URL / TXT / text-based PDF
-   |
-safe extraction and preprocessing
-   |
-   +---------------------------+
-   |                           |
-summarisation              classification
-extractive / optional      saved TF-IDF + Logistic Regression
-DistilBART                     |
-                               +-- private Platt calibration
-                               +-- validation-selected abstention
-                               +-- local coefficient explanation
-   |                           |
-   +------------- editorial result -------------+
-                                                 |
-                          session-isolated SQLite review/archive
-                                                 |
-                             aggregate analytics and drift readiness
+### Runtime Processing and Editorial Accountability Flow
 
-Offline only: dataset preparation, benchmarking, calibration fitting, evaluation.
-Runtime never imports training modules and never retrains.
-```
+The system overview above presents the full product lifecycle. The detailed runtime flow below shows how one validated article enters two independent processing paths before human review and privacy-safe aggregate analysis.
+
+![NewsLens AI runtime processing and editorial accountability flow](assets/github/runtime-processing-editorial-accountability.svg)
+
+<details>
+<summary><strong>Accessible text version</strong></summary>
+
+- **User input:** pasted text, a public URL, TXT, or a text-based PDF.
+- **Safe extraction and preprocessing:** validates, extracts, and cleans the article.
+- **Independent summarisation path:** extractive summarisation, with optional DistilBART.
+- **Independent classification path:** saved TF-IDF and Logistic Regression, followed by private Platt calibration, validation-selected abstention, and a local coefficient explanation.
+- **Editorial result:** combines the independently produced summary and classification evidence without feeding summary text into the classifier.
+- **Human accountability:** a session-isolated SQLite review/archive stores the visitor-scoped analysis and review.
+- **Operational evidence:** aggregate analytics support drift readiness without exposing article text or review notes.
+- **Offline-only boundary:** dataset preparation, benchmarking, calibration fitting, and evaluation remain outside runtime.
+- **Runtime guarantee:** runtime never imports training modules and never retrains.
+
+</details>
 
 The application keeps summarisation and classification independent: the classifier receives the original cleaned article, never the generated summary. See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
@@ -339,3 +334,4 @@ Preferred citation metadata is in [`CITATION.cff`](CITATION.cff). The canonical 
 © 2026 Deven Sachin Gaikwad. All Rights Reserved.
 
 The original project components are proprietary and source-visible; [`LICENSE`](LICENSE) is explicitly not an open-source licence. Third-party packages, datasets, papers, and tools retain their own terms. Public visibility does not grant permission to copy, redistribute, sell, sublicense, or submit this project as another person's work.
+
