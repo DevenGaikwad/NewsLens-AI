@@ -11,5 +11,5 @@ requests==2.34.2
 beautifulsoup4==4.15.0
 trafilatura==2.2.0
 pypdf==6.16.1
-reportlab==4.4.9
+reportlab==5.0.1
 pytest==9.0.3
