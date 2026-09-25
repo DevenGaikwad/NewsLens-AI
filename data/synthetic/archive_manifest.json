@@ -1,0 +1,24 @@
+{
+  "archive": {
+    "entries": [
+      "DATASET_CARD.md",
+      "LICENSE.txt",
+      "articles.csv",
+      "checksums.sha256",
+      "events.jsonl",
+      "manifest.json",
+      "provenance.json",
+      "quality_audit.json"
+    ],
+    "entry_count": 8,
+    "filename": "newslens-synthetic-articles-v1.0.0.zip",
+    "sha256": "3b6df1fa17615bfe1b67f6c9136909c668ec846e3fa8d205fa8e4aa2a80526cc",
+    "size_bytes": 10319934
+  },
+  "audit_path": "reports/synthetic_dataset_quality_audit.json",
+  "dataset_id": "newslens-synthetic-articles-v1.0.0",
+  "generator_version": "1.0.0",
+  "regeneration_command": "python scripts/generate_synthetic_benchmark.py --mode final",
+  "schema_version": 1,
+  "seed": 20260916
+}

@@ -1,0 +1,83 @@
+{
+  "dataset_id": "newslens-synthetic-articles-v1.0.0",
+  "decision": "The corrected pilot, full 200-article affected-line review, intermediate leakage gate, and final 24000-article audit passed. The deterministic dataset package is approved for protected PR A.",
+  "failed_full_candidates": [
+    {
+      "all_other_checks_passed": true,
+      "audit_sha256": "b52c9d3ca971f17283e4512806bab103ecf8efda64fe8829e53a405a62225d9b",
+      "disposition": "not packaged, committed, published, merged, or deployed",
+      "raw_text_balanced_accuracy": 0.885597,
+      "reason": "Non-bijective result/status repair and asymmetric mutation value pools created label-skewed visible vocabulary."
+    },
+    {
+      "all_other_checks_passed": true,
+      "audit_path": "reports/synthetic_dataset_quality_audit_failed_document_frequency.json",
+      "audit_sha256": "1e984431ce5ea940f1c8e5f0a3e9b49ee692c1dbcca8b8c9307a38b12d9d339b",
+      "disposition": "not packaged, committed, published, merged, or deployed",
+      "raw_text_balanced_accuracy": 0.87716,
+      "reason": "Exact corpus-wide value marginals still left a within-document repetition shortcut between reference and account blocks."
+    }
+  ],
+  "final_corpus": {
+    "account_value_marginals": "exact across all eleven compared fields",
+    "article_count": 24000,
+    "audit_sha256": "1b6b3e4f366bc889271f0bbf3bc0ad0df8ffb2c05c9f6597b75c1ecb2228c716",
+    "audit_status": "passed",
+    "event_count": 12000,
+    "fact_code_collisions": 0,
+    "metadata_only_balanced_accuracy": 0.509053,
+    "raw_text_balanced_accuracy": 0.480864,
+    "raw_text_ceiling": 0.75,
+    "zip_filename": "newslens-synthetic-articles-v1.0.0.zip",
+    "zip_sha256": "3b6df1fa17615bfe1b67f6c9136909c668ec846e3fa8d205fa8e4aa2a80526cc",
+    "zip_size_bytes": 10319934
+  },
+  "final_pilot": {
+    "article_count": 1000,
+    "articles_sha256": "467b292de2f97532cfefcdd4a84b84a4e7a466cb737fd786a2edd43e8ea9527f",
+    "automated_audit_status": "passed",
+    "deterministic_regeneration": "byte-identical",
+    "event_count": 500,
+    "events_sha256": "ebfa3ebd1704bdfe9f89a8ba7a62604ec6174de2d2295574ab8211dd5903b95b",
+    "metadata_only_balanced_accuracy": 0.514563,
+    "quality_audit_sha256": "d94b3082bfa01920c405c889b0a0d6cb9ea6db84cd212a85bc1c9cb28777792e",
+    "raw_text_balanced_accuracy": 0.543689
+  },
+  "full_200_article_delta_review": {
+    "article_count": 200,
+    "event_count": 100,
+    "label_counts": {
+      "synthetic_ledger_consistent": 100,
+      "synthetic_ledger_contradicting": 100
+    },
+    "method": "All accepted-review article IDs were rechecked. Every changed fact-code line and context sentence was inspected; every code was validated against its generated event; all other prose had to remain byte-identical apart from additional paragraphs drawn verbatim from the already-reviewed sixteen-item sentence pool. Complete current articles were read across all eight template families.",
+    "mutation_families_covered": 10,
+    "review_evidence_sha256": "0e4c8c9830ef7d1600438ddca1d79908944bd442030989a59892fe38527c5aba",
+    "status": "passed",
+    "template_families_covered": 8,
+    "topics_covered": 12,
+    "unexpected_change_findings": 0
+  },
+  "generator_version": "1.0.0",
+  "intermediate_gate": {
+    "article_count": 4000,
+    "event_count": 2000,
+    "fact_code_collisions": 0,
+    "metadata_only_balanced_accuracy": 0.5,
+    "raw_text_balanced_accuracy": 0.469072,
+    "status": "passed"
+  },
+  "original_accepted_pilot_evidence": {
+    "article_count": 1000,
+    "articles_sha256": "276dea738316ecc7b67c812f9a4579227f1b7af9425c57e1b92c16b3847ff4fe",
+    "event_count": 500,
+    "events_sha256": "f17b74be206b88eb71dd6edc4762fbde06818211f68878cdaa88e77ea44e789f",
+    "manual_review_articles": 200,
+    "manual_review_status": "passed",
+    "quality_audit_sha256": "6ce4af4ca4dedc344357eafaa493730f05982d3d9dfd74ad1aaaec0535be45cc",
+    "raw_text_balanced_accuracy": 0.5777
+  },
+  "review_date": "2026-09-17",
+  "schema_version": 2,
+  "seed": 20260916
+}

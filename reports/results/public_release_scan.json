@@ -1,6 +1,6 @@
 {
-  "release_root": "NewsLens-AI",
-  "files_scanned": 247,
+  "release_root": "newslens-phase5s-pr-a",
+  "files_scanned": 262,
   "forbidden_files": [],
   "secret_findings": [],
   "personal_data_findings": [],
@@ -13,12 +13,9 @@
     "streamlit_url": [
       ".github/workflows/ci.yml",
       "docs/DEPLOYMENT.md",
-      "docs/DEPLOYMENT_VALUES_TO_FILL.md",
       "web/url-policy.ts"
     ],
-    "vercel_url": [
-      "docs/DEPLOYMENT_VALUES_TO_FILL.md"
-    ]
+    "vercel_url": []
   },
   "legal_policy": {
     "required_files_missing": [],

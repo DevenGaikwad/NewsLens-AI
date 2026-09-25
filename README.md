@@ -28,11 +28,13 @@ The classifier detects patterns associated with its ISOT training labels. It doe
 | Streamlit Community Cloud | Not deployed; no production URL recorded |
 | Vercel Hobby presentation site | Source prepared; not deployed; current-source `npm ci`, lint, and production build pass in GitHub Actions |
 | Model redistribution | Blocked pending documentary permission or applicable licence terms |
-| Public release package | Source and documentation only; model and private calibration artefact excluded |
+| Public release package | Source, documentation, and the independently authored synthetic dataset; private model and calibration artefact excluded |
 
 The Python/Streamlit product retains private-release test, integration, browser, privacy, export, and visual evidence. These historical results are not a fresh validation of private artifacts on current `main`. The public repository separately compiles the Python source and runs every model-independent test while reporting the four private-artifact checks as gated. Functional public hosting remains pending the documented model-redistribution and external-service gates. The exact committed Next.js source passes dependency installation, lint, and production build in GitHub Actions. No placeholder URL is presented as a live deployment.
 
 The [1 September public release](https://github.com/DevenGaikwad/NewsLens-AI/releases/tag/public-release-2026-09-01) and dated audit records describe historical snapshots. The tracked DOCX guides and project PDF were reconciled on 13 September 2026 with current public validation; their August benchmarks and private-release evidence remain historical. Current validation is documented in [`docs/TESTING.md`](docs/TESTING.md); current dependency pins and ranges are in `requirements-lite.txt`, `requirements.txt`, and `web/package-lock.json`.
+
+The repository now also contains the independently authored [NewsLens Synthetic Article Benchmark v1.0.0](data/synthetic/README.md): 12,000 fictional event pairs and 24,000 articles in a byte-reproducible public ZIP. It is a dataset and reproducibility deliverable only at this stage; the application continues to use the separately gated private model until the replacement public model is trained, evaluated, and integrated through its own protected change.
 
 ## Why this project matters
 
@@ -45,6 +47,7 @@ High-volume newsrooms must triage long articles, developing claims, community su
 - Extractive TF-IDF-centroid summarisation plus an optional DistilBART path.
 - Saved `isot-tfidf-lr-v1.0.0` TF-IDF + Logistic Regression model; runtime never retrains.
 - Controlled comparison of Logistic Regression, Linear SVC, and Multinomial Naive Bayes on identical partitions.
+- Deterministic 24,000-article fictional benchmark package with grouped splits, exhaustive leakage checks, provenance, checksums, and a separate dataset licence.
 - Platt confidence calibration using held-out validation-calibration rows.
 - Validation-policy-selected 0.59 editorial-review threshold.
 - Three responsible outcomes: `Lower misleading-content risk indicated`, `Higher misleading-content risk indicated`, and `Editorial review required`.
@@ -201,6 +204,7 @@ NewsLens-AI/
 ├── training/                 # Offline data, benchmark, calibration, and evaluation workflows
 ├── database/                 # Schema guidance; generated activity databases ignored
 ├── data/sample/              # Original synthetic demonstration articles
+├── data/synthetic/           # Reproducible public synthetic benchmark package
 ├── assets/github/            # Repository presentation images
 ├── reports/                  # Aggregate measured evidence, figures, screenshots, QA records
 ├── tests/                    # Unit, integration, security, UI, privacy, and release contracts
@@ -266,6 +270,7 @@ The application uses session-isolated temporary history by default. `NEWSLENS_HI
 ```bash
 python -m pytest -q --strict-markers -m "not private_model"
 python scripts/audit_public_release.py --tracked-files --allow-publication-gates
+python scripts/generate_synthetic_benchmark.py --mode verify
 ```
 
 The public commands intentionally exclude four private-model tests. `scripts/verify_project.py` is a historical private-release verifier and requires the excluded, owner-approved artifacts; it is not the public-suite entry point. Current CI and both CodeQL Action v4 language analyses pass. Successful checks do not alone establish zero open historical security alerts.
@@ -342,4 +347,4 @@ Preferred citation metadata is in [`CITATION.cff`](CITATION.cff). The canonical 
 
 © 2026 Deven Sachin Gaikwad. All Rights Reserved.
 
-The original project components are proprietary and source-visible; [`LICENSE`](LICENSE) is explicitly not an open-source licence. Third-party packages, datasets, papers, and tools retain their own terms. Public visibility does not grant permission to copy, redistribute, sell, sublicense, or submit this project as another person's work.
+The original project components are proprietary and source-visible; [`LICENSE`](LICENSE) is explicitly not an open-source licence. The independently authored synthetic dataset archive carries its own CC BY 4.0 notice to the extent applicable rights subsist. Third-party packages, datasets, papers, and tools retain their own terms. Public visibility does not otherwise grant permission to copy, redistribute, sell, sublicense, or submit this project as another person's work.
