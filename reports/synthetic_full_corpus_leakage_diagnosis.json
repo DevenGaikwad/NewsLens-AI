@@ -1,0 +1,150 @@
+{
+  "audit_source": {
+    "article_count": 24000,
+    "audit_path": "reports/synthetic_dataset_quality_audit.json",
+    "audit_sha256": "b52c9d3ca971f17283e4512806bab103ecf8efda64fe8829e53a405a62225d9b",
+    "event_count": 12000,
+    "status": "failed"
+  },
+  "correction": {
+    "description": "Use a one-to-one status inversion for result reversal and allocate every mutable visible value through per-topic, per-mutation-plan, frequency-matched pairs. Each plan occurs 400 times, each primary mutation occurs 1200 times, every material field changes when selected, and the complete 12000-event source/account marginal distributions are byte-value identical for all eleven compared fields.",
+    "scope": "Label-symmetric value allocation only; no threshold, split target, row filtering, filler text, template family, article grammar, or factual-consistency gate is changed.",
+    "verification_plan": [
+      "Run focused generator tests.",
+      "Regenerate and audit the 500-event pilot.",
+      "Run a 2000-event/4000-article intermediate diagnostic.",
+      "Proceed to one final 12000-event generation only if the smaller gates pass.",
+      "Perform a targeted stratified delta review because the correction changes visible value allocation but not grammar, templates, or rendering logic."
+    ]
+  },
+  "diagnosis_date": "2026-09-17",
+  "evidence": {
+    "all_other_full_corpus_checks_passed": true,
+    "largest_document_rate_skews": [
+      {
+        "consistent_rate": 0.151083,
+        "contradicting_rate": 0.281583,
+        "contradicting_minus_consistent": 0.1305,
+        "term": "cancelled"
+      },
+      {
+        "consistent_rate": 0.125,
+        "contradicting_rate": 0.25,
+        "contradicting_minus_consistent": 0.125,
+        "term": "status cancelled"
+      },
+      {
+        "consistent_rate": 0.17875,
+        "contradicting_rate": 0.279083,
+        "contradicting_minus_consistent": 0.100333,
+        "term": "completed"
+      },
+      {
+        "consistent_rate": 0.25,
+        "contradicting_rate": 0.35,
+        "contradicting_minus_consistent": 0.1,
+        "term": "recorded outcome"
+      }
+    ],
+    "metadata_only_balanced_accuracy": 0.503292,
+    "mutation_primary_counts": {
+      "attribution_change": 1200,
+      "causal_fabrication": 1200,
+      "date_time_displacement": 1200,
+      "entity_substitution": 1200,
+      "location_contradiction": 1200,
+      "policy_status_inversion": 1200,
+      "quantity_change": 1200,
+      "result_reversal": 1200,
+      "sequence_reversal": 1200,
+      "unsupported_certainty": 1200
+    },
+    "raw_text_balanced_accuracy": 0.885597,
+    "raw_text_ceiling": 0.75,
+    "retained_bytecode_behavior": "For result_reversal without policy_status_inversion, the accepted-pilot generator revision assigned status=completed whenever the reversed result was positive and status=cancelled whenever it was negative (with scheduled/under review only for the two generic outcomes).",
+    "residual_shortcut_after_status_only_fix": {
+      "account_only_balanced_accuracy": 0.765464,
+      "attribution_total_variation": 0.3015,
+      "label_exclusive_term_count": 209,
+      "narrative_without_structured_balanced_accuracy": 0.619845,
+      "raw_text_balanced_accuracy": 0.733247,
+      "scale": "2000 events / 4000 articles",
+      "structured_blocks_balanced_accuracy": 0.903351,
+      "strongest_examples": [
+        "label-exclusive fictional attribution names",
+        "location suffixes such as quay, harbour, and reach",
+        "certainty values conditional and provisional"
+      ]
+    },
+    "surface_style_gate_passed": false
+  },
+  "excluded_causes": {
+    "cross_split_content_hash_overlap": 0,
+    "cross_split_event_overlap": 0,
+    "exact_duplicates": 0,
+    "fact_comparison_violations": 0,
+    "forbidden_visible_terms": 0,
+    "metadata_accidentally_included_in_visible_text": false,
+    "mutation_family_imbalance": false,
+    "near_duplicate_findings": 0,
+    "normalized_duplicates": 0,
+    "real_entity_deny_list_findings": 0,
+    "status_result_coherence_violations": 0,
+    "template_or_split_metadata_predictability": false
+  },
+  "post_correction_pre_full_evidence": {
+    "focused_generator_tests": "3 passed",
+    "full_contract_account_value_marginals": "exact across all eleven compared fields",
+    "intermediate": {
+      "article_count": 4000,
+      "event_count": 2000,
+      "metadata_only_balanced_accuracy": 0.498711,
+      "raw_text_balanced_accuracy": 0.622423,
+      "status": "passed"
+    },
+    "pilot": {
+      "article_count": 1000,
+      "articles_sha256": "7e53dc3c944566e113215cae6d7d8dfcac4d7df55c500316ed67d4ad766f7bcf",
+      "deterministic_regeneration": "byte-identical",
+      "event_count": 500,
+      "events_sha256": "ebfa3ebd1704bdfe9f89a8ba7a62604ec6174de2d2295574ab8211dd5903b95b",
+      "metadata_only_balanced_accuracy": 0.495146,
+      "raw_text_balanced_accuracy": 0.548544,
+      "status": "passed"
+    },
+    "targeted_delta_review": {
+      "article_count": 48,
+      "event_count": 24,
+      "scope": "both labels, all 12 topics, all 10 mutation families, all 8 template families, and all 8 status values",
+      "status": "passed"
+    }
+  },
+  "second_full_candidate": {
+    "account_value_marginals_exact_across_all_fields": true,
+    "all_other_checks_passed": true,
+    "audit_path": "reports/synthetic_dataset_quality_audit_failed_document_frequency.json",
+    "audit_sha256": "1e984431ce5ea940f1c8e5f0a3e9b49ee692c1dbcca8b8c9307a38b12d9d339b",
+    "diagnosis": "Even with exact corpus-wide value marginals, a consistent article repeated one human-readable fact value in its reference and account while a contradicted article exposed two values. TF-IDF therefore learned within-document value concentration and document-frequency differences rather than a label-exclusive pool.",
+    "raw_text_balanced_accuracy": 0.87716,
+    "status": "failed"
+  },
+  "relational_rendering_correction": {
+    "description": "Structured reference/account fields now display stable ten-digit codes derived from the underlying fictional values. Runtime normalization maps every code to the same neutral number token, while the transparent signal extractor compares the original codes field by field. Human-readable account values remain in the article narrative, where their full-corpus marginals are label-symmetric. The one narrative sentence that repeated reference-only entity/location values was replaced with a neutral pointer to the structured reference line.",
+    "fact_code_collisions": 0,
+    "intermediate_4000_article_raw_text_balanced_accuracy": 0.469072,
+    "pilot_raw_text_balanced_accuracy": 0.543689,
+    "raw_text_ceiling": 0.75,
+    "threshold_changed": false,
+    "full_200_article_delta_review": {
+      "review_sha256": "0e4c8c9830ef7d1600438ddca1d79908944bd442030989a59892fe38527c5aba",
+      "status": "passed",
+      "unexpected_change_findings": 0
+    }
+  },
+  "root_cause": {
+    "category": "label-conditioned visible-value pools followed by within-document value-concentration leakage",
+    "detail": "Only contradicted articles apply mutations. The first defect was non-bijective mutation allocation, dominated by a result-reversal repair that collapsed several statuses into completed and cancelled and accompanied by shifted attribution/location/certainty pools. After those marginals were made exactly symmetric, the full audit exposed a second shortcut: consistent articles repeated one human-readable value across reference and account blocks, whereas contradicted articles displayed two values. The final correction preserves a meaningful field-by-field comparison but neutralizes raw lexical identity through deterministic numeric fact codes; derived consistency signals still compare the exact visible codes without using labels.",
+    "reproducible": true
+  },
+  "schema_version": 1
+}

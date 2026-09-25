@@ -1,0 +1,1157 @@
+{
+  "account_value_marginal_symmetry": {
+    "exact_across_all_fields": true,
+    "fields": {
+      "attribution": {
+        "exact": true,
+        "ledger_consistent_exclusive_value_count": 0,
+        "ledger_contradicting_exclusive_value_count": 0,
+        "maximum_count_delta": 0,
+        "total_variation": 0.0,
+        "value_count": 676
+      },
+      "certainty": {
+        "exact": true,
+        "ledger_consistent_exclusive_value_count": 0,
+        "ledger_contradicting_exclusive_value_count": 0,
+        "maximum_count_delta": 0,
+        "total_variation": 0.0,
+        "value_count": 6
+      },
+      "date": {
+        "exact": true,
+        "ledger_consistent_exclusive_value_count": 0,
+        "ledger_contradicting_exclusive_value_count": 0,
+        "maximum_count_delta": 0,
+        "total_variation": 0.0,
+        "value_count": 1420
+      },
+      "lead": {
+        "exact": true,
+        "ledger_consistent_exclusive_value_count": 0,
+        "ledger_contradicting_exclusive_value_count": 0,
+        "maximum_count_delta": 0,
+        "total_variation": 0.0,
+        "value_count": 768
+      },
+      "quantity": {
+        "exact": true,
+        "ledger_consistent_exclusive_value_count": 0,
+        "ledger_contradicting_exclusive_value_count": 0,
+        "maximum_count_delta": 0,
+        "total_variation": 0.0,
+        "value_count": 408
+      },
+      "rationale": {
+        "exact": true,
+        "ledger_consistent_exclusive_value_count": 0,
+        "ledger_contradicting_exclusive_value_count": 0,
+        "maximum_count_delta": 0,
+        "total_variation": 0.0,
+        "value_count": 8
+      },
+      "result": {
+        "exact": true,
+        "ledger_consistent_exclusive_value_count": 0,
+        "ledger_contradicting_exclusive_value_count": 0,
+        "maximum_count_delta": 0,
+        "total_variation": 0.0,
+        "value_count": 74
+      },
+      "sequence": {
+        "exact": true,
+        "ledger_consistent_exclusive_value_count": 0,
+        "ledger_contradicting_exclusive_value_count": 0,
+        "maximum_count_delta": 0,
+        "total_variation": 0.0,
+        "value_count": 8
+      },
+      "site": {
+        "exact": true,
+        "ledger_consistent_exclusive_value_count": 0,
+        "ledger_contradicting_exclusive_value_count": 0,
+        "maximum_count_delta": 0,
+        "total_variation": 0.0,
+        "value_count": 208
+      },
+      "status": {
+        "exact": true,
+        "ledger_consistent_exclusive_value_count": 0,
+        "ledger_contradicting_exclusive_value_count": 0,
+        "maximum_count_delta": 0,
+        "total_variation": 0.0,
+        "value_count": 8
+      },
+      "time": {
+        "exact": true,
+        "ledger_consistent_exclusive_value_count": 0,
+        "ledger_contradicting_exclusive_value_count": 0,
+        "maximum_count_delta": 0,
+        "total_variation": 0.0,
+        "value_count": 8
+      }
+    }
+  },
+  "article_count": 24000,
+  "checks": {
+    "account_value_pool_symmetry": true,
+    "article_length": true,
+    "balanced_labels": true,
+    "content_hashes": true,
+    "cross_split_content": true,
+    "cross_split_events": true,
+    "exact_duplicates": true,
+    "fact_comparison": true,
+    "forbidden_visible_terms": true,
+    "metadata_predictability": true,
+    "missing_values": true,
+    "near_duplicates": true,
+    "normalized_duplicates": true,
+    "paired_events": true,
+    "real_entity_deny_list": true,
+    "row_count": true,
+    "schema": true,
+    "split_contract": true,
+    "status_result_coherence": true,
+    "surface_style_leakage": false,
+    "valid_labels": true
+  },
+  "content_hash_duplicate_count": 0,
+  "cross_split_content_hash_overlap": 0,
+  "cross_split_event_overlap": 0,
+  "dataset_id": "newslens-synthetic-articles-v1.0.0",
+  "event_count": 12000,
+  "event_pair_violation_count": 0,
+  "exact_duplicate_count": 0,
+  "expected_final_split_counts": {
+    "abstention_policy": 1200,
+    "calibration": 1200,
+    "final_test": 1200,
+    "model_validation": 2400,
+    "training": 18000
+  },
+  "fact_comparison_violation_count": 0,
+  "forbidden_term_findings": [],
+  "generator_version": "1.0.0",
+  "invalid_content_hash_count": 0,
+  "invalid_label_count": 0,
+  "invalid_label_name_count": 0,
+  "label_counts": {
+    "0": 12000,
+    "1": 12000
+  },
+  "limitations": [
+    "The real-entity deny-list is a targeted safeguard, not proof that no fictional token resembles any real name.",
+    "Near-duplicate candidate generation is approximate; exact and normalized duplicate checks are exhaustive.",
+    "Metadata and surface-style baselines detect major leakage but cannot prove that every possible shortcut is absent."
+  ],
+  "metadata_only_predictability": {
+    "accuracy": 0.503086,
+    "balanced_accuracy": 0.503086,
+    "evaluation_rows": 4860,
+    "features": [
+      "topic",
+      "template_family",
+      "mutation_family",
+      "split",
+      "article_id_prefix",
+      "event_id_prefix",
+      "word_count",
+      "paragraph_count",
+      "title_word_count",
+      "punctuation_count",
+      "row_position_mod_2",
+      "row_position_mod_5"
+    ],
+    "fit_rows": 19140,
+    "group_rule": "event hash modulo five; paired articles never cross fit/evaluation",
+    "pass_threshold": 0.58
+  },
+  "mismatch_count_distribution": {
+    "0": 12000,
+    "2": 3200,
+    "3": 4000,
+    "4": 3200,
+    "5": 1600
+  },
+  "missing_values": {},
+  "mutation_plan_by_label": {
+    "attribution_change+sequence_reversal | 0": 400,
+    "attribution_change+sequence_reversal | 1": 400,
+    "attribution_change+sequence_reversal+date_time_displacement | 0": 400,
+    "attribution_change+sequence_reversal+date_time_displacement | 1": 400,
+    "attribution_change+sequence_reversal+date_time_displacement+result_reversal | 0": 400,
+    "attribution_change+sequence_reversal+date_time_displacement+result_reversal | 1": 400,
+    "causal_fabrication+unsupported_certainty | 0": 400,
+    "causal_fabrication+unsupported_certainty | 1": 400,
+    "causal_fabrication+unsupported_certainty+quantity_change | 0": 400,
+    "causal_fabrication+unsupported_certainty+quantity_change | 1": 400,
+    "causal_fabrication+unsupported_certainty+quantity_change+attribution_change | 0": 400,
+    "causal_fabrication+unsupported_certainty+quantity_change+attribution_change | 1": 400,
+    "date_time_displacement+attribution_change | 0": 400,
+    "date_time_displacement+attribution_change | 1": 400,
+    "date_time_displacement+attribution_change+unsupported_certainty | 0": 400,
+    "date_time_displacement+attribution_change+unsupported_certainty | 1": 400,
+    "date_time_displacement+attribution_change+unsupported_certainty+location_contradiction | 0": 400,
+    "date_time_displacement+attribution_change+unsupported_certainty+location_contradiction | 1": 400,
+    "entity_substitution+quantity_change | 0": 400,
+    "entity_substitution+quantity_change | 1": 400,
+    "entity_substitution+quantity_change+policy_status_inversion | 0": 400,
+    "entity_substitution+quantity_change+policy_status_inversion | 1": 400,
+    "entity_substitution+quantity_change+policy_status_inversion+unsupported_certainty | 0": 400,
+    "entity_substitution+quantity_change+policy_status_inversion+unsupported_certainty | 1": 400,
+    "location_contradiction+result_reversal | 0": 400,
+    "location_contradiction+result_reversal | 1": 400,
+    "location_contradiction+result_reversal+sequence_reversal | 0": 400,
+    "location_contradiction+result_reversal+sequence_reversal | 1": 400,
+    "location_contradiction+result_reversal+sequence_reversal+entity_substitution | 0": 400,
+    "location_contradiction+result_reversal+sequence_reversal+entity_substitution | 1": 400,
+    "policy_status_inversion+entity_substitution | 0": 400,
+    "policy_status_inversion+entity_substitution | 1": 400,
+    "policy_status_inversion+entity_substitution+result_reversal | 0": 400,
+    "policy_status_inversion+entity_substitution+result_reversal | 1": 400,
+    "policy_status_inversion+entity_substitution+result_reversal+causal_fabrication | 0": 400,
+    "policy_status_inversion+entity_substitution+result_reversal+causal_fabrication | 1": 400,
+    "quantity_change+causal_fabrication | 0": 400,
+    "quantity_change+causal_fabrication | 1": 400,
+    "quantity_change+causal_fabrication+entity_substitution | 0": 400,
+    "quantity_change+causal_fabrication+entity_substitution | 1": 400,
+    "quantity_change+causal_fabrication+entity_substitution+date_time_displacement | 0": 400,
+    "quantity_change+causal_fabrication+entity_substitution+date_time_displacement | 1": 400,
+    "result_reversal+policy_status_inversion | 0": 400,
+    "result_reversal+policy_status_inversion | 1": 400,
+    "result_reversal+policy_status_inversion+location_contradiction | 0": 400,
+    "result_reversal+policy_status_inversion+location_contradiction | 1": 400,
+    "result_reversal+policy_status_inversion+location_contradiction+quantity_change | 0": 400,
+    "result_reversal+policy_status_inversion+location_contradiction+quantity_change | 1": 400,
+    "sequence_reversal+location_contradiction | 0": 400,
+    "sequence_reversal+location_contradiction | 1": 400,
+    "sequence_reversal+location_contradiction+attribution_change | 0": 400,
+    "sequence_reversal+location_contradiction+attribution_change | 1": 400,
+    "sequence_reversal+location_contradiction+attribution_change+policy_status_inversion | 0": 400,
+    "sequence_reversal+location_contradiction+attribution_change+policy_status_inversion | 1": 400,
+    "unsupported_certainty+date_time_displacement | 0": 400,
+    "unsupported_certainty+date_time_displacement | 1": 400,
+    "unsupported_certainty+date_time_displacement+causal_fabrication | 0": 400,
+    "unsupported_certainty+date_time_displacement+causal_fabrication | 1": 400,
+    "unsupported_certainty+date_time_displacement+causal_fabrication+sequence_reversal | 0": 400,
+    "unsupported_certainty+date_time_displacement+causal_fabrication+sequence_reversal | 1": 400
+  },
+  "near_duplicate_detection": {
+    "candidate_pairs_verified": 62141,
+    "cross_event_finding_count": 0,
+    "finding_count": 0,
+    "findings": [],
+    "limitation": "Approximate candidate generation is not exhaustive semantic-duplicate detection; exact and normalized duplicate checks are exhaustive.",
+    "maximum_pair_article_ids": [
+      "nlsa-a3e4609715645471672b",
+      "nlsa-07687ab8356876e220c5"
+    ],
+    "maximum_verified_similarity": 0.710811,
+    "method": "Deterministic word-five-gram minimum-hash candidate screen with exact Jaccard verification; every within-event pair is also checked",
+    "oversized_common_template_buckets_skipped": 0,
+    "signature_bands": 3,
+    "signature_values_per_band": 4,
+    "threshold": 0.82
+  },
+  "normalized_duplicate_count": 0,
+  "out_of_range_article_count": 0,
+  "primary_mutation_distribution": {
+    "attribution_change": 1200,
+    "causal_fabrication": 1200,
+    "date_time_displacement": 1200,
+    "entity_substitution": 1200,
+    "location_contradiction": 1200,
+    "policy_status_inversion": 1200,
+    "quantity_change": 1200,
+    "result_reversal": 1200,
+    "sequence_reversal": 1200,
+    "unsupported_certainty": 1200
+  },
+  "raw_text_surface_baseline": {
+    "accuracy": 0.87716,
+    "balanced_accuracy": 0.87716,
+    "evaluation_rows": 4860,
+    "fit_rows": 19140,
+    "group_rule": "event hash modulo five; paired articles never cross fit/evaluation",
+    "material_leakage_threshold": 0.75,
+    "purpose": "Detect surface-style leakage before derived consistency signals are added",
+    "strongest_consistent_coefficients": [
+      {
+        "coefficient": 1.290609,
+        "term": "records recorded"
+      },
+      {
+        "coefficient": 1.143729,
+        "term": "phase galenor"
+      },
+      {
+        "coefficient": 1.096773,
+        "term": "scheduled records"
+      },
+      {
+        "coefficient": 1.015841,
+        "term": "location participating"
+      },
+      {
+        "coefficient": 0.995904,
+        "term": "conditional organisers"
+      },
+      {
+        "coefficient": 0.965789,
+        "term": "described subject"
+      },
+      {
+        "coefficient": 0.945278,
+        "term": "pending article"
+      },
+      {
+        "coefficient": 0.820403,
+        "term": "timetable pavren"
+      },
+      {
+        "coefficient": 0.800814,
+        "term": "said neris"
+      },
+      {
+        "coefficient": 0.791022,
+        "term": "prepares galenor"
+      },
+      {
+        "coefficient": 0.788251,
+        "term": "advisers reviewed"
+      },
+      {
+        "coefficient": 0.779911,
+        "term": "basis operating"
+      },
+      {
+        "coefficient": 0.776168,
+        "term": "conditional new"
+      },
+      {
+        "coefficient": 0.770926,
+        "term": "pending reference"
+      },
+      {
+        "coefficient": 0.763613,
+        "term": "said brena"
+      },
+      {
+        "coefficient": 0.755416,
+        "term": "pending publication"
+      },
+      {
+        "coefficient": 0.718886,
+        "term": "unqualified luneth"
+      },
+      {
+        "coefficient": 0.716553,
+        "term": "appeared elmsora"
+      },
+      {
+        "coefficient": 0.706484,
+        "term": "session joravel"
+      },
+      {
+        "coefficient": 0.706243,
+        "term": "plan sets"
+      },
+      {
+        "coefficient": 0.70486,
+        "term": "unqualified farlon"
+      },
+      {
+        "coefficient": 0.688967,
+        "term": "prepares luneth"
+      },
+      {
+        "coefficient": 0.68824,
+        "term": "said arel"
+      },
+      {
+        "coefficient": 0.685865,
+        "term": "sessions practical"
+      },
+      {
+        "coefficient": 0.669106,
+        "term": "fixtures initiative"
+      }
+    ],
+    "strongest_contradicting_coefficients": [
+      {
+        "coefficient": -6.33343,
+        "term": "completed"
+      },
+      {
+        "coefficient": -5.902466,
+        "term": "withdrawn"
+      },
+      {
+        "coefficient": -5.726929,
+        "term": "quay"
+      },
+      {
+        "coefficient": -5.672601,
+        "term": "status completed"
+      },
+      {
+        "coefficient": -5.670339,
+        "term": "cancelled"
+      },
+      {
+        "coefficient": -5.563096,
+        "term": "reach"
+      },
+      {
+        "coefficient": -5.554865,
+        "term": "approved"
+      },
+      {
+        "coefficient": -5.554865,
+        "term": "status approved"
+      },
+      {
+        "coefficient": -5.535322,
+        "term": "crossing"
+      },
+      {
+        "coefficient": -5.530113,
+        "term": "harbour"
+      },
+      {
+        "coefficient": -5.512125,
+        "term": "status withdrawn"
+      },
+      {
+        "coefficient": -5.483505,
+        "term": "request"
+      },
+      {
+        "coefficient": -5.447285,
+        "term": "vale"
+      },
+      {
+        "coefficient": -5.423714,
+        "term": "hollow"
+      },
+      {
+        "coefficient": -5.294681,
+        "term": "terrace"
+      },
+      {
+        "coefficient": -5.226011,
+        "term": "ward"
+      },
+      {
+        "coefficient": -5.126524,
+        "term": "status cancelled"
+      },
+      {
+        "coefficient": -5.116269,
+        "term": "started"
+      },
+      {
+        "coefficient": -5.116269,
+        "term": "status started"
+      },
+      {
+        "coefficient": -4.243196,
+        "term": "routine renewal"
+      },
+      {
+        "coefficient": -4.243196,
+        "term": "renewal shared"
+      },
+      {
+        "coefficient": -4.242165,
+        "term": "remained"
+      },
+      {
+        "coefficient": -4.226036,
+        "term": "provisional"
+      },
+      {
+        "coefficient": -4.182563,
+        "term": "definitive"
+      },
+      {
+        "coefficient": -4.159344,
+        "term": "scheduled"
+      }
+    ]
+  },
+  "real_entity_deny_list_findings": [],
+  "schema": {
+    "extra_columns": [],
+    "missing_columns": [],
+    "required_columns": [
+      "article_id",
+      "event_id",
+      "title",
+      "text",
+      "label",
+      "label_name",
+      "topic",
+      "template_family",
+      "mutation_family",
+      "split",
+      "generator_version",
+      "seed",
+      "content_sha256"
+    ]
+  },
+  "schema_version": 1,
+  "seed": 20260916,
+  "split_counts": {
+    "abstention_policy": 1200,
+    "calibration": 1200,
+    "final_test": 1200,
+    "model_validation": 2400,
+    "training": 18000
+  },
+  "status": "failed",
+  "status_result_coherence_violation_count": 0,
+  "template_by_label_and_split": {
+    "briefing_first | 0 | abstention_policy": 83,
+    "briefing_first | 0 | calibration": 59,
+    "briefing_first | 0 | final_test": 74,
+    "briefing_first | 0 | model_validation": 144,
+    "briefing_first | 0 | training": 1133,
+    "briefing_first | 1 | abstention_policy": 83,
+    "briefing_first | 1 | calibration": 82,
+    "briefing_first | 1 | final_test": 66,
+    "briefing_first | 1 | model_validation": 158,
+    "briefing_first | 1 | training": 1172,
+    "community_first | 0 | abstention_policy": 91,
+    "community_first | 0 | calibration": 59,
+    "community_first | 0 | final_test": 89,
+    "community_first | 0 | model_validation": 136,
+    "community_first | 0 | training": 1162,
+    "community_first | 1 | abstention_policy": 68,
+    "community_first | 1 | calibration": 79,
+    "community_first | 1 | final_test": 58,
+    "community_first | 1 | model_validation": 153,
+    "community_first | 1 | training": 1114,
+    "context_first | 0 | abstention_policy": 64,
+    "context_first | 0 | calibration": 78,
+    "context_first | 0 | final_test": 78,
+    "context_first | 0 | model_validation": 142,
+    "context_first | 0 | training": 1107,
+    "context_first | 1 | abstention_policy": 83,
+    "context_first | 1 | calibration": 79,
+    "context_first | 1 | final_test": 76,
+    "context_first | 1 | model_validation": 174,
+    "context_first | 1 | training": 1084,
+    "impact_first | 0 | abstention_policy": 69,
+    "impact_first | 0 | calibration": 84,
+    "impact_first | 0 | final_test": 79,
+    "impact_first | 0 | model_validation": 157,
+    "impact_first | 0 | training": 1147,
+    "impact_first | 1 | abstention_policy": 75,
+    "impact_first | 1 | calibration": 68,
+    "impact_first | 1 | final_test": 89,
+    "impact_first | 1 | model_validation": 154,
+    "impact_first | 1 | training": 1108,
+    "operations_first | 0 | abstention_policy": 55,
+    "operations_first | 0 | calibration": 85,
+    "operations_first | 0 | final_test": 86,
+    "operations_first | 0 | model_validation": 157,
+    "operations_first | 0 | training": 1099,
+    "operations_first | 1 | abstention_policy": 85,
+    "operations_first | 1 | calibration": 84,
+    "operations_first | 1 | final_test": 92,
+    "operations_first | 1 | model_validation": 122,
+    "operations_first | 1 | training": 1126,
+    "record_first | 0 | abstention_policy": 100,
+    "record_first | 0 | calibration": 87,
+    "record_first | 0 | final_test": 53,
+    "record_first | 0 | model_validation": 142,
+    "record_first | 0 | training": 1106,
+    "record_first | 1 | abstention_policy": 72,
+    "record_first | 1 | calibration": 61,
+    "record_first | 1 | final_test": 77,
+    "record_first | 1 | model_validation": 144,
+    "record_first | 1 | training": 1142,
+    "scene_first | 0 | abstention_policy": 72,
+    "scene_first | 0 | calibration": 74,
+    "scene_first | 0 | final_test": 78,
+    "scene_first | 0 | model_validation": 153,
+    "scene_first | 0 | training": 1137,
+    "scene_first | 1 | abstention_policy": 79,
+    "scene_first | 1 | calibration": 89,
+    "scene_first | 1 | final_test": 73,
+    "scene_first | 1 | model_validation": 161,
+    "scene_first | 1 | training": 1137,
+    "timeline_first | 0 | abstention_policy": 66,
+    "timeline_first | 0 | calibration": 74,
+    "timeline_first | 0 | final_test": 63,
+    "timeline_first | 0 | model_validation": 169,
+    "timeline_first | 0 | training": 1109,
+    "timeline_first | 1 | abstention_policy": 55,
+    "timeline_first | 1 | calibration": 58,
+    "timeline_first | 1 | final_test": 69,
+    "timeline_first | 1 | model_validation": 134,
+    "timeline_first | 1 | training": 1117
+  },
+  "top_unigrams_and_bigrams_by_label": {
+    "label_exclusive_term_count": 22,
+    "largest_consistent_deltas": [
+      {
+        "ledger_consistent_document_rate": 0.227917,
+        "ledger_contradicting_document_rate": 0.21175,
+        "rate_delta": 0.016167,
+        "term": "immediate change"
+      },
+      {
+        "ledger_consistent_document_rate": 0.227917,
+        "ledger_contradicting_document_rate": 0.21175,
+        "rate_delta": 0.016167,
+        "term": "immediate"
+      },
+      {
+        "ledger_consistent_document_rate": 0.227917,
+        "ledger_contradicting_document_rate": 0.21175,
+        "rate_delta": 0.016167,
+        "term": "informal timetable"
+      },
+      {
+        "ledger_consistent_document_rate": 0.227917,
+        "ledger_contradicting_document_rate": 0.21175,
+        "rate_delta": 0.016167,
+        "term": "change clearer"
+      },
+      {
+        "ledger_consistent_document_rate": 0.227917,
+        "ledger_contradicting_document_rate": 0.21175,
+        "rate_delta": 0.016167,
+        "term": "groups immediate"
+      },
+      {
+        "ledger_consistent_document_rate": 0.227917,
+        "ledger_contradicting_document_rate": 0.21175,
+        "rate_delta": 0.016167,
+        "term": "relying informal"
+      },
+      {
+        "ledger_consistent_document_rate": 0.227917,
+        "ledger_contradicting_document_rate": 0.21175,
+        "rate_delta": 0.016167,
+        "term": "clearer"
+      },
+      {
+        "ledger_consistent_document_rate": 0.227917,
+        "ledger_contradicting_document_rate": 0.21175,
+        "rate_delta": 0.016167,
+        "term": "clearer route"
+      },
+      {
+        "ledger_consistent_document_rate": 0.227917,
+        "ledger_contradicting_document_rate": 0.21175,
+        "rate_delta": 0.016167,
+        "term": "relying"
+      },
+      {
+        "ledger_consistent_document_rate": 0.227917,
+        "ledger_contradicting_document_rate": 0.21175,
+        "rate_delta": 0.016167,
+        "term": "timetable later"
+      },
+      {
+        "ledger_consistent_document_rate": 0.535417,
+        "ledger_contradicting_document_rate": 0.519417,
+        "rate_delta": 0.016,
+        "term": "source"
+      },
+      {
+        "ledger_consistent_document_rate": 0.26675,
+        "ledger_contradicting_document_rate": 0.251,
+        "rate_delta": 0.01575,
+        "term": "informal"
+      },
+      {
+        "ledger_consistent_document_rate": 0.290667,
+        "ledger_contradicting_document_rate": 0.275417,
+        "rate_delta": 0.01525,
+        "term": "route"
+      },
+      {
+        "ledger_consistent_document_rate": 0.2555,
+        "ledger_contradicting_document_rate": 0.243417,
+        "rate_delta": 0.012083,
+        "term": "publication"
+      },
+      {
+        "ledger_consistent_document_rate": 0.2555,
+        "ledger_contradicting_document_rate": 0.243417,
+        "rate_delta": 0.012083,
+        "term": "retained"
+      },
+      {
+        "ledger_consistent_document_rate": 0.2555,
+        "ledger_contradicting_document_rate": 0.243417,
+        "rate_delta": 0.012083,
+        "term": "retained source"
+      },
+      {
+        "ledger_consistent_document_rate": 0.2555,
+        "ledger_contradicting_document_rate": 0.243417,
+        "rate_delta": 0.012083,
+        "term": "merging description"
+      },
+      {
+        "ledger_consistent_document_rate": 0.2555,
+        "ledger_contradicting_document_rate": 0.243417,
+        "rate_delta": 0.012083,
+        "term": "merging"
+      },
+      {
+        "ledger_consistent_document_rate": 0.2555,
+        "ledger_contradicting_document_rate": 0.243417,
+        "rate_delta": 0.012083,
+        "term": "reported account"
+      },
+      {
+        "ledger_consistent_document_rate": 0.2555,
+        "ledger_contradicting_document_rate": 0.243417,
+        "rate_delta": 0.012083,
+        "term": "source note"
+      },
+      {
+        "ledger_consistent_document_rate": 0.2555,
+        "ledger_contradicting_document_rate": 0.243417,
+        "rate_delta": 0.012083,
+        "term": "account merging"
+      },
+      {
+        "ledger_consistent_document_rate": 0.2555,
+        "ledger_contradicting_document_rate": 0.243417,
+        "rate_delta": 0.012083,
+        "term": "note reported"
+      },
+      {
+        "ledger_consistent_document_rate": 0.2555,
+        "ledger_contradicting_document_rate": 0.243417,
+        "rate_delta": 0.012083,
+        "term": "description"
+      },
+      {
+        "ledger_consistent_document_rate": 0.2555,
+        "ledger_contradicting_document_rate": 0.243417,
+        "rate_delta": 0.012083,
+        "term": "reported"
+      },
+      {
+        "ledger_consistent_document_rate": 0.2555,
+        "ledger_contradicting_document_rate": 0.243417,
+        "rate_delta": 0.012083,
+        "term": "publication retained"
+      }
+    ],
+    "largest_contradicting_deltas": [
+      {
+        "ledger_consistent_document_rate": 0.286667,
+        "ledger_contradicting_document_rate": 0.397833,
+        "rate_delta": -0.111167,
+        "term": "remained"
+      },
+      {
+        "ledger_consistent_document_rate": 0.24,
+        "ledger_contradicting_document_rate": 0.344,
+        "rate_delta": -0.104,
+        "term": "result recorded"
+      },
+      {
+        "ledger_consistent_document_rate": 0.24,
+        "ledger_contradicting_document_rate": 0.344,
+        "rate_delta": -0.104,
+        "term": "outcome remained"
+      },
+      {
+        "ledger_consistent_document_rate": 0.24,
+        "ledger_contradicting_document_rate": 0.344,
+        "rate_delta": -0.104,
+        "term": "recorded outcome"
+      },
+      {
+        "ledger_consistent_document_rate": 0.433,
+        "ledger_contradicting_document_rate": 0.512833,
+        "rate_delta": -0.079833,
+        "term": "outcome"
+      },
+      {
+        "ledger_consistent_document_rate": 0.181667,
+        "ledger_contradicting_document_rate": 0.2605,
+        "rate_delta": -0.078833,
+        "term": "completed"
+      },
+      {
+        "ledger_consistent_document_rate": 0.25,
+        "ledger_contradicting_document_rate": 0.325,
+        "rate_delta": -0.075,
+        "term": "review certainty"
+      },
+      {
+        "ledger_consistent_document_rate": 0.25,
+        "ledger_contradicting_document_rate": 0.325,
+        "rate_delta": -0.075,
+        "term": "request"
+      },
+      {
+        "ledger_consistent_document_rate": 0.456917,
+        "ledger_contradicting_document_rate": 0.528083,
+        "rate_delta": -0.071167,
+        "term": "scheduled"
+      },
+      {
+        "ledger_consistent_document_rate": 0.16,
+        "ledger_contradicting_document_rate": 0.229333,
+        "rate_delta": -0.069333,
+        "term": "withdrawn"
+      },
+      {
+        "ledger_consistent_document_rate": 0.151667,
+        "ledger_contradicting_document_rate": 0.2175,
+        "rate_delta": -0.065833,
+        "term": "cancelled"
+      },
+      {
+        "ledger_consistent_document_rate": 0.14,
+        "ledger_contradicting_document_rate": 0.200667,
+        "rate_delta": -0.060667,
+        "term": "approved sequence"
+      },
+      {
+        "ledger_consistent_document_rate": 0.14,
+        "ledger_contradicting_document_rate": 0.200667,
+        "rate_delta": -0.060667,
+        "term": "withdrawn sequence"
+      },
+      {
+        "ledger_consistent_document_rate": 0.14,
+        "ledger_contradicting_document_rate": 0.200667,
+        "rate_delta": -0.060667,
+        "term": "status withdrawn"
+      },
+      {
+        "ledger_consistent_document_rate": 0.14,
+        "ledger_contradicting_document_rate": 0.200667,
+        "rate_delta": -0.060667,
+        "term": "status approved"
+      },
+      {
+        "ledger_consistent_document_rate": 0.14,
+        "ledger_contradicting_document_rate": 0.200667,
+        "rate_delta": -0.060667,
+        "term": "approved"
+      },
+      {
+        "ledger_consistent_document_rate": 0.395,
+        "ledger_contradicting_document_rate": 0.45425,
+        "rate_delta": -0.05925,
+        "term": "15"
+      },
+      {
+        "ledger_consistent_document_rate": 0.12,
+        "ledger_contradicting_document_rate": 0.172,
+        "rate_delta": -0.052,
+        "term": "review attribution"
+      },
+      {
+        "ledger_consistent_document_rate": 0.12,
+        "ledger_contradicting_document_rate": 0.172,
+        "rate_delta": -0.052,
+        "term": "review sequence"
+      },
+      {
+        "ledger_consistent_document_rate": 0.12,
+        "ledger_contradicting_document_rate": 0.172,
+        "rate_delta": -0.052,
+        "term": "remained review"
+      },
+      {
+        "ledger_consistent_document_rate": 0.12,
+        "ledger_contradicting_document_rate": 0.172,
+        "rate_delta": -0.052,
+        "term": "completed sequence"
+      },
+      {
+        "ledger_consistent_document_rate": 0.12,
+        "ledger_contradicting_document_rate": 0.172,
+        "rate_delta": -0.052,
+        "term": "fully"
+      },
+      {
+        "ledger_consistent_document_rate": 0.12,
+        "ledger_contradicting_document_rate": 0.172,
+        "rate_delta": -0.052,
+        "term": "remained pending"
+      },
+      {
+        "ledger_consistent_document_rate": 0.12,
+        "ledger_contradicting_document_rate": 0.172,
+        "rate_delta": -0.052,
+        "term": "cancelled sequence"
+      },
+      {
+        "ledger_consistent_document_rate": 0.12,
+        "ledger_contradicting_document_rate": 0.172,
+        "rate_delta": -0.052,
+        "term": "status cancelled"
+      }
+    ],
+    "largest_label_exclusive_terms": [
+      {
+        "ledger_consistent_documents": 12,
+        "ledger_contradicting_documents": 0,
+        "term": "sessions source"
+      },
+      {
+        "ledger_consistent_documents": 0,
+        "ledger_contradicting_documents": 9,
+        "term": "harbour ilynd"
+      },
+      {
+        "ledger_consistent_documents": 0,
+        "ledger_contradicting_documents": 8,
+        "term": "conditional virela"
+      },
+      {
+        "ledger_consistent_documents": 0,
+        "ledger_contradicting_documents": 8,
+        "term": "harbour kelmora"
+      },
+      {
+        "ledger_consistent_documents": 0,
+        "ledger_contradicting_documents": 8,
+        "term": "hollow nirel"
+      },
+      {
+        "ledger_consistent_documents": 0,
+        "ledger_contradicting_documents": 8,
+        "term": "orientation participants"
+      },
+      {
+        "ledger_consistent_documents": 0,
+        "ledger_contradicting_documents": 7,
+        "term": "schedule nirel"
+      },
+      {
+        "ledger_consistent_documents": 0,
+        "ledger_contradicting_documents": 7,
+        "term": "vale pavren"
+      },
+      {
+        "ledger_consistent_documents": 0,
+        "ledger_contradicting_documents": 6,
+        "term": "hollow ravelle"
+      },
+      {
+        "ledger_consistent_documents": 6,
+        "ledger_contradicting_documents": 0,
+        "term": "orientation nirel"
+      },
+      {
+        "ledger_consistent_documents": 0,
+        "ledger_contradicting_documents": 6,
+        "term": "slots feedback"
+      },
+      {
+        "ledger_consistent_documents": 0,
+        "ledger_contradicting_documents": 6,
+        "term": "vale farlon"
+      },
+      {
+        "ledger_consistent_documents": 0,
+        "ledger_contradicting_documents": 6,
+        "term": "vale ravelle"
+      },
+      {
+        "ledger_consistent_documents": 0,
+        "ledger_contradicting_documents": 6,
+        "term": "ward virela"
+      },
+      {
+        "ledger_consistent_documents": 5,
+        "ledger_contradicting_documents": 0,
+        "term": "consultations participants"
+      },
+      {
+        "ledger_consistent_documents": 0,
+        "ledger_contradicting_documents": 5,
+        "term": "harbour sorevin"
+      },
+      {
+        "ledger_consistent_documents": 5,
+        "ledger_contradicting_documents": 0,
+        "term": "notices zelora"
+      },
+      {
+        "ledger_consistent_documents": 5,
+        "ledger_contradicting_documents": 0,
+        "term": "provisional ulden"
+      },
+      {
+        "ledger_consistent_documents": 5,
+        "ledger_contradicting_documents": 0,
+        "term": "reach grower"
+      },
+      {
+        "ledger_consistent_documents": 0,
+        "ledger_contradicting_documents": 5,
+        "term": "summary ravelle"
+      },
+      {
+        "ledger_consistent_documents": 0,
+        "ledger_contradicting_documents": 5,
+        "term": "vale dorell"
+      },
+      {
+        "ledger_consistent_documents": 0,
+        "ledger_contradicting_documents": 5,
+        "term": "vale hespera"
+      }
+    ],
+    "maximum_absolute_document_rate_delta": 0.111167
+  },
+  "topic_by_label_and_split": {
+    "agriculture | 0 | abstention_policy": 50,
+    "agriculture | 0 | calibration": 50,
+    "agriculture | 0 | final_test": 50,
+    "agriculture | 0 | model_validation": 100,
+    "agriculture | 0 | training": 750,
+    "agriculture | 1 | abstention_policy": 50,
+    "agriculture | 1 | calibration": 50,
+    "agriculture | 1 | final_test": 50,
+    "agriculture | 1 | model_validation": 100,
+    "agriculture | 1 | training": 750,
+    "civic_administration | 0 | abstention_policy": 50,
+    "civic_administration | 0 | calibration": 50,
+    "civic_administration | 0 | final_test": 50,
+    "civic_administration | 0 | model_validation": 100,
+    "civic_administration | 0 | training": 750,
+    "civic_administration | 1 | abstention_policy": 50,
+    "civic_administration | 1 | calibration": 50,
+    "civic_administration | 1 | final_test": 50,
+    "civic_administration | 1 | model_validation": 100,
+    "civic_administration | 1 | training": 750,
+    "community_infrastructure | 0 | abstention_policy": 50,
+    "community_infrastructure | 0 | calibration": 50,
+    "community_infrastructure | 0 | final_test": 50,
+    "community_infrastructure | 0 | model_validation": 100,
+    "community_infrastructure | 0 | training": 750,
+    "community_infrastructure | 1 | abstention_policy": 50,
+    "community_infrastructure | 1 | calibration": 50,
+    "community_infrastructure | 1 | final_test": 50,
+    "community_infrastructure | 1 | model_validation": 100,
+    "community_infrastructure | 1 | training": 750,
+    "culture | 0 | abstention_policy": 50,
+    "culture | 0 | calibration": 50,
+    "culture | 0 | final_test": 50,
+    "culture | 0 | model_validation": 100,
+    "culture | 0 | training": 750,
+    "culture | 1 | abstention_policy": 50,
+    "culture | 1 | calibration": 50,
+    "culture | 1 | final_test": 50,
+    "culture | 1 | model_validation": 100,
+    "culture | 1 | training": 750,
+    "education | 0 | abstention_policy": 50,
+    "education | 0 | calibration": 50,
+    "education | 0 | final_test": 50,
+    "education | 0 | model_validation": 100,
+    "education | 0 | training": 750,
+    "education | 1 | abstention_policy": 50,
+    "education | 1 | calibration": 50,
+    "education | 1 | final_test": 50,
+    "education | 1 | model_validation": 100,
+    "education | 1 | training": 750,
+    "environment | 0 | abstention_policy": 50,
+    "environment | 0 | calibration": 50,
+    "environment | 0 | final_test": 50,
+    "environment | 0 | model_validation": 100,
+    "environment | 0 | training": 750,
+    "environment | 1 | abstention_policy": 50,
+    "environment | 1 | calibration": 50,
+    "environment | 1 | final_test": 50,
+    "environment | 1 | model_validation": 100,
+    "environment | 1 | training": 750,
+    "local_business | 0 | abstention_policy": 50,
+    "local_business | 0 | calibration": 50,
+    "local_business | 0 | final_test": 50,
+    "local_business | 0 | model_validation": 100,
+    "local_business | 0 | training": 750,
+    "local_business | 1 | abstention_policy": 50,
+    "local_business | 1 | calibration": 50,
+    "local_business | 1 | final_test": 50,
+    "local_business | 1 | model_validation": 100,
+    "local_business | 1 | training": 750,
+    "public_health_administration | 0 | abstention_policy": 50,
+    "public_health_administration | 0 | calibration": 50,
+    "public_health_administration | 0 | final_test": 50,
+    "public_health_administration | 0 | model_validation": 100,
+    "public_health_administration | 0 | training": 750,
+    "public_health_administration | 1 | abstention_policy": 50,
+    "public_health_administration | 1 | calibration": 50,
+    "public_health_administration | 1 | final_test": 50,
+    "public_health_administration | 1 | model_validation": 100,
+    "public_health_administration | 1 | training": 750,
+    "science | 0 | abstention_policy": 50,
+    "science | 0 | calibration": 50,
+    "science | 0 | final_test": 50,
+    "science | 0 | model_validation": 100,
+    "science | 0 | training": 750,
+    "science | 1 | abstention_policy": 50,
+    "science | 1 | calibration": 50,
+    "science | 1 | final_test": 50,
+    "science | 1 | model_validation": 100,
+    "science | 1 | training": 750,
+    "sports_administration | 0 | abstention_policy": 50,
+    "sports_administration | 0 | calibration": 50,
+    "sports_administration | 0 | final_test": 50,
+    "sports_administration | 0 | model_validation": 100,
+    "sports_administration | 0 | training": 750,
+    "sports_administration | 1 | abstention_policy": 50,
+    "sports_administration | 1 | calibration": 50,
+    "sports_administration | 1 | final_test": 50,
+    "sports_administration | 1 | model_validation": 100,
+    "sports_administration | 1 | training": 750,
+    "technology | 0 | abstention_policy": 50,
+    "technology | 0 | calibration": 50,
+    "technology | 0 | final_test": 50,
+    "technology | 0 | model_validation": 100,
+    "technology | 0 | training": 750,
+    "technology | 1 | abstention_policy": 50,
+    "technology | 1 | calibration": 50,
+    "technology | 1 | final_test": 50,
+    "technology | 1 | model_validation": 100,
+    "technology | 1 | training": 750,
+    "transport | 0 | abstention_policy": 50,
+    "transport | 0 | calibration": 50,
+    "transport | 0 | final_test": 50,
+    "transport | 0 | model_validation": 100,
+    "transport | 0 | training": 750,
+    "transport | 1 | abstention_policy": 50,
+    "transport | 1 | calibration": 50,
+    "transport | 1 | final_test": 50,
+    "transport | 1 | model_validation": 100,
+    "transport | 1 | training": 750
+  },
+  "word_count": {
+    "by_label": {
+      "0": {
+        "maximum": 428,
+        "mean": 356.309,
+        "minimum": 316
+      },
+      "1": {
+        "maximum": 428,
+        "mean": 356.215,
+        "minimum": 318
+      }
+    },
+    "maximum": 428,
+    "mean": 356.262,
+    "median": 348.0,
+    "minimum": 316
+  }
+}
