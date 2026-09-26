@@ -4,6 +4,8 @@ NewsLens AI is a noncommercial student and placement-portfolio demonstration bui
 
 The classifier has a deliberately narrow purpose: compare the visible `Reference note` and `Article account` fields in the supported fictional format and indicate whether their ledgers are consistent or contradicting. It is **not** a general fake-news detector and does not establish real-world truth.
 
+**Live application:** [newslens-ai-devengaikwad.streamlit.app](https://newslens-ai-devengaikwad.streamlit.app/)
+
 ## What is public
 
 - 24,000 original synthetic articles representing 12,000 fictional paired events.
@@ -61,10 +63,21 @@ The accepted public artifacts are described in `models/public_artifact_manifest.
 ```bash
 python -m compileall -q app.py pages src ui tests scripts training synthetic_benchmark
 python -m pytest -q --strict-markers
-python scripts/audit_public_release.py --allow-publication-gates
+python scripts/audit_public_release.py --tracked-files
 ```
 
-The release scan verifies the dataset ZIP, public model, calibration binding, legal package, secrets, private artifact exclusions, navigation, and local links.
+The release scan verifies the dataset ZIP, public model, calibration binding, legal package, secrets, private artifact exclusions, navigation, local links, and resolved deployment URL.
+
+## Deployment evidence
+
+- Streamlit Community Cloud workspace: `devengaikwad`
+- Repository / branch / entry point: `DevenGaikwad/NewsLens-AI` / `main` / `app.py`
+- Python: 3.12; secrets: empty; paid features: none
+- PR B: [#45](https://github.com/DevenGaikwad/NewsLens-AI/pull/45)
+- Validated PR B head: `56f6e3e7137bd03fe45a0cd3e88978588968cdd1`
+- Model merge: `214b22745736b25f4c1121822a1811c76687bb00`; tree: `093cdbacf815be22791ae73bf5a581a9e84edd3d`
+- Live smoke checks covered startup, all six pages, summary, both classifier labels, abstention, invalid input, explanations, JSON/PDF/CSV controls, session isolation, and public access.
+- Vercel was intentionally not deployed.
 
 ## Responsible use
 
