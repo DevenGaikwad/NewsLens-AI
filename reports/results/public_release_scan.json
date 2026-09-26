@@ -32,11 +32,9 @@
     "required_files_missing": []
   },
   "personal_data_findings": [],
-  "public_release_ready": false,
-  "publication_gates": [
-    "Live Streamlit URL is unresolved."
-  ],
-  "release_root": "newslens-phase5s-pr-b",
+  "public_release_ready": true,
+  "publication_gates": [],
+  "release_root": "NewsLens-AI",
   "safe_tree_scan_passed": true,
   "secret_findings": []
 }

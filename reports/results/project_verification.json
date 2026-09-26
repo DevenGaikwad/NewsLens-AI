@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-09-26T00:00:00Z",
+  "generated_at_utc": "2026-09-26T12:22:03Z",
   "scope": "NewsLens AI synthetic-only release verification",
-  "status": "passed_with_deployment_pending",
+  "status": "passed_and_deployed",
   "dataset": {
     "id": "newslens-synthetic-articles-v1.0.0",
     "path": "data/synthetic/newslens-synthetic-articles-v1.0.0.zip",
@@ -33,21 +33,30 @@
     "calibration_rows": 1200,
     "abstention_policy_rows": 1200,
     "final_test_rows": 1200,
-    "accuracy": 1.0,
-    "balanced_accuracy": 1.0,
-    "macro_precision": 1.0,
-    "macro_recall": 1.0,
-    "macro_f1": 1.0,
-    "roc_auc": 1.0,
-    "pr_auc": 1.0,
-    "confusion_matrix": [[600, 0], [0, 600]],
+    "accuracy": 1,
+    "balanced_accuracy": 1,
+    "macro_precision": 1,
+    "macro_recall": 1,
+    "macro_f1": 1,
+    "roc_auc": 1,
+    "pr_auc": 1,
+    "confusion_matrix": [
+      [
+        600,
+        0
+      ],
+      [
+        0,
+        600
+      ]
+    ],
     "brier_score": 0.0000014968608529442928,
     "expected_calibration_error": 0.0007422494250466733,
     "native_brier_score": 0.0021587461022490213,
     "native_expected_calibration_error": 0.04184636780520175,
     "editorial_review_threshold": 0.5,
-    "automatic_coverage": 1.0,
-    "counterfactual_flip_rate": 1.0,
+    "automatic_coverage": 1,
+    "counterfactual_flip_rate": 1,
     "surface_text_only_balanced_accuracy": 0.5,
     "fact_block_ablation_balanced_accuracy": 0.4983333333333333,
     "metadata_only_balanced_accuracy": 0.5208333333333333
@@ -109,7 +118,8 @@
       "secret_findings": 0,
       "personal_data_findings": 0,
       "broken_local_markdown_links": 0,
-      "publication_gate": "Live Streamlit URL is unresolved."
+      "publication_gate": null,
+      "public_release_ready": true
     }
   },
   "documents": {
@@ -125,13 +135,46 @@
     "dataset_pr_head": "326499bb6f58f0420a0cf36a00828a901836323d",
     "dataset_merge_commit": "d3e77e6610c4a9c83d9137ca672a9aad4278285f",
     "dataset_merge_tree": "520bad55ea12f1a8e48ad2e533af26312c62933d",
-    "model_pr": null,
-    "model_merge_commit": null
+    "model_pr": 45,
+    "model_merge_commit": "214b22745736b25f4c1121822a1811c76687bb00",
+    "model_pr_head": "56f6e3e7137bd03fe45a0cd3e88978588968cdd1",
+    "model_merge_tree": "093cdbacf815be22791ae73bf5a581a9e84edd3d",
+    "exact_new_main_ci_run": 36214408496,
+    "exact_new_main_codeql_run": 36214408382
   },
   "publication_statement": "All training articles and entities are independently created synthetic content. No external article rows or private external-derived model or calibration artifact is present in the public release.",
-  "pending": [
-    "Protected PR B exact-head validation and merge",
-    "Streamlit Community Cloud deployment and public smoke testing",
-    "Final deployment evidence reconciliation"
-  ]
+  "pending": [],
+  "deployment": {
+    "provider": "Streamlit Community Cloud",
+    "workspace": "devengaikwad",
+    "repository": "DevenGaikwad/NewsLens-AI",
+    "branch": "main",
+    "entrypoint": "app.py",
+    "python_version": "3.12",
+    "public_url": "https://newslens-ai-devengaikwad.streamlit.app/",
+    "initial_deployed_commit": "214b22745736b25f4c1121822a1811c76687bb00",
+    "deployed_tree": "093cdbacf815be22791ae73bf5a581a9e84edd3d",
+    "secrets_configured": false,
+    "paid_features_used": false,
+    "smoke_test": {
+      "date": "2026-09-26",
+      "startup": "passed",
+      "public_access": "passed",
+      "navigation_pages": 6,
+      "consistent_classification": "passed",
+      "contradicting_classification": "passed",
+      "abstention": "passed",
+      "invalid_input": "passed",
+      "deterministic_summary": "passed",
+      "explanations": "passed",
+      "json_pdf_csv_controls": "passed",
+      "fresh_session_archive_records": 0,
+      "session_isolation": "passed",
+      "application_origin_console_errors": 0,
+      "raw_training_data_exposed": false,
+      "desktop_horizontal_overflow": false,
+      "responsive_evidence": "retained five-width audit plus unchanged responsive system"
+    },
+    "vercel": "intentionally_not_deployed"
+  }
 }

@@ -36,12 +36,12 @@
   },
   "evaluation": {
     "locked_final_test_rows": 1200,
-    "accuracy": 1.0,
-    "balanced_accuracy": 1.0,
-    "macro_f1": 1.0,
+    "accuracy": 1,
+    "balanced_accuracy": 1,
+    "macro_f1": 1,
     "brier_score": 0.0000014968608529442928,
     "expected_calibration_error": 0.0007422494250466733,
-    "counterfactual_flip_rate": 1.0,
+    "counterfactual_flip_rate": 1,
     "surface_text_only_balanced_accuracy": 0.5,
     "fact_block_ablation_balanced_accuracy": 0.4983333333333333,
     "metadata_only_balanced_accuracy": 0.5208333333333333
@@ -51,10 +51,10 @@
     "dataset_pr_head": "326499bb6f58f0420a0cf36a00828a901836323d",
     "dataset_merge_commit": "d3e77e6610c4a9c83d9137ca672a9aad4278285f",
     "dataset_merge_tree": "520bad55ea12f1a8e48ad2e533af26312c62933d",
-    "model_pr": null,
-    "model_pr_head": null,
-    "model_merge_commit": null,
-    "model_merge_tree": null
+    "model_pr": 45,
+    "model_pr_head": "56f6e3e7137bd03fe45a0cd3e88978588968cdd1",
+    "model_merge_commit": "214b22745736b25f4c1121822a1811c76687bb00",
+    "model_merge_tree": "093cdbacf815be22791ae73bf5a581a9e84edd3d"
   },
   "deployment": {
     "github": {
@@ -63,19 +63,31 @@
     },
     "streamlit": {
       "workspace": "devengaikwad",
-      "status": "pending_pr_b_merge",
-      "url": null,
+      "status": "deployed_and_smoke_tested",
+      "url": "https://newslens-ai-devengaikwad.streamlit.app/",
       "entrypoint": "app.py",
       "python_version": "3.12",
-      "deployed_commit": null
+      "deployed_commit": "214b22745736b25f4c1121822a1811c76687bb00",
+      "deployed_tree": "093cdbacf815be22791ae73bf5a581a9e84edd3d",
+      "smoke_test_date": "2026-09-26",
+      "public_access": true,
+      "raw_training_data_exposed": false,
+      "smoke_checks": {
+        "startup": "passed",
+        "six_page_navigation": "passed",
+        "deterministic_summary": "passed",
+        "consistent_and_contradicting_classification": "passed",
+        "abstention_and_invalid_input": "passed",
+        "json_pdf_csv_exports": "passed",
+        "session_isolation": "passed",
+        "application_origin_console_errors": 0,
+        "responsive_release_evidence": "passed_with_live_desktop_and_retained_five_width_audit"
+      }
     },
     "vercel": {
       "required": false,
       "status": "intentionally_not_deployed"
     }
   },
-  "publication_gates": [
-    "Protected PR B validation and merge are pending.",
-    "Live Streamlit deployment and public smoke testing are pending."
-  ]
+  "publication_gates": []
 }

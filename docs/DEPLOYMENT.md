@@ -1,6 +1,6 @@
 # Streamlit Community Cloud Deployment
 
-## Required configuration
+## Live configuration
 
 - Workspace: `devengaikwad`
 - Repository: `DevenGaikwad/NewsLens-AI`
@@ -9,20 +9,43 @@
 - Python: 3.12
 - Secrets: empty
 - Plan: free / Community Cloud
+- Public URL: <https://newslens-ai-devengaikwad.streamlit.app/>
 
-The repository includes the public synthetic model and bound calibration, so deployment does not download a checkpoint or retrain. `requirements.txt` delegates to the lightweight pinned runtime requirements and contains no external transformer stack.
+The repository includes the public synthetic model and bound calibration. Startup does not download a checkpoint or retrain, and no paid feature is enabled.
 
-## Procedure
+## Protected release record
 
-1. Confirm PR B is merged and exact-new-main checks pass.
-2. In Streamlit Community Cloud, create or update the app with the values above.
-3. Wait for dependency installation and startup to finish; inspect logs for model or calibration errors.
-4. Record the exact deployed main commit and final `https://…streamlit.app` URL.
-5. Test News Desk navigation, consistent, contradicting, and abstention samples, extractive summary, explanations, JSON/PDF/CSV exports, invalid input, session isolation, desktop/mobile layout, and public access.
-6. Confirm the UI does not expose the dataset ZIP or raw training rows.
+- PR B: [#45](https://github.com/DevenGaikwad/NewsLens-AI/pull/45)
+- Validated head: `56f6e3e7137bd03fe45a0cd3e88978588968cdd1`
+- Squash merge: `214b22745736b25f4c1121822a1811c76687bb00`
+- Resulting tree: `093cdbacf815be22791ae73bf5a581a9e84edd3d`
+- Merge time: `2026-09-26T03:18:37Z`
+- GitHub signature: verified
+- Exact-new-main CI run: `36214408496`, passed
+- Exact-new-main CodeQL run: `36214408382`, passed
 
-Vercel is not required and must not be created or modified for this deployment.
+## Public smoke-test record
+
+| Check | Result |
+|---|---|
+| Startup and public URL | Passed |
+| Six-page navigation | Passed |
+| Deterministic extractive summary | Passed |
+| Ledger-consistent and ledger-contradicting samples | Passed |
+| Unsupported-format abstention | Passed |
+| Short-input error handling | Passed |
+| Explanations and confidence wording | Passed |
+| JSON, PDF, analytics CSV, and filtered-archive CSV controls | Passed |
+| Fresh-session archive isolation | Passed; zero records before the session analysis |
+| Raw training data exposure | None observed; archive ZIP is not offered through the app |
+| Application-origin console errors | 0 |
+| Desktop overflow at 1363 CSS pixels | None |
+| Responsive/mobile evidence | The unchanged responsive system retains its 360/390/768/1366/1920 viewport audit; live desktop behavior was rechecked after deployment |
+
+The deployment browser could not create a separate 390-pixel harness because its URL policy permits only HTTP(S) navigation. No unsupported workaround was used; the retained five-width audit and repository breakpoints at 900 and 560 pixels remain the mobile evidence.
 
 ## Failure behavior
 
 Missing model files raise an actionable startup error. A calibration/model hash mismatch fails closed and forces review rather than reporting unverified confidence. Inputs outside the paired-ledger format abstain.
+
+Vercel is not required and was not created or modified. Six retained Dependabot pull requests and the historical release tag remain outside this deployment.
