@@ -1,25 +1,18 @@
-# NewsLens AI — Packaged Model
+# Public model artifacts
 
-`fake_news_pipeline.joblib` is the verified TF-IDF + Logistic Regression production
-pipeline. It is loaded at application start without retraining. The private
-`confidence_calibration.json` companion applies Platt scaling and the validation-selected
-editorial-review threshold. `model_metadata.json` records the model identity and training
-evidence; the controlled benchmark evidence is under `reports/`.
+The files in this directory are the public synthetic-only inference package.
 
-Do not treat the output as a fact-check. High held-out performance on ISOT can be
-inflated by publisher, topic and writing-style artefacts even after duplicate and
-source-marker mitigation.
+| File | Purpose |
+|---|---|
+| `newslens_synthetic_pipeline.joblib` | Authored signal extraction, TF-IDF, and Logistic Regression pipeline |
+| `newslens_synthetic_calibration.json` | Platt parameters, abstention threshold, dataset identity, and exact model binding |
+| `model_metadata.json` | Human- and machine-readable model provenance |
+| `public_artifact_manifest.json` | Sizes and SHA-256 identities for the package |
 
-## Publication status
+Accepted identities:
 
-The artifact is retained in this local release candidate so the application can
-be verified without retraining. Its public redistribution rights and explicit
-license have not been confirmed. Do not push `fake_news_pipeline.joblib` to a
-public repository or deploy it publicly until the rights holders document that
-permission. The dataset-derived calibration parameters are subject to the same gate.
-Source-code licensing does not automatically license either artefact.
+- Model SHA-256: `c1ad8c044cd95bc7bf25a94716010ddbe21fbae2ec92a0c1cefb01f5c3c979c6`
+- Calibration SHA-256: `adcf03a860ef8fb41058b3a4dcc80351dbd02e05f81e0fc1e7f971624af6ab77`
+- Dataset archive SHA-256: `3b6df1fa17615bfe1b67f6c9136909c668ec846e3fa8d205fa8e4aa2a80526cc`
 
-The official University of Victoria ISOT dataset page was reviewed on
-16 August 2026. It provides the dataset download, but no explicit licence for
-redistribution of this trained artifact was located on that page. The private
-archive retains the exact verified binary; the public-staging archive excludes it.
+The calibration loader refuses to report calibrated confidence if the active model does not match its bound hash. Historical private ISOT-derived artifact names remain excluded by `.gitignore` and the public-release audit; they are neither needed nor permitted for this runtime.

@@ -63,8 +63,8 @@ def _normalize_line_boundaries(value: str) -> str:
 def clean_article_text(text: str, remove_source_markers: bool = True) -> str:
     """Clean article text without stemming away information needed for display.
 
-    Source markers are removed to reduce a known ISOT shortcut: truthful examples
-    are predominantly Reuters stories while fake examples come from other outlets.
+    The optional source-marker normalization remains for compatibility with older
+    user inputs; the public classifier is trained only on original synthetic text.
     """
 
     value = html.unescape(str(text or ""))

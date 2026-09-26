@@ -171,7 +171,7 @@ def main() -> None:
             page.wait_for_timeout(700)
             audit["analysis"] = {
                 "summary": page.get_by_text("Executive Summary", exact=True).is_visible(),
-                "classification": page.get_by_text("Editorial risk signal", exact=False).first.is_visible(),
+                "classification": page.get_by_text("Synthetic consistency signal", exact=False).first.is_visible(),
                 "calibrated_confidence": page.get_by_text("calibrated confidence", exact=True).is_visible(),
                 "calibration_policy": page.get_by_text("Calibration and review policy", exact=False).first.is_visible(),
                 "explainability": page.get_by_role(
@@ -284,7 +284,7 @@ def main() -> None:
 
             # All six product sections have rendered content.
             section_markers = {
-                "News Desk": ("A two-layer news intelligence engine",),
+                "News Desk": ("Two transparent, bounded paths",),
                 "Analyse Article": ("Article source and analysis settings",),
                 "Model Accountability": ("Model Accountability",),
                 "Dataset Analysis": ("Dataset Analysis",),

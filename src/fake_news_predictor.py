@@ -1,4 +1,4 @@
-"""Saved-pipeline loading, calibrated risk signals, and responsible abstention."""
+"""Saved synthetic-pipeline loading, calibrated consistency signals, and abstention."""
 
 from __future__ import annotations
 
@@ -26,7 +26,7 @@ from .config import (
 )
 from .explainability import explain_linear_prediction
 from .model_diagnostics import InputDiagnostics
-from .text_preprocessor import text_for_model
+from synthetic_benchmark.signals import parse_fact_blocks
 from .utils import load_json
 
 
@@ -61,7 +61,7 @@ def load_model(path: Path | str = MODEL_PATH) -> Any:
     model_path = Path(path)
     if not model_path.exists():
         raise ModelLoadError(
-            "The trained model file is missing. Run: python training/train_fake_news_models.py"
+            "The trained model file is missing. Run: python training/train_synthetic_model.py"
         )
     try:
         pipeline = joblib.load(model_path)
@@ -82,7 +82,9 @@ def predict_credibility(
     """Predict the cleaned article, calibrate confidence, and abstain when needed."""
 
     started = perf_counter()
-    model_text = text_for_model(text)
+    # The packaged pipeline performs its own deterministic normalization and
+    # derives label-independent comparison tokens from the visible fact blocks.
+    model_text = str(text or "")
     calibration_status = "verified"
     review_reasons: list[str] = []
     try:
@@ -114,6 +116,12 @@ def predict_credibility(
         )
     if diagnostics is not None:
         review_reasons.extend(diagnostics.review_reasons)
+    blocks = parse_fact_blocks(model_text)
+    if not blocks.get("reference") or not blocks.get("account"):
+        review_reasons.append(
+            "Both a Reference note and an Article account are required for an automatic "
+            "synthetic consistency outcome."
+        )
     review_required = bool(review_reasons)
     if review_required:
         display = REVIEW_REQUIRED_OUTCOME
@@ -126,7 +134,7 @@ def predict_credibility(
     except (KeyError, ValueError):
         explanation = {"supports_misleading": [], "supports_reliable": []}
     metadata = load_json(MODEL_METADATA_PATH, {}) or {}
-    version = str(metadata.get("model_version", MODEL_VERSION))
+    version = str(metadata.get("model_version", metadata.get("artifact_id", MODEL_VERSION)))
     return PredictionResult(
         predicted_class=predicted,
         display_label=display,

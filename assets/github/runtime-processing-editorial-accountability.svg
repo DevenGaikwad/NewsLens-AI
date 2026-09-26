@@ -49,7 +49,7 @@
   <circle cx="108" cy="758" r="6" class="bullet"/>
   <text x="132" y="767" class="body" font-size="25">Extractive summarisation</text>
   <circle cx="108" cy="818" r="6" class="bullet"/>
-  <text x="132" y="827" class="body" font-size="25">Optional DistilBART</text>
+  <text x="132" y="827" class="body" font-size="25">Synthetic ledger signals</text>
   <rect x="95" y="870" width="340" height="48" rx="12" fill="#F7F1E8"/>
   <text x="265" y="901" text-anchor="middle" class="body" font-size="20">Produces the selected-length summary</text>
 

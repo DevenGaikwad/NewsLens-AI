@@ -68,7 +68,7 @@ def analysis_pdf_bytes(payload: dict[str, Any]) -> bytes:
         title="NewsLens AI Analysis",
         author=PROJECT_AUTHOR,
         creator="NewsLens AI",
-        subject="Linguistic credibility-risk analysis; not a verified fact-check",
+        subject="Synthetic ledger-consistency analysis; not a verified fact-check",
     )
     styles = getSampleStyleSheet()
     styles.add(
@@ -88,9 +88,9 @@ def analysis_pdf_bytes(payload: dict[str, Any]) -> bytes:
         ["Source", str(payload.get("source_domain", "Not available"))],
         ["Original words", str(payload.get("original_word_count", ""))],
         ["Summary method", str(payload.get("summary_method", ""))],
-        ["Editorial risk outcome", str(payload.get("prediction_label", ""))],
-        ["Calibrated reliable-label probability", f"{float(payload.get('reliable_probability', 0)):.1%}"],
-        ["Calibrated misleading-label probability", f"{float(payload.get('misleading_probability', 0)):.1%}"],
+        ["Synthetic consistency outcome", str(payload.get("prediction_label", ""))],
+        ["Calibrated ledger-consistent probability", f"{float(payload.get('reliable_probability', 0)):.1%}"],
+        ["Calibrated ledger-contradicting probability", f"{float(payload.get('misleading_probability', 0)):.1%}"],
         ["Calibrated confidence", f"{float(payload.get('calibrated_confidence', payload.get('confidence', 0))):.1%}"],
         ["Confidence band", str(payload.get("confidence_band", ""))],
         ["Calibration method", str(payload.get("calibration_method", ""))],

@@ -1,26 +1,9 @@
-# NewsLens AI notices and acknowledgements
+# Notice
 
-NewsLens AI was designed and developed by **Deven Sachin Gaikwad**.
+NewsLens AI is a noncommercial student and placement-portfolio demonstration by Deven Sachin Gaikwad.
 
-© 2026 Deven Sachin Gaikwad. All Rights Reserved.
+The public classifier is trained only from original fictional articles and entities in the NewsLens synthetic benchmark. No ISOT content, private ISOT-derived model or calibration artifact, or external copyrighted article dataset is included.
 
-The project uses third-party software packages under their respective licences.
-Their inclusion or use does not transfer ownership of those packages to the
-NewsLens AI author, and the NewsLens AI proprietary notice does not replace
-their licences.
+The output is a bounded synthetic ledger-consistency signal, not factual verification. Independent human review is required for real claims.
 
-Research and data acknowledgements include:
-
-- the University of Victoria ISOT Research Group for publishing the ISOT Fake
-  News Dataset source page and downloadable research dataset;
-- EdinburghNLP and the authors/maintainers of XSum for the summarisation
-  evaluation dataset;
-- the authors, venues, and publishers identified in the research-paper matrix;
-- the Python and open-source package communities whose libraries support the
-  application.
-
-These acknowledgements do not imply endorsement, affiliation, authorship,
-redistribution permission, or transfer of rights. Raw ISOT and XSum records are
-not included. Public redistribution of the trained classifier remains blocked
-until documentary rights are established. See
-[`docs/MODEL_REDISTRIBUTION_DECISION.md`](docs/MODEL_REDISTRIBUTION_DECISION.md).
+© 2026 Deven Sachin Gaikwad. All Rights Reserved. See `docs/THIRD_PARTY_LICENSES.md` and `docs/DATASET_CARD.md` for separate notices.

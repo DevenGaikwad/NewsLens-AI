@@ -1,188 +1,81 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "2.0",
   "project": {
     "name": "NewsLens AI",
-    "description": "Explainable editorial linguistic credibility-risk system",
     "owner": "Deven Sachin Gaikwad",
-    "ownership_of_original_components_confirmed_by_owner": true,
-    "ownership_confirmation_date": "2026-08-24",
     "copyright": "© 2026 Deven Sachin Gaikwad. All Rights Reserved.",
     "open_source": false,
+    "purpose": "noncommercial student and placement demonstration",
     "runtime_framework": "Streamlit",
     "runtime_entrypoint": "app.py",
-    "presentation_framework": "Next.js",
-    "presentation_root": "web"
+    "python_version": "3.12"
   },
-  "checkpoint": {
-    "generated_at": "2026-09-01T00:52:00+05:30",
-    "authoritative_tree": "NewsLens-AI/",
-    "checkpoint_document": "docs/DEPLOYMENT_CHECKPOINT.md",
-    "release_state": "public GitHub publication verified; functional deployment gated"
-  },
-  "verification": {
-    "pytest": {
-      "passed": 56,
-      "failed": 0,
-      "errors": 0,
-      "skipped": 0,
-      "duration_seconds": 5.90,
-      "established_checks_retained": 29,
-      "hardening_checks": 27,
-      "evidence": "reports/results/pytest_results.xml"
-    },
-    "python_compilation": {
-      "status": "passed",
-      "files_checked": 65,
-      "evidence": "reports/results/project_verification.json"
-    },
-    "streamlit_browser": {
-      "status": "passed",
-      "six_areas_rendered": true,
-      "same_tab_navigation": true,
-      "browser_history": true,
-      "analysis_workflow": true,
-      "exports": true,
-      "human_review": true,
-      "analytics_and_drift": true,
-      "visitor_isolation": true,
-      "responsive_widths_px": [360, 390, 768, 1366, 1920],
-      "horizontal_overflow_findings": 0,
-      "known_streamlit_route_probes": 32,
-      "unexpected_console_errors": 0,
-      "unexpected_failed_responses": 0,
-      "evidence": "reports/release_audit/streamlit/streamlit_browser_audit.json"
-    },
-    "presentation_web": {
-      "source_contracts": "passed in packaged Python tests",
-      "retained_browser_evidence_date": "2026-08-16",
-      "current_source_dependency_install": "passed in GitHub Actions",
-      "current_source_lint": "passed in GitHub Actions",
-      "current_source_production_build": "passed in GitHub Actions",
-      "current_source_browser_audit": "pending approved deployment environment",
-      "retained_browser_evidence": "reports/release_audit/web/web_browser_audit.json"
-    },
-    "dependency_security": {
-      "pip_check_broken_requirements": 0,
-      "dated_audit_date": "2026-08-24",
-      "python_dependencies_audited": 74,
-      "python_known_vulnerabilities": 0,
-      "javascript_dependencies_audited": 60,
-      "javascript_known_vulnerabilities": 0,
-      "current_online_refresh": "blocked by workspace package-network policy",
-      "evidence": "reports/results/dependency_security_audit.json"
-    },
-    "documents": {
-      "docx_files": 4,
-      "rendered_pages": 170,
-      "project_report_pages": 77,
-      "developer_guide_pages": 18,
-      "concepts_guide_pages": 61,
-      "setup_guide_pages": 14,
-      "accessibility_high": 0,
-      "accessibility_medium": 0,
-      "accessibility_low": 0,
-      "project_report_pdf_pages": 77,
-      "xlsx_sheets_rendered": 3,
-      "xlsx_formula_errors": 0,
-      "visual_qa": "docs/NewsLens_AI_Project_Report_Visual_QA.md"
-    },
-    "screenshots": {
-      "count": 15,
-      "visually_reviewed": true,
-      "manifest": "reports/results/ui_screenshot_manifest.json"
-    },
-    "public_tree_scan": {
-      "status": "passed_with_publication_gates",
-      "files_scanned": 247,
-      "forbidden_files": 0,
-      "secret_findings": 0,
-      "personal_data_findings": 0,
-      "absolute_local_path_findings": 0,
-      "broken_local_markdown_links": 0,
-      "internal_navigation_findings": 0,
-      "evidence": "reports/results/public_release_scan.json"
-    },
-    "github_actions": {
-      "verified_ci_commit": "8694b0ec86331a1be7d56a84f94ef270383bbfa6",
-      "python_compilation": "passed",
-      "model_independent_tests_passed": 52,
-      "private_artifact_tests_deselected": 4,
-      "public_release_scan": "passed",
-      "codeql_python": "passed",
-      "codeql_javascript_typescript": "passed",
-      "nextjs_dependency_install": "passed",
-      "nextjs_lint": "passed",
-      "nextjs_production_build": "passed",
-      "dependabot_open_pull_requests": 13,
-      "dependabot_pull_requests_merged": 0,
-      "dependabot_presentation_builds_passed": 12,
-      "dependabot_known_build_failure": "PR 12: ReactDOM 19.2.8 requires React 19.2.8 but the proposal retains React 19.2.4",
-      "dependency_review_limitation": "GitHub dependency graph is not enabled",
-      "owner_commit_email_privacy": "personal Gmail metadata visible in owner-created commits; future noreply configuration recommended"
-    }
+  "dataset": {
+    "id": "newslens-synthetic-articles-v1.0.0",
+    "path": "data/synthetic/newslens-synthetic-articles-v1.0.0.zip",
+    "size_bytes": 10319934,
+    "sha256": "3b6df1fa17615bfe1b67f6c9136909c668ec846e3fa8d205fa8e4aa2a80526cc",
+    "git_blob": "cb0d5e57407be10fecefb34762e586bacd38dd56",
+    "articles": 24000,
+    "event_pairs": 12000,
+    "synthetic_only": true,
+    "license": "CC BY 4.0 to the extent applicable rights subsist"
   },
   "model": {
-    "artifact_id": "isot-tfidf-lr-v1.0.0",
-    "private_path": "models/fake_news_pipeline.joblib",
-    "private_calibration_path": "models/confidence_calibration.json",
-    "size_bytes": 819447,
-    "sha256": "e9dd8368a4eec1ea5111da6c002889a146af98acba06742d2795486977d93dcb",
+    "artifact_id": "newslens-synthetic-tfidf-v1.0.0",
+    "path": "models/newslens_synthetic_pipeline.joblib",
+    "size_bytes": 161709,
+    "sha256": "c1ad8c044cd95bc7bf25a94716010ddbe21fbae2ec92a0c1cefb01f5c3c979c6",
+    "calibration_path": "models/newslens_synthetic_calibration.json",
+    "calibration_sha256": "adcf03a860ef8fb41058b3a4dcc80351dbd02e05f81e0fc1e7f971624af6ab77",
+    "model_to_calibration_binding": "c1ad8c044cd95bc7bf25a94716010ddbe21fbae2ec92a0c1cefb01f5c3c979c6",
+    "synthetic_only": true,
+    "private_isot_material_used": false,
     "runtime_retraining": false,
-    "redistribution_permission_confirmed": false,
-    "git_ignored": true,
-    "included_in_public_release": false,
-    "decision_record": "docs/MODEL_REDISTRIBUTION_DECISION.md"
+    "included_in_public_release": true
+  },
+  "evaluation": {
+    "locked_final_test_rows": 1200,
+    "accuracy": 1.0,
+    "balanced_accuracy": 1.0,
+    "macro_f1": 1.0,
+    "brier_score": 0.0000014968608529442928,
+    "expected_calibration_error": 0.0007422494250466733,
+    "counterfactual_flip_rate": 1.0,
+    "surface_text_only_balanced_accuracy": 0.5,
+    "fact_block_ablation_balanced_accuracy": 0.4983333333333333,
+    "metadata_only_balanced_accuracy": 0.5208333333333333
+  },
+  "protected_workflow": {
+    "dataset_pr": 44,
+    "dataset_pr_head": "326499bb6f58f0420a0cf36a00828a901836323d",
+    "dataset_merge_commit": "d3e77e6610c4a9c83d9137ca672a9aad4278285f",
+    "dataset_merge_tree": "520bad55ea12f1a8e48ad2e533af26312c62933d",
+    "model_pr": null,
+    "model_pr_head": null,
+    "model_merge_commit": null,
+    "model_merge_tree": null
   },
   "deployment": {
     "github": {
-      "status": "published_and_verified",
-      "authenticated_account": "DevenGaikwad",
-      "repository_name": "NewsLens-AI",
       "repository_url": "https://github.com/DevenGaikwad/NewsLens-AI",
-      "visibility": "public",
-      "branch": "main",
-      "publication_baseline_commit_sha": "30470c6767352c02db9aa0484f97f5473304f845",
-      "verified_ci_commit_sha": "8694b0ec86331a1be7d56a84f94ef270383bbfa6"
+      "branch": "main"
     },
     "streamlit": {
-      "status": "blocked_pending_model_redistribution_permission",
+      "workspace": "devengaikwad",
+      "status": "pending_pr_b_merge",
       "url": null,
-      "entrypoint": "app.py"
+      "entrypoint": "app.py",
+      "python_version": "3.12",
+      "deployed_commit": null
     },
     "vercel": {
-      "status": "blocked_pending_streamlit_url_and_deployment_authorisation",
-      "url": null,
-      "project_root": "web",
-      "public_environment_variable": "NEXT_PUBLIC_STREAMLIT_APP_URL"
-    }
-  },
-  "archive_contract": {
-    "checksum_record": "NewsLens-AI-release-archives.sha256",
-    "hashes_embedded": false,
-    "hash_embedding_reason": "Archive hashes are stored beside the archives to avoid self-reference.",
-    "private_local_complete": {
-      "filename": "NewsLens-AI-private-local-complete.zip",
-      "contains_model": true,
-      "purpose": "owner local review and operation"
-    },
-    "public_staging": {
-      "filename": "NewsLens-AI-public-staging.zip",
-      "contains_model": false,
-      "contains_private_calibration": false,
-      "purpose": "model-gated public source and documentation staging"
-    },
-    "public_release": {
-      "filename": "NewsLens-AI-public-release.zip",
-      "contains_model": false,
-      "contains_private_calibration": false,
-      "purpose": "public-source handoff after repository/history approval"
+      "required": false,
+      "status": "intentionally_not_deployed"
     }
   },
   "publication_gates": [
-    "Packaged model and calibration redistribution permission or an applicable licence is unconfirmed.",
-    "Functional Streamlit hosting is blocked while the approved private classifier cannot be published.",
-    "Vercel requires the final verified Streamlit URL and separate deployment authorisation.",
-    "Production browser, privacy, console, and platform-log checks remain pending until deployment."
-  ],
-  "next_safe_action": "Obtain documentary model-redistribution permission or an applicable licence before committing or hosting the model or calibration artifacts."
+    "Protected PR B validation and merge are pending.",
+    "Live Streamlit deployment and public smoke testing are pending."
+  ]
 }

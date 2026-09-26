@@ -32,7 +32,7 @@ def render_navigation(active: str = "") -> None:
         (
             '<header class="nl-masthead" role="banner">'
             f'<div class="nl-brand">{logo_html}<span>NewsLens AI</span></div>'
-            '<div class="nl-descriptor">Editorial Credibility-Risk System</div>'
+            '<div class="nl-descriptor">Synthetic Ledger-Consistency System</div>'
             "</header>"
         ),
         unsafe_allow_html=True,

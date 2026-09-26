@@ -93,7 +93,7 @@ if not base_frame.empty:
             use_container_width=True,
             config={"displayModeBar": False, "responsive": True},
         )
-        st.caption("Predicted-risk and abstention outcomes in the current private archive.")
+        st.caption("Synthetic consistency and abstention outcomes in the current private archive.")
     with analytics_right:
         st.plotly_chart(
             newsroom_distribution_chart(
@@ -145,8 +145,8 @@ if not base_frame.empty:
                         "model",
                         "macro_f1",
                         "roc_auc",
-                        "calibrated_brier_score",
-                        "calibrated_ece",
+                        "brier_score",
+                        "expected_calibration_error",
                         "mean_inference_ms_per_article",
                     ]
                 ],
@@ -210,14 +210,14 @@ label = label_col.selectbox(
     "Risk outcome",
     [
         "All",
-        "Lower misleading-content risk indicated",
-        "Higher misleading-content risk indicated",
+        "Synthetic ledger-consistent pattern indicated",
+        "Synthetic ledger-contradicting pattern indicated",
         "Editorial review required",
     ],
 )
 sort_order = sort_col.selectbox(
     "Sort order",
-    ["Newest first", "Oldest first", "Highest risk", "Lowest risk"],
+    ["Newest first", "Oldest first", "Highest contradiction probability", "Lowest contradiction probability"],
 )
 date_range = st.date_input(
     "Analysis date range",
@@ -236,9 +236,9 @@ if isinstance(date_range, (tuple, list)) and len(date_range) == 2:
 
 if sort_order == "Oldest first":
     frame = frame.sort_values("_timestamp", ascending=True)
-elif sort_order == "Highest risk":
+elif sort_order == "Highest contradiction probability":
     frame = frame.sort_values("misleading_probability", ascending=False)
-elif sort_order == "Lowest risk":
+elif sort_order == "Lowest contradiction probability":
     frame = frame.sort_values("misleading_probability", ascending=True)
 else:
     frame = frame.sort_values("_timestamp", ascending=False)
@@ -252,9 +252,9 @@ metric_strip(
     (
         ("Matching records", f"{len(frame):,}", "Current filter result"),
         (
-            "Average risk",
+            "Average contradiction probability",
             f"{frame['misleading_probability'].mean():.1%}",
-            "Mean misleading probability",
+            "Mean ledger-contradicting probability",
         ),
         (
             "Latest record",
@@ -290,7 +290,7 @@ for _, row in visible_frame.iterrows():
     st.markdown(
         f"""
 <article class="archive-row">
-  <div class="archive-meta">#{int(row['analysis_id'])} · {timestamp_label(row['timestamp'])} · {safe_source} · {safe_label} · risk {float(row['misleading_probability']):.1%}</div>
+  <div class="archive-meta">#{int(row['analysis_id'])} · {timestamp_label(row['timestamp'])} · {safe_source} · {safe_label} · contradiction {float(row['misleading_probability']):.1%}</div>
   <h3>{safe_title}</h3>
   <div class="archive-preview">{safe_summary}</div>
 </article>
@@ -346,7 +346,7 @@ if record:
             record["prediction_label"],
             confidence=float(record["calibrated_confidence"]),
             interpretation=(
-                f"Archived {record['confidence_band'].lower()}-band risk signal from model "
+                f"Archived {record['confidence_band'].lower()}-band synthetic consistency signal from model "
                 f"{record['model_version']}. {record.get('review_reason') or ''}"
             ),
         )
@@ -362,8 +362,8 @@ if record:
             ("Input type", record["input_type"]),
             ("Source domain", record["source_domain"] or "Not available"),
             ("Source URL", record["source_url"] or "Not available"),
-            ("Calibrated reliable probability", f"{float(record['reliable_probability']):.1%}"),
-            ("Calibrated misleading probability", f"{float(record['misleading_probability']):.1%}"),
+            ("Calibrated ledger-consistent probability", f"{float(record['reliable_probability']):.1%}"),
+            ("Calibrated ledger-contradicting probability", f"{float(record['misleading_probability']):.1%}"),
             ("Calibrated confidence", f"{float(record['calibrated_confidence']):.1%}"),
             ("Review status", record["review_status"]),
             ("Vocabulary coverage", f"{float(record['vocabulary_coverage']):.1%}"),

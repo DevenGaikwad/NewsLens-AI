@@ -1,59 +1,22 @@
-# GitHub account, security, and ruleset checklist
+# GitHub Security and Ruleset Checklist
 
-Complete these settings manually only after the owner creates the canonical
-repository. Do not paste credentials, recovery codes, private keys, or personal
-access tokens into issues, documentation, or ChatGPT.
+## Account and repository
 
-## Owner account
+- Maintain two-factor authentication, recovery codes, passkeys, and minimum app/OAuth/SSH access.
+- Never place passwords, tokens, private keys, recovery codes, secrets, or private datasets in GitHub or reports.
+- Keep secret scanning, push protection, Dependabot alerts, dependency review, CodeQL, and private vulnerability reporting enabled.
+- Retain read-only default Actions permissions and job-specific exceptions only.
 
-- [ ] Enable two-factor authentication with a TOTP authenticator.
-- [ ] Add a passkey such as Windows Hello where available.
-- [ ] Store recovery codes offline in a secure location.
-- [ ] Review and remove unnecessary authorised GitHub Apps.
-- [ ] Review and remove unnecessary OAuth applications.
-- [ ] Review SSH keys; remove unknown, expired, or unused keys.
-- [ ] Keep collaborator access minimal and role-appropriate.
-- [ ] Never share a password or personal access token.
-- [ ] Configure a verified Git commit email without publishing a private address.
-- [ ] Prefer signed commits and signed/verified release tags where practical.
+## Protected `main`
 
-## Repository security features
+- Require pull requests, conversations resolved, code-owner review, and exact required checks.
+- Block force pushes and branch deletion; minimize bypass access.
+- Verify the exact PR head before squash merge and exact new main afterward.
+- Preserve genuine history and the historical `public-release-2026-09-01` tag.
 
-- [ ] Make the reviewed `NewsLens-AI` repository public only after all release gates clear.
-- [ ] Enable secret scanning and push protection.
-- [ ] Enable Dependabot alerts and security updates.
-- [ ] Enable dependency graph and dependency review.
-- [ ] Enable CodeQL default/setup workflow or the staged workflow, avoiding duplicates.
-- [ ] Enable private vulnerability reporting.
-- [ ] Limit Actions permissions to read-only by default; grant only job-specific permissions.
-- [ ] Review every installed GitHub App's repository scope.
+## Phase 5S boundaries
 
-## `main` branch ruleset
-
-- [ ] Require pull requests before merging.
-- [ ] Require the Python, public-release-scan, presentation-build, and dependency-review status checks once they have run successfully in the real repository.
-- [ ] Require code-owner review.
-- [ ] Require conversation resolution.
-- [ ] Require signed commits where practical.
-- [ ] Block force pushes.
-- [ ] Block branch deletion.
-- [ ] Restrict direct updates/bypass to the minimum owner role needed for recovery.
-- [ ] Protect tags used for official releases from deletion or movement.
-- [ ] Do not claim that CODEOWNERS or a ruleset creates copyright ownership.
-
-## Deployment accounts
-
-- [ ] Connect Vercel through the correct GitHub owner account with minimum repository scope.
-- [ ] Connect Streamlit Community Cloud through the correct GitHub owner account.
-- [ ] Enter environment values through provider dashboards, never repository files.
-- [ ] Expose only the public Streamlit origin through `NEXT_PUBLIC_STREAMLIT_APP_URL`.
-- [ ] Review deployment members and remove unnecessary access.
-
-## Authorship provenance and release
-
-- [ ] Set the accurate Git author name to `Deven Sachin Gaikwad` for future commits.
-- [ ] Preserve the existing genuine Git history; do not fabricate or rewrite dates.
-- [ ] Scan the complete canonical Git history for secrets and private data before public push.
-- [ ] Make the first official release only after approval, with its actual date.
-- [ ] Attach the reviewed archive checksum and clear release notes identifying the original author.
-- [ ] Add a test-status badge only after the first real GitHub Actions run succeeds.
+- Public model/calibration must match `models/public_artifact_manifest.json`.
+- Historical private artifact filenames remain prohibited.
+- Six retained Dependabot PRs are handled separately.
+- Streamlit Community Cloud is the deployment target; Vercel is not required.

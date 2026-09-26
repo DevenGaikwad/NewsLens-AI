@@ -67,7 +67,7 @@ def _editorial_layout(figure: go.Figure, *, height: int, margin: dict[str, int])
 
 def confidence_gauge(
     misleading_probability: float,
-    editorial_review_threshold: float = 0.59,
+    editorial_review_threshold: float = 0.50,
 ) -> go.Figure:
     """Render calibrated risk with a central validation-selected review zone."""
 
@@ -81,7 +81,7 @@ def confidence_gauge(
             value=value,
             number={"suffix": "%", "font": {"color": INK, "size": 34, "family": "Georgia"}},
             title={
-                "text": "Calibrated misleading-risk probability",
+                "text": "Calibrated ledger-contradiction probability",
                 "font": {"color": SOFT_GREY, "size": 13, "family": "Inter, Arial, sans-serif"},
             },
             gauge={
@@ -122,7 +122,7 @@ def feature_contribution_chart(
 
     rows: list[dict[str, object]] = []
     for direction, values in explanation.items():
-        label = "Toward misleading" if direction == "supports_misleading" else "Toward reliable"
+        label = "Toward contradicting" if direction == "supports_misleading" else "Toward consistent"
         for value in values:
             rows.append(
                 {
@@ -150,7 +150,7 @@ def feature_contribution_chart(
         y="Term",
         color="Direction",
         orientation="h",
-        color_discrete_map={"Toward misleading": DANGER, "Toward reliable": SUCCESS},
+        color_discrete_map={"Toward contradicting": DANGER, "Toward consistent": SUCCESS},
         labels={"Contribution": "Local TF-IDF × coefficient contribution"},
     )
     figure.update_traces(marker_line_color=PAPER, marker_line_width=0.8)

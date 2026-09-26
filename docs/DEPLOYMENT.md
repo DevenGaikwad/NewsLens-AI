@@ -1,73 +1,28 @@
-# Deployment guide
+# Streamlit Community Cloud Deployment
 
-## Current status
+## Required configuration
 
-- GitHub publication is complete at
-  [`DevenGaikwad/NewsLens-AI`](https://github.com/DevenGaikwad/NewsLens-AI) on
-  the protected `main` branch.
-- The GitHub release and free repository security configuration are complete.
-- Streamlit deployment is postponed because no legally redistributable public
-  model and complete rights chain have been approved.
-- Vercel deployment is postponed and remains downstream of a verified
-  Streamlit deployment.
+- Workspace: `devengaikwad`
+- Repository: `DevenGaikwad/NewsLens-AI`
+- Branch: `main`
+- Entry point: `app.py`
+- Python: 3.12
+- Secrets: empty
+- Plan: free / Community Cloud
 
-The public repository excludes the private model and private calibration
-parameters and is not currently deployable as the functional application.
-Preserve the approved proprietary repository notice. Never request or paste a
-password, recovery code, private key, or personal access token into chat or
-documentation.
+The repository includes the public synthetic model and bound calibration, so deployment does not download a checkpoint or retrain. `requirements.txt` delegates to the lightweight pinned runtime requirements and contains no external transformer stack.
 
-## Streamlit Community Cloud
+## Procedure
 
-These instructions are postponed until the external model-redistribution
-blocker is resolved and deployment is separately authorised.
+1. Confirm PR B is merged and exact-new-main checks pass.
+2. In Streamlit Community Cloud, create or update the app with the values above.
+3. Wait for dependency installation and startup to finish; inspect logs for model or calibration errors.
+4. Record the exact deployed main commit and final `https://…streamlit.app` URL.
+5. Test News Desk navigation, consistent, contradicting, and abstention samples, extractive summary, explanations, JSON/PDF/CSV exports, invalid input, session isolation, desktop/mobile layout, and public access.
+6. Confirm the UI does not expose the dataset ZIP or raw training rows.
 
-1. Use the existing public repository, branch `main`, only after a suitable
-   public model and its complete rights chain are verified.
-2. Confirm `app.py` and `requirements.txt` are at the repository root.
-3. In Community Cloud, create an app from the repository, branch `main`, entrypoint `app.py` and Python 3.12.
-4. Do not set `NEWSLENS_HISTORY_MODE=persistent` for the public multi-user app.
-5. Add only necessary secrets through Community Cloud settings; this application needs no secret for its core workflow.
-6. Verify all six routes, direct navigation, refresh, back/forward, text/URL/document input, summary, classification, confidence, explanation, exports and two-browser-context history isolation.
-7. Verify the editorial review, aggregate analytics, insufficient-observation drift state, and calibration artefact/model hash binding.
-8. Inspect deployment logs and the browser console. The local audit records non-fatal framework health-probe 404s on nested development routes; re-check this behavior on the deployed Community Cloud origin.
+Vercel is not required and must not be created or modified for this deployment.
 
-Community Cloud local SQLite files are temporary. Do not advertise permanent cloud history.
+## Failure behavior
 
-Do not retrain during build/startup and do not silently substitute a classifier.
-If documentary model rights remain unclear, stop before this section.
-
-## Vercel
-
-Use only a personal, non-commercial Vercel Hobby account whose dashboard shows a zero base price, no paid trial, and no required payment method for the selected workflow. Stop if a payment, upgrade, billable integration, or commercial plan is required.
-
-These instructions are also postponed. Do not begin Vercel configuration until
-a verified Streamlit URL exists and Vercel deployment is separately authorised.
-
-1. Import the same GitHub repository into Vercel.
-2. Set the project root directory to `web/` and keep the detected Next.js build settings.
-3. Create one public environment variable:
-
-   ```text
-   NEXT_PUBLIC_STREAMLIT_APP_URL=https://YOUR-APP.streamlit.app
-   ```
-
-4. Do not append `?embed=true`; the `/app` route adds it safely.
-5. Use a bare HTTPS `*.streamlit.app` origin with no credentials, port, path,
-   query, or fragment. The production build rejects unsafe values.
-6. Never place secrets in `NEXT_PUBLIC_` variables.
-7. Verify CSP/`frame-src`, `frame-ancestors`, Referrer-Policy,
-   Permissions-Policy, `X-Content-Type-Options`, HSTS, and the iframe sandbox in
-   the deployed response without breaking Streamlit downloads or interaction.
-8. Verify the landing page and `/app` at 360, 390, 768, 1366 and 1920 pixels. Check the mobile menu, 44-pixel controls, visible focus, reduced motion, loading state, iframe title and same-tab fallback.
-
-## Final link pass
-
-After both deployments succeed, replace the pending URLs recorded in
-`docs/DEPLOYMENT_VALUES_TO_FILL.md`, update README/website/CITATION metadata, run
-both builds/audits again, inspect browser console and provider logs, and confirm
-every documentation link resolves from the public repository.
-
-## Rollback
-
-Use GitHub releases and deployment history as the source of truth. Roll back to a tested tagged commit; do not retrain or replace the model during a runtime rollback. Do not enable paid overage or create another account to bypass a free-tier limit.
+Missing model files raise an actionable startup error. A calibration/model hash mismatch fails closed and forces review rather than reporting unverified confidence. Inputs outside the paired-ledger format abstain.

@@ -83,7 +83,7 @@ def main() -> None:
             for width, height in VIEWPORTS:
                 page.set_viewport_size({"width": width, "height": height})
                 page.goto(BASE_URL, wait_until="networkidle")
-                page.get_by_role("heading", name="Investigate language. Keep the uncertainty.").wait_for()
+                page.get_by_role("heading", name="Compare transparently. Keep the scope visible.").wait_for()
                 geometry = page.evaluate(
                     """() => ({
                       scrollWidth: document.documentElement.scrollWidth,

@@ -1,125 +1,56 @@
-# Model Card — NewsLens AI Credibility-Risk Classifier
+# Model Card — NewsLens Synthetic TF-IDF v1.0.0
 
-## Model details
+## Summary
 
-- **Artifact ID:** `isot-tfidf-lr-v1.0.0`
-- **Type:** scikit-learn Pipeline; TF-IDF word 1–2 grams + Logistic Regression
-- **Positive class:** potentially misleading (`1`)
-- **Language/domain:** English political/news-style articles
-- **Training dataset:** ISOT Fake News Dataset
-- **Working sample:** 24,000 balanced articles; 19,200 train, 2,399 validation and 2,399 final test after quarantining two contaminated holdout rows
-- **Random seed:** 42
-- **File:** `models/fake_news_pipeline.joblib`
-- **Confidence method:** private Platt-scaling parameters fitted on 1,199 validation-calibration rows
-- **Editorial-review threshold:** 0.59, selected on a separate 1,200-row validation-policy subset
-- **Core service dependency:** local inference; no paid API is required. Hosting, network, compute and third-party terms may still carry costs.
+NewsLens AI packages a Logistic Regression classifier over word/bigram TF-IDF features and transparent, label-independent fact-comparison tokens. All training articles, entities, events, names, places, organizations, and reported facts are synthetic.
+
+- Artifact ID: `newslens-synthetic-tfidf-v1.0.0`
+- Positive class: `synthetic_ledger_contradicting`
+- Model SHA-256: `c1ad8c044cd95bc7bf25a94716010ddbe21fbae2ec92a0c1cefb01f5c3c979c6`
+- Calibration: Platt scaling
+- Calibration SHA-256: `adcf03a860ef8fb41058b3a4dcc80351dbd02e05f81e0fc1e7f971624af6ab77`
+- Editorial-review threshold: 0.50
+- Random seed: 42
 
 ## Intended use
 
-The model estimates whether an article's wording resembles reliable- or
-misleading-labelled ISOT examples. It is suitable for teaching classical NLP,
-demonstrating reproducible pipeline design, comparing baselines, displaying calibrated
-dataset-relative probabilities, applying responsible abstention, and studying feature-level explanations.
+The model demonstrates a reproducible classification and calibration workflow. It compares the values in two visible structured lines—`Reference note` and `Article account`—within an original fictional article. It may support classroom demonstration, portfolio review, software testing, and research discussion about leakage, calibration, abstention, and explainability.
 
-It is **not** suitable for autonomous moderation, legal/medical/electoral
-decisions, author-intent attribution, or definitive fact-checking. It does not
-retrieve evidence or validate individual claims.
+It is not intended to determine whether ordinary news is true, rate publishers, infer author intent, guide high-stakes decisions, or replace professional fact-checking.
 
-## Training and selection
+## Training data
 
-Exact duplicate texts were removed before splitting. Empty/short rows were removed;
-titles and bodies were combined; source/subject fields were excluded; Reuters and
-byline markers were neutralised. The established stratified 80/20 split was reconstructed
-with seed 42. A deterministic approximate five-gram screen found two high-similarity
-train/holdout pairs; the contaminated holdout members were quarantined before the
-validation/final-test split. Verified near-duplicate groups do not cross final partitions.
-Every comparison candidate uses the same training rows and training-only TF-IDF fit.
+Only `newslens-synthetic-articles-v1.0.0` was used. The archive contains 24,000 articles / 12,000 paired events. Event pairs and content hashes never cross partitions.
 
-| Model | Test macro-F1 | Selection note |
+| Partition | Rows | Purpose |
 |---|---:|---|
-| Linear SVC | 0.994581 | Best score; 0.002501 above selected model and within the 0.01 tolerance |
-| Logistic Regression | 0.992080 | **Selected:** verified artefact, calibrated confidence and direct XAI |
-| Multinomial Naive Bayes | 0.960815 | Classical probabilistic baseline |
+| Training | 18,000 | Fit candidates |
+| Model validation | 2,400 | Select candidate |
+| Calibration | 1,200 | Fit Platt mapping |
+| Abstention policy | 1,200 | Select threshold |
+| Final test | 1,200 | Locked evaluation |
 
-The table compares untouched final-test results. The saved selection decision
-uses validation-policy macro-F1: Linear SVC's advantage was approximately
-0.002500, below the 0.01 tolerance. Final-test results did not select the model.
+No ISOT content, private ISOT-derived model, private calibration, or external copyrighted training dataset was accessed or used.
 
-## Actual champion evaluation
+## Selection and evaluation
 
-| Metric | Value |
-|---|---:|
-| Accuracy | 0.992080 |
-| Precision (misleading) | 0.996633 |
-| Recall (misleading) | 0.987490 |
-| F1 (misleading) | 0.992040 |
-| Macro F1 | 0.992080 |
-| ROC-AUC | 0.999481 |
-| PR-AUC | 0.999423 |
-| Calibrated Brier score | 0.006292 |
-| Calibrated expected calibration error | 0.005295 |
-| Mean calibrated inference | 0.502761 ms/article |
-| Final test rows | 2,399 |
+Logistic Regression, Linear SVC, and Multinomial Naive Bayes were evaluated on model validation. Logistic Regression was retained within a declared 0.005 macro-F1 tolerance because it provides a compact CPU artifact, linear explanations, and a stable calibration score.
 
-Metrics come from the saved evaluation artifacts and are not estimates. Accuracy
-alone was not used because it can hide minority-class failure under imbalance.
+On the locked final test: accuracy, balanced accuracy, precision, recall, macro F1, ROC AUC, and average precision were all 1.0; the confusion matrix was `[[600, 0], [0, 600]]`. Calibrated Brier score was `1.4968608529442928e-06`; 10-bin ECE was `0.0007422494250466733`; automatic coverage at threshold 0.50 was 100%.
 
-## Explainability and confidence
+## Shortcut and causal controls
 
-For terms present in a single article, the application displays signed
-`TF-IDF value × Logistic Regression coefficient` contributions. Positive values
-support the misleading class and negative values support the reliable class.
-These are correlations learned from ISOT—not causal evidence or proof.
+- Surface text with both fact blocks removed: balanced accuracy 0.500.
+- Locked model with both fact blocks removed: balanced accuracy 0.498.
+- Metadata-only baseline: balanced accuracy 0.521.
+- Swapping only the Article account block across each paired event: 100% prediction flips and 100% expected-label accuracy.
 
-The native Logistic Regression output is not presented as a reliable probability.
-Platt scaling maps the decision score using held-out validation-calibration rows.
-On the final test partition, Brier score improved from 0.010464 to 0.006292 and
-ten-bin ECE improved from 0.044799 to 0.005295. A separate validation-policy subset
-selected the 0.59 review threshold with a predeclared coverage/Wilson-bound rule.
-Below that confidence, or when input quality/language/domain heuristics fall outside
-support, the UI displays `Editorial review required`.
+These controls support the conclusion that the model uses the authored comparison signal in this benchmark. They do not prove real-world generalisation.
 
-Calibration measures probability reliability against ISOT labels. It does not verify
-the factual truth of an article or claim.
+## Calibration and abstention
 
-## Limitations and bias
+The Platt calibration file contains the exact model SHA-256. Runtime loading fails closed on a mismatch. Inputs without both supported fact blocks are routed to editorial review even if the raw score is confident.
 
-ISOT's reliable items are largely Reuters while fake-labelled items come from
-other outlets and subjects. Removing explicit markers reduces, but does not
-eliminate, outlet/topic/style leakage. The collection is English-heavy, political,
-and time-bound. Real performance may degrade on regional news, breaking events,
-satire, parody, opinion, clickbait, multilingual text, adversarial paraphrases,
-or future writing conventions. False positives and negatives can cause social or
-reputational harm.
+## Limitations and ethics
 
-## Recommended monitoring and improvement
-
-- Evaluate by unseen publisher, topic, time, and event—not only random rows.
-- Evaluate separate evidence-retrieval and claim-level verification research paths.
-- Measure subgroup/domain errors and human explanation usefulness.
-- Retrain only with documented licences, label audits, and duplicate/event controls.
-- Preserve the verification disclaimer and allow abstention.
-
-## Reproducibility
-
-Download the official ISOT CSV files for private evaluation, then run
-`python training/benchmark_models.py --raw-dir <private-isot-directory>`. The script
-verifies source/model checksums and writes aggregate benchmark/calibration evidence
-without copying raw records into the project. Environment pins are in the two requirements files.
-
-## License and distribution status
-
-The artifact is present in the local release candidate for runtime verification.
-Public redistribution rights and an explicit artifact license have not been
-confirmed. Do not publish or deploy `fake_news_pipeline.joblib` or
-`confidence_calibration.json` until the rights holders document permission. A license
-selected for original project source code does not automatically apply to trained or
-dataset-derived artefacts or their source datasets.
-
-Official ISOT source reviewed 16 August 2026:
-<https://onlineacademiccommunity.uvic.ca/isot/2022/11/27/fake-news-detection-datasets/>.
-No explicit trained-artifact redistribution licence was located on the reviewed
-page. See `docs/MODEL_REDISTRIBUTION_DECISION.md` before any public push or deployment.
-
-NewsLens AI was designed and developed by Deven Sachin Gaikwad.  
-© 2026 Deven Sachin Gaikwad. All Rights Reserved.
+The task is intentionally regular and synthetic. Perfect results are expected to be easier than open-world factual reasoning. Confidence is conditional on the benchmark, not a truth probability. Users must independently verify important claims and should not use the output for legal, medical, financial, civic, or reputational decisions.

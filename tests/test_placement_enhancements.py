@@ -24,33 +24,29 @@ def _json(relative: str) -> dict:
 
 def test_controlled_benchmark_has_three_candidates_and_no_partition_leakage() -> None:
     summary = _json("reports/model_benchmark_summary.json")
-    assert [item["model"] for item in summary["models"]] == [
+    assert [item["model"] for item in summary["candidates"]] == [
         "Logistic Regression",
         "Linear SVC",
         "Multinomial Naive Bayes",
     ]
-    assert summary["partitions"]["train_rows"] == 19_200
-    assert summary["partitions"]["validation_rows"] == 2_399
-    assert summary["partitions"]["test_rows"] == 2_399
-    assert summary["leakage_audit"]["cross_partition_pairs_after_controls"] == 0
+    assert summary["partitions"]["training_rows"] == 18_000
+    assert summary["partitions"]["model_validation_rows"] == 2_400
+    assert summary["partitions"]["final_test_rows"] == 1_200
+    assert summary["partitions"]["cross_partition_event_overlap"] == 0
+    assert summary["partitions"]["cross_partition_content_hash_overlap"] == 0
     assert summary["selection"]["selected_model"] == "Logistic Regression"
-    assert summary["selection"]["packaged_model_unchanged"] is True
+    assert summary["dataset"]["synthetic_only"] is True
 
 
-@pytest.mark.private_model
-def test_calibration_improves_production_brier_and_ece() -> None:
-    evidence = _json("reports/calibration_validation.json")["production_model"]
-    assert evidence["calibrated_brier_score"] < evidence["uncalibrated_brier_score"]
-    assert (
-        evidence["calibrated_expected_calibration_error"]
-        < evidence["uncalibrated_expected_calibration_error"]
-    )
+def test_calibration_improves_locked_brier_and_ece() -> None:
+    evidence = _json("reports/calibration_validation.json")["locked_final_test"]
+    assert evidence["brier_score"] < evidence["native_brier_score"]
+    assert evidence["expected_calibration_error"] < evidence["native_expected_calibration_error"]
     calibration = load_calibration()
     assert calibration.method == "Platt scaling"
-    assert calibration.editorial_review_threshold == 0.59
+    assert calibration.editorial_review_threshold == 0.5
 
 
-@pytest.mark.private_model
 def test_input_diagnostics_expose_vocabulary_and_scope_signals(sample_article: str) -> None:
     model = load_model()
     result = assess_input(sample_article, model)

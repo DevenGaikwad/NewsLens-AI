@@ -1,42 +1,42 @@
 {
-  "release_root": "newslens-phase5s-pr-a",
-  "files_scanned": 262,
-  "forbidden_files": [],
-  "secret_findings": [],
-  "personal_data_findings": [],
   "absolute_local_path_findings": [],
-  "broken_local_markdown_links": [],
-  "internal_navigation_findings": [],
-  "deployment_placeholders": {
-    "github_owner": [],
-    "repository_url": [],
-    "streamlit_url": [
-      ".github/workflows/ci.yml",
-      "docs/DEPLOYMENT.md",
-      "web/url-policy.ts"
-    ],
-    "vercel_url": []
-  },
-  "legal_policy": {
-    "required_files_missing": [],
-    "proprietary_notice_present": true,
-    "explicitly_not_open_source": true,
-    "superseded_license_recommendation_absent": true,
+  "artifact_integrity": {
+    "archive": {
+      "git_blob": "cb0d5e57407be10fecefb34762e586bacd38dd56",
+      "path": "data/synthetic/newslens-synthetic-articles-v1.0.0.zip",
+      "sha256": "3b6df1fa17615bfe1b67f6c9136909c668ec846e3fa8d205fa8e4aa2a80526cc",
+      "size_bytes": 10319934
+    },
+    "calibration_sha256": "adcf03a860ef8fb41058b3a4dcc80351dbd02e05f81e0fc1e7f971624af6ab77",
+    "checks": {
+      "archive_git_blob_matches": true,
+      "archive_sha256_matches": true,
+      "archive_size_matches": true,
+      "calibration_bound_to_model": true,
+      "calibration_hash_matches_manifest": true,
+      "calibration_size_matches_manifest": true,
+      "model_hash_matches_manifest": true,
+      "model_size_matches_manifest": true,
+      "private_artifacts_absent": true,
+      "synthetic_only_declared": true
+    },
+    "model_sha256": "c1ad8c044cd95bc7bf25a94716010ddbe21fbae2ec92a0c1cefb01f5c3c979c6",
     "passed": true
   },
-  "model_artifact": {
-    "path": "models/fake_news_pipeline.joblib",
-    "exists": false,
-    "size_bytes": null,
-    "sha256": null,
-    "expected_artifact_id": "isot-tfidf-lr-v1.0.0",
-    "blocked_from_git_by_gitignore": true,
-    "public_redistribution_rights_confirmed": false
+  "broken_local_markdown_links": [],
+  "files_scanned": 187,
+  "forbidden_files": [],
+  "internal_navigation_findings": [],
+  "legal_policy": {
+    "passed": true,
+    "required_files_missing": []
   },
+  "personal_data_findings": [],
+  "public_release_ready": false,
   "publication_gates": [
-    "Live Streamlit URL is unresolved.",
-    "Packaged model redistribution rights and explicit artifact license are unconfirmed."
+    "Live Streamlit URL is unresolved."
   ],
+  "release_root": "newslens-phase5s-pr-b",
   "safe_tree_scan_passed": true,
-  "public_release_ready": false
+  "secret_findings": []
 }

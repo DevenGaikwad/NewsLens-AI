@@ -1,0 +1,24 @@
+{
+  "artifacts": {
+    "calibration": {
+      "bound_model_sha256": "c1ad8c044cd95bc7bf25a94716010ddbe21fbae2ec92a0c1cefb01f5c3c979c6",
+      "path": "models/newslens_synthetic_calibration.json",
+      "sha256": "adcf03a860ef8fb41058b3a4dcc80351dbd02e05f81e0fc1e7f971624af6ab77",
+      "size_bytes": 728
+    },
+    "metadata": {
+      "path": "models/model_metadata.json",
+      "sha256": "6d868465dfc8e038343a179659e23c5015c10900d8b74fec6b62b80ebf5e1a73",
+      "size_bytes": 846
+    },
+    "model": {
+      "path": "models/newslens_synthetic_pipeline.joblib",
+      "sha256": "c1ad8c044cd95bc7bf25a94716010ddbe21fbae2ec92a0c1cefb01f5c3c979c6",
+      "size_bytes": 161709
+    }
+  },
+  "dataset_archive_sha256": "3b6df1fa17615bfe1b67f6c9136909c668ec846e3fa8d205fa8e4aa2a80526cc",
+  "dataset_id": "newslens-synthetic-articles-v1.0.0",
+  "schema_version": 1,
+  "synthetic_only": true
+}

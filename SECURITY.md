@@ -1,43 +1,17 @@
-# Security policy
+# Security Policy
 
-## Supported branch
+Security fixes target the public `main` branch of `DevenGaikwad/NewsLens-AI`.
 
-Security fixes target the public `main` branch.
+Report sensitive vulnerabilities through GitHub private vulnerability reporting. Do not disclose secrets, exploit details, personal article history, private URLs, or private artifacts in a public issue.
 
-The public and active repository is
-[`DevenGaikwad/NewsLens-AI`](https://github.com/DevenGaikwad/NewsLens-AI).
+## Boundaries
 
-## Reporting a vulnerability
+- Public URL ingestion rejects credentials and private, loopback, link-local, or reserved destinations and bounds redirects and response size.
+- Uploads are restricted to TXT and text-based PDF, capped at 10 MB, and processed in memory.
+- Public history defaults to a temporary session-isolated SQLite file and does not store full article text.
+- Model calibration fails closed when the active model hash differs from the recorded binding.
+- Release scanning verifies the accepted dataset, model, calibration, private-artifact exclusion, secrets, local paths, links, and legal records.
+- No API key or Streamlit secret is required.
+- Machine-learning output is a synthetic consistency signal, not factual verification.
 
-Report vulnerabilities through GitHub private vulnerability reporting. Do not
-post sensitive vulnerability information, secrets, exploit details, personal
-article history or private URLs in a public issue.
-
-Include the affected component, reproduction steps, impact and a minimal safe proof of concept. Maintainers should acknowledge a report before public disclosure and publish remediation details through GitHub advisories and releases.
-
-## Security boundaries
-
-- Public URL ingestion rejects credentials, localhost and private, loopback, link-local or reserved addresses to reduce SSRF risk.
-- Uploads are limited to TXT and text-based PDF, capped at 10 MB and processed in memory.
-- Public Streamlit history defaults to a temporary, per-session SQLite file. Persistent SQLite is not a safe shared-cloud user database.
-- The application stores structured results and a duplicate hash, not uploaded files or full source articles.
-- Secrets must use hosting-provider secret storage and must never use `NEXT_PUBLIC_` variables.
-- Machine-learning output is not factual verification. Treat confident errors and domain shift as safety risks.
-
-No response-time guarantee is asserted until repository maintainers publish one.
-
-NewsLens AI is not currently publicly deployed through Streamlit or Vercel.
-The public repository does not imply that a hosted application is available.
-Never send passwords, personal access tokens, recovery codes, private keys, or
-production secrets with a report.
-
-## Coordinated disclosure workflow
-
-1. Open a private vulnerability report from the repository **Security** tab.
-2. Describe the affected component, impact, safe reproduction, and proposed
-   embargo needs without including unrelated personal data.
-3. Allow the owner to validate and remediate the issue before public disclosure.
-4. Publish an advisory or release note only after remediation and coordination.
-
-Public GitHub issues are appropriate for non-sensitive bugs only. Use private
-vulnerability reporting for security-sensitive information.
+Include the affected component, safe reproduction steps, impact, and a minimal proof of concept. No response-time guarantee is asserted until maintainers publish one.

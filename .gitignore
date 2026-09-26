@@ -30,8 +30,8 @@ data/uploads/
 uploads/
 downloads/
 exports/
-models/transformer_cache/
-# Retain locally for verification; remove this rule only after redistribution rights are confirmed.
+# Historical private artifacts are excluded permanently. The public synthetic model uses
+# distinct filenames and is intentionally versioned.
 models/fake_news_pipeline.joblib
 models/confidence_calibration.json
 models/*calibrated*.joblib

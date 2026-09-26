@@ -1,45 +1,26 @@
-# GitHub release notes template
+# GitHub Release Notes Template
 
-Use this only after the owner approves publication, the model-rights gate is
-resolved, CI succeeds in the canonical repository, and the actual release date
-is known. Do not backdate or fabricate history.
+Use only after protected PR B merge, exact-new-main checks, and live Streamlit verification. Record actual dates and hashes; do not backdate or guess.
 
-## NewsLens AI
+## NewsLens AI — Synthetic-Only Public Model
 
-**Original author and developer:** Deven Sachin Gaikwad  
+**Author and developer:** Deven Sachin Gaikwad
 **Copyright:** © 2026 Deven Sachin Gaikwad. All Rights Reserved.  
-**Release date:** record the actual publication date at release time  
-**Source archive SHA-256:** copy from the final verified checksum record
-
-NewsLens AI is a Streamlit research application for article extraction,
-summarisation, explainable linguistic credibility-risk analysis, model
-accountability, dataset analysis, and a visitor-isolated editorial archive.
+**Release date:** record actual date
+**Source commit/tree:** record exact verified values
 
 ### Included
 
-- Streamlit/Python/ML application with `app.py` as the runtime entrypoint
-- six product areas with native same-tab navigation
-- packaged classifier only if documentary public redistribution rights have
-  been preserved and all conditions are met
-- current sanitized documentation, diagrams, screenshots, tests, and audit evidence
-- Next.js presentation shell under `web/`
+- 24,000-article independently authored synthetic benchmark and deterministic generator.
+- Public TF-IDF + Logistic Regression model and exact bound Platt calibration.
+- Five event-grouped partitions, locked evaluation, counterfactual test, and shortcut baselines.
+- Streamlit article ingestion, extractive summary, synthetic consistency signal, abstention, explanations, exports, session-local review, and aggregate monitoring.
+- Tests, artifact manifest, model/dataset cards, security scan, and deployment evidence.
 
-### Verification
+### Required evidence
 
-Record the exact CI run links, Python check count, build result, browser widths,
-deployment log review, known warnings, and archive checksums. Do not use a test
-badge or “verified” claim before the real evidence exists.
+Record PR A/PR B heads and merges, dataset/model/calibration hashes, complete test and workflow results, dependency/security results, Streamlit URL, deployed commit, browser widths, smoke-test outcomes, and any known limitation.
 
 ### Responsible-use boundary
 
-The classifier estimates linguistic credibility risk from learned language
-patterns. It does not establish factual truth or replace professional
-fact-checking. Confirm consequential claims through independent primary sources.
-
-### Licence and third-party notices
-
-Original NewsLens AI material is proprietary and source-visible, not open
-source. Third-party packages, datasets, research papers, pretrained checkpoints,
-and the trained model artifact retain separate terms and rights. Link the root
-`LICENSE`, `NOTICE.md`, `docs/THIRD_PARTY_LICENSES.md`, and the final
-model-redistribution decision.
+The classifier evaluates a structured fictional ledger task. It does not establish factual truth or replace professional fact-checking. No ISOT content or private ISOT-derived artifact is included.

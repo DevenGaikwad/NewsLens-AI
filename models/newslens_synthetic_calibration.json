@@ -1,0 +1,18 @@
+{
+  "artifact_id": "newslens-synthetic-platt-v1.0.0",
+  "calibration_rows": 1200,
+  "coefficient": 2.426217878001467,
+  "dataset_archive_sha256": "3b6df1fa17615bfe1b67f6c9136909c668ec846e3fa8d205fa8e4aa2a80526cc",
+  "dataset_id": "newslens-synthetic-articles-v1.0.0",
+  "editorial_review_threshold": 0.5,
+  "final_test_rows": 1200,
+  "fit_partition": "calibration",
+  "intercept": 0.12409409326960238,
+  "method": "Platt scaling",
+  "model_sha256": "c1ad8c044cd95bc7bf25a94716010ddbe21fbae2ec92a0c1cefb01f5c3c979c6",
+  "model_version": "newslens-synthetic-tfidf-v1.0.0",
+  "positive_class": "synthetic_ledger_contradicting",
+  "schema_version": 1,
+  "threshold_partition": "abstention_policy",
+  "threshold_policy_rows": 1200
+}

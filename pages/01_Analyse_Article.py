@@ -7,11 +7,6 @@ from time import perf_counter
 
 import streamlit as st
 
-from src.abstractive_summarizer import (
-    AbstractiveDependencyError,
-    load_transformer_pipeline,
-    summarize_abstractive,
-)
 from src.article_extractor import ArticleData, ArticleExtractionError, extract_article
 from src.config import (
     DISCLAIMER,
@@ -47,28 +42,23 @@ from ui import (
 configure_page("NewsLens AI | Analyse Article", active="analyse")
 page_header(
     "Primary Analysis Desk",
-    "Analyse one article.\nInspect two independent AI views.",
-    "Summarization creates a compact reading view. Credibility classification examines the "
-    "original cleaned article and reports a cautious, explainable risk estimate.",
+    "Analyse one article.\nInspect two transparent views.",
+    "Deterministic extractive summarization creates a compact reading view. The synthetic-only "
+    "classifier compares the visible Reference note and Article account fields.",
 )
 editorial_strip(("Submit", "Extract", "Summarize", "Classify", "Explain", "Archive"))
 
 
-@st.cache_resource(show_spinner="Loading the saved credibility-risk model…")
+@st.cache_resource(show_spinner="Loading the saved synthetic consistency model…")
 def cached_model():
     return load_model()
 
 
-@st.cache_resource(show_spinner="Loading the optional DistilBART model…")
-def cached_abstractive_model():
-    return load_transformer_pipeline()
-
-
 def verdict_interpretation(label: str, confidence_band: str, review_reason: str = "") -> str:
     if label == LOWER_RISK_OUTCOME:
-        message = "The article more closely resembles lower-risk linguistic patterns in the training data."
+        message = "The visible synthetic account fields are consistent with the visible reference fields."
     elif label == HIGHER_RISK_OUTCOME:
-        message = "The article more closely resembles higher-risk linguistic patterns in the training data."
+        message = "At least one visible synthetic account field contradicts the visible reference fields."
     else:
         message = "The system abstained from an automatic directional outcome."
         if review_reason:
@@ -79,16 +69,14 @@ def verdict_interpretation(label: str, confidence_band: str, review_reason: str 
 section_heading(
     "01 · Prepare",
     "Article source and analysis settings",
-    "Choose a source, summary method, and reading length. The classifier path is fixed to the "
-    "saved model and always receives the original cleaned article.",
+    "Choose a source and reading length. The classifier is fixed to the saved synthetic model "
+    "and always receives the original cleaned article.",
 )
 
 settings_one, settings_two = st.columns([1.35, 1], gap="large")
 with settings_one:
-    summary_method = st.selectbox(
-        "Summarization method",
-        ["Extractive · TF-IDF centroid", "Abstractive · DistilBART (optional)"],
-        help="Extractive mode is fast and offline. Abstractive mode requires transformers and torch.",
+    st.info(
+        "Summarization method: Extractive · TF-IDF centroid (deterministic and local)."
     )
 with settings_two:
     summary_length = st.radio(
@@ -188,14 +176,10 @@ if analyse_clicked:
         if not source_domain:
             source_domain = domain_from_url(source_url)
 
-        with st.spinner("Running independent summarization and credibility-risk pipelines…"):
+        with st.spinner("Running local summarization and synthetic consistency analysis…"):
             model = cached_model()
             diagnostics = assess_input(cleaned, model)
-            if summary_method.startswith("Abstractive"):
-                summarizer = cached_abstractive_model()
-                summary = summarize_abstractive(cleaned, summarizer, summary_length)
-            else:
-                summary = summarize_extractive(cleaned, summary_length)
+            summary = summarize_extractive(cleaned, summary_length)
             prediction = predict_credibility(
                 cleaned,
                 model,
@@ -259,7 +243,7 @@ if analyse_clicked:
         }
         st.session_state["last_analysis"] = payload
         st.session_state["last_duplicate"] = duplicate
-    except (ArticleExtractionError, FileParseError, ModelLoadError, AbstractiveDependencyError, ValueError) as exc:
+    except (ArticleExtractionError, FileParseError, ModelLoadError, ValueError) as exc:
         st.session_state["analysis_attempts_invalid"] = int(
             st.session_state.get("analysis_attempts_invalid", 0)
         ) + 1
@@ -366,8 +350,8 @@ if payload:
     section_heading(
         "04 · Model Explanation",
         "Why the linear model leaned this way",
-        "The chart and term lists expose local TF-IDF × coefficient contributions from words "
-        "present in this article. They are learned correlations, not factual evidence.",
+        "The chart and term lists expose local TF-IDF × coefficient contributions, including "
+        "transparent derived match/mismatch tokens. They are not real-world factual evidence.",
     )
     st.plotly_chart(
         feature_contribution_chart(payload["explanation"]),
@@ -377,13 +361,13 @@ if payload:
     evidence_left, evidence_right = st.columns(2, gap="large")
     with evidence_left:
         evidence_terms(
-            "Observed signals toward misleading",
+            "Observed signals toward ledger contradiction",
             payload["explanation"].get("supports_misleading", []),
             direction="misleading",
         )
     with evidence_right:
         evidence_terms(
-            "Observed signals toward reliable",
+            "Observed signals toward ledger consistency",
             payload["explanation"].get("supports_reliable", []),
             direction="reliable",
         )
@@ -414,4 +398,4 @@ if payload:
     except RuntimeError:
         export_two.info("Install reportlab to enable PDF export.")
 
-footer("NewsLens AI · Primary Analysis Desk", "Independent summary and classification paths")
+footer("NewsLens AI · Primary Analysis Desk", "Local summary · synthetic-only consistency model")
