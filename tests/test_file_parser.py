@@ -7,7 +7,7 @@ from src.file_parser import FileParseError, parse_uploaded_file, safe_upload_fil
 
 def test_txt_file_upload(sample_article: str) -> None:
     parsed = parse_uploaded_file("article.txt", sample_article.encode("utf-8"))
-    assert parsed.startswith("City engineers")
+    assert parsed.startswith("Northbridge civic stewards")
 
 
 @pytest.mark.parametrize("filename,data", [("empty.txt", b""), ("image.png", b"not an article")])

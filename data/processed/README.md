@@ -1,9 +1,5 @@
-# NewsLens AI — Processed Dataset Directory
+# Processed data directory
 
-This directory is reserved for reproducible intermediate datasets created by
-the preparation and training scripts. Processed benchmark rows are not bundled
-because the original datasets have separate usage terms and are straightforward
-to regenerate from `data/raw/`.
+The public synthetic model reads the authored partitions directly from the verified ZIP in `data/synthetic/`; no processed external article file is required.
 
-The ready-to-run application does not require this directory to contain data;
-it loads the packaged pipeline from `models/fake_news_pipeline.joblib`.
+Transient experimental outputs must not be committed here. Model artifacts and evidence belong in `models/` and `reports/` with recorded hashes.

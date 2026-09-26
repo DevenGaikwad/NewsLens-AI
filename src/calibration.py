@@ -1,4 +1,4 @@
-"""Private Platt-calibration loading and inference-only score conversion."""
+"""Public synthetic-model Platt calibration and score conversion."""
 
 from __future__ import annotations
 
@@ -50,7 +50,7 @@ def load_calibration(
     calibration_path = Path(path)
     if not calibration_path.exists():
         raise CalibrationUnavailableError(
-            "The private confidence-calibration artefact is missing; calibrated confidence "
+            "The synthetic-model confidence-calibration artifact is missing; calibrated confidence "
             "cannot be reported."
         )
     payload = load_json(calibration_path, {}) or {}

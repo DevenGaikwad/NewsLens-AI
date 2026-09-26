@@ -9,7 +9,12 @@ from typing import Iterable, Sequence
 
 import streamlit as st
 
-from src.config import COPYRIGHT_NOTICE, PROJECT_AUTHOR
+from src.config import (
+    COPYRIGHT_NOTICE,
+    HIGHER_RISK_OUTCOME,
+    LOWER_RISK_OUTCOME,
+    PROJECT_AUTHOR,
+)
 
 from .navigation import render_navigation
 from .theme import apply_theme
@@ -169,10 +174,10 @@ def metric_strip(items: Sequence[tuple[str, object, str]]) -> None:
 
 
 def _verdict_style(label: str) -> tuple[str, str]:
-    if label == "Lower misleading-content risk indicated":
-        return "reliable", "Lower linguistic risk signal"
-    if label == "Higher misleading-content risk indicated":
-        return "misleading", "Higher linguistic risk signal"
+    if label == LOWER_RISK_OUTCOME:
+        return "reliable", "Ledger-consistent synthetic signal"
+    if label == HIGHER_RISK_OUTCOME:
+        return "misleading", "Ledger-contradicting synthetic signal"
     return "uncertain", "Human editorial review required"
 
 
@@ -192,7 +197,7 @@ def result_status(
     st.markdown(
         f"""
 <section class="verdict-panel {css_class}">
-  <div class="verdict-label">Editorial risk signal · {risk_label}</div>
+  <div class="verdict-label">Synthetic consistency signal · {risk_label}</div>
   <div class="verdict-title">{_escape(label)}</div>
   <p>{_escape(interpretation)}</p>
   {probability}

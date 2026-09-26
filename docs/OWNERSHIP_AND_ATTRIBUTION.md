@@ -1,34 +1,13 @@
-# Ownership and attribution
+# Ownership and Attribution
 
-## Original authorship
+NewsLens AI was designed and developed by **Deven Sachin Gaikwad** as a student and placement-portfolio project.
 
-NewsLens AI was designed and developed by **Deven Sachin Gaikwad**, the sole
-author and copyright owner of its original project components.
+## Original project work
 
-© 2026 Deven Sachin Gaikwad. All Rights Reserved.
+Original components include the application architecture, interface implementation, synthetic benchmark design and generator, fictional corpus content, signal extraction, training/evaluation workflow, public model package, calibration binding, tests, reports, documentation, and project visual system.
 
-The public-facing repository is intended to make the project viewable for
-academic evaluation, portfolio review, and demonstration. Public availability
-is not permission to submit the work as another person's project or to copy,
-modify, redistribute, publicly host, or create derivatives except where the
-root proprietary notice or applicable law expressly allows it.
+## Attribution boundary
 
-## How to reference the project
+Third-party libraries, research papers, tutorials, platform services, and file formats retain their own authorship and licenses. Citations acknowledge ideas and tools; they do not imply endorsement or partnership.
 
-Academic or professional references should identify **NewsLens AI** and
-**Deven Sachin Gaikwad**. GitHub's “Cite this repository” metadata is provided
-through `CITATION.cff`; the canonical public repository is active at
-https://github.com/DevenGaikwad/NewsLens-AI. Streamlit and Vercel deployment
-remain blocked pending a legally redistributable public model.
-
-## Third-party boundary
-
-NewsLens AI does not claim ownership of third-party packages, datasets,
-research papers, pretrained checkpoints, fonts, standard algorithms, or other
-external material. Acknowledgements and rights status are recorded in
-`NOTICE.md`, `docs/THIRD_PARTY_LICENSES.md`, the dataset/model cards, and the
-research matrix.
-
-The classifier estimates **linguistic credibility risk** from learned textual
-patterns. It does not prove factual truth and does not replace professional
-fact-checking.
+The project may be viewed and evaluated publicly. Public visibility is not permission to submit the work or a derivative as another person's academic or professional project.

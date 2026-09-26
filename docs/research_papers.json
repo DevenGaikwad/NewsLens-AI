@@ -121,7 +121,7 @@
     "Evaluation metrics": "ROUGE for summarization plus task-specific generation and comprehension metrics",
     "Major findings": "BART's text-infilling and sentence-permutation pretraining produced strong results across generation tasks and established the architecture behind DistilBART.",
     "Limitations": "Large pretrained models add download size, memory, latency and potential hallucination; benchmark overlap does not ensure factuality.",
-    "Relevance to this project": "Provides the technical foundation for the optional DistilBART branch and justifies an extractive fallback.",
+    "Relevance to this project": "Provides historical background on abstractive summarization; the deployed project deliberately uses a deterministic extractive method and packages no external checkpoint.",
     "Research gap identified": "Long-input, factuality-aware, CPU-efficient inference needs additional engineering beyond the base architecture.",
     "Source URL": "https://aclanthology.org/2020.acl-main.703/"
   },
@@ -175,7 +175,7 @@
     "Evaluation metrics": "Multi-class classification accuracy and related benchmark comparisons",
     "Major findings": "Introduced a public six-label benchmark and showed that combining metadata with text can improve a text-only deep model.",
     "Limitations": "Short political claims are not full news articles; metadata can become a shortcut and six labels require mapping for binary use.",
-    "Relevance to this project": "Explains why LIAR was evaluated but ISOT was selected for full-article binary classification.",
+    "Relevance to this project": "Provides background on claim-level benchmark design; NewsLens AI instead uses its independently authored synthetic paired-article benchmark.",
     "Research gap identified": "Full-article, source-diverse, event-grouped labels with transparent annotation and licensing remain scarce.",
     "Source URL": "https://aclanthology.org/P17-2067/"
   }

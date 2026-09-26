@@ -1,12 +1,9 @@
-# Public deployment blocked
+# Historical Deployment Gate — Resolved by Synthetic Replacement
 
-This publication-staging source intentionally excludes
-`models/fake_news_pipeline.joblib` and `models/confidence_calibration.json`
-because documentary public redistribution rights have not been established.
-Without those exact private artefacts, the packaged classifier cannot provide
-the preserved calibrated NewsLens AI runtime functionality.
+This retained file preserves the identity and history of the earlier deployment-gate record.
 
-Do not deploy this staging package, retrain during build/startup, or silently
-substitute a different model. Resolve the decision in
-`docs/MODEL_REDISTRIBUTION_DECISION.md` and obtain explicit owner approval before
-any technical replacement. Public deployment remains blocked.
+Public deployment was previously blocked because the private ISOT-derived classifier and calibration could not be redistributed. Phase 5S resolves that issue by excluding those artifacts and replacing them with a new public classifier trained exclusively from an original synthetic dataset.
+
+The synthetic model and exact bound calibration are public, tested, and covered by `models/public_artifact_manifest.json`. Deployment is therefore no longer blocked by model redistribution. The only remaining pre-deployment boundary is completion and protected merge of PR B; afterward the app is deployed to Streamlit Community Cloud and smoke-tested.
+
+No Vercel deployment is required.

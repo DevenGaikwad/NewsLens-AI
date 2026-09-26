@@ -30,9 +30,11 @@ def explain_linear_prediction(
 ) -> dict[str, list[dict[str, float | str]]]:
     """Return observed terms pushing toward misleading or reliable classes."""
 
+    signal_step = pipeline.named_steps.get("signals")
+    prepared = signal_step.transform([model_text]) if signal_step is not None else [model_text]
     vectorizer = pipeline.named_steps["tfidf"]
     classifier = pipeline.named_steps["classifier"]
-    vector = vectorizer.transform([model_text])
+    vector = vectorizer.transform(prepared)
     coefficients = _linear_coefficients(classifier)
     contributions = vector.multiply(coefficients).toarray()[0]
     names = np.asarray(vectorizer.get_feature_names_out())

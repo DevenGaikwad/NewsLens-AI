@@ -1,30 +1,34 @@
 Test ID,Module,Input,Expected result,Actual result,Status,Remarks
-TC-01,Preprocessing,"Reuters lead, URL, control byte","Source shortcut, URL, and control byte removed","All assertions passed",Pass,Automated pytest
-TC-02,Preprocessing,"Mixed case and repeated whitespace","Deterministic normalised model text/hash","All assertions passed",Pass,Automated pytest
-TC-03,Summarization,Packaged 158-word article,"Short summary is non-empty and compressed","Summary compressed and order preserved",Pass,Automated pytest
-TC-04,Summarization,Short versus detailed control,"Detailed output is at least as long as short","Length relation passed",Pass,Automated pytest
-TC-05,Summarization,"Empty text and article repeated 30 times","No crash; empty/long handling works","Both cases passed",Pass,Automated pytest
-TC-06,Prediction,Packaged saved pipeline,"Load without fitting; valid probabilities and explanation","Model loaded and assertions passed",Pass,Automated pytest
-TC-07,Prediction,Missing Joblib path,"Actionable ModelLoadError","Expected error returned",Pass,Automated pytest
-TC-08,Database,Duplicate article hash,"One row; second insert returns original ID","Duplicate detected",Pass,Temporary SQLite database
-TC-09,Database,"Insert, search, read, delete, clear","CRUD operations succeed","All CRUD assertions passed",Pass,Temporary SQLite database
-TC-10,URL validation,"Malformed, localhost, and private IP URLs","Reject with safe user-facing error","All blocked",Pass,No live network needed
-TC-11,URL extraction,Mock public HTML article,"BeautifulSoup fallback extracts title/author/body","Fallback extracted 40+ words",Pass,Mocked HTTP and DNS
-TC-12,File upload,UTF-8 TXT article,"Return cleaned article text","Text parsed",Pass,In-memory upload
-TC-13,File upload,"Empty TXT and unsupported PNG","Raise FileParseError","Both rejected",Pass,Automated pytest
-TC-14,Export,Analysis payload to JSON,"Round-trip parse","Parsed with matching title",Pass,Automated pytest
-TC-15,Export,Analysis payload to PDF,"Valid PDF with at least one page","pypdf opened output",Pass,Automated pytest
-TC-16,Streamlit startup,Home page,"No uncaught Streamlit exception","Started",Pass,AppTest
-TC-17,Streamlit startup,Analyse Article page,"No uncaught Streamlit exception","Started",Pass,AppTest
-TC-18,Streamlit startup,Model Accountability page,"No uncaught Streamlit exception","Started with measured artifacts",Pass,AppTest
-TC-19,Streamlit startup,Dataset Analysis page,"No uncaught Streamlit exception","Started with measured figures",Pass,AppTest
-TC-20,Streamlit startup,Editorial Archive page,"No uncaught Streamlit exception","Started",Pass,AppTest
-TC-21,Streamlit startup,Research & About page,"No uncaught Streamlit exception","Started",Pass,AppTest
-TC-22,Packaged verification suite,All established and hardening checks,"Zero failures; zero errors; zero skips","56 passed in 5.90 seconds",Pass,"All 29 established checks remain; 27 hardening checks cover calibration, review, privacy, analytics, drift and release policy"
-TC-23,Classifier final evaluation,"2,399 untouched final-test ISOT examples","Metrics calculated and saved","Macro F1 0.992080; ROC-AUC 0.999481; confusion [[1196,4],[15,1184]]",Pass,"Seed 42 controlled run; model selection, calibration and review threshold use separate validation subsets"
-TC-24,Editorial assets,"Logo, masthead, attribution record","All local assets exist and are non-empty","Static assertions passed",Pass,No external runtime image dependency
-TC-25,Editorial theme,Warm design-token contract,"Required ivory, brown, charcoal, and semantic tokens present","Static assertions passed",Pass,Centralised in ui/theme.py
-TC-26,Editorial palette integrity,Shared theme source,"Only the approved warm paper and restrained semantic visual system is used","Static assertions passed",Pass,Protects the warm editorial design contract
-TC-27,Top navigation,All working page routes,"Every page is linked by the reusable navigation","Static assertions passed",Pass,Desktop/mobile shared component
-TC-28,Shared page shell,Home plus five secondary pages,"Every page calls configure_page with the correct active state","Static assertions passed",Pass,Consistent theme and navigation
-TC-29,Responsible result language,Analysis/components/about sources,"Credibility verdict, verification warning, and system limits remain explicit","Static assertions passed",Pass,Meaning is not represented by colour alone
+TC-01,Archive integrity,Authoritative synthetic ZIP,"Exact path size SHA-256 and Git blob","10319934 bytes; SHA-256 3b6df1fa...26cc; blob cb0d5e57...dd56",Pass,No regeneration
+TC-02,Dataset reproducibility,Fixed generator seed and configuration,Byte-identical deterministic archive,Determinism assertions passed,Pass,Automated pytest
+TC-03,Dataset grouping,Five authored partitions,No event or content-hash overlap,"0 event overlap; 0 content-hash overlap",Pass,Group key event_id
+TC-04,Dataset contract,"24000 articles and 12000 paired events",Exact balanced split contract,All assertions passed,Pass,Automated pytest
+TC-05,Signal symmetry,Consistent and contradicting value pools,No label-asymmetric mutation shortcut,Symmetry assertions passed,Pass,Automated pytest
+TC-06,Model artifact,Packaged Joblib pipeline,Load without runtime fitting and emit valid probabilities,Loaded and predicted,Pass,Synthetic-only model
+TC-07,Calibration binding,Public calibration JSON,Bound hash must equal exact model SHA-256,Binding matched,Pass,c1ad8c04...79c6
+TC-08,Locked evaluation,1200 final-test rows,Report complete classification metrics,"Accuracy and macro F1 1.0; confusion [[600;0];[0;600]]",Pass,Test untouched until lock
+TC-09,Calibration,1200 calibration rows,Improve Brier and ECE,"Brier 0.000001497; ECE 0.000742249",Pass,Platt scaling
+TC-10,Abstention policy,1200 policy rows,Select threshold without test reuse,"Threshold 0.50; coverage 1.0; selective accuracy 1.0",Pass,Independent policy split
+TC-11,Counterfactual control,Paired synthetic events,Predictions flip with visible ledger relation,Flip rate 1.0,Pass,Expected labels also correct
+TC-12,Surface-text baseline,Surface text only,Chance-level shortcut control,Balanced accuracy 0.500000,Pass,No usable surface shortcut
+TC-13,Fact-block ablation,Visible fact blocks removed,Chance-level shortcut control,Balanced accuracy 0.498333,Pass,Primary evidence is visible relation
+TC-14,Metadata baseline,Metadata only,Near-chance shortcut control,Balanced accuracy 0.520833,Pass,No material metadata shortcut
+TC-15,Consistent sample,reliable_style_article.txt,Consistent outcome without review,Synthetic ledger-consistent outcome,Pass,Packaged sample
+TC-16,Contradicting sample,misleading_style_article.txt,Contradicting outcome without review,Synthetic ledger-contradicting outcome,Pass,Packaged sample
+TC-17,Missing-block sample,uncertain_style_article.txt,Force editorial review,Editorial review required,Pass,Fail-closed scope rule
+TC-18,Summarization,Packaged synthetic articles,Deterministic extractive summary,Compression and source order passed,Pass,No external checkpoint
+TC-19,Preprocessing,Control bytes URLs whitespace and long inputs,Safe deterministic normalisation,All assertions passed,Pass,Automated pytest
+TC-20,URL ingestion,"Malformed localhost private IP redirects and mock public HTML",Fail closed or safely extract,All assertions passed,Pass,SSRF hardening
+TC-21,File ingestion,"TXT PDF DOCX plus malformed and traversal names",Parse supported safe files and reject unsafe cases,All assertions passed,Pass,Automated pytest
+TC-22,Database,"Insert duplicate search update delete clear",Correct scoped CRUD and duplicate handling,All assertions passed,Pass,Temporary SQLite databases
+TC-23,Exports,"Analysis JSON PDF and archive CSV",Safe valid exports and formula neutralisation,All assertions passed,Pass,Automated pytest
+TC-24,Streamlit startup,Main app and five pages,No uncaught exception,All six entry points started,Pass,Streamlit AppTest
+TC-25,UI contract,Navigation theme assets and responsible language,Shared accessible editorial shell,All assertions passed,Pass,Automated pytest
+TC-26,Privacy,"Analytics drift and export payloads",Exclude raw article content and identifiers,All assertions passed,Pass,Aggregate-only evidence
+TC-27,Release policy,Safe and adversarial scanner fixtures,Pass safe tree and fail closed on secrets or binding mismatch,All assertions passed,Pass,Automated pytest
+TC-28,Complete suite,All packaged Python checks,"Zero failures errors or skips","154 passed in 13.091 seconds",Pass,XML evidence retained
+TC-29,Python dependencies,requirements-lite.txt,Consistent install and no known vulnerability,"pip check passed; pip-audit found 0",Pass,pip-audit 2.10.1
+TC-30,Web project,Next.js source,"Install lint and production build pass","npm ci; lint; build passed",Pass,Static routes generated
+TC-31,Web dependencies,Production npm dependency tree,No known vulnerability,"80 audited; 0 vulnerabilities",Pass,npm audit omit dev
+TC-32,Documents,Four DOCX guides and project PDF,Render cleanly without clipping overlap or blank pages,"28 DOCX pages and 9 PDF pages inspected",Pass,Visual QA completed
+TC-33,Public release scan,Current release candidate,"No secrets personal paths broken links or artifact mismatch","All finding counts 0; only live URL gate pending",Pass,Deployment gate intentionally unresolved

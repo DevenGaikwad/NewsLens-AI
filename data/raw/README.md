@@ -1,12 +1,5 @@
-# NewsLens AI — Raw Dataset Directory
+# Raw data directory
 
-Large benchmark files are intentionally excluded from the submission archive.
-From the project root, run:
+No external raw article dataset is used or expected. This directory is retained only as a documented boundary and remains empty in the public project.
 
-```bash
-python training/download_data.py --dataset all
-```
-
-The downloader places `True.csv`, `Fake.csv`, and `xsum-test.parquet` here.
-Source, licence, checksum, and leakage notes are documented in
-`docs/DATASET_CARD.md`.
+The accepted synthetic benchmark is versioned under `data/synthetic/`. Do not place private, scraped, licensed, or personal data here for public release.

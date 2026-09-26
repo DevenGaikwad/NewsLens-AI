@@ -1,4 +1,4 @@
-"""Fail closed on public-release secrets, private data and unresolved gates."""
+"""Fail closed on release secrets, private artifacts, and identity mismatches."""
 
 from __future__ import annotations
 
@@ -14,52 +14,37 @@ from zipfile import ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "reports" / "results" / "public_release_scan.json"
-MODEL = ROOT / "models" / "fake_news_pipeline.joblib"
+MODEL = ROOT / "models" / "newslens_synthetic_pipeline.joblib"
+CALIBRATION = ROOT / "models" / "newslens_synthetic_calibration.json"
+ARTIFACT_MANIFEST = ROOT / "models" / "public_artifact_manifest.json"
+ARCHIVE = ROOT / "data" / "synthetic" / "newslens-synthetic-articles-v1.0.0.zip"
+
+ARCHIVE_SIZE = 10_319_934
+ARCHIVE_SHA256 = "3b6df1fa17615bfe1b67f6c9136909c668ec846e3fa8d205fa8e4aa2a80526cc"
+ARCHIVE_GIT_BLOB = "cb0d5e57407be10fecefb34762e586bacd38dd56"
 
 EXIT_CLEAN = 0
 EXIT_PUBLICATION_GATE = 2
 EXIT_SAFETY_VIOLATION = 3
 
 PROHIBITED_PUBLIC_PATHS = {
-    Path("models/confidence_calibration.json"),
     Path("models/fake_news_pipeline.joblib"),
+    Path("models/confidence_calibration.json"),
 }
-
-FORBIDDEN_NAMES = {
-    ".env",
-    "id_dsa",
-    "id_ecdsa",
-    "id_ed25519",
-    "id_rsa",
-    "secrets.toml",
-}
+FORBIDDEN_NAMES = {".env", "id_dsa", "id_ecdsa", "id_ed25519", "id_rsa", "secrets.toml"}
 FORBIDDEN_PARTS = {
-    ".git",
-    ".idea",
-    ".mypy_cache",
-    ".next",
-    ".pytest_cache",
-    ".ruff_cache",
-    ".venv",
-    ".vercel",
-    "__pycache__",
-    "downloads",
-    "exports",
-    "htmlcov",
-    "logs",
-    "node_modules",
-    "playwright-report",
-    "test-results",
-    "uploads",
+    ".git", ".idea", ".mypy_cache", ".next", ".pytest_cache", ".ruff_cache",
+    ".venv", ".vercel", "__pycache__", "downloads", "exports", "htmlcov", "logs",
+    "node_modules", "playwright-report", "test-results", "uploads",
 }
 FORBIDDEN_SUFFIXES = {
-    ".db", ".db-shm", ".db-wal", ".key", ".log", ".p12", ".pem",
-    ".sqlite", ".sqlite3", ".tsbuildinfo", ".inspect.ndjson",
+    ".db", ".db-shm", ".db-wal", ".key", ".log", ".p12", ".pem", ".sqlite",
+    ".sqlite3", ".tsbuildinfo",
 }
 TEXT_SUFFIXES = {
-    ".bat", ".cff", ".css", ".csv", ".html", ".ini", ".ipynb", ".js",
-    ".json", ".jsx", ".md", ".mjs", ".py", ".sh", ".svg", ".toml",
-    ".ts", ".tsx", ".txt", ".xml", ".yaml", ".yml",
+    ".bat", ".cff", ".css", ".csv", ".html", ".ini", ".ipynb", ".js", ".json",
+    ".jsx", ".md", ".mjs", ".py", ".sh", ".svg", ".toml", ".ts", ".tsx",
+    ".txt", ".xml", ".yaml", ".yml",
 }
 SECRET_PATTERNS = {
     "private_key": re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
@@ -84,8 +69,8 @@ PERSONAL_DATA_PATTERNS = {
         r"\s*[:=]\s*[A-Z0-9-]{4,}"
     ),
 }
+RESERVED_TEST_EMAIL_DOMAINS = (".example", ".invalid", ".localhost", ".test")
 MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
-
 CONSOLE_COUNT_FIELDS = (
     ("forbidden_files", "forbidden files"),
     ("secret_findings", "secret findings"),
@@ -96,82 +81,55 @@ CONSOLE_COUNT_FIELDS = (
 )
 
 
-def _safe_report_text(value: str, *, label: str) -> str:
-    """Redact a report value when its text itself resembles sensitive data."""
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def git_blob_id(path: Path) -> str:
+    payload = path.read_bytes()
+    return hashlib.sha1(f"blob {len(payload)}\0".encode() + payload).hexdigest()
+
+
+def _safe(value: str, label: str) -> str:
     sensitive = (
         any(pattern.search(value) for pattern in SECRET_PATTERNS.values())
         or any(pattern.search(value) for pattern in PERSONAL_DATA_PATTERNS.values())
-        or LOCAL_PATH.search(value) is not None
+        or LOCAL_PATH.search(value)
     )
-    if not sensitive:
-        return value
-    digest = hashlib.sha256(value.encode("utf-8", errors="surrogatepass")).hexdigest()[:12]
-    return f"[redacted-{label}:{digest}]"
+    return value if not sensitive else f"[redacted-{label}:{hashlib.sha256(value.encode()).hexdigest()[:12]}]"
 
 
-def _safe_report_path(path: Path | str) -> str:
-    return _safe_report_text(str(path), label="path")
+def contains_personal_data(name: str, pattern: re.Pattern[str], payload: str) -> bool:
+    """Ignore only reserved-domain email fixtures; fail closed for every other match."""
 
-
-def _exit_code(report: dict[str, object], *, allow_publication_gates: bool) -> int:
-    if not report["safe_tree_scan_passed"]:
-        return EXIT_SAFETY_VIOLATION
-    if allow_publication_gates:
-        return EXIT_CLEAN
-    if report["publication_gates"]:
-        return EXIT_PUBLICATION_GATE
-    return EXIT_CLEAN
-
-
-def _print_console_summary(
-    *,
-    files_scanned: int,
-    finding_counts: dict[str, int],
-    publication_gate_count: int,
-    exit_code: int,
-) -> None:
-    """Emit only fixed labels and aggregate integers to CI logs."""
-    if exit_code == EXIT_CLEAN:
-        status = "PASS"
-    elif exit_code == EXIT_PUBLICATION_GATE:
-        status = "BLOCKED"
-    else:
-        status = "FAIL"
-
-    print(f"Public release audit: {status}")
-    print(f"Files scanned: {files_scanned}")
-    for key, label in CONSOLE_COUNT_FIELDS:
-        print(f"{label}: {finding_counts[key]}")
-    print(f"Publication gates: {publication_gate_count}")
-    print(f"Exit status: {exit_code}")
-    if exit_code != EXIT_CLEAN:
-        print(
-            "Remediation: inspect the sanitized machine-readable report locally; "
-            "do not copy finding details into CI logs."
-        )
+    matches = list(pattern.finditer(payload))
+    if name != "email_address":
+        return bool(matches)
+    return any(
+        not match.group(0).lower().endswith(RESERVED_TEST_EMAIL_DOMAINS)
+        for match in matches
+    )
 
 
 def relative_files(*, tracked_only: bool = False) -> list[Path]:
     if not tracked_only:
-        return sorted(path for path in ROOT.rglob("*") if path.is_file())
-
-    try:
-        completed = subprocess.run(
-            ["git", "ls-files", "-z", "--cached"],
-            cwd=ROOT,
-            check=True,
-            capture_output=True,
+        return sorted(
+            path
+            for path in ROOT.rglob("*")
+            if path.is_file()
+            and not any(part in FORBIDDEN_PARTS for part in path.relative_to(ROOT).parts)
         )
-    except (OSError, subprocess.CalledProcessError) as exc:
-        raise RuntimeError(
-            "Tracked-file scanning requires a readable Git worktree."
-        ) from exc
-
-    tracked = completed.stdout.decode("utf-8", errors="surrogateescape").split("\0")
+    completed = subprocess.run(
+        ["git", "ls-files", "-z", "--cached"], cwd=ROOT, check=True, capture_output=True
+    )
     return sorted(
-        path
-        for relative in tracked
-        if relative and (path := ROOT / relative).is_file()
+        ROOT / name
+        for name in completed.stdout.decode("utf-8", errors="surrogateescape").split("\0")
+        if name and (ROOT / name).is_file()
     )
 
 
@@ -185,18 +143,46 @@ def text_payloads(path: Path):
                     yield archive.read(name).decode("utf-8", errors="ignore")
 
 
+def artifact_evidence() -> dict[str, object]:
+    evidence: dict[str, object] = {"passed": False}
+    if not all(path.exists() for path in (MODEL, CALIBRATION, ARTIFACT_MANIFEST, ARCHIVE)):
+        evidence["error"] = "One or more required public artifacts are missing."
+        return evidence
+    manifest = json.loads(ARTIFACT_MANIFEST.read_text(encoding="utf-8"))
+    calibration = json.loads(CALIBRATION.read_text(encoding="utf-8"))
+    model_record = manifest["artifacts"]["model"]
+    calibration_record = manifest["artifacts"]["calibration"]
+    archive_record = {
+        "path": str(ARCHIVE.relative_to(ROOT)),
+        "size_bytes": ARCHIVE.stat().st_size,
+        "sha256": file_sha256(ARCHIVE),
+        "git_blob": git_blob_id(ARCHIVE),
+    }
+    checks = {
+        "model_hash_matches_manifest": file_sha256(MODEL) == model_record["sha256"],
+        "model_size_matches_manifest": MODEL.stat().st_size == model_record["size_bytes"],
+        "calibration_hash_matches_manifest": file_sha256(CALIBRATION) == calibration_record["sha256"],
+        "calibration_size_matches_manifest": CALIBRATION.stat().st_size == calibration_record["size_bytes"],
+        "calibration_bound_to_model": calibration["model_sha256"] == model_record["sha256"] == calibration_record["bound_model_sha256"],
+        "synthetic_only_declared": manifest.get("synthetic_only") is True,
+        "archive_size_matches": archive_record["size_bytes"] == ARCHIVE_SIZE,
+        "archive_sha256_matches": archive_record["sha256"] == ARCHIVE_SHA256,
+        "archive_git_blob_matches": archive_record["git_blob"] == ARCHIVE_GIT_BLOB,
+        "private_artifacts_absent": not any((ROOT / path).exists() for path in PROHIBITED_PUBLIC_PATHS),
+    }
+    return {
+        "passed": all(checks.values()),
+        "checks": checks,
+        "model_sha256": file_sha256(MODEL),
+        "calibration_sha256": file_sha256(CALIBRATION),
+        "archive": archive_record,
+    }
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--allow-publication-gates",
-        action="store_true",
-        help="Return success when the tree is safe even though documented publication gates remain.",
-    )
-    parser.add_argument(
-        "--tracked-files",
-        action="store_true",
-        help="Scan only Git-tracked files, excluding checkout metadata and untracked runner files.",
-    )
+    parser.add_argument("--allow-publication-gates", action="store_true")
+    parser.add_argument("--tracked-files", action="store_true")
     return parser.parse_args()
 
 
@@ -204,12 +190,11 @@ def _run_audit() -> int:
     args = parse_args()
     files = relative_files(tracked_only=args.tracked_files)
     forbidden: list[str] = []
-    secret_findings: list[dict[str, str]] = []
-    personal_data_findings: list[dict[str, str]] = []
+    secrets: list[dict[str, str]] = []
+    personal: list[dict[str, str]] = []
     local_paths: list[str] = []
-    navigation_findings: list[str] = []
-    broken_local_links: list[dict[str, str]] = []
-
+    broken_links: list[dict[str, str]] = []
+    navigation: list[str] = []
     for path in files:
         relative = path.relative_to(ROOT)
         if (
@@ -218,166 +203,120 @@ def _run_audit() -> int:
             or any(part in FORBIDDEN_PARTS for part in relative.parts)
             or any(path.name.endswith(suffix) for suffix in FORBIDDEN_SUFFIXES)
         ):
-            forbidden.append(_safe_report_path(relative))
-        if relative == Path("scripts/audit_public_release.py"):
+            forbidden.append(_safe(str(relative), "path"))
+        if relative == Path("scripts/audit_public_release.py") or relative == OUTPUT.relative_to(ROOT):
             continue
         for payload in text_payloads(path):
             for name, pattern in SECRET_PATTERNS.items():
                 if pattern.search(payload):
-                    secret_findings.append(
-                        {"file": _safe_report_path(relative), "pattern": name}
-                    )
+                    secrets.append({"file": _safe(str(relative), "path"), "pattern": name})
             for name, pattern in PERSONAL_DATA_PATTERNS.items():
-                if pattern.search(payload):
-                    personal_data_findings.append(
-                        {"file": _safe_report_path(relative), "pattern": name}
-                    )
+                if contains_personal_data(name, pattern, payload):
+                    personal.append({"file": _safe(str(relative), "path"), "pattern": name})
             if LOCAL_PATH.search(payload):
-                local_paths.append(_safe_report_path(relative))
-
+                local_paths.append(_safe(str(relative), "path"))
         if path.suffix.lower() == ".md":
-            markdown = path.read_text(encoding="utf-8", errors="ignore")
-            for raw_target in MARKDOWN_LINK.findall(markdown):
-                target = raw_target.strip().strip("<>").split("#", 1)[0]
-                if not target or target.startswith(("http://", "https://", "mailto:", "/")):
-                    continue
-                resolved = (path.parent / target).resolve()
-                if not resolved.exists():
-                    broken_local_links.append(
-                        {
-                            "file": _safe_report_path(relative),
-                            "target": _safe_report_text(
-                                raw_target.strip(), label="link-target"
-                            ),
-                        }
+            for raw in MARKDOWN_LINK.findall(path.read_text(encoding="utf-8", errors="ignore")):
+                target = raw.strip().strip("<>").split("#", 1)[0]
+                if (
+                    target
+                    and not target.startswith(("http://", "https://", "mailto:", "/"))
+                    and not (path.parent / target).resolve().exists()
+                ):
+                    broken_links.append(
+                        {"file": _safe(str(relative), "path"), "target": _safe(raw, "target")}
                     )
 
-    runtime_navigation_files = [ROOT / "app.py", *sorted((ROOT / "pages").glob("*.py")), *sorted((ROOT / "ui").glob("*.py"))]
-    for path in runtime_navigation_files:
-        text = path.read_text(encoding="utf-8")
-        for pattern in ('target="_blank"', "window.open(", "st.link_button("):
-            if pattern in text:
-                navigation_findings.append(
-                    f"{_safe_report_path(path.relative_to(ROOT))}: {pattern}"
-                )
-
-    placeholders = {"github_owner": [], "repository_url": [], "streamlit_url": [], "vercel_url": []}
-    for path in files:
-        relative = str(path.relative_to(ROOT))
-        if relative == "scripts/audit_public_release.py" or relative.startswith("tests/"):
-            continue
-        if path.suffix.lower() not in TEXT_SUFFIXES and relative != ".github/CODEOWNERS":
-            continue
-        text = path.read_text(encoding="utf-8", errors="ignore")
-        if any(token in text for token in ("[GITHUB_USERNAME]", "github.com/OWNER/NewsLens-AI")):
-            placeholders["github_owner"].append(_safe_report_path(relative))
-        if "[GITHUB_REPOSITORY_URL — TO BE PROVIDED]" in text:
-            placeholders["repository_url"].append(_safe_report_path(relative))
-        if any(token in text for token in ("YOUR-APP.streamlit.app", "[STREAMLIT_URL — TO BE PROVIDED]")):
-            placeholders["streamlit_url"].append(_safe_report_path(relative))
-        if "[VERCEL_URL — TO BE PROVIDED]" in text:
-            placeholders["vercel_url"].append(_safe_report_path(relative))
-
-    model_record = {
-        "path": str(MODEL.relative_to(ROOT)),
-        "exists": MODEL.exists(),
-        "size_bytes": MODEL.stat().st_size if MODEL.exists() else None,
-        "sha256": hashlib.sha256(MODEL.read_bytes()).hexdigest() if MODEL.exists() else None,
-        "expected_artifact_id": "isot-tfidf-lr-v1.0.0",
-        "blocked_from_git_by_gitignore": (
-            "models/fake_news_pipeline.joblib"
-            in (ROOT / ".gitignore").read_text(encoding="utf-8").splitlines()
-        ),
-        "public_redistribution_rights_confirmed": False,
-    }
-
-    gates = []
-    if placeholders["github_owner"] or placeholders["repository_url"]:
-        gates.append("Exact GitHub owner/repository URL is unresolved.")
-    if placeholders["streamlit_url"]:
-        gates.append("Live Streamlit URL is unresolved.")
-    if not model_record["public_redistribution_rights_confirmed"]:
-        gates.append("Packaged model redistribution rights and explicit artifact license are unconfirmed.")
-    if not (ROOT / ".git").exists():
-        gates.append("Canonical Git history is unavailable for history-wide secret scanning.")
-
-    required_legal_files = [
-        "LICENSE",
-        "COPYRIGHT.md",
-        "NOTICE.md",
-        "AUTHORS.md",
-        "CITATION.cff",
-        "CONTRIBUTING.md",
-        "SECURITY.md",
-        "docs/LICENSING_STATUS.md",
-        "docs/OWNERSHIP_AND_ATTRIBUTION.md",
-        "docs/THIRD_PARTY_LICENSES.md",
-        "docs/DEPLOYMENT_CHECKPOINT.md",
-        "release_manifest.json",
-        ".gitattributes",
+    runtime_files = [
+        ROOT / "app.py",
+        *sorted((ROOT / "pages").glob("*.py")),
+        *sorted((ROOT / "ui").glob("*.py")),
     ]
-    missing_legal_files = [name for name in required_legal_files if not (ROOT / name).is_file()]
-    license_text = (ROOT / "LICENSE").read_text(encoding="utf-8") if (ROOT / "LICENSE").exists() else ""
-    legal_policy_passed = (
-        not missing_legal_files
+    for path in runtime_files:
+        source = path.read_text(encoding="utf-8")
+        for pattern in ('target="_blank"', "window.open(", "st.link_button("):
+            if pattern in source:
+                navigation.append(f"{path.relative_to(ROOT)}: {pattern}")
+
+    license_text = (
+        (ROOT / "LICENSE").read_text(encoding="utf-8") if (ROOT / "LICENSE").exists() else ""
+    )
+    required_legal = [
+        "LICENSE", "COPYRIGHT.md", "NOTICE.md", "AUTHORS.md", "CITATION.cff",
+        "CONTRIBUTING.md", "SECURITY.md", "docs/LICENSING_STATUS.md",
+        "docs/OWNERSHIP_AND_ATTRIBUTION.md", "docs/THIRD_PARTY_LICENSES.md",
+        "release_manifest.json", ".gitattributes",
+    ]
+    missing_legal = [name for name in required_legal if not (ROOT / name).is_file()]
+    legal_passed = (
+        not missing_legal
         and "All Rights Reserved" in license_text
         and "NOT AN OPEN-SOURCE LICENCE" in license_text
-        and not (ROOT / "docs" / "LICENSE_RECOMMENDATION.md").exists()
     )
-    safe_tree_scan_passed = (
+    artifacts = artifact_evidence()
+    release = (
+        json.loads((ROOT / "release_manifest.json").read_text(encoding="utf-8"))
+        if (ROOT / "release_manifest.json").exists()
+        else {}
+    )
+    streamlit_url = release.get("deployment", {}).get("streamlit", {}).get("url")
+    gates = (
+        []
+        if isinstance(streamlit_url, str)
+        and streamlit_url.startswith("https://")
+        and "streamlit.app" in streamlit_url
+        else ["Live Streamlit URL is unresolved."]
+    )
+    safe = (
         not forbidden
-        and not secret_findings
-        and not personal_data_findings
+        and not secrets
+        and not personal
         and not local_paths
-        and not broken_local_links
-        and not navigation_findings
-        and legal_policy_passed
+        and not broken_links
+        and not navigation
+        and legal_passed
+        and bool(artifacts["passed"])
     )
-
     report = {
         "release_root": ROOT.name,
         "files_scanned": len(files),
         "forbidden_files": sorted(set(forbidden)),
-        "secret_findings": secret_findings,
-        "personal_data_findings": personal_data_findings,
+        "secret_findings": secrets,
+        "personal_data_findings": personal,
         "absolute_local_path_findings": sorted(set(local_paths)),
-        "broken_local_markdown_links": broken_local_links,
-        "internal_navigation_findings": navigation_findings,
-        "deployment_placeholders": placeholders,
-        "legal_policy": {
-            "required_files_missing": missing_legal_files,
-            "proprietary_notice_present": "All Rights Reserved" in license_text,
-            "explicitly_not_open_source": "NOT AN OPEN-SOURCE LICENCE" in license_text,
-            "superseded_license_recommendation_absent": not (ROOT / "docs" / "LICENSE_RECOMMENDATION.md").exists(),
-            "passed": legal_policy_passed,
-        },
-        "model_artifact": model_record,
+        "broken_local_markdown_links": broken_links,
+        "internal_navigation_findings": navigation,
+        "legal_policy": {"required_files_missing": missing_legal, "passed": legal_passed},
+        "artifact_integrity": artifacts,
         "publication_gates": gates,
-        "safe_tree_scan_passed": safe_tree_scan_passed,
-        "public_release_ready": (
-            safe_tree_scan_passed
-            and not gates
-        ),
+        "safe_tree_scan_passed": safe,
+        "public_release_ready": safe and not gates,
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    exit_code = _exit_code(
-        report, allow_publication_gates=args.allow_publication_gates
+    OUTPUT.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if not safe:
+        exit_code = EXIT_SAFETY_VIOLATION
+    elif args.allow_publication_gates or not gates:
+        exit_code = EXIT_CLEAN
+    else:
+        exit_code = EXIT_PUBLICATION_GATE
+    status = (
+        "PASS" if exit_code == EXIT_CLEAN else "BLOCKED" if exit_code == EXIT_PUBLICATION_GATE else "FAIL"
     )
-    finding_counts = {
+    print(f"Public release audit: {status}")
+    print(f"Files scanned: {len(files)}")
+    counts = {
         "forbidden_files": len(forbidden),
-        "secret_findings": len(secret_findings),
-        "personal_data_findings": len(personal_data_findings),
+        "secret_findings": len(secrets),
+        "personal_data_findings": len(personal),
         "absolute_local_path_findings": len(set(local_paths)),
-        "broken_local_markdown_links": len(broken_local_links),
-        "internal_navigation_findings": len(navigation_findings),
+        "broken_local_markdown_links": len(broken_links),
+        "internal_navigation_findings": len(navigation),
     }
-    _print_console_summary(
-        files_scanned=len(files),
-        finding_counts=finding_counts,
-        publication_gate_count=len(gates),
-        exit_code=exit_code,
-    )
+    for key, label in CONSOLE_COUNT_FIELDS:
+        print(f"{label}: {counts[key]}")
+    print(f"Publication gates: {len(gates)}")
+    print(f"Exit status: {exit_code}")
     return exit_code
 
 

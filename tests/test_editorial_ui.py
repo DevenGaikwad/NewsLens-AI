@@ -86,7 +86,7 @@ def test_interface_keeps_responsible_prediction_language() -> None:
     components = read("ui/components.py")
     config = read("src/config.py")
     about = read("pages/05_Research_About.py")
-    assert "Editorial risk signal" in components
+    assert "Synthetic consistency signal" in components
     assert "Independent editorial verification remains necessary" in analysis
     assert "Editorial review required" in config
     assert "calibrated confidence" in components

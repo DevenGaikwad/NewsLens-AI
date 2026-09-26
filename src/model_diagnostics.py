@@ -13,6 +13,7 @@ import pandas as pd
 from .config import MIN_ARTICLE_WORDS, MIN_DRIFT_OBSERVATIONS, MODEL_REFERENCE_PROFILE_PATH
 from .text_preprocessor import detect_language_hint, text_for_model
 from .utils import load_json, word_count
+from synthetic_benchmark.signals import augment_text, parse_fact_blocks
 
 
 INSUFFICIENT_DRIFT_MESSAGE = "Insufficient observations for a reliable drift assessment."
@@ -55,8 +56,10 @@ def assess_input(
     """
 
     profile = reference_profile or load_reference_profile()
-    tokens = _unigram_tokens(text)
-    vocabulary = set(getattr(pipeline.named_steps.get("tfidf"), "vocabulary_", {}))
+    vectorizer = pipeline.named_steps.get("tfidf")
+    prepared = augment_text(text)
+    tokens = vectorizer.build_analyzer()(prepared) if vectorizer is not None else _unigram_tokens(text)
+    vocabulary = set(getattr(vectorizer, "vocabulary_", {}))
     known = sum(token in vocabulary for token in tokens) if vocabulary else 0
     coverage = known / len(tokens) if tokens else 0.0
     oov_rate = 1.0 - coverage if tokens else 1.0
@@ -64,25 +67,21 @@ def assess_input(
     language_hint = detect_language_hint(text)
     language_mismatch = language_hint != "English/Latin script"
 
-    length_reference = profile.get("article_word_count", {})
-    coverage_reference = profile.get("vocabulary_coverage", {})
-    lower_words = float(length_reference.get("p01", MIN_ARTICLE_WORDS))
-    upper_words = float(length_reference.get("p99", max(2_000, article_words)))
-    lower_coverage = float(coverage_reference.get("p01", 0.20))
     reasons: list[str] = []
     if article_words < MIN_ARTICLE_WORDS:
         reasons.append("Input contains too few words for the supported analysis path.")
     if language_mismatch:
         reasons.append("The packaged model supports English/Latin-script news only.")
-    if article_words < lower_words or article_words > upper_words:
-        reasons.append("Article length falls outside the central benchmark reference range.")
-    if coverage < lower_coverage:
-        reasons.append("Vocabulary coverage is below the benchmark reference range.")
+    blocks = parse_fact_blocks(text)
+    fact_blocks_missing = not blocks.get("reference") or not blocks.get("account")
+    if fact_blocks_missing:
+        reasons.append(
+            "The input is outside the automatic synthetic-comparison scope because its "
+            "Reference note or Article account is missing."
+        )
 
     input_quality_inadequate = article_words < MIN_ARTICLE_WORDS or not tokens
-    domain_mismatch = (
-        article_words < lower_words or article_words > upper_words or coverage < lower_coverage
-    )
+    domain_mismatch = fact_blocks_missing
     return InputDiagnostics(
         word_count=article_words,
         vocabulary_coverage=round(coverage, 6),
@@ -127,9 +126,22 @@ def assess_drift(
         }
 
     length_ref = profile.get("article_word_count", {})
+    if not length_ref:
+        values = profile.get("training_word_count_percentiles", {})
+        length_ref = {f"p{key.zfill(2)}": value for key, value in values.items()}
     coverage_ref = profile.get("vocabulary_coverage", {})
+    if not coverage_ref:
+        values = profile.get("final_test_vocabulary_coverage_percentiles", {})
+        coverage_ref = {f"p{key.zfill(2)}": value for key, value in values.items()}
     class_ref = profile.get("predicted_class_distribution", {})
+    if not class_ref:
+        values = profile.get("final_test_predicted_class_distribution", {})
+        total = max(sum(int(value) for value in values.values()), 1)
+        class_ref = {"misleading": int(values.get("synthetic_ledger_contradicting", 0)) / total}
     confidence_ref = profile.get("calibrated_confidence", {})
+    if not confidence_ref:
+        values = profile.get("final_test_confidence_percentiles", {})
+        confidence_ref = {f"p{key.zfill(2)}": value for key, value in values.items()}
     current_length = float(pd.to_numeric(analyses["original_word_count"], errors="coerce").median())
     current_coverage = float(pd.to_numeric(analyses["vocabulary_coverage"], errors="coerce").mean())
     current_oov = float(pd.to_numeric(analyses["oov_rate"], errors="coerce").mean())

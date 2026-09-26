@@ -1,10 +1,27 @@
 {
-  "raw_rows": 44898,
-  "clean_rows": 37883,
-  "training_sample_rows": 24000,
-  "duplicates_removed": 5713,
-  "conflicting_label_rows_removed": 0,
-  "short_or_empty_rows_removed": 1302,
-  "reliable_rows": 12000,
-  "misleading_rows": 12000
+  "archive_sha256": "3b6df1fa17615bfe1b67f6c9136909c668ec846e3fa8d205fa8e4aa2a80526cc",
+  "archive_size_bytes": 10319934,
+  "articles": 24000,
+  "cross_partition_content_hash_overlap": 0,
+  "cross_partition_event_overlap": 0,
+  "dataset_id": "newslens-synthetic-articles-v1.0.0",
+  "event_pairs": 12000,
+  "exact_duplicate_rows": 0,
+  "license": "CC BY 4.0 to the extent applicable rights subsist",
+  "metadata_only_balanced_accuracy": 0.5208333333333333,
+  "mutation_families": 30,
+  "schema_version": 2,
+  "split_counts": {
+    "abstention_policy": 1200,
+    "calibration": 1200,
+    "final_test": 1200,
+    "model_validation": 2400,
+    "training": 18000
+  },
+  "surface_text_only_balanced_accuracy": 0.5,
+  "synthetic_ledger_consistent": 12000,
+  "synthetic_ledger_contradicting": 12000,
+  "synthetic_only": true,
+  "template_families": 8,
+  "topics": 12
 }

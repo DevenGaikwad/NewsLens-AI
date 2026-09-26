@@ -1,98 +1,23 @@
-# NewsLens AI deployment checkpoint
+# Phase 5S Deployment Checkpoint
 
-Checkpoint updated: 1 September 2026, 00:52 IST  
-Authoritative public repository: `https://github.com/DevenGaikwad/NewsLens-AI`  
-Owner: Deven Sachin Gaikwad  
-State: **public GitHub publication verified; functional deployment gated**
+Updated: 26 September 2026
 
-> Historical 1 September checkpoint. Counts, dependency state, and verification
-> below describe that snapshot. See [TESTING.md](TESTING.md) and the root README
-> for current public validation; this checkpoint does not certify current private artifacts.
+## Completed
 
-## Confirmed release decisions
+- Authoritative archive independently verified at the exact path, size, SHA-256, and Git blob.
+- PR A merged through protected GitHub rules as PR #44.
+- PR A squash merge: `d3e77e6610c4a9c83d9137ca672a9aad4278285f`.
+- PR A merged tree: `520bad55ea12f1a8e48ad2e533af26312c62933d`.
+- Synthetic-only model training, bounded selection, calibration, locked evaluation, counterfactual test, shortcut baselines, artifact packaging, and runtime integration completed locally.
+- Model SHA-256: `c1ad8c044cd95bc7bf25a94716010ddbe21fbae2ec92a0c1cefb01f5c3c979c6`.
+- Calibration SHA-256: `adcf03a860ef8fb41058b3a4dcc80351dbd02e05f81e0fc1e7f971624af6ab77`.
 
-- NewsLens AI is the sole product name.
-- Streamlit remains the functional application, with `app.py` as its runtime entry point.
-- The Next.js application under `web/` is a presentation shell only.
-- The canonical public repository is `DevenGaikwad/NewsLens-AI` on branch `main`.
-- The owner confirmed sole ownership of the original NewsLens AI components. Original material uses the repository's proprietary All Rights Reserved notice; third-party rights are not relabelled.
-- Runtime inference loads `isot-tfidf-lr-v1.0.0` privately and never invokes training code.
-- The public repository intentionally excludes the classifier and private calibration parameters.
+## Pending at this checkpoint
 
-## GitHub publication checkpoint
+- Complete local validation after documentation reconciliation.
+- Open, validate, and protected-merge PR B.
+- Verify exact-new-main CI and CodeQL.
+- Deploy main to authenticated Streamlit Community Cloud workspace `devengaikwad`.
+- Record the final public URL, deployed commit, and browser smoke-test evidence.
 
-| Item | Verified result |
-|---|---|
-| Repository | `https://github.com/DevenGaikwad/NewsLens-AI` |
-| Owner / visibility | `DevenGaikwad` / public |
-| Default branch | `main` |
-| Publication baseline | `30470c6767352c02db9aa0484f97f5473304f845` |
-| Verified CI correction | `8694b0ec86331a1be7d56a84f94ef270383bbfa6` |
-| Public tracked files | 247 |
-| README local images | 6 of 6 resolve and return PNG content |
-| README local documentation links | 31 of 31 resolve |
-| Private artifacts | Model and calibration absent |
-| Raw ISOT data | Absent; packaged demonstration articles remain intentionally public |
-| History review through the verified CI commit | No historical-only prohibited paths or secret-bearing blobs |
-
-The publication baseline contains the verified model-excluded release. The focused CI commit changes only the workflow, scanner semantics, marker declarations, affected test markers, and checksum manifest. A later documentation-only checkpoint commit may advance `main` without changing that verified source behavior.
-
-## Current verification
-
-| Check | Current result |
-|---|---|
-| Private packaged pytest suite | 56 passed in the preserved private validation environment; 0 failed, 0 errors, 0 skipped |
-| Public GitHub Python suite | 52 model-independent tests passed; 4 private-artifact tests explicitly deselected |
-| Python source compilation | Passed in GitHub Actions |
-| Public committed-tree scan | 247 files; 0 forbidden files, secrets, personal-data findings, local paths, broken local Markdown links, or internal new-tab findings |
-| Prohibited-fixture validation | A committed `.env` and private calibration artifact each produced hard failure exit code `3` |
-| CodeQL | Python and JavaScript/TypeScript analyses passed |
-| Next.js dependency installation | `npm ci` passed in GitHub Actions |
-| Next.js lint | Passed in GitHub Actions |
-| Next.js production build | Passed in GitHub Actions |
-| Dependabot proposals | 13 open and unmerged; 12 presentation builds pass, while PR 12 has a genuine React/ReactDOM peer conflict |
-| Commit email privacy | Owner-created commits expose a personal Gmail address; no history rewrite was performed |
-| Streamlit Chromium audit | Six areas, same-tab routes, direct routes, refresh, back/forward, keyboard use, analysis, confidence, explanation, review, downloads, analytics, drift, and visitor isolation passed in the retained private release audit |
-| Responsive Streamlit widths | 360, 390, 768, 1366, and 1920 pixels; no horizontal overflow in the retained audit |
-| Documentation | 4 DOCX files, 170 rendered pages, and 0 high/medium/low accessibility findings in the retained release evidence |
-| Current interface screenshots | 15 captures, all visually reviewed and SHA-256 indexed |
-
-The private model SHA-256 remains:
-
-`e9dd8368a4eec1ea5111da6c002889a146af98acba06742d2795486977d93dcb`
-
-This hash is recorded for private integrity verification only. The corresponding artifact is not present in public Git history.
-
-## CI semantics
-
-The public workflow fails closed if either private artifact is committed. It compiles the Python source, runs all model-independent tests, and explicitly reports that four classifier/calibration tests require the owner's private local artifacts. The committed-tree scanner uses `git ls-files`, so GitHub runner metadata under `.git/` is not misclassified as published content. Archive-mode scanning remains strict, and actual safety violations use a hard-failure exit code distinct from a documented publication gate.
-
-## Presentation-shell checkpoint
-
-The source under `web/` contains the required landing page, methodology and responsible-use content, public-document links, GitHub link, responsive mobile menu, exact editorial tokens, and `/app` iframe contract using `NEXT_PUBLIC_STREAMLIT_APP_URL` plus `?embed=true`.
-
-Current-source dependency installation, lint, and production build now pass in GitHub Actions. The retained browser evidence remains dated 16 August 2026; production-origin browser, console, and platform-log verification must occur only after an approved Streamlit URL exists and Vercel deployment is separately authorised.
-
-## Hosting identifiers
-
-| Identifier | Value |
-|---|---|
-| GitHub account | `DevenGaikwad` |
-| Public repository | `https://github.com/DevenGaikwad/NewsLens-AI` — published and verified |
-| Branch | `main` |
-| Streamlit entry point | `app.py` |
-| Streamlit production URL | Not deployed or verified |
-| Vercel project root | `web/` |
-| Public Vercel variable | `NEXT_PUBLIC_STREAMLIT_APP_URL` |
-| Vercel production URL | Not deployed or verified |
-
-## Remaining gates
-
-1. Documentary permission or explicit applicable licence terms for redistribution and public hosting of the ISOT-derived model and matching calibration parameters have not been supplied.
-2. Functional Streamlit hosting cannot preserve the specified classifier from the model-excluded public tree.
-3. Vercel requires a final verified Streamlit URL and separate deployment authorisation.
-4. Production-origin browser, privacy, console, and platform-log checks remain unavailable until deployment is authorised and completed.
-
-## Exact next safe action
-
-Obtain documentary model-redistribution permission or an applicable licence before committing or hosting the model or calibration artifacts. Do not deploy Streamlit or Vercel, substitute another classifier, retrain during startup, or claim a live ML deployment before that evidence is recorded.
+No PR B remote mutation had occurred when this checkpoint was written. Six retained Dependabot PRs and the historical release tag remain outside scope.

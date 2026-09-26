@@ -1,350 +1,79 @@
 # NewsLens AI
 
-### Explainable editorial intelligence with calibrated uncertainty and human review
+NewsLens AI is a noncommercial student and placement-portfolio demonstration built by **Deven Sachin Gaikwad**. It combines deterministic extractive summarisation with an explainable classifier trained exclusively on an independently created synthetic benchmark.
 
-![Python 3.12](https://img.shields.io/badge/Python-3.12-40352C?style=flat-square)
-![Streamlit](https://img.shields.io/badge/Runtime-Streamlit-6D5947?style=flat-square)
-![Public tests](https://img.shields.io/badge/Public%20tests-144%20passing-6D5947?style=flat-square)
-[![CI](https://github.com/DevenGaikwad/NewsLens-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/DevenGaikwad/NewsLens-AI/actions/workflows/ci.yml)
-[![CodeQL](https://github.com/DevenGaikwad/NewsLens-AI/actions/workflows/codeql.yml/badge.svg)](https://github.com/DevenGaikwad/NewsLens-AI/actions/workflows/codeql.yml)
-![Model publication](https://img.shields.io/badge/Model%20publication-blocked-813F39?style=flat-square)
-![Rights](https://img.shields.io/badge/Original%20components-All%20Rights%20Reserved-1A1917?style=flat-square)
+The classifier has a deliberately narrow purpose: compare the visible `Reference note` and `Article account` fields in the supported fictional format and indicate whether their ledgers are consistent or contradicting. It is **not** a general fake-news detector and does not establish real-world truth.
 
-![NewsLens AI editorial interface](assets/github/newslens-ai-social-preview.png)
+## What is public
 
-NewsLens AI is a Streamlit editorial decision-support application for article ingestion, independent summarisation, calibrated linguistic credibility-risk estimation, local model explanations, human editorial review, privacy-safe newsroom analytics, and lightweight drift readiness. It supports pasted text, public URLs, TXT, and text-based PDF inputs while keeping the functional Python/ML product separate from its optional Next.js presentation shell.
+- 24,000 original synthetic articles representing 12,000 fictional paired events.
+- Deterministic generator, manifest, audit evidence, and reproducibility tests.
+- TF-IDF bigram + Logistic Regression public model.
+- Platt calibration cryptographically bound to the exact model SHA-256.
+- Group-safe training, validation, calibration, abstention-policy, and locked-test partitions.
+- Streamlit interface with summarisation, classification, abstention, explanations, exports, session-local review, and aggregate monitoring.
 
-The classifier detects patterns associated with its ISOT training labels. It does not retrieve independent evidence, establish objective truth, or replace journalists and professional fact-checkers.
+No ISOT row, copied phrase, close paraphrase, transformation, translation, summary, reconstruction, private ISOT model, private calibration artifact, or external copyrighted training dataset is included.
 
-> This result is a machine-learning risk signal. It is not independent confirmation that an article is factually true or false.
+## Measured evidence
 
-## Project status and deployment links
+| Measure | Result |
+|---|---:|
+| Locked final-test rows | 1,200 |
+| Accuracy / balanced accuracy / macro F1 | 1.000 / 1.000 / 1.000 |
+| Confusion matrix | `[[600, 0], [0, 600]]` |
+| Platt Brier score | 0.000001497 |
+| Expected calibration error | 0.000742 |
+| Counterfactual account-swap flip rate | 100% |
+| Surface-text-only balanced accuracy | 0.500 |
+| Fact-block ablation balanced accuracy | 0.498 |
+| Metadata-only balanced accuracy | 0.521 |
 
-| Item | Status |
-|---|---|
-| Local Streamlit application | Retained private-release evidence: 56 packaged checks and a five-width browser audit; private artifacts are unavailable in public CI |
-| GitHub repository | [Public source repository](https://github.com/DevenGaikwad/NewsLens-AI) published and verified on `main` |
-| Public GitHub CI | 144 model-independent tests pass; 4 private-artifact tests are explicitly deselected |
-| Streamlit Community Cloud | Not deployed; no production URL recorded |
-| Vercel Hobby presentation site | Source prepared; not deployed; current-source `npm ci`, lint, and production build pass in GitHub Actions |
-| Model redistribution | Blocked pending documentary permission or applicable licence terms |
-| Public release package | Source, documentation, and the independently authored synthetic dataset; private model and calibration artefact excluded |
+Perfect in-distribution performance reflects a structured synthetic comparison task; it must not be interpreted as unrestricted news-veracity performance.
 
-The Python/Streamlit product retains private-release test, integration, browser, privacy, export, and visual evidence. These historical results are not a fresh validation of private artifacts on current `main`. The public repository separately compiles the Python source and runs every model-independent test while reporting the four private-artifact checks as gated. Functional public hosting remains pending the documented model-redistribution and external-service gates. The exact committed Next.js source passes dependency installation, lint, and production build in GitHub Actions. No placeholder URL is presented as a live deployment.
+## Run locally
 
-The [1 September public release](https://github.com/DevenGaikwad/NewsLens-AI/releases/tag/public-release-2026-09-01) and dated audit records describe historical snapshots. The tracked DOCX guides and project PDF were reconciled on 13 September 2026 with current public validation; their August benchmarks and private-release evidence remain historical. Current validation is documented in [`docs/TESTING.md`](docs/TESTING.md); current dependency pins and ranges are in `requirements-lite.txt`, `requirements.txt`, and `web/package-lock.json`.
-
-The repository now also contains the independently authored [NewsLens Synthetic Article Benchmark v1.0.0](data/synthetic/README.md): 12,000 fictional event pairs and 24,000 articles in a byte-reproducible public ZIP. It is a dataset and reproducibility deliverable only at this stage; the application continues to use the separately gated private model until the replacement public model is trained, evaluated, and integrated through its own protected change.
-
-## Why this project matters
-
-High-volume newsrooms must triage long articles, developing claims, community submissions, and limited review capacity. NewsLens AI explores a responsible workflow in which a model helps prioritise attention while preserving uncertainty, local explanation, and human authority. A generic regional-newsroom case study is documented in [`docs/EDITORIAL_AI_CASE_STUDY.md`](docs/EDITORIAL_AI_CASE_STUDY.md); it does not imply affiliation or endorsement by any media organisation.
-
-## Key features
-
-- Six same-tab Streamlit areas: News Desk, Analyse Article, Model Accountability, Dataset Analysis, Editorial Archive, and Research & About.
-- Text, public-URL, TXT, and text-based PDF ingestion with bounded extraction and SSRF protections.
-- Extractive TF-IDF-centroid summarisation plus an optional DistilBART path.
-- Saved `isot-tfidf-lr-v1.0.0` TF-IDF + Logistic Regression model; runtime never retrains.
-- Controlled comparison of Logistic Regression, Linear SVC, and Multinomial Naive Bayes on identical partitions.
-- Deterministic 24,000-article fictional benchmark package with grouped splits, exhaustive leakage checks, provenance, checksums, and a separate dataset licence.
-- Platt confidence calibration using held-out validation-calibration rows.
-- Validation-policy-selected 0.59 editorial-review threshold.
-- Three responsible outcomes: `Lower misleading-content risk indicated`, `Higher misleading-content risk indicated`, and `Editorial review required`.
-- Abstention for insufficient calibrated confidence and unsupported input-quality, language, length, or vocabulary conditions.
-- Local signed TF-IDF-by-coefficient feature contributions.
-- Session-isolated human editorial review with status, notes, public supporting-source URLs, and final assessment.
-- Privacy-safe newsroom analytics for volume, risk, confidence, review, inconclusive rate, latency, model comparison, and activity.
-- Drift readiness for article length, vocabulary coverage, OOV rate, predicted-class distribution, calibrated confidence, invalid input, language mismatch, and domain-support heuristics.
-- JSON/PDF analysis exports, CSV archive export, and aggregate-only analytics export.
-- Responsive beige/brown editorial design, visible focus states, reduced-motion support, and mobile navigation.
-- Lightweight Next.js presentation shell under `web/`; no Python/ML logic is migrated to JavaScript.
-
-![Final interface collage](assets/github/newslens-ai-interface-collage.png)
-
-## Architecture
-
-![NewsLens AI system architecture](assets/github/system-architecture.png)
-
-### Runtime Processing and Editorial Accountability Flow
-
-The system overview above presents the full product lifecycle. The copyable runtime flow below shows how one validated article enters two independent processing paths before human review and privacy-safe aggregate analysis.
-
-```text
-User input
-   |
-   +-- text / public URL / TXT / text-based PDF
-   |
-safe extraction and preprocessing
-   |
-   +---------------------------+
-   |                           |
-summarisation              classification
-extractive / optional      saved TF-IDF + Logistic Regression
-DistilBART                     |
-                               +-- private Platt calibration
-                               +-- validation-selected abstention
-                               +-- local coefficient explanation
-   |                           |
-   +------------- editorial result -------------+
-                                                 |
-                          session-isolated SQLite review/archive
-                                                 |
-                             aggregate analytics and drift readiness
-
-Offline only: dataset preparation, benchmarking, calibration fitting, evaluation.
-Runtime never imports training modules and never retrains.
-```
-
-The application keeps summarisation and classification independent: the classifier receives the original cleaned article, never the generated summary. See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
-
-## Application workflow
-
-1. Validate text, URL, or document input.
-2. Extract and clean the article while preserving useful display metadata.
-3. Generate a selected-length summary through an independent branch.
-4. Transform the original cleaned article with the saved training-fitted TF-IDF vectoriser.
-5. Classify with the verified Logistic Regression artefact.
-6. Apply held-out Platt calibration and the 0.59 validation-policy threshold.
-7. Require editorial review for insufficient confidence or unsupported conditions.
-8. Show calibrated confidence, input diagnostics, and local feature influence.
-9. Save a visitor-scoped analysis and human review, or export portable records.
-10. Summarise only privacy-safe aggregates for newsroom analytics and drift readiness.
-
-## Controlled model benchmarking
-
-![Controlled model benchmarking](assets/github/model-benchmarking.png)
-
-The private evaluation reconstructs a fixed seed-42 balanced 24,000-row ISOT sample. Exact duplicates are removed before sampling. A deterministic approximate five-gram screen finds near-duplicate candidates and verifies them at Jaccard similarity at least 0.90. Two contaminated holdout rows are quarantined, and zero verified near-duplicate pairs cross the final train/validation/test partitions.
-
-| Model | Accuracy | Macro F1 | ROC-AUC | Calibrated Brier | Calibrated ECE | Mean inference (ms/article) |
-|---|---:|---:|---:|---:|---:|---:|
-| Logistic Regression | 0.992080 | 0.992080 | 0.999481 | 0.006292 | 0.005295 | 0.503 |
-| Linear SVC | 0.994581 | 0.994581 | 0.999851 | 0.004059 | 0.004451 | 0.614 |
-| Multinomial Naive Bayes | 0.960817 | 0.960815 | 0.991564 | 0.029562 | 0.009859 | 1.315 |
-
-Logistic Regression remains selected. The saved selection record uses Linear SVC's validation-policy macro-F1 advantage of approximately 0.002500, below the predefined 0.01 tolerance; the final-test macro-F1 difference in the table is 0.002501. The selected model preserves the verified production artefact, compact deployment, and direct signed-coefficient explanations. The final test contains 2,399 rows and is not used for model selection, fitting, calibration, or threshold selection.
-
-Evidence:
-
-- [`reports/model_benchmark_results.csv`](reports/model_benchmark_results.csv)
-- [`reports/model_benchmark_summary.json`](reports/model_benchmark_summary.json)
-- [`reports/model_benchmark_methodology.md`](reports/model_benchmark_methodology.md)
-- [`reports/calibration_validation.json`](reports/calibration_validation.json)
-
-## Calibration and editorial-review policy
-
-The native Logistic Regression score is not presented as a reliable probability. Platt scaling fits a logistic mapping on 1,199 validation-calibration rows. On the untouched final test, it reduces Brier score from 0.010464 to 0.006292 and ten-bin expected calibration error from 0.044799 to 0.005295.
-
-A separate 1,200-row validation-policy subset selects the 0.59 review threshold. The rule chooses the lowest calibrated-confidence threshold with at least 80% automatic-decision coverage and a 95% Wilson lower accuracy bound of at least 99% relative to validation labels. The final-test confidence-only review rate is 0.167%; real-session language, quality, and supported-scope checks may require additional reviews.
-
-Calibration measures score reliability against benchmark labels, not factual verification.
-
-## Human editorial review
-
-![Human editorial review workflow](assets/github/editorial-review.png)
-
-Each analysis can retain these visitor-scoped fields:
-
-- analysis identifier and timestamp;
-- model outcome and calibrated confidence;
-- review-required reason;
-- one supported review status;
-- reviewer notes;
-- public supporting-source URLs;
-- final editorial assessment and update timestamp.
-
-Supported statuses are Pending review, Evidence supports the claim, Evidence contradicts the claim, Inconclusive, and Out of supported scope. The model result and human assessment remain distinct.
-
-## Newsroom analytics and drift readiness
-
-![Newsroom analytics and drift readiness](assets/github/newsroom-analytics.png)
-
-Analytics operate only on the current visitor's session archive. The aggregate CSV excludes article titles, summaries, full text, identifiers, notes, and URLs. Before 20 valid observations exist, the drift panel displays `Insufficient observations for a reliable drift assessment.` Warnings indicate distributional change and never trigger automatic retraining.
-
-## Responsible-AI limitations
-
-- The model predicts language patterns associated with ISOT labels; it does not verify claims.
-- High same-dataset scores can reflect outlet, topic, period, and writing-style shortcuts.
-- Calibration measures dataset-relative probability reliability, not objective truth.
-- Explainability describes model influence, not journalistic evidence.
-- False positives can waste review time or unfairly stigmatise writing; false negatives can create false reassurance.
-- Satire, opinion, developing events, unseen publishers, adversarial paraphrases, regional formats, and future language may degrade performance.
-- The packaged model supports English/Latin-script news only. Marathi and multilingual processing remain future research requiring licensed data and separately validated models.
-- Human review reduces some risks but does not guarantee correctness.
-- The SQLite public-safe mode is temporary and session-isolated; it is not authenticated durable enterprise storage.
-
-See [`docs/MODEL_CARD.md`](docs/MODEL_CARD.md), [`docs/DATASET_CARD.md`](docs/DATASET_CARD.md), and [`docs/PRIVACY.md`](docs/PRIVACY.md).
-
-## Technology stack
-
-| Layer | Technology |
-|---|---|
-| Application | Python 3.12, Streamlit |
-| NLP and ML | scikit-learn, TF-IDF, Logistic Regression, Linear SVC, Multinomial Naive Bayes |
-| Data | pandas, NumPy |
-| Explainability | direct linear TF-IDF x coefficient contributions |
-| Summarisation | extractive centroid method; optional transformers/PyTorch DistilBART |
-| Extraction | Requests, Trafilatura, BeautifulSoup, pypdf |
-| Persistence | visitor-scoped SQLite |
-| Visualisation | Plotly, Matplotlib, Seaborn |
-| Exports | JSON, ReportLab PDF, formula-safe CSV |
-| Presentation shell | Next.js, TypeScript, CSS |
-| Verification | pytest, Streamlit AppTest, Playwright, dependency and release-policy audits |
-
-## Repository structure
-
-```text
-NewsLens-AI/
-├── app.py                    # Streamlit runtime entry point
-├── pages/                    # Six native same-tab product areas
-├── ui/                       # Shared editorial shell and exact design tokens
-├── src/                      # Inference, calibration, diagnostics, review, analytics, exports
-├── models/                   # Private local model/calibration artefacts plus metadata
-├── training/                 # Offline data, benchmark, calibration, and evaluation workflows
-├── database/                 # Schema guidance; generated activity databases ignored
-├── data/sample/              # Original synthetic demonstration articles
-├── data/synthetic/           # Reproducible public synthetic benchmark package
-├── assets/github/            # Repository presentation images
-├── reports/                  # Aggregate measured evidence, figures, screenshots, QA records
-├── tests/                    # Unit, integration, security, UI, privacy, and release contracts
-├── docs/                     # Public guides, cards, report, case study, interview guide
-├── scripts/                  # Verification, audits, captures, and document builders
-└── web/                      # Lightweight Next.js/Vercel presentation shell only
-```
-
-## Installation
-
-Prerequisites: Python 3.12 and a private copy of the verified model plus matching calibration artefact. Public archives intentionally exclude both artefacts.
+Python 3.12 is the deployment target.
 
 ```bash
-git clone https://github.com/DevenGaikwad/NewsLens-AI.git
-cd NewsLens-AI
 python -m venv .venv
-```
-
-Activate the environment:
-
-```bash
-# macOS / Linux
 source .venv/bin/activate
-
-# Windows PowerShell
-.venv\Scripts\Activate.ps1
-```
-
-Install the deployment-compatible core:
-
-```bash
-python -m pip install --upgrade pip
 python -m pip install -r requirements-lite.txt
+python -m streamlit run app.py
 ```
 
-Install optional abstractive summarisation dependencies only when needed:
+On Windows PowerShell, activate with `.venv\Scripts\Activate.ps1`.
+
+No API key or secret is required. The packaged model and calibration are loaded from `models/` without runtime training.
+
+## Reproduce the model package
+
+The authoritative dataset archive is already versioned. The following command verifies its identity, trains on the authored training split, selects only on model validation, fits calibration, selects the abstention policy, and evaluates the locked final test once:
 
 ```bash
-python -m pip install -r requirements.txt
+python training/train_synthetic_model.py
 ```
 
-`requirements.txt` includes the root deployment dependency path through `requirements-lite.txt`; it does not change application logic.
+The accepted public artifacts are described in `models/public_artifact_manifest.json`. Re-running training in a materially different dependency environment can change serialized bytes; publication uses the recorded artifacts and hashes.
 
-## Local execution
-
-Place the privately approved artefacts at:
-
-```text
-models/fake_news_pipeline.joblib
-models/confidence_calibration.json
-```
-
-Then run:
+## Validate
 
 ```bash
-streamlit run app.py
+python -m compileall -q app.py pages src ui tests scripts training synthetic_benchmark
+python -m pytest -q --strict-markers
+python scripts/audit_public_release.py --allow-publication-gates
 ```
 
-The application uses session-isolated temporary history by default. `NEWSLENS_HISTORY_MODE=persistent` is only for a trusted, single-user local runtime.
+The release scan verifies the dataset ZIP, public model, calibration binding, legal package, secrets, private artifact exclusions, navigation, and local links.
 
-## Testing and verification
+## Responsible use
 
-```bash
-python -m pytest -q --strict-markers -m "not private_model"
-python scripts/audit_public_release.py --tracked-files --allow-publication-gates
-python scripts/generate_synthetic_benchmark.py --mode verify
-```
+- Inputs lacking both supported fact blocks are routed to **Editorial review required**.
+- Confidence measures agreement with synthetic benchmark labels, not factual truth.
+- The app does not expose raw training rows.
+- Public history is isolated to a visitor session; full article text is not persisted.
+- Human verification against independent primary sources remains necessary.
 
-The public commands intentionally exclude four private-model tests. `scripts/verify_project.py` is a historical private-release verifier and requires the excluded, owner-approved artifacts; it is not the public-suite entry point. Current CI and both CodeQL Action v4 language analyses pass. Successful checks do not alone establish zero open historical security alerts.
+See `docs/DATASET_CARD.md`, `docs/MODEL_CARD.md`, `docs/TESTING.md`, and `docs/DEPLOYMENT.md` for the full evidence trail.
 
-The controlled benchmark requires checksum-verified official ISOT CSVs in a private directory:
-
-```bash
-python training/benchmark_models.py --raw-dir /private/path/to/isot
-```
-
-Raw dataset files are never added to release archives. Final test, compilation, Streamlit, dependency, Next.js, browser-width, documentation, and archive results are recorded in [`docs/DEPLOYMENT_CHECKPOINT.md`](docs/DEPLOYMENT_CHECKPOINT.md) and [`reports/NewsLens_AI_Deployment_and_Audit_Report.md`](reports/NewsLens_AI_Deployment_and_Audit_Report.md).
-
-## Security and privacy
-
-- Public URL ingestion validates every redirect and blocks local/private network access.
-- Upload and extraction size limits prevent unbounded processing.
-- Formula-safe CSV and escaped PDF rendering reduce export injection risk.
-- Secrets, local paths, runtime logs, uploads, generated databases, and private artefacts are ignored and excluded from public archives.
-- Public-safe history uses a non-guessable session-scoped temporary SQLite path.
-- No paid API, hosted database, background job, or runtime retraining is required.
-
-Report security issues through [`SECURITY.md`](SECURITY.md). See [`docs/PRIVACY.md`](docs/PRIVACY.md) for the storage boundary.
-
-## Documentation
-
-- [Project report (DOCX)](docs/NewsLens_AI_Project_Report.docx)
-- [Project report (PDF)](docs/NewsLens_AI_Project_Report.pdf)
-- [Setup and run guide](docs/NewsLens_AI_Setup_and_Run_Guide.docx)
-- [Code explanation and developer guide](docs/NewsLens_AI_Code_Explanation_and_Developer_Guide.docx)
-- [Concepts, methodologies, and terminology guide](docs/NewsLens_AI_Complete_Concepts_Methodologies_and_Terminology_Guide.docx)
-- [Research paper matrix](docs/NewsLens_AI_Research_Paper_Matrix.xlsx)
-- [Editorial AI case study](docs/EDITORIAL_AI_CASE_STUDY.md)
-- [Placement interview guide](docs/PLACEMENT_INTERVIEW_GUIDE.md)
-- [Architecture](docs/ARCHITECTURE.md)
-- [Model card](docs/MODEL_CARD.md)
-- [Dataset card](docs/DATASET_CARD.md)
-- [Testing](docs/TESTING.md)
-- [Deployment](docs/DEPLOYMENT.md)
-- [Privacy](docs/PRIVACY.md)
-- [Third-party licences](docs/THIRD_PARTY_LICENSES.md)
-- [Public release audit](docs/PUBLIC_RELEASE_AUDIT.md)
-
-## Deployment architecture
-
-```text
-Public GitHub repository
-        |
-        +-- Streamlit Community Cloud (free tier)
-        |      +-- app.py Python/ML runtime
-        |
-        +-- Vercel Hobby at zero base price
-               +-- web/ Next.js presentation shell
-               +-- /app iframe using NEXT_PUBLIC_STREAMLIT_APP_URL + ?embed=true
-```
-
-NewsLens AI is designed for a zero-cost academic deployment architecture based on a public GitHub repository, Streamlit Community Cloud for the Python application, and Vercel Hobby for the presentation website. Hosting remains subject to providers' current free-tier limits and non-commercial-use conditions. No payment, paid trial, custom domain, paid database, paid analytics, or billable overage is authorised.
-
-Neither service is deployed and no GitHub deployment or environment is recorded. Functional deployment must not proceed until the live Streamlit URL is resolved and model/calibration redistribution rights are confirmed. The Next.js shell must not be represented as the complete ML application without a working Streamlit runtime.
-
-## Future roadmap
-
-- Licensed Marathi and multilingual regional-news corpora with language-specific preprocessing and calibration.
-- Publisher-, event-, topic-, and time-separated evaluation.
-- Authenticated editorial roles and encrypted managed persistence when an approved architecture exists.
-- Human-review agreement and explanation-usefulness studies.
-- Separately evaluated claim/evidence retrieval rather than treating linguistic classification as fact-checking.
-- Monitoring ownership, alert policy, model-card updates, and deliberate human-approved retraining.
-
-## Author, citation, and rights
-
-Designed and developed by **Deven Sachin Gaikwad**.
-
-Preferred citation metadata is in [`CITATION.cff`](CITATION.cff). The canonical public GitHub repository is active at <https://github.com/DevenGaikwad/NewsLens-AI>. Streamlit and Vercel deployment remain blocked pending a legally redistributable public model.
-
-© 2026 Deven Sachin Gaikwad. All Rights Reserved.
-
-The original project components are proprietary and source-visible; [`LICENSE`](LICENSE) is explicitly not an open-source licence. The independently authored synthetic dataset archive carries its own CC BY 4.0 notice to the extent applicable rights subsist. Third-party packages, datasets, papers, and tools retain their own terms. Public visibility does not otherwise grant permission to copy, redistribute, sell, sublicense, or submit this project as another person's work.
+© 2026 Deven Sachin Gaikwad. All Rights Reserved. The synthetic dataset has the separate license described in its dataset card.

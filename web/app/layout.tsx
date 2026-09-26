@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | NewsLens AI",
   },
   description:
-    "Summarise news articles, estimate linguistic credibility risk, and inspect transparent model evidence.",
+    "Summarise articles and inspect a transparent synthetic ledger-consistency signal.",
   authors: [{ name: "Deven Sachin Gaikwad" }],
   creator: "Deven Sachin Gaikwad",
   publisher: "Deven Sachin Gaikwad",
@@ -59,7 +59,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
             <span>NewsLens AI · Designed and developed by Deven Sachin Gaikwad</span>
             <span>© 2026 Deven Sachin Gaikwad. All Rights Reserved.</span>
           </div>
-          <p>Research software — not a replacement for professional fact-checking.</p>
+          <p>Synthetic research demonstration — not a replacement for professional fact-checking.</p>
         </footer>
       </body>
     </html>
