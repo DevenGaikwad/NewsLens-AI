@@ -12,7 +12,11 @@ from src.calibration import load_calibration
 from src.editorial_review import REVIEW_STATUSES, normalise_supporting_urls
 from src.fake_news_predictor import load_model
 from src.model_diagnostics import INSUFFICIENT_DRIFT_MESSAGE, assess_drift, assess_input
-from src.newsroom_analytics import privacy_safe_analytics_export
+from src.newsroom_analytics import (
+    confidence_distribution,
+    privacy_safe_analytics_export,
+    risk_distribution,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -125,3 +129,33 @@ def test_review_statuses_are_fixed_and_supporting_urls_fail_closed() -> None:
     )
     with pytest.raises(ValueError, match="Private-network"):
         normalise_supporting_urls("http://127.0.0.1/private")
+
+
+def test_newsroom_analytics_separate_out_of_scope_from_supported_confidence() -> None:
+    frame = pd.DataFrame(
+        [
+            {
+                "prediction_label": "Synthetic ledger-consistent pattern indicated",
+                "confidence_band": "High",
+                "domain_mismatch": 0,
+            },
+            {
+                "prediction_label": "Editorial review required",
+                "confidence_band": "Review",
+                "domain_mismatch": 1,
+            },
+        ]
+    )
+    outcomes = dict(
+        zip(risk_distribution(frame)["Outcome"], risk_distribution(frame)["Count"])
+    )
+    confidence = dict(
+        zip(
+            confidence_distribution(frame)["Confidence band"],
+            confidence_distribution(frame)["Count"],
+        )
+    )
+    assert outcomes["Outside supported comparison scope"] == 1
+    assert outcomes["Synthetic ledger-consistent pattern indicated"] == 1
+    assert confidence["High"] == 1
+    assert confidence["Review"] == 0

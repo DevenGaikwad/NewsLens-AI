@@ -30,7 +30,7 @@ Only `newslens-synthetic-articles-v1.0.0` was used. The archive contains 24,000 
 | Abstention policy | 1,200 | Select threshold |
 | Final test | 1,200 | Locked evaluation |
 
-No ISOT content, private ISOT-derived model, private calibration, or external copyrighted training dataset was accessed or used.
+No external copyrighted article dataset or non-redistributable model/calibration artifact was accessed or used for this public package.
 
 ## Selection and evaluation
 
@@ -50,6 +50,14 @@ These controls support the conclusion that the model uses the authored compariso
 ## Calibration and abstention
 
 The Platt calibration file contains the exact model SHA-256. Runtime loading fails closed on a mismatch. Inputs without both supported fact blocks are routed to editorial review even if the raw score is confident.
+
+The human-readable result labels do not change the stored class contract:
+
+- **Fields agree - calibrated probability** corresponds to `synthetic_ledger_consistent` comparison patterns.
+- **Fields conflict - calibrated probability** corresponds to `synthetic_ledger_contradicting` comparison patterns.
+- **Reference-comparison confidence** is the calibrated confidence in the selected synthetic consistency class, not factual certainty.
+
+When either structured block is missing, the public UI, PDF, and archive CSV report **Outside supported comparison scope** and withhold directional probabilities. The stable JSON fields remain for machine compatibility and are explicitly marked `withheld_outside_supported_scope`; they must not be interpreted as a truth/fake-news probability.
 
 ## Limitations and ethics
 

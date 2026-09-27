@@ -15,7 +15,7 @@ The classifier has a deliberately narrow purpose: compare the visible `Reference
 - Group-safe training, validation, calibration, abstention-policy, and locked-test partitions.
 - Streamlit interface with summarisation, classification, abstention, explanations, exports, session-local review, and aggregate monitoring.
 
-No ISOT row, copied phrase, close paraphrase, transformation, translation, summary, reconstruction, private ISOT model, private calibration artifact, or external copyrighted training dataset is included.
+All training articles and entities were independently authored for this project. No external copyrighted article dataset or non-redistributable model/calibration artifact is included.
 
 ## Measured evidence
 
@@ -32,6 +32,15 @@ No ISOT row, copied phrase, close paraphrase, transformation, translation, summa
 | Metadata-only balanced accuracy | 0.521 |
 
 Perfect in-distribution performance reflects a structured synthetic comparison task; it must not be interpreted as unrestricted news-veracity performance.
+
+## Understanding the calibrated probabilities
+
+- **Fields agree - calibrated probability** is the calibrated probability of the synthetic `ledger-consistent` class learned from visible `Reference note` and `Article account` comparison patterns.
+- **Fields conflict - calibrated probability** is the calibrated probability of the synthetic `ledger-contradicting` class learned from those same visible fields.
+- **Reference-comparison confidence** is the calibrated confidence in the selected synthetic consistency class. It is not factual certainty.
+- Inputs without both structured blocks are shown as **Outside supported comparison scope**. Directional probabilities are withheld in the UI, PDF, and archive CSV because they are not meaningful credibility scores for ordinary external articles.
+
+These scores measure agreement with the synthetic benchmark classes. They do not determine whether a real-world article is true or fake.
 
 ## Run locally
 
@@ -81,8 +90,8 @@ The release scan verifies the dataset ZIP, public model, calibration binding, le
 
 ## Responsible use
 
-- Inputs lacking both supported fact blocks are routed to **Editorial review required**.
-- Confidence measures agreement with synthetic benchmark labels, not factual truth.
+- Inputs lacking both supported fact blocks are routed to review and shown as **Outside supported comparison scope**.
+- Calibrated class probabilities and reference-comparison confidence are displayed only for supported structured comparisons; they measure synthetic benchmark-class agreement, not factual truth.
 - The app does not expose raw training rows.
 - Public history is isolated to a visitor session; full article text is not persisted.
 - Human verification against independent primary sources remains necessary.

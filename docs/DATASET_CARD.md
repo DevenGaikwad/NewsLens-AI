@@ -14,7 +14,7 @@
 
 The corpus was independently generated for NewsLens AI from project-authored fictional vocabularies, templates, entities, and event records. Functional compatibility is limited to label, schema, interface, objective, and application behavior.
 
-The archive contains no ISOT row, copied phrase, close paraphrase, transformation, translation, summary, reconstruction, or private artifact. No external copyrighted article dataset was used as generation material.
+The archive contains only project-authored fictional source material. No row, copied phrase, close paraphrase, transformation, translation, summary, or reconstruction from an external copyrighted article dataset was used as generation material.
 
 ## Structure
 

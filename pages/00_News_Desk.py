@@ -22,7 +22,7 @@ metrics = json.loads(metrics_path.read_text(encoding="utf-8")) if metrics_path.e
 
 hero(
     "Synthetic News Intelligence · Local and Explainable",
-    "News\nintelligence,\nwith scope\nintact.",
+    "News intelligence\nWith scope intact",
     "NewsLens AI creates a deterministic reading summary and evaluates whether two visible, "
     "fictional ledger descriptions agree. The public classifier and its calibration were trained "
     "only from an independently authored synthetic benchmark.",

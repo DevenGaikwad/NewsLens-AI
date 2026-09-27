@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-09-26T12:22:03Z",
-  "scope": "NewsLens AI synthetic-only release verification",
-  "status": "passed_and_deployed",
+  "generated_at_utc": "2026-09-27T03:53:34Z",
+  "scope": "NewsLens AI synthetic-only release verification with Phase 5T presentation-maintenance candidate",
+  "status": "phase5s_deployed_phase5t_candidate_validated_locally",
   "dataset": {
     "id": "newslens-synthetic-articles-v1.0.0",
     "path": "data/synthetic/newslens-synthetic-articles-v1.0.0.zip",
@@ -85,19 +85,19 @@
     "python_compileall": "passed",
     "focused_integration_tests": {
       "status": "passed",
-      "tests": 33,
+      "tests": 38,
       "failures": 0,
       "errors": 0,
       "skipped": 0,
-      "duration_seconds": 3.46
+      "duration_seconds": 3.84
     },
     "complete_pytest_suite": {
       "status": "passed",
-      "tests": 154,
+      "tests": 165,
       "failures": 0,
       "errors": 0,
       "skipped": 0,
-      "duration_seconds": 13.091
+      "duration_seconds": 14.41
     },
     "pip_check": "passed",
     "pip_audit": {
@@ -129,6 +129,24 @@
     "project_report_pdf_pages": 9,
     "render_and_visual_inspection": "passed",
     "clipping_overlap_or_blank_pages": 0
+  },
+  "phase_5t_maintenance_candidate": {
+    "base_commit": "f6cae8cedb3364cf03864410b8c5572c4e625504",
+    "pdf_probability_rows_repaired": true,
+    "unsupported_directional_scores_withheld_in_ui_pdf_csv": true,
+    "stable_json_score_fields_preserved": true,
+    "prediction_diagnostic": "reports/results/phase5t_prediction_diagnostic.json",
+    "prediction_diagnostic_conclusion": "scope_and_presentation_problem_not_model_or_calibration_defect",
+    "responsive_tagline": "News intelligence / With scope intact",
+    "masthead_bounds_verified": true,
+    "obsolete_publication_banner_removed": true,
+    "docx_pages_visually_verified": 28,
+    "project_pdf_pages_visually_verified": 9,
+    "representative_export_pdf_pages_visually_verified": 7,
+    "model_retrained": false,
+    "dataset_model_calibration_identity_unchanged": true,
+    "protected_pr": null,
+    "live_deployment_verified": false
   },
   "protected_workflow": {
     "dataset_pr": 44,

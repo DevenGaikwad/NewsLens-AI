@@ -48,6 +48,27 @@ DISCLAIMER = (
     "This synthetic-benchmark consistency signal compares the visible Reference note and "
     "Article account fields. It does not verify real-world facts or determine truth."
 )
+FIELDS_AGREE_PROBABILITY_LABEL = "Fields agree - calibrated probability"
+FIELDS_CONFLICT_PROBABILITY_LABEL = "Fields conflict - calibrated probability"
+REFERENCE_COMPARISON_CONFIDENCE_LABEL = "Reference-comparison confidence"
+CALIBRATED_SCORE_EXPLANATION = (
+    '"Fields agree" and "Fields conflict" are calibrated probabilities for the two synthetic '
+    "benchmark classes learned from visible Reference note and Article account comparison "
+    "patterns. They are not truth probabilities."
+)
+CALIBRATED_CONFIDENCE_EXPLANATION = (
+    "Reference-comparison confidence is the model's calibrated confidence in its selected "
+    "synthetic consistency class. It is not factual certainty."
+)
+EDITORIAL_REVIEW_EXPLANATION = (
+    "Editorial review can be required by unsupported structure, scope controls, or the review "
+    "policy even when numerical class probabilities are available."
+)
+OUT_OF_SCOPE_EXPLANATION = (
+    "Outside supported comparison scope: both a Reference note and an Article account are "
+    "required. No calibrated class probability is displayed for ordinary external articles "
+    "because the model does not establish their factual credibility."
+)
 
 LOWER_RISK_OUTCOME = "Synthetic ledger-consistent pattern indicated"
 HIGHER_RISK_OUTCOME = "Synthetic ledger-contradicting pattern indicated"
@@ -55,6 +76,8 @@ REVIEW_REQUIRED_OUTCOME = "Editorial review required"
 
 PROJECT_AUTHOR = "Deven Sachin Gaikwad"
 COPYRIGHT_NOTICE = "© 2026 Deven Sachin Gaikwad. All Rights Reserved."
+PUBLIC_AUTHOR = "Deven Gaikwad"
+PUBLIC_COPYRIGHT_NOTICE = "© 2026 · All rights reserved"
 
 
 def ensure_runtime_directories() -> None:

@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900" role="img" aria-labelledby="title desc">
   <title id="title">NewsLens AI editorial masthead illustration</title>
-  <desc id="desc">An original warm-toned composition of newspaper pages, rules, a magnifying lens, and credibility annotations.</desc>
+  <desc id="desc">An original warm-toned composition of newspaper pages, rules, a magnifying lens, and evidence annotations.</desc>
   <rect width="900" height="900" fill="#EAE4D8"/>
   <path d="M0 110 900 0v130L0 240Z" fill="#D8CCBA" opacity=".62"/>
   <path d="M0 750 900 625v275H0Z" fill="#D8CCBA" opacity=".72"/>
   <g transform="translate(115 120) rotate(-5 310 310)">
     <rect x="0" y="0" width="600" height="650" fill="#FAF8F2" stroke="#090909" stroke-width="6"/>
     <rect x="35" y="38" width="530" height="60" fill="#090909"/>
-    <text x="55" y="80" fill="#FAF8F2" font-family="Georgia,serif" font-size="36" font-weight="700">THE NEWS INTELLIGENCE DESK</text>
+    <text x="55" y="80" fill="#FAF8F2" font-family="Georgia,serif" font-size="29" font-weight="700" textLength="490" lengthAdjust="spacingAndGlyphs">THE NEWS INTELLIGENCE DESK</text>
     <line x1="35" y1="128" x2="565" y2="128" stroke="#090909" stroke-width="3"/>
-    <text x="35" y="175" fill="#40352C" font-family="Georgia,serif" font-size="34" font-weight="700">Signal, context and uncertainty.</text>
-    <text x="35" y="208" fill="#77736C" font-family="Arial,sans-serif" font-size="16" letter-spacing="2">LOCAL ANALYSIS • EXPLAINABLE MODEL • PRIVATE ARCHIVE</text>
+    <text x="35" y="175" fill="#40352C" font-family="Georgia,serif" font-size="30" font-weight="700" textLength="515" lengthAdjust="spacingAndGlyphs">Signal, context and uncertainty.</text>
+    <text x="40" y="208" fill="#77736C" font-family="Arial,sans-serif" font-size="13" letter-spacing="1.4" textLength="520" lengthAdjust="spacingAndGlyphs">LOCAL ANALYSIS • EXPLAINABLE MODEL • PRIVATE ARCHIVE</text>
     <rect x="35" y="245" width="245" height="170" fill="#D8CCBA"/>
     <path d="M55 385 105 315l48 36 52-81 53 115Z" fill="#A89984"/>
     <circle cx="110" cy="285" r="20" fill="#F3F0E8"/>

@@ -46,6 +46,32 @@ def test_missing_fact_blocks_force_editorial_review() -> None:
     assert "Reference note" in result.review_reason
 
 
+def test_distinct_out_of_scope_articles_abstain_without_cached_result_reuse() -> None:
+    model = load_model()
+    realistic = (
+        "A municipal transport committee reviewed bus timetables, accessibility requests, "
+        "maintenance schedules, and public comments. Officials said no route changes would "
+        "occur before consultation, while residents asked about school services, evening "
+        "connections, and the publication of supporting cost estimates for the proposal."
+    )
+    fabricated = (
+        "A purple glass moon landed beside a village library and began broadcasting tomorrow's "
+        "weather. The invented story names no observatory, supplies no measurements, cites no "
+        "evidence, and describes an impossible event solely as a classroom example without any "
+        "structured reference comparison fields."
+    )
+    first = predict_credibility(realistic, model, diagnostics=assess_input(realistic, model))
+    second = predict_credibility(fabricated, model, diagnostics=assess_input(fabricated, model))
+    repeated = predict_credibility(realistic, load_model(), diagnostics=assess_input(realistic, model))
+
+    assert first.display_label == REVIEW_REQUIRED_OUTCOME
+    assert second.display_label == REVIEW_REQUIRED_OUTCOME
+    assert first.review_required is second.review_required is True
+    assert first.misleading_probability != second.misleading_probability
+    assert first.misleading_probability == repeated.misleading_probability
+    assert first.reliable_probability == repeated.reliable_probability
+
+
 def test_missing_model_has_actionable_error(tmp_path: Path) -> None:
     with pytest.raises(ModelLoadError, match="training/train_synthetic_model.py"):
         load_model(tmp_path / "missing.joblib")
