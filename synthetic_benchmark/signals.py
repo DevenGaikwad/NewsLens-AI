@@ -29,11 +29,7 @@ FACT_FIELDS = (
     "certainty",
 )
 
-_BLOCK = re.compile(
-    r"^(Reference note|Article account)\s*[—-]\s*(.+?)\s*$",
-    flags=re.IGNORECASE | re.MULTILINE,
-)
-_FIELD = re.compile(r"(?:^|;)\s*([a-z]+)\s*:\s*([^;]+)", flags=re.IGNORECASE)
+_HEADINGS = (("Reference note", "reference"), ("Article account", "account"))
 _URL = re.compile(r"https?://\S+|www\.\S+", flags=re.IGNORECASE)
 _CONTROL = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
 
@@ -60,15 +56,41 @@ def fact_value_code(field: str, value: str) -> str:
 
 
 def parse_fact_blocks(text: str) -> dict[str, dict[str, str]]:
-    """Return canonical reference/account fields from one generated article."""
+    """Return canonical fields from single-line reference/account summaries.
+
+    The first colon separates a field name from its value; later colons belong
+    to the value.  As in the original parser, a later occurrence of a field or
+    block replaces an earlier one.  Parsing each line and segment once avoids
+    regex backtracking on untrusted article text.
+    """
 
     parsed: dict[str, dict[str, str]] = {}
-    for heading, body in _BLOCK.findall(str(text or "")):
-        key = "reference" if heading.lower().startswith("reference") else "account"
-        parsed[key] = {
-            name.lower(): _canonical(value.rstrip(". "))
-            for name, value in _FIELD.findall(body)
-        }
+    for line in str(text or "").splitlines():
+        for heading, key in _HEADINGS:
+            if line[: len(heading)].lower() != heading.lower():
+                continue
+            position = len(heading)
+            while position < len(line) and line[position].isspace():
+                position += 1
+            if position == len(line) or line[position] not in "—-":
+                continue
+            position += 1
+            while position < len(line) and line[position].isspace():
+                position += 1
+            if position == len(line):
+                continue
+
+            fields: dict[str, str] = {}
+            for raw_segment in line[position:].split(";"):
+                name, separator, value = raw_segment.lstrip().partition(":")
+                name = name.strip()
+                if not separator or not value or not name or not all(
+                    "a" <= char.lower() <= "z" for char in name
+                ):
+                    continue
+                fields[name.lower()] = _canonical(value.lstrip().rstrip(". "))
+            parsed[key] = fields
+            break
     return parsed
 
 
