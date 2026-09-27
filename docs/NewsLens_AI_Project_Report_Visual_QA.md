@@ -2,7 +2,7 @@
 
 Updated: 26 September 2026
 
-The four retained DOCX reports were rebuilt in place from the current Phase 5S Markdown evidence and rendered with LibreOffice for page-by-page inspection.
+The four retained DOCX reports were reconciled in place from the verified Phase 5S evidence and the narrowly scoped Phase 5T presentation corrections, then rendered with LibreOffice for page-by-page inspection.
 
 | Document | Pages | Result |
 |---|---:|---|
@@ -15,3 +15,9 @@ The four retained DOCX reports were rebuilt in place from the current Phase 5S M
 The inspection covered cover pages, headers/footers, page numbering, tables, code blocks, lists, figures, clipping, overlap, overflow, blank pages, and final-page completeness. No visible truncation or overlap was found. The existing project-report PDF was replaced from the verified DOCX and independently rasterized and inspected.
 
 Earlier application screenshots predate the Phase 5S synthetic-model integration and are historical only; they are not accepted as final deployment evidence. Current desktop/mobile screenshots and browser evidence are recorded only after the protected PR B merge and live Streamlit smoke test.
+
+## Phase 5T targeted reinspection
+
+The four DOCX files were edited in place only where calibrated-probability, supported-scope, PDF-export, or completed Phase 5S deployment guidance was affected. All 28 DOCX pages were re-rendered and inspected. The nine-page project PDF was regenerated from the updated project-report DOCX; its SHA-256 matched the verified render source, and the tracked PDF was independently rasterized and inspected page by page.
+
+The reinspection also covered the corrected public tagline, masthead artwork bounds, concise footer authorship, removal of the obsolete public publication banner, and the rule that directional probabilities are withheld outside the supported two-block comparison format. It found zero clipping, overlap, overflow, broken tables, missing glyphs, unintended blank pages, header/footer defects, or incomplete final pages.

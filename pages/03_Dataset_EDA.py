@@ -14,7 +14,7 @@ configure_page("NewsLens AI | Dataset Analysis", active="eda")
 page_header(
     "Dataset Analysis · Synthetic Benchmark",
     "Original fiction,\nreproducible evidence.",
-    "The benchmark contains only independently authored fictional articles and entities. It contains no ISOT rows, transformations, summaries, translations, or reconstructions.",
+    "The benchmark contains only independently authored fictional articles and entities; no external article dataset was used as source material.",
 )
 profile = json.loads((RESULTS_DIR / "dataset_profile.json").read_text(encoding="utf-8"))
 

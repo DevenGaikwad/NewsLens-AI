@@ -33,9 +33,14 @@ def newsroom_summary(frame: pd.DataFrame) -> dict[str, Any]:
 def risk_distribution(frame: pd.DataFrame) -> pd.DataFrame:
     if frame.empty:
         return pd.DataFrame(columns=["Outcome", "Count"])
+    outcomes = frame["prediction_label"].fillna("Editorial review required").copy()
+    if "domain_mismatch" in frame.columns:
+        outside_scope = pd.to_numeric(
+            frame["domain_mismatch"], errors="coerce"
+        ).fillna(0).astype(bool)
+        outcomes.loc[outside_scope] = "Outside supported comparison scope"
     return (
-        frame["prediction_label"]
-        .fillna("Editorial review required")
+        outcomes
         .value_counts()
         .rename_axis("Outcome")
         .reset_index(name="Count")
@@ -45,7 +50,12 @@ def risk_distribution(frame: pd.DataFrame) -> pd.DataFrame:
 def confidence_distribution(frame: pd.DataFrame) -> pd.DataFrame:
     if frame.empty:
         return pd.DataFrame(columns=["Confidence band", "Count"])
-    values = frame["confidence_band"].fillna("Review")
+    supported = frame
+    if "domain_mismatch" in frame.columns:
+        supported = frame[
+            pd.to_numeric(frame["domain_mismatch"], errors="coerce").fillna(0).eq(0)
+        ]
+    values = supported["confidence_band"].fillna("Review")
     counts = values.value_counts().reindex(CONFIDENCE_ORDER, fill_value=0)
     return counts.rename_axis("Confidence band").reset_index(name="Count")
 

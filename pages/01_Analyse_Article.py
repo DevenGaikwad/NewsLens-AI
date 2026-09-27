@@ -9,10 +9,17 @@ import streamlit as st
 
 from src.article_extractor import ArticleData, ArticleExtractionError, extract_article
 from src.config import (
+    CALIBRATED_CONFIDENCE_EXPLANATION,
+    CALIBRATED_SCORE_EXPLANATION,
     DISCLAIMER,
+    EDITORIAL_REVIEW_EXPLANATION,
+    FIELDS_AGREE_PROBABILITY_LABEL,
+    FIELDS_CONFLICT_PROBABILITY_LABEL,
     HIGHER_RISK_OUTCOME,
     LOWER_RISK_OUTCOME,
     MIN_ARTICLE_WORDS,
+    OUT_OF_SCOPE_EXPLANATION,
+    REFERENCE_COMPARISON_CONFIDENCE_LABEL,
 )
 from src.database import insert_analysis
 from src.extractive_summarizer import summarize_extractive
@@ -54,7 +61,19 @@ def cached_model():
     return load_model()
 
 
-def verdict_interpretation(label: str, confidence_band: str, review_reason: str = "") -> str:
+def verdict_interpretation(
+    label: str,
+    confidence_band: str,
+    review_reason: str = "",
+    *,
+    scope_supported: bool = True,
+) -> str:
+    if not scope_supported:
+        return (
+            "The required Reference note and Article account pair was not available, so the "
+            "application withheld a directional comparison score. Independent editorial "
+            "verification remains necessary."
+        )
     if label == LOWER_RISK_OUTCOME:
         message = "The visible synthetic account fields are consistent with the visible reference fields."
     elif label == HIGHER_RISK_OUTCOME:
@@ -239,6 +258,7 @@ if analyse_clicked:
             "confidence": prediction.confidence,
             "calibration_status": prediction.calibration_status,
             "input_diagnostics": diagnostics.to_dict(),
+            "supported_scope": not diagnostics.domain_mismatch,
             "explanation": prediction.explanation,
         }
         st.session_state["last_analysis"] = payload
@@ -256,6 +276,9 @@ if analyse_clicked:
 
 payload = st.session_state.get("last_analysis")
 if payload:
+    supported_scope = bool(
+        payload.get("supported_scope", not bool(payload.get("domain_mismatch", False)))
+    )
     section_heading(
         "02 · Analysis Complete",
         str(payload["article_title"]),
@@ -275,9 +298,13 @@ if payload:
             ("Summary words", f"{payload['summary_word_count']:,}", payload["summary_length"]),
             ("Compression", f"{payload['compression_ratio_pct']:.1f}%", "Word-count reduction"),
             (
-                "Calibrated confidence",
-                f"{float(payload['calibrated_confidence']):.1%}",
-                payload["confidence_band"],
+                REFERENCE_COMPARISON_CONFIDENCE_LABEL,
+                (
+                    f"{float(payload['calibrated_confidence']):.1%}"
+                    if supported_scope
+                    else "Not reported"
+                ),
+                payload["confidence_band"] if supported_scope else "Outside supported scope",
             ),
             ("Total latency", f"{payload['processing_time']:.2f}s", "Local end-to-end runtime"),
         )
@@ -287,30 +314,53 @@ if payload:
     with verdict_col:
         result_status(
             payload["prediction_label"],
-            confidence=float(payload.get("confidence", max(
-                payload["reliable_probability"], payload["misleading_probability"]
-            ))),
+            confidence=(
+                float(payload.get("confidence", max(
+                    payload["reliable_probability"], payload["misleading_probability"]
+                )))
+                if supported_scope
+                else None
+            ),
             interpretation=verdict_interpretation(
                 payload["prediction_label"],
                 payload["confidence_band"],
                 str(payload.get("review_reason", "")),
+                scope_supported=supported_scope,
             ),
+            scope_supported=supported_scope,
         )
-        st.plotly_chart(
-            confidence_gauge(
-                float(payload["misleading_probability"]),
-                float(payload["editorial_review_threshold"]),
-            ),
-            use_container_width=True,
-            config={"displayModeBar": False, "responsive": True},
-        )
-        callout(
-            "Calibration and review policy",
-            f"{payload['calibration_method']} calibration · validation-selected review threshold "
-            f"{float(payload['editorial_review_threshold']):.0%}. Calibration measures reliability "
-            "against benchmark labels, not factual verification.",
-            kind="warning" if bool(payload.get("review_required")) else "neutral",
-        )
+        if supported_scope:
+            st.plotly_chart(
+                confidence_gauge(
+                    float(payload["misleading_probability"]),
+                    float(payload["editorial_review_threshold"]),
+                ),
+                use_container_width=True,
+                config={"displayModeBar": False, "responsive": True},
+            )
+            with st.expander("What do these scores mean?"):
+                agree_col, conflict_col = st.columns(2)
+                agree_col.metric(
+                    FIELDS_AGREE_PROBABILITY_LABEL,
+                    f"{float(payload['reliable_probability']):.1%}",
+                )
+                conflict_col.metric(
+                    FIELDS_CONFLICT_PROBABILITY_LABEL,
+                    f"{float(payload['misleading_probability']):.1%}",
+                )
+                st.caption(CALIBRATED_SCORE_EXPLANATION)
+                st.caption(CALIBRATED_CONFIDENCE_EXPLANATION)
+                if bool(payload.get("review_required")):
+                    st.caption(EDITORIAL_REVIEW_EXPLANATION)
+            callout(
+                "Calibration and review policy",
+                f"{payload['calibration_method']} calibration · validation-selected review threshold "
+                f"{float(payload['editorial_review_threshold']):.0%}. Calibration measures agreement "
+                "with benchmark labels, not factual verification.",
+                kind="warning" if bool(payload.get("review_required")) else "neutral",
+            )
+        else:
+            callout("Outside supported scope", OUT_OF_SCOPE_EXPLANATION, kind="warning")
     with summary_col:
         reading_panel(
             str(payload["article_title"]),
@@ -349,28 +399,36 @@ if payload:
 
     section_heading(
         "04 · Model Explanation",
-        "Why the linear model leaned this way",
-        "The chart and term lists expose local TF-IDF × coefficient contributions, including "
-        "transparent derived match/mismatch tokens. They are not real-world factual evidence.",
+        "Why the linear model leaned this way" if supported_scope else "Directional explanation withheld",
+        (
+            "The chart and term lists expose local TF-IDF × coefficient contributions, including "
+            "transparent derived match/mismatch tokens. They are not real-world factual evidence."
+            if supported_scope
+            else "Directional feature contributions are not presented when the required structured "
+            "reference pair is unavailable."
+        ),
     )
-    st.plotly_chart(
-        feature_contribution_chart(payload["explanation"]),
-        use_container_width=True,
-        config={"displayModeBar": False, "responsive": True},
-    )
-    evidence_left, evidence_right = st.columns(2, gap="large")
-    with evidence_left:
-        evidence_terms(
-            "Observed signals toward ledger contradiction",
-            payload["explanation"].get("supports_misleading", []),
-            direction="misleading",
+    if supported_scope:
+        st.plotly_chart(
+            feature_contribution_chart(payload["explanation"]),
+            use_container_width=True,
+            config={"displayModeBar": False, "responsive": True},
         )
-    with evidence_right:
-        evidence_terms(
-            "Observed signals toward ledger consistency",
-            payload["explanation"].get("supports_reliable", []),
-            direction="reliable",
-        )
+        evidence_left, evidence_right = st.columns(2, gap="large")
+        with evidence_left:
+            evidence_terms(
+                "Observed signals toward ledger contradiction",
+                payload["explanation"].get("supports_misleading", []),
+                direction="misleading",
+            )
+        with evidence_right:
+            evidence_terms(
+                "Observed signals toward ledger consistency",
+                payload["explanation"].get("supports_reliable", []),
+                direction="reliable",
+            )
+    else:
+        callout("No directional explanation", OUT_OF_SCOPE_EXPLANATION, kind="warning")
 
     callout("Important disclaimer", DISCLAIMER, kind="warning")
 

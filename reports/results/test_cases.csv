@@ -21,12 +21,12 @@ TC-19,Preprocessing,Control bytes URLs whitespace and long inputs,Safe determini
 TC-20,URL ingestion,"Malformed localhost private IP redirects and mock public HTML",Fail closed or safely extract,All assertions passed,Pass,SSRF hardening
 TC-21,File ingestion,"TXT PDF DOCX plus malformed and traversal names",Parse supported safe files and reject unsafe cases,All assertions passed,Pass,Automated pytest
 TC-22,Database,"Insert duplicate search update delete clear",Correct scoped CRUD and duplicate handling,All assertions passed,Pass,Temporary SQLite databases
-TC-23,Exports,"Analysis JSON PDF and archive CSV",Safe valid exports and formula neutralisation,All assertions passed,Pass,Automated pytest
+TC-23,Exports,"Analysis JSON PDF and archive CSV",Safe valid exports formula neutralisation clean PDF geometry and out-of-scope score withholding,All assertions passed,Pass,Automated pytest and seven-page visual matrix
 TC-24,Streamlit startup,Main app and five pages,No uncaught exception,All six entry points started,Pass,Streamlit AppTest
-TC-25,UI contract,Navigation theme assets and responsible language,Shared accessible editorial shell,All assertions passed,Pass,Automated pytest
+TC-25,UI contract,Navigation theme assets and responsible language,Shared accessible editorial shell with responsive tagline bounded masthead concise footer and no obsolete banner,All assertions passed,Pass,Automated pytest and retained raster evidence
 TC-26,Privacy,"Analytics drift and export payloads",Exclude raw article content and identifiers,All assertions passed,Pass,Aggregate-only evidence
 TC-27,Release policy,Safe and adversarial scanner fixtures,Pass safe tree and fail closed on secrets or binding mismatch,All assertions passed,Pass,Automated pytest
-TC-28,Complete suite,All packaged Python checks,"Zero failures errors or skips","154 passed in 13.091 seconds",Pass,XML evidence retained
+TC-28,Complete suite,All packaged Python checks,"Zero failures errors or skips","165 passed in 14.41 seconds",Pass,Phase 5T XML evidence retained
 TC-29,Python dependencies,requirements-lite.txt,Consistent install and no known vulnerability,"pip check passed; pip-audit found 0",Pass,pip-audit 2.10.1
 TC-30,Web project,Next.js source,"Install lint and production build pass","npm ci; lint; build passed",Pass,Static routes generated
 TC-31,Web dependencies,Production npm dependency tree,No known vulnerability,"80 audited; 0 vulnerabilities",Pass,npm audit omit dev

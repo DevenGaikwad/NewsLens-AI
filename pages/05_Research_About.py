@@ -16,7 +16,7 @@ configure_page("NewsLens AI | Research & About", active="about")
 page_header(
     "Research & About",
     "A transparent academic\nnews-intelligence prototype.",
-    "NewsLens AI combines deterministic summarization with a narrow synthetic consistency classifier, calibrated confidence, human review, privacy-safe analytics, and explicit responsible-use boundaries.",
+    "NewsLens AI combines deterministic summarization with a narrow synthetic consistency classifier, reference-comparison confidence, human review, privacy-safe analytics, and explicit responsible-use boundaries.",
 )
 metadata = json.loads(MODEL_METADATA_PATH.read_text(encoding="utf-8")) if MODEL_METADATA_PATH.exists() else {}
 
@@ -45,7 +45,7 @@ metadata_grid((
     ("Training articles", f"{metadata.get('training_articles', 0):,}"),
     ("Dataset", metadata.get("dataset_id", "Unavailable")),
     ("Synthetic only", str(metadata.get("synthetic_only", False))),
-    ("Private ISOT content used", str(metadata.get("private_isot_content_used", True))),
+    ("Training provenance", "Original synthetic benchmark only"),
 ))
 
 section_heading("04 · Responsible AI", "Capabilities and explicit limits", "The interface uses consistency language because classification is not evidence retrieval or factual verification.")
@@ -56,7 +56,7 @@ with can_do:
 1. Compress an article into a local reading view.
 2. Compare visible fields in the supported synthetic format.
 3. Expose influential observed and derived terms.
-4. Report calibrated confidence and abstain outside scope.
+4. Report reference-comparison confidence for supported inputs and abstain outside scope.
 5. Preserve a private, session-local human review record.
 """)
 with cannot_do:
@@ -83,5 +83,4 @@ if papers_path.exists():
 
 section_heading("07 · Ownership and Academic Integrity", "Source-visible demonstration", "Original project components remain proprietary and All Rights Reserved; dataset licensing is documented separately.")
 metadata_grid((("Project", "NewsLens AI"), ("Author and developer", PROJECT_AUTHOR), ("Copyright", COPYRIGHT_NOTICE), ("Permission model", "Proprietary source-visible application")))
-callout("Publication status", "The synthetic model, bound calibration, and evidence package are intended for public demonstration. No ISOT content or private ISOT-derived artifact is included.", kind="success")
 footer("NewsLens AI · Research & About", "Authorship · evidence · responsible scope")

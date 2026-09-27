@@ -277,7 +277,7 @@ select:focus-visible {
   display: block;
   height: 100%;
   max-width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
 }
 
@@ -293,10 +293,15 @@ select:focus-visible {
 }
 
 .editorial-hero h1 {
-  font-size: clamp(3.1rem, 5.8vw, 5.2rem);
+  font-size: clamp(2.7rem, 4vw, 3.5rem);
   line-height: .89;
   margin: .72rem 0 1.15rem;
   max-width: 780px;
+}
+
+.hero-title-line {
+  display: block;
+  white-space: nowrap;
 }
 
 .editorial-hero p {
@@ -1022,7 +1027,7 @@ div[data-testid="stAlert"] {
   }
 
   .editorial-hero h1 {
-    font-size: clamp(2.35rem, 11.5vw, 4rem);
+    font-size: clamp(2.25rem, 8vw, 4rem);
   }
 
   .metric-strip {
@@ -1056,6 +1061,10 @@ div[data-testid="stAlert"] {
 
   .editorial-hero-copy {
     padding: 1.35rem;
+  }
+
+  .editorial-hero h1 {
+    font-size: clamp(1.45rem, 7.5vw, 2.35rem);
   }
 
   .page-hero h1 {

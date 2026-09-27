@@ -5,10 +5,10 @@ type: software
 authors:
   - family-names: "Gaikwad"
     given-names: "Deven Sachin"
-abstract: "A Streamlit research application for news summarisation, explainable linguistic credibility-risk estimation, model accountability and dataset analysis."
+abstract: "A Streamlit research application for news summarisation, explainable synthetic reference-consistency estimation, model accountability and dataset analysis."
 keywords:
   - natural-language-processing
   - news-summarisation
-  - credibility-risk
+  - reference-consistency
   - explainable-ai
   - streamlit

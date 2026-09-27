@@ -49,3 +49,11 @@ The deployment browser could not create a separate 390-pixel harness because its
 Missing model files raise an actionable startup error. A calibration/model hash mismatch fails closed and forces review rather than reporting unverified confidence. Inputs outside the paired-ledger format abstain.
 
 Vercel is not required and was not created or modified. Six retained Dependabot pull requests and the historical release tag remain outside this deployment.
+
+## Phase 5T maintenance boundary
+
+The post-release maintenance changes only human-readable result presentation and documentation. PDF table cells use wrapping-aware paragraphs, calculated A4 widths, expanding row heights, top alignment, and padding. Supported comparisons use **Fields agree - calibrated probability**, **Fields conflict - calibrated probability**, and **Reference-comparison confidence**. Missing-ledger inputs are presented as **Outside supported comparison scope** and do not display directional probabilities in the UI, PDF, or archive CSV.
+
+The same pass removes the public publication-status banner, uses the punctuation-free two-line News Desk tagline, repairs the editorial illustration title bounds, and reduces the shared footer to one concise author attribution plus a minimal copyright line. None of these changes alters inference or deployment configuration.
+
+The maintenance release must retain the existing `reliable_probability` and `misleading_probability` machine-readable fields and must not change the model, calibration, dataset, threshold, class semantics, locked metrics, summariser, privacy boundary, or export availability. After protected merge, deployment validation includes a newly generated live PDF, all six pages, supported outcomes, abstention, exports, session isolation, public access, and application-origin console errors.

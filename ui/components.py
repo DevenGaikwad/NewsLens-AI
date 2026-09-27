@@ -10,10 +10,10 @@ from typing import Iterable, Sequence
 import streamlit as st
 
 from src.config import (
-    COPYRIGHT_NOTICE,
     HIGHER_RISK_OUTCOME,
     LOWER_RISK_OUTCOME,
-    PROJECT_AUTHOR,
+    PUBLIC_AUTHOR,
+    PUBLIC_COPYRIGHT_NOTICE,
 )
 
 from .navigation import render_navigation
@@ -64,7 +64,10 @@ def hero(
     """Render the newsroom hero with native, same-tab Streamlit page links."""
 
     art_uri = _image_uri(HERO_ART_PATH)
-    title_html = "<br>".join(_escape(title).splitlines())
+    title_html = "".join(
+        f'<span class="hero-title-line">{_escape(line)}</span>'
+        for line in title.splitlines()
+    )
     tags = " · ".join(_escape(tag) for tag in technical_tags)
     art = (
         f'<img src="{art_uri}" alt="Original abstract editorial illustration of layered news pages">'
@@ -186,19 +189,27 @@ def result_status(
     *,
     confidence: float | None = None,
     interpretation: str = "",
+    scope_supported: bool = True,
 ) -> None:
-    css_class, risk_label = _verdict_style(label)
+    if scope_supported:
+        css_class, risk_label = _verdict_style(label)
+        title = label
+    else:
+        css_class = "uncertain"
+        risk_label = "Structured reference pair unavailable"
+        title = "Outside supported comparison scope"
+        confidence = None
     probability = ""
     if confidence is not None:
         probability = (
             '<div class="verdict-probability">'
-            f"<strong>{confidence:.1%}</strong><span>calibrated confidence</span></div>"
+            f"<strong>{confidence:.1%}</strong><span>reference-comparison confidence</span></div>"
         )
     st.markdown(
         f"""
 <section class="verdict-panel {css_class}">
   <div class="verdict-label">Synthetic consistency signal · {risk_label}</div>
-  <div class="verdict-title">{_escape(label)}</div>
+  <div class="verdict-title">{_escape(title)}</div>
   <p>{_escape(interpretation)}</p>
   {probability}
 </section>
@@ -281,8 +292,8 @@ def footer(
             '<footer class="nl-footer">'
             f'<div class="nl-footer-context"><span>{_escape(left)}</span><span>{_escape(right)}</span></div>'
             '<div class="nl-footer-owner">'
-            f'<span>NewsLens AI · Designed and developed by {_escape(PROJECT_AUTHOR)}</span>'
-            f'<span>{_escape(COPYRIGHT_NOTICE)}</span>'
+            f'<span>Designed and developed by {_escape(PUBLIC_AUTHOR)}</span>'
+            f'<span>{_escape(PUBLIC_COPYRIGHT_NOTICE)}</span>'
             "</div></footer>"
         ),
         unsafe_allow_html=True,

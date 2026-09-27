@@ -15,4 +15,4 @@ Accepted identities:
 - Calibration SHA-256: `adcf03a860ef8fb41058b3a4dcc80351dbd02e05f81e0fc1e7f971624af6ab77`
 - Dataset archive SHA-256: `3b6df1fa17615bfe1b67f6c9136909c668ec846e3fa8d205fa8e4aa2a80526cc`
 
-The calibration loader refuses to report calibrated confidence if the active model does not match its bound hash. Historical private ISOT-derived artifact names remain excluded by `.gitignore` and the public-release audit; they are neither needed nor permitted for this runtime.
+The calibration loader refuses to report calibrated confidence if the active model does not match its bound hash. Historical non-redistributable artifact names remain excluded by `.gitignore` and the public-release audit; they are neither needed nor permitted for this runtime.

@@ -12,5 +12,5 @@ For an optional local presentation preview, set `NEXT_PUBLIC_STREAMLIT_APP_URL` 
 
 The value must be an HTTPS `*.streamlit.app` origin with no credentials, port, path, query, or fragment. Production responses include a restrictive Content Security Policy and standard browser security headers. The iframe is sandboxed while preserving the Streamlit functionality required for scripts, forms, downloads, and clearly useful external links.
 
-NewsLens AI · Designed and developed by Deven Sachin Gaikwad  
-© 2026 Deven Sachin Gaikwad. All Rights Reserved.
+Designed and developed by Deven Gaikwad
+© 2026 · All rights reserved

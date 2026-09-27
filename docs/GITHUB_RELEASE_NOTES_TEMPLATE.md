@@ -23,4 +23,4 @@ Record PR A/PR B heads and merges, dataset/model/calibration hashes, complete te
 
 ### Responsible-use boundary
 
-The classifier evaluates a structured fictional ledger task. It does not establish factual truth or replace professional fact-checking. No ISOT content or private ISOT-derived artifact is included.
+The classifier evaluates a structured fictional ledger task. It does not establish factual truth or replace professional fact-checking. Training uses only the independently authored synthetic benchmark; no external copyrighted article dataset or non-redistributable model artifact is included.

@@ -8,7 +8,16 @@ import html
 import pandas as pd
 import streamlit as st
 
-from src.config import REPORTS_DIR
+from src.config import (
+    CALIBRATED_CONFIDENCE_EXPLANATION,
+    CALIBRATED_SCORE_EXPLANATION,
+    EDITORIAL_REVIEW_EXPLANATION,
+    FIELDS_AGREE_PROBABILITY_LABEL,
+    FIELDS_CONFLICT_PROBABILITY_LABEL,
+    OUT_OF_SCOPE_EXPLANATION,
+    REFERENCE_COMPARISON_CONFIDENCE_LABEL,
+    REPORTS_DIR,
+)
 from src.database import (
     clear_history,
     delete_analysis,
@@ -102,7 +111,7 @@ if not base_frame.empty:
             use_container_width=True,
             config={"displayModeBar": False, "responsive": True},
         )
-        st.caption("Calibrated confidence bands; review outcomes are shown separately.")
+        st.caption("Reference-comparison confidence bands for supported records only.")
 
     review_left, activity_right = st.columns(2, gap="large")
     with review_left:
@@ -217,7 +226,7 @@ label = label_col.selectbox(
 )
 sort_order = sort_col.selectbox(
     "Sort order",
-    ["Newest first", "Oldest first", "Highest contradiction probability", "Lowest contradiction probability"],
+    ["Newest first", "Oldest first", "Highest fields-conflict probability", "Lowest fields-conflict probability"],
 )
 date_range = st.date_input(
     "Analysis date range",
@@ -236,9 +245,9 @@ if isinstance(date_range, (tuple, list)) and len(date_range) == 2:
 
 if sort_order == "Oldest first":
     frame = frame.sort_values("_timestamp", ascending=True)
-elif sort_order == "Highest contradiction probability":
+elif sort_order == "Highest fields-conflict probability":
     frame = frame.sort_values("misleading_probability", ascending=False)
-elif sort_order == "Lowest contradiction probability":
+elif sort_order == "Lowest fields-conflict probability":
     frame = frame.sort_values("misleading_probability", ascending=True)
 else:
     frame = frame.sort_values("_timestamp", ascending=False)
@@ -248,13 +257,21 @@ if frame.empty:
     footer("NewsLens AI · Editorial Archive", "No current filter matches")
     st.stop()
 
+in_scope_frame = frame[
+    pd.to_numeric(frame["domain_mismatch"], errors="coerce").fillna(0).eq(0)
+]
+average_conflict = (
+    f"{in_scope_frame['misleading_probability'].mean():.1%}"
+    if not in_scope_frame.empty
+    else "Not available"
+)
 metric_strip(
     (
         ("Matching records", f"{len(frame):,}", "Current filter result"),
         (
-            "Average contradiction probability",
-            f"{frame['misleading_probability'].mean():.1%}",
-            "Mean ledger-contradicting probability",
+            "Average fields-conflict probability",
+            average_conflict,
+            "Supported comparisons only",
         ),
         (
             "Latest record",
@@ -286,11 +303,20 @@ for _, row in visible_frame.iterrows():
     safe_title = html.escape(title)
     safe_source = html.escape(source)
     safe_summary = html.escape(summary)
-    safe_label = html.escape(str(row["prediction_label"]))
+    safe_label = html.escape(
+        "Outside supported comparison scope"
+        if bool(row.get("domain_mismatch"))
+        else str(row["prediction_label"])
+    )
+    score_summary = (
+        "outside supported scope"
+        if bool(row.get("domain_mismatch"))
+        else f"fields conflict {float(row['misleading_probability']):.1%}"
+    )
     st.markdown(
         f"""
 <article class="archive-row">
-  <div class="archive-meta">#{int(row['analysis_id'])} · {timestamp_label(row['timestamp'])} · {safe_source} · {safe_label} · contradiction {float(row['misleading_probability']):.1%}</div>
+  <div class="archive-meta">#{int(row['analysis_id'])} · {timestamp_label(row['timestamp'])} · {safe_source} · {safe_label} · {score_summary}</div>
   <h3>{safe_title}</h3>
   <div class="archive-preview">{safe_summary}</div>
 </article>
@@ -316,13 +342,20 @@ with st.expander("Open tabular archive view"):
         "summary_method",
         "original_word_count",
     ]
+    table_frame = visible_frame[display_columns].copy()
+    table_frame.loc[
+        visible_frame["domain_mismatch"].astype(bool), "calibrated_confidence"
+    ] = pd.NA
     st.dataframe(
-        visible_frame[display_columns],
+        table_frame,
         hide_index=True,
         use_container_width=True,
         column_config={
             "calibrated_confidence": st.column_config.ProgressColumn(
-                "Calibrated confidence", min_value=0.0, max_value=1.0, format="%.0f%%"
+                REFERENCE_COMPARISON_CONFIDENCE_LABEL,
+                min_value=0.0,
+                max_value=1.0,
+                format="%.0f%%",
             )
         },
     )
@@ -335,6 +368,7 @@ if selected_id not in available_ids:
 record = get_analysis(selected_id, path=history_database)
 
 if record:
+    supported_scope = not bool(record.get("domain_mismatch"))
     section_heading(
         "05 · Selected Record",
         str(record["article_title"]),
@@ -344,11 +378,17 @@ if record:
     with verdict_col:
         result_status(
             record["prediction_label"],
-            confidence=float(record["calibrated_confidence"]),
+            confidence=float(record["calibrated_confidence"]) if supported_scope else None,
             interpretation=(
-                f"Archived {record['confidence_band'].lower()}-band synthetic consistency signal from model "
-                f"{record['model_version']}. {record.get('review_reason') or ''}"
+                (
+                    f"Archived {record['confidence_band'].lower()}-band synthetic consistency signal "
+                    f"from model {record['model_version']}. {record.get('review_reason') or ''}"
+                )
+                if supported_scope
+                else "The required structured reference pair was unavailable, so no directional "
+                "comparison score is displayed."
             ),
+            scope_supported=supported_scope,
         )
     with summary_col:
         reading_panel(
@@ -357,14 +397,26 @@ if record:
             meta=f"{record['summary_method']} · {record['summary_length']}",
         )
 
+    score_metadata = (
+        (
+            (FIELDS_AGREE_PROBABILITY_LABEL, f"{float(record['reliable_probability']):.1%}"),
+            (FIELDS_CONFLICT_PROBABILITY_LABEL, f"{float(record['misleading_probability']):.1%}"),
+            (REFERENCE_COMPARISON_CONFIDENCE_LABEL, f"{float(record['calibrated_confidence']):.1%}"),
+        )
+        if supported_scope
+        else (
+            (FIELDS_AGREE_PROBABILITY_LABEL, "Not reported"),
+            (FIELDS_CONFLICT_PROBABILITY_LABEL, "Not reported"),
+            (REFERENCE_COMPARISON_CONFIDENCE_LABEL, "Not reported"),
+        )
+    )
     metadata_grid(
         (
             ("Input type", record["input_type"]),
             ("Source domain", record["source_domain"] or "Not available"),
             ("Source URL", record["source_url"] or "Not available"),
-            ("Calibrated ledger-consistent probability", f"{float(record['reliable_probability']):.1%}"),
-            ("Calibrated ledger-contradicting probability", f"{float(record['misleading_probability']):.1%}"),
-            ("Calibrated confidence", f"{float(record['calibrated_confidence']):.1%}"),
+            ("Supported comparison scope", "Yes" if supported_scope else "No"),
+            *score_metadata,
             ("Review status", record["review_status"]),
             ("Vocabulary coverage", f"{float(record['vocabulary_coverage']):.1%}"),
             ("Out-of-vocabulary rate", f"{float(record['oov_rate']):.1%}"),
@@ -373,6 +425,14 @@ if record:
             ("Analysis date", timestamp_label(record["timestamp"])),
         )
     )
+    if supported_scope:
+        with st.expander("What do these scores mean?"):
+            st.caption(CALIBRATED_SCORE_EXPLANATION)
+            st.caption(CALIBRATED_CONFIDENCE_EXPLANATION)
+            if bool(record.get("review_required")):
+                st.caption(EDITORIAL_REVIEW_EXPLANATION)
+    else:
+        callout("Outside supported scope", OUT_OF_SCOPE_EXPLANATION, kind="warning")
 
     section_heading(
         "06 · Human Editorial Review",

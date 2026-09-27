@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0",
+  "phase": "5T",
+  "recorded_at_utc": "2026-09-26T17:42:19Z",
+  "purpose": "Controlled diagnosis of similar internal probabilities observed for unrelated inputs outside the supported two-block comparison format.",
+  "artifacts": {
+    "model_sha256": "c1ad8c044cd95bc7bf25a94716010ddbe21fbae2ec92a0c1cefb01f5c3c979c6",
+    "calibration_sha256": "adcf03a860ef8fb41058b3a4dcc80351dbd02e05f81e0fc1e7f971624af6ab77",
+    "model_or_calibration_changed": false
+  },
+  "numeric_precision": {
+    "decision_score_decimal_places": 6,
+    "probability_decimal_places": 4
+  },
+  "controlled_cases": [
+    {
+      "case": "supported_fields_agree",
+      "input_sha256_prefix": "cc0c12dcd22c",
+      "both_fact_blocks_present": true,
+      "decision_score": -11.182075,
+      "fields_agree_probability": 1.0,
+      "fields_conflict_probability": 0.0,
+      "supported_scope": true,
+      "public_score_disposition": "reported"
+    },
+    {
+      "case": "supported_fields_conflict",
+      "input_sha256_prefix": "4b2d60b6064c",
+      "both_fact_blocks_present": true,
+      "decision_score": 14.124271,
+      "fields_agree_probability": 0.0,
+      "fields_conflict_probability": 1.0,
+      "supported_scope": true,
+      "public_score_disposition": "reported"
+    },
+    {
+      "case": "supported_single_field_counterfactual",
+      "input_sha256_prefix": "3d3fb6b57b00",
+      "both_fact_blocks_present": true,
+      "decision_score": -2.560316,
+      "fields_agree_probability": 0.9977,
+      "fields_conflict_probability": 0.0023,
+      "supported_scope": true,
+      "public_score_disposition": "reported",
+      "interpretation": "The classifier uses learned comparison patterns; it is not an exact Boolean mismatch rule."
+    },
+    {
+      "case": "missing_article_account_block",
+      "input_sha256_prefix": "d76d84efed7a",
+      "both_fact_blocks_present": false,
+      "decision_score": 0.786985,
+      "fields_agree_probability": 0.1157,
+      "fields_conflict_probability": 0.8843,
+      "supported_scope": false,
+      "public_score_disposition": "withheld_outside_supported_scope"
+    },
+    {
+      "case": "ordinary_realistic_prose",
+      "input_sha256_prefix": "faecaf261e47",
+      "both_fact_blocks_present": false,
+      "decision_score": 0.709326,
+      "fields_agree_probability": 0.1365,
+      "fields_conflict_probability": 0.8635,
+      "supported_scope": false,
+      "public_score_disposition": "withheld_outside_supported_scope"
+    },
+    {
+      "case": "ordinary_fabricated_prose",
+      "input_sha256_prefix": "1263fa77a9af",
+      "both_fact_blocks_present": false,
+      "decision_score": 0.832332,
+      "fields_agree_probability": 0.1049,
+      "fields_conflict_probability": 0.8951,
+      "supported_scope": false,
+      "public_score_disposition": "withheld_outside_supported_scope"
+    },
+    {
+      "case": "unrelated_garden_prose",
+      "input_sha256_prefix": "827bb4e6f0ab",
+      "both_fact_blocks_present": false,
+      "decision_score": 0.734115,
+      "fields_agree_probability": 0.1295,
+      "fields_conflict_probability": 0.8705,
+      "supported_scope": false,
+      "public_score_disposition": "withheld_outside_supported_scope"
+    },
+    {
+      "case": "packaged_unsupported_sample",
+      "input_sha256_prefix": "69082d49bc39",
+      "both_fact_blocks_present": false,
+      "decision_score": 0.625567,
+      "fields_agree_probability": 0.1622,
+      "fields_conflict_probability": 0.8378,
+      "supported_scope": false,
+      "public_score_disposition": "withheld_outside_supported_scope"
+    }
+  ],
+  "session_isolation_check": {
+    "same_session_first": {
+      "input_sha256_prefix": "d1196c5d16c1",
+      "fields_conflict_probability": 0.8661
+    },
+    "same_session_second": {
+      "input_sha256_prefix": "c507328535b7",
+      "fields_conflict_probability": 0.8992
+    },
+    "fresh_session_repeat_of_first": {
+      "input_sha256_prefix": "d1196c5d16c1",
+      "fields_conflict_probability": 0.8661
+    },
+    "result": "Distinct inputs produced distinct values; a fresh session exactly reproduced the first deterministic result."
+  },
+  "diagnosis": {
+    "root_cause": "Out-of-domain inputs omit the required Reference note and Article account blocks and therefore share the dominant signal_fact_blocks_unavailable feature.",
+    "ruled_out": [
+      "hard-coded probability",
+      "stale session state",
+      "cache reuse",
+      "positive-class index reversal",
+      "calibration misapplication"
+    ],
+    "public_correction": "The UI, generated PDF, and archive CSV withhold directional probabilities outside supported comparison scope. Stable raw JSON probability fields remain for compatibility and are explicitly marked withheld_outside_supported_scope.",
+    "conclusion": "The observed cluster was a scope-and-presentation problem, not a frozen model or calibration defect."
+  }
+}

@@ -6,7 +6,7 @@ const features = [
   ["Summarise", "Generate a deterministic extractive reading view while keeping the classifier independent from the summary."],
   ["Compare ledgers", "Evaluate the visible Reference note and Article account with a synthetic-trained linear pipeline."],
   ["Calibrate", "Convert the score with model-bound Platt calibration and abstain outside the supported format."],
-  ["Explain", "Review calibrated confidence and signed feature contributions instead of receiving an unexplained label."],
+  ["Explain", "Review reference-comparison confidence and signed feature contributions instead of receiving an unexplained label."],
   ["Review", "Record evidence, notes, source URLs and a human editorial assessment in a private session workflow."],
   ["Monitor", "Inspect privacy-safe newsroom analytics and lightweight drift indicators without automatic retraining."],
 ] as const;
@@ -80,8 +80,8 @@ export default function Home() {
         <h2 id="responsibility-title">A synthetic consistency signal is not a verified fact-check.</h2>
         <p>NewsLens AI recognizes patterns in an independently authored fictional benchmark. It does not retrieve evidence, establish objective truth, or replace journalists, researchers or professional fact-checkers.</p>
         <ul>
-          <li>Calibrated confidence measures reliability against synthetic labels, not the probability that a real claim is true.</li>
-          <li>Ordinary articles without both visible ledger blocks are outside automatic-classification scope.</li>
+          <li>Reference-comparison confidence measures agreement with synthetic labels, not the probability that a real claim is true.</li>
+          <li>Ordinary articles without both visible ledger blocks are outside scope and receive no displayed directional score.</li>
           <li>Public hosting uses a temporary, session-isolated archive; durable cloud history is not promised.</li>
         </ul>
       </section>

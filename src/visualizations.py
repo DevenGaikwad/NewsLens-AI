@@ -81,7 +81,7 @@ def confidence_gauge(
             value=value,
             number={"suffix": "%", "font": {"color": INK, "size": 34, "family": "Georgia"}},
             title={
-                "text": "Calibrated ledger-contradiction probability",
+                "text": "Fields conflict - calibrated probability",
                 "font": {"color": SOFT_GREY, "size": 13, "family": "Inter, Arial, sans-serif"},
             },
             gauge={

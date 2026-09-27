@@ -21,7 +21,7 @@ Describe the problem and the smallest proposed change.
 - [ ] `app.py` remains the Streamlit runtime entrypoint.
 - [ ] Runtime execution does not train or replace the packaged model.
 - [ ] The classifier still consumes the original cleaned article, not the summary.
-- [ ] Claims remain framed as linguistic credibility-risk estimates, not proof of truth.
+- [ ] Claims remain framed as bounded synthetic reference-consistency estimates, not proof of truth.
 - [ ] Internal application navigation stays in one tab.
 - [ ] Public history remains isolated per visitor and temporary unless an approved durable store is configured.
 

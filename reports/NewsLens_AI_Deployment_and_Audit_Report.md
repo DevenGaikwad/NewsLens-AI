@@ -83,6 +83,28 @@ Release state: **complete and publicly deployed**
 - Application-origin console errors: 0. Browser-extension metadata warnings were excluded because they did not originate from the application.
 - Desktop layout at 1363 CSS pixels had no horizontal overflow. The unchanged responsive system retains its five-width 360/390/768/1366/1920 release audit. The cloud browser's HTTP(S)-only URL policy prevented creation of a new 390-pixel harness; no unsupported workaround was attempted.
 
+## Phase 5T maintenance candidate
+
+Phase 5T is a presentation and interpretation correction based on `f6cae8cedb3364cf03864410b8c5572c4e625504`. It repairs the ReportLab probability table, withholds directional values outside the supported two-block comparison format, clarifies the human-readable probability labels, removes the obsolete public publication banner, uses the punctuation-free responsive tagline `News intelligence / With scope intact`, repairs the editorial masthead bounds, and reduces repetitive footer attribution.
+
+The repeated approximately 84–90% internal outputs for unrelated unsupported prose were reproduced and diagnosed. Controlled cases and same-session/fresh-session checks ruled out hard-coded scores, stale state, cache reuse, positive-class reversal, and calibration misapplication. Those inputs all lacked the required structured pair and shared the dominant `signal_fact_blocks_unavailable` feature. The structured evidence is retained in `reports/results/phase5t_prediction_diagnostic.json`.
+
+Local candidate validation completed before protected publication:
+
+- complete Python suite: 165 passed; 0 failures, errors, or skips;
+- affected regression suite: 38 passed;
+- Python compilation and packaged-sample evaluation: passed;
+- `pip check`: passed;
+- deterministic `npm ci`, TypeScript lint, and Next.js production build: passed;
+- production `npm audit --omit=dev`: 80 dependencies audited; 0 vulnerabilities;
+- dataset, model, calibration, and model-to-calibration binding: exact and unchanged;
+- four tracked DOCX reports: 28 pages inspected;
+- tracked project report PDF: 9 pages independently rasterized and inspected;
+- representative application-export matrix: 7 pages inspected across supported, boundary, unsupported, and long-content cases;
+- model retraining: not performed.
+
+Protected PR, merge, exact-new-main workflow, and post-deployment identifiers are recorded only after those events complete.
+
 ## Publication boundary
 
 All training articles and entities are synthetic. No ISOT row, copied phrase, close paraphrase, transformation, translation, summary, reconstruction, private ISOT-derived classifier/calibration artifact, or external copyrighted article dataset is present in the model, repository, archive, deployment, or release. Noncommercial status was not treated as permission.

@@ -56,8 +56,8 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <footer className="siteFooter">
           <div>
             <strong>NewsLens AI</strong>
-            <span>NewsLens AI · Designed and developed by Deven Sachin Gaikwad</span>
-            <span>© 2026 Deven Sachin Gaikwad. All Rights Reserved.</span>
+            <span>Designed and developed by Deven Gaikwad</span>
+            <span>© 2026 · All rights reserved</span>
           </div>
           <p>Synthetic research demonstration — not a replacement for professional fact-checking.</p>
         </footer>

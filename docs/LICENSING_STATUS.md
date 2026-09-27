@@ -10,6 +10,6 @@ The public model and calibration were created exclusively from that dataset and 
 
 ## Excluded material
 
-No external copyrighted article dataset is redistributed. No ISOT row, phrase transformation, private classifier, calibration, vocabulary, coefficient, prediction, or evaluation artifact is present. The earlier private-artifact redistribution question is resolved by replacement, not by assuming permission.
+No external copyrighted article dataset is redistributed. No row, phrase transformation, non-redistributable classifier, calibration, vocabulary, coefficient, prediction, or evaluation artifact from an external article dataset is present. The earlier private-artifact redistribution question is resolved by replacement, not by assuming permission.
 
 Noncommercial educational use is not treated as automatic copyright permission.
