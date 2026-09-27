@@ -110,7 +110,9 @@ def test_interface_keeps_responsible_prediction_language() -> None:
     components = read("ui/components.py")
     config = read("src/config.py")
     about = read("pages/05_Research_About.py")
-    assert "Synthetic consistency signal" in components
+    assert "Reference comparison ·" in components
+    assert "REFERENCE_AGREEMENT_OUTCOME" in components
+    assert "REFERENCE_CONFLICT_OUTCOME" in components
     assert "Independent editorial verification remains necessary" in analysis
     assert "Editorial review required" in config
     assert "reference-comparison confidence" in components

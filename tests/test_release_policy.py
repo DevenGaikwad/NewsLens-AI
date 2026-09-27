@@ -98,7 +98,7 @@ def test_citation_and_interface_identify_the_owner_and_synthetic_signal() -> Non
     assert 'family-names: "Gaikwad"' in citation
     assert 'given-names: "Deven Sachin"' in citation
     assert "date-released" not in citation and "doi:" not in citation and "orcid:" not in citation
-    assert "Synthetic consistency signal" in _text("ui/components.py")
+    assert "Reference comparison ·" in _text("ui/components.py")
     assert "Synthetic Ledger-Consistency System" in _text("ui/navigation.py")
     assert AUTHOR in _text("web/app/layout.tsx")
 

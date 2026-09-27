@@ -28,5 +28,7 @@ Meaning is expressed in text rather than color alone. Focus styles, readable con
 - PDF table labels and values wrap within calculated A4 column widths with no overlap or clipping.
 - The News Desk headline is deliberately set as `News intelligence` / `With scope intact`, without punctuation, at responsive widths.
 - The editorial illustration keeps all title text and navigation labels inside its source bounds, and the shared footer uses one concise author attribution plus a minimal copyright line.
+- The native `Open Archive` hero link retains a responsive right gutter before the illustration divider; at narrow stacked widths, both links fill their column without clipping.
+- The existing classifier is presented as `Reference comparison`. Supported human-readable outcomes say that the article fields agree or conflict with the supplied reference; out-of-scope input remains explicit. The stable JSON label and score fields remain available for compatibility.
 - The Research & About page contains no distracting publication-status banner.
 - No external pretrained summarizer, paid API, raw training-data surface, or Vercel dependency is present.

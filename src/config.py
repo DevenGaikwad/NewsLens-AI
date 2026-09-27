@@ -73,6 +73,8 @@ OUT_OF_SCOPE_EXPLANATION = (
 LOWER_RISK_OUTCOME = "Synthetic ledger-consistent pattern indicated"
 HIGHER_RISK_OUTCOME = "Synthetic ledger-contradicting pattern indicated"
 REVIEW_REQUIRED_OUTCOME = "Editorial review required"
+REFERENCE_AGREEMENT_OUTCOME = "The article fields agree with the supplied reference"
+REFERENCE_CONFLICT_OUTCOME = "The article fields conflict with the supplied reference"
 
 PROJECT_AUTHOR = "Deven Sachin Gaikwad"
 COPYRIGHT_NOTICE = "© 2026 Deven Sachin Gaikwad. All Rights Reserved."

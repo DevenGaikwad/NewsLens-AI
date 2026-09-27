@@ -9,6 +9,7 @@ from reportlab.lib.units import mm
 from reportlab.pdfbase.pdfmetrics import stringWidth
 from pypdf import PdfReader
 
+from src.config import HIGHER_RISK_OUTCOME, LOWER_RISK_OUTCOME
 from src.report_exporter import analysis_json_bytes, analysis_pdf_bytes, archive_csv_bytes
 
 
@@ -42,6 +43,17 @@ def test_pdf_export_opens() -> None:
     data = analysis_pdf_bytes(_payload())
     assert data.startswith(b"%PDF")
     assert len(PdfReader(BytesIO(data)).pages) >= 1
+
+
+def test_pdf_uses_plain_reference_outcomes_and_keeps_json_labels() -> None:
+    for machine_label, readable_label in (
+        (LOWER_RISK_OUTCOME, "The article fields agree with the supplied reference"),
+        (HIGHER_RISK_OUTCOME, "The article fields conflict with the supplied reference"),
+    ):
+        payload = _payload()
+        payload["prediction_label"] = machine_label
+        assert readable_label in _pdf_text(analysis_pdf_bytes(payload))
+        assert json.loads(analysis_json_bytes(payload))["prediction_label"] == machine_label
 
 
 def _pdf_text(data: bytes) -> str:
@@ -107,7 +119,9 @@ def test_pdf_long_content_wraps_without_blank_pages_or_lost_footer() -> None:
     extracted_pages = [page.extract_text() or "" for page in reader.pages]
     assert len(extracted_pages) >= 2
     assert all(page.strip() for page in extracted_pages)
-    assert "Deven Sachin Gaikwad" in extracted_pages[-1]
+    assert "NewsLens AI · Designed and developed by Deven Gaikwad" in extracted_pages[-1]
+    assert "© 2026 · All rights reserved" in extracted_pages[-1]
+    assert extracted_pages[-1].count("Deven Gaikwad") == 1
 
 
 def test_pdf_displayed_probabilities_preserve_runtime_rounding() -> None:
@@ -154,7 +168,7 @@ def test_pdf_export_escapes_reportlab_markup() -> None:
     text = _pdf_text(data)
     assert "Not markup" in text
     assert "literal link" in text
-    assert "Deven Sachin Gaikwad" in text
+    assert "Designed and developed by Deven Gaikwad" in text
 
 
 def test_archive_csv_neutralises_formula_injection() -> None:

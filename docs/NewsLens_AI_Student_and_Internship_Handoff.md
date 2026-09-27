@@ -592,3 +592,7 @@ The three most valuable candidates for a future separately authorized phase are:
 1. Conduct an evaluation-only study on a clearly licensed, independently reviewed out-of-distribution dataset.
 2. Develop stronger scope/OOD detection and recalibrate abstention using harder supported and unsupported examples.
 3. Add automated live browser regression testing across mobile/desktop layouts, inference paths, exports, and session-isolation behavior.
+
+## Phase 5U scope clarification
+
+The public classifier remains a **Reference comparison** of two visible fictional ledgers. Its human-readable result says the article fields agree or conflict with the supplied reference; calibrated probabilities remain technical details, not truth probabilities. Ordinary articles without the pair receive an out-of-scope editorial-review result. A proposed general-news screening model was not trained or deployed because the reviewed candidate datasets did not establish both suitable full-article labels and the required rights. See the existing [deployment/model license audit](PUBLIC_DEPLOYMENT_MODEL_LICENSE_AUDIT.md) for the specific candidates and the next evidence gate. The synthetic model, calibration, dataset, and machine-readable JSON labels were preserved.

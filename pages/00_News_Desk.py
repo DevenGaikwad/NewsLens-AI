@@ -57,7 +57,7 @@ with left:
     )
     st.write("")
     section_card(
-        "Synthetic consistency",
+        "Reference comparison",
         "The saved linear pipeline derives field-level match or mismatch tokens, applies Platt calibration, and can abstain outside its supported format.",
         label="Path 02 · Classifier",
     )

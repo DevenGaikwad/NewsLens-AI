@@ -34,6 +34,13 @@
     "runtime_retraining": false,
     "included_in_public_release": true
   },
+  "general_news_screening": {
+    "status": "not_deployed",
+    "reason": "candidate_licensing_and_full_article_task_fit_gate_not_met",
+    "feasibility_record": "docs/PUBLIC_DEPLOYMENT_MODEL_LICENSE_AUDIT.md",
+    "model_artifact": null,
+    "public_mode": "Reference comparison only"
+  },
   "evaluation": {
     "locked_final_test_rows": 1200,
     "accuracy": 1,
