@@ -21,3 +21,27 @@
 - The Phase 5S retained Dependabot PRs were handled separately in Phase 5T under the owner's later zero-open-PR instruction. Security-relevant pypdf PR #42 was merged; seven other optional or unsuitable updates were closed with explanations. The public open-PR list returned zero after cleanup.
 - Repository-specific security and Dependabot alert endpoints returned HTTP 401 without alert-read permission. Do not report zero alerts until an authorized view confirms the counts.
 - Streamlit Community Cloud is the deployment target; Vercel is not required.
+
+## Phase 5U parser security correction — pre-merge evidence
+
+- The authenticated security view confirmed one open High CodeQL alert (#6,
+  `py/polynomial-redos`) on `synthetic_benchmark/signals.py:66` at the
+  `f691ec7310fe64c146321c36910349805056b43b` baseline. Dependabot had
+  zero open vulnerability alerts. A successful CodeQL workflow alone does not
+  close this finding.
+- The flagged `_BLOCK.findall` call processed article text in the prediction
+  path. The correction replaces block and field extraction with line-scoped,
+  semicolon-delimited parsing and first-colon partitioning. A later occurrence
+  of the same field or block continues to replace its earlier value. Empty
+  malformed headings no longer consume the following line.
+- Old/new comparison covered all 24,000 accepted articles and six packaged
+  samples: zero mismatches in parsed fields, derived tokens, augmented input,
+  class scores, predictions, or calibrated probabilities.
+- Local tests: 25 focused and 171 complete, all passed. Bounded 100k–400k
+  crafted-input measurements were approximately linear for long heading
+  whitespace, missing colons, and repeated fields; 400k–1.6m long-value
+  measurements scaled by about 2× per input doubling. Crafted inputs were
+  never sent to the public application.
+- The 191-file tracked-tree public-release scan passed with zero findings and
+  publication gates. The dataset, model, and calibration hashes were unchanged.
+  Exact-head CodeQL and authenticated alert closure remain merge gates.
