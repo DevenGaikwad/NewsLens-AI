@@ -352,6 +352,7 @@ select:focus-visible {
 /* Hero calls-to-action remain native page links, styled as editorial buttons. */
 .st-key-nl_hero_actions {
   margin-top: 1.3rem;
+  width: calc(100% - clamp(.75rem, 1.5vw, 1.25rem));
 }
 
 .st-key-nl_hero_actions [data-testid="stPageLink-NavLink"],
@@ -1015,6 +1016,10 @@ div[data-testid="stAlert"] {
     min-height: 0;
   }
 
+  .st-key-nl_hero_actions {
+    width: 100%;
+  }
+
   .editorial-hero-art {
     border-left: none;
     border-top: 1px solid var(--border-dark);
@@ -1096,10 +1101,6 @@ div[data-testid="stAlert"] {
   }
 
   .editorial-button {
-    width: 100%;
-  }
-
-  .st-key-nl_hero_actions {
     width: 100%;
   }
 

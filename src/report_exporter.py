@@ -12,14 +12,19 @@ import pandas as pd
 from .config import (
     CALIBRATED_CONFIDENCE_EXPLANATION,
     CALIBRATED_SCORE_EXPLANATION,
-    COPYRIGHT_NOTICE,
     DISCLAIMER,
     EDITORIAL_REVIEW_EXPLANATION,
     FIELDS_AGREE_PROBABILITY_LABEL,
     FIELDS_CONFLICT_PROBABILITY_LABEL,
+    HIGHER_RISK_OUTCOME,
+    LOWER_RISK_OUTCOME,
     OUT_OF_SCOPE_EXPLANATION,
+    PUBLIC_AUTHOR,
+    PUBLIC_COPYRIGHT_NOTICE,
     PROJECT_AUTHOR,
+    REFERENCE_AGREEMENT_OUTCOME,
     REFERENCE_COMPARISON_CONFIDENCE_LABEL,
+    REFERENCE_CONFLICT_OUTCOME,
 )
 
 
@@ -162,8 +167,13 @@ def analysis_pdf_bytes(payload: dict[str, Any]) -> bytes:
     scope_supported = bool(
         payload.get("supported_scope", not bool(payload.get("domain_mismatch", False)))
     )
+    display_labels = {
+        LOWER_RISK_OUTCOME: REFERENCE_AGREEMENT_OUTCOME,
+        HIGHER_RISK_OUTCOME: REFERENCE_CONFLICT_OUTCOME,
+    }
+    prediction_label = str(payload.get("prediction_label", ""))
     displayed_outcome = (
-        str(payload.get("prediction_label", ""))
+        display_labels.get(prediction_label, prediction_label)
         if scope_supported
         else "Outside supported comparison scope"
     )
@@ -187,7 +197,7 @@ def analysis_pdf_bytes(payload: dict[str, Any]) -> bytes:
         ["Source", str(payload.get("source_domain") or "Not available")],
         ["Original words", str(payload.get("original_word_count", ""))],
         ["Summary method", str(payload.get("summary_method", ""))],
-        ["Synthetic consistency outcome", displayed_outcome],
+        ["Reference comparison outcome", displayed_outcome],
         ["Supported comparison scope", "Yes" if scope_supported else "No"],
         *score_rows,
         ["Calibration method", str(payload.get("calibration_method", ""))],
@@ -262,7 +272,15 @@ def analysis_pdf_bytes(payload: dict[str, Any]) -> bytes:
     story.append(Paragraph(_paragraph_text(payload.get("generated_summary", "")), styles["BodyText"]))
     story.extend([Spacer(1, 10), Paragraph("Responsible-use notice", styles["Heading3"])])
     story.append(Paragraph(_paragraph_text(DISCLAIMER), styles["BodyText"]))
-    story.extend([Spacer(1, 10), Paragraph(_paragraph_text(f"NewsLens AI · Designed and developed by {PROJECT_AUTHOR}"), styles["BodyText"])])
-    story.append(Paragraph(_paragraph_text(COPYRIGHT_NOTICE), styles["BodyText"]))
+    story.extend(
+        [
+            Spacer(1, 10),
+            Paragraph(
+                _paragraph_text(f"NewsLens AI · Designed and developed by {PUBLIC_AUTHOR}"),
+                styles["BodyText"],
+            ),
+        ]
+    )
+    story.append(Paragraph(_paragraph_text(PUBLIC_COPYRIGHT_NOTICE), styles["BodyText"]))
     document.build(story)
     return stream.getvalue()

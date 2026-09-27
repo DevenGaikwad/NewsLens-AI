@@ -14,6 +14,8 @@ from src.config import (
     LOWER_RISK_OUTCOME,
     PUBLIC_AUTHOR,
     PUBLIC_COPYRIGHT_NOTICE,
+    REFERENCE_AGREEMENT_OUTCOME,
+    REFERENCE_CONFLICT_OUTCOME,
 )
 
 from .navigation import render_navigation
@@ -193,7 +195,12 @@ def result_status(
 ) -> None:
     if scope_supported:
         css_class, risk_label = _verdict_style(label)
-        title = label
+        if label == LOWER_RISK_OUTCOME:
+            title = REFERENCE_AGREEMENT_OUTCOME
+        elif label == HIGHER_RISK_OUTCOME:
+            title = REFERENCE_CONFLICT_OUTCOME
+        else:
+            title = label
     else:
         css_class = "uncertain"
         risk_label = "Structured reference pair unavailable"
@@ -208,7 +215,7 @@ def result_status(
     st.markdown(
         f"""
 <section class="verdict-panel {css_class}">
-  <div class="verdict-label">Synthetic consistency signal · {risk_label}</div>
+  <div class="verdict-label">Reference comparison · {risk_label}</div>
   <div class="verdict-title">{_escape(title)}</div>
   <p>{_escape(interpretation)}</p>
   {probability}
