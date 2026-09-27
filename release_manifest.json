@@ -54,7 +54,15 @@
     "model_pr": 45,
     "model_pr_head": "56f6e3e7137bd03fe45a0cd3e88978588968cdd1",
     "model_merge_commit": "214b22745736b25f4c1121822a1811c76687bb00",
-    "model_merge_tree": "093cdbacf815be22791ae73bf5a581a9e84edd3d"
+    "model_merge_tree": "093cdbacf815be22791ae73bf5a581a9e84edd3d",
+    "phase5t_pr": 47,
+    "phase5t_head": "6d2ac240491a7ac6cf0b7d838f065865242254c6",
+    "phase5t_merge_commit": "d9291605ac9813982837dcb5fade645035795a34",
+    "phase5t_merge_tree": "c9db63a911d6c34cbecd0935336866a6280bde88",
+    "pypdf_security_followup_pr": 42,
+    "pypdf_security_followup_merge": "0e58189b8cbfd92126e5f4268bff320bdeb25bd1",
+    "pypdf_security_followup_tree": "b59b7ccb51a3177ec5044280a66cf7201ee8cfaf",
+    "open_pull_requests_after_cleanup": 0
   },
   "deployment": {
     "github": {
@@ -67,9 +75,13 @@
       "url": "https://newslens-ai-devengaikwad.streamlit.app/",
       "entrypoint": "app.py",
       "python_version": "3.12",
-      "deployed_commit": "214b22745736b25f4c1121822a1811c76687bb00",
-      "deployed_tree": "093cdbacf815be22791ae73bf5a581a9e84edd3d",
-      "smoke_test_date": "2026-09-26",
+      "initial_deployed_commit": "214b22745736b25f4c1121822a1811c76687bb00",
+      "initial_deployed_tree": "093cdbacf815be22791ae73bf5a581a9e84edd3d",
+      "phase5t_code_merge": "d9291605ac9813982837dcb5fade645035795a34",
+      "pre_evidence_main_commit": "0e58189b8cbfd92126e5f4268bff320bdeb25bd1",
+      "exact_current_deployed_commit": null,
+      "exact_current_deployed_commit_verified": false,
+      "smoke_test_date": "2026-09-27",
       "public_access": true,
       "raw_training_data_exposed": false,
       "smoke_checks": {
@@ -81,7 +93,9 @@
         "json_pdf_csv_exports": "passed",
         "session_isolation": "passed",
         "application_origin_console_errors": 0,
-        "responsive_release_evidence": "passed_with_live_desktop_and_retained_five_width_audit"
+        "responsive_release_evidence": "passed_with_live_desktop_and_retained_five_width_audit",
+        "new_live_pdf_render": "passed_agreement_and_contradiction_A4_pages",
+        "unsupported_public_directional_score_withholding": "passed"
       }
     },
     "vercel": {
