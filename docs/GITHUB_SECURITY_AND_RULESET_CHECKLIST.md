@@ -18,5 +18,6 @@
 
 - Public model/calibration must match `models/public_artifact_manifest.json`.
 - Historical private artifact filenames remain prohibited.
-- Six retained Dependabot PRs are handled separately.
+- The Phase 5S retained Dependabot PRs were handled separately in Phase 5T under the owner's later zero-open-PR instruction. Security-relevant pypdf PR #42 was merged; seven other optional or unsuitable updates were closed with explanations. The public open-PR list returned zero after cleanup.
+- Repository-specific security and Dependabot alert endpoints returned HTTP 401 without alert-read permission. Do not report zero alerts until an authorized view confirms the counts.
 - Streamlit Community Cloud is the deployment target; Vercel is not required.

@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-09-27T03:53:34Z",
-  "scope": "NewsLens AI synthetic-only release verification with Phase 5T presentation-maintenance candidate",
-  "status": "phase5s_deployed_phase5t_candidate_validated_locally",
+  "generated_at_utc": "2026-09-27T05:54:50Z",
+  "scope": "NewsLens AI synthetic-only release verification with protected Phase 5T maintenance and dependency follow-up",
+  "status": "phase5t_merged_live_smoke_passed_open_prs_zero_exact_deployment_commit_pending",
   "dataset": {
     "id": "newslens-synthetic-articles-v1.0.0",
     "path": "data/synthetic/newslens-synthetic-articles-v1.0.0.zip",
@@ -101,8 +101,9 @@
     },
     "pip_check": "passed",
     "pip_audit": {
-      "status": "passed",
-      "known_vulnerabilities": 0
+      "status": "historical_phase5s_passed_current_lookup_timed_out",
+      "known_vulnerabilities": null,
+      "note": "A bounded 55-second lookup against the pre-merge local pin timed out and is not a current audit. Published pypdf affected ranges were remediated by PR 42; 6.19.0 passed the complete local test suite."
     },
     "web_npm_ci": "passed",
     "web_lint": "passed",
@@ -114,11 +115,12 @@
     },
     "public_release_scan": {
       "safe_tree_scan": "passed",
+      "files_scanned": 190,
       "artifact_integrity": "passed",
       "secret_findings": 0,
       "personal_data_findings": 0,
       "broken_local_markdown_links": 0,
-      "publication_gate": null,
+      "publication_gate": 0,
       "public_release_ready": true
     }
   },
@@ -132,6 +134,7 @@
   },
   "phase_5t_maintenance_candidate": {
     "base_commit": "f6cae8cedb3364cf03864410b8c5572c4e625504",
+    "release_state": "merged",
     "pdf_probability_rows_repaired": true,
     "unsupported_directional_scores_withheld_in_ui_pdf_csv": true,
     "stable_json_score_fields_preserved": true,
@@ -145,8 +148,19 @@
     "representative_export_pdf_pages_visually_verified": 7,
     "model_retrained": false,
     "dataset_model_calibration_identity_unchanged": true,
-    "protected_pr": null,
-    "live_deployment_verified": false
+    "protected_pr": 47,
+    "local_commit": "a33de69136ad05b6e3514a99b372770e691d27cd",
+    "remote_head": "6d2ac240491a7ac6cf0b7d838f065865242254c6",
+    "tree": "c9db63a911d6c34cbecd0935336866a6280bde88",
+    "merge_commit": "d9291605ac9813982837dcb5fade645035795a34",
+    "exact_new_main_ci_run": 36293926319,
+    "exact_new_main_codeql_run": 36293926442,
+    "live_public_ui_verified": true,
+    "live_downloaded_pdf_pages_visually_verified": 2,
+    "live_supported_agree_and_conflict": "passed",
+    "live_unsupported_directional_score_withholding": "passed",
+    "fresh_session_archive_isolation": "passed",
+    "exact_streamlit_deployed_commit_verified": false
   },
   "protected_workflow": {
     "dataset_pr": 44,
@@ -158,10 +172,27 @@
     "model_pr_head": "56f6e3e7137bd03fe45a0cd3e88978588968cdd1",
     "model_merge_tree": "093cdbacf815be22791ae73bf5a581a9e84edd3d",
     "exact_new_main_ci_run": 36214408496,
-    "exact_new_main_codeql_run": 36214408382
+    "exact_new_main_codeql_run": 36214408382,
+    "phase5t_pr": 47,
+    "phase5t_pr_head": "6d2ac240491a7ac6cf0b7d838f065865242254c6",
+    "phase5t_merge_commit": "d9291605ac9813982837dcb5fade645035795a34",
+    "phase5t_merge_tree": "c9db63a911d6c34cbecd0935336866a6280bde88",
+    "pypdf_pr": 42,
+    "pypdf_pr_head": "7d40f439fcd3c8f9f3d3130018dcfbbfddcee522",
+    "pypdf_merge_commit": "0e58189b8cbfd92126e5f4268bff320bdeb25bd1",
+    "pypdf_merge_tree": "b59b7ccb51a3177ec5044280a66cf7201ee8cfaf",
+    "pypdf_exact_new_main_ci_run": 36296310448,
+    "pypdf_exact_new_main_codeql_run": 36296310449,
+    "open_pull_requests_after_cleanup": 0,
+    "open_security_alerts": null,
+    "open_dependabot_alerts": null,
+    "alert_count_note": "Repository-specific alert endpoints require authorization and returned HTTP 401."
   },
   "publication_statement": "All training articles and entities are independently created synthetic content. No external article rows or private external-derived model or calibration artifact is present in the public release.",
-  "pending": [],
+  "pending": [
+    "Exact current Streamlit deployment commit requires authenticated dashboard verification.",
+    "Repository security and Dependabot alert counts require authorized alert-read access."
+  ],
   "deployment": {
     "provider": "Streamlit Community Cloud",
     "workspace": "devengaikwad",
@@ -171,7 +202,10 @@
     "python_version": "3.12",
     "public_url": "https://newslens-ai-devengaikwad.streamlit.app/",
     "initial_deployed_commit": "214b22745736b25f4c1121822a1811c76687bb00",
-    "deployed_tree": "093cdbacf815be22791ae73bf5a581a9e84edd3d",
+    "initial_deployed_tree": "093cdbacf815be22791ae73bf5a581a9e84edd3d",
+    "phase5t_code_merge_compatible_with_live_ui": "d9291605ac9813982837dcb5fade645035795a34",
+    "pre_evidence_main_commit": "0e58189b8cbfd92126e5f4268bff320bdeb25bd1",
+    "exact_current_deployed_commit": null,
     "secrets_configured": false,
     "paid_features_used": false,
     "smoke_test": {

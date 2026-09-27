@@ -48,7 +48,7 @@ The deployment browser could not create a separate 390-pixel harness because its
 
 Missing model files raise an actionable startup error. A calibration/model hash mismatch fails closed and forces review rather than reporting unverified confidence. Inputs outside the paired-ledger format abstain.
 
-Vercel is not required and was not created or modified. Six retained Dependabot pull requests and the historical release tag remain outside this deployment.
+Vercel is not required and was not created or modified. At the Phase 5S checkpoint, the retained Dependabot pull requests and historical release tag remained outside that deployment.
 
 ## Phase 5T maintenance boundary
 
@@ -56,4 +56,14 @@ The post-release maintenance changes only human-readable result presentation and
 
 The same pass removes the public publication-status banner, uses the punctuation-free two-line News Desk tagline, repairs the editorial illustration title bounds, and reduces the shared footer to one concise author attribution plus a minimal copyright line. None of these changes alters inference or deployment configuration.
 
-The maintenance release must retain the existing `reliable_probability` and `misleading_probability` machine-readable fields and must not change the model, calibration, dataset, threshold, class semantics, locked metrics, summariser, privacy boundary, or export availability. After protected merge, deployment validation includes a newly generated live PDF, all six pages, supported outcomes, abstention, exports, session isolation, public access, and application-origin console errors.
+The maintenance release retained the existing `reliable_probability` and `misleading_probability` machine-readable fields and did not change the model, calibration, dataset, threshold, class semantics, locked metrics, summariser, privacy boundary, or export availability.
+
+## Phase 5T verified code and live smoke
+
+- Protected maintenance [PR #47](https://github.com/DevenGaikwad/NewsLens-AI/pull/47): head `6d2ac240491a7ac6cf0b7d838f065865242254c6`; squash merge `d9291605ac9813982837dcb5fade645035795a34`; tree `c9db63a911d6c34cbecd0935336866a6280bde88`.
+- Exact-new-main [CI 36293926319](https://github.com/DevenGaikwad/NewsLens-AI/actions/runs/36293926319) and [CodeQL 36293926442](https://github.com/DevenGaikwad/NewsLens-AI/actions/runs/36293926442): passed.
+- Public startup, six pages, supported agreement and contradiction, unsupported scope abstention without a directional percentage, short-input validation, private-session archive isolation, and JSON/PDF/CSV controls: passed on 27 September 2026. Two newly downloaded A4 PDFs were rasterized and visually inspected with PyMuPDF; their two probability rows were separated and correctly paired with the values. Application-origin console errors: zero. Desktop width 1363 CSS pixels: no horizontal overflow. The retained five-width audit supplies mobile evidence.
+- Security-relevant [PR #42](https://github.com/DevenGaikwad/NewsLens-AI/pull/42) advanced `pypdf` from 6.16.1 to the patched 6.19.0. It changed only `requirements-lite.txt`; 165 Python tests passed with the new version, followed by exact-new-main [CI 36296310448](https://github.com/DevenGaikwad/NewsLens-AI/actions/runs/36296310448) and [CodeQL 36296310449](https://github.com/DevenGaikwad/NewsLens-AI/actions/runs/36296310449). Its merge is `0e58189b8cbfd92126e5f4268bff320bdeb25bd1`, tree `b59b7ccb51a3177ec5044280a66cf7201ee8cfaf`.
+- Seven optional or unsuitable older dependency PRs were closed with individual explanations. The public open-PR list returned zero. Repository-specific security and Dependabot alert counts could not be read (HTTP 401); no zero-alert claim is made.
+
+The public interface demonstrates the Phase 5T code changes, but its public page does not expose the exact deployed Git commit. The deployment dashboard requires sign-in in this browser. The exact current deployment revision remains a separate verification item; the prior Phase 5S deployed revision above is historical.

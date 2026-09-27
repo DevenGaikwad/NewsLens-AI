@@ -1,6 +1,6 @@
 # NewsLens AI Phase 5S Deployment and Audit Report
 
-Updated: 26 September 2026
+Updated: 27 September 2026
 
 Release state: **complete and publicly deployed**
 
@@ -83,7 +83,7 @@ Release state: **complete and publicly deployed**
 - Application-origin console errors: 0. Browser-extension metadata warnings were excluded because they did not originate from the application.
 - Desktop layout at 1363 CSS pixels had no horizontal overflow. The unchanged responsive system retains its five-width 360/390/768/1366/1920 release audit. The cloud browser's HTTP(S)-only URL policy prevented creation of a new 390-pixel harness; no unsupported workaround was attempted.
 
-## Phase 5T maintenance candidate
+## Phase 5T protected maintenance release
 
 Phase 5T is a presentation and interpretation correction based on `f6cae8cedb3364cf03864410b8c5572c4e625504`. It repairs the ReportLab probability table, withholds directional values outside the supported two-block comparison format, clarifies the human-readable probability labels, removes the obsolete public publication banner, uses the punctuation-free responsive tagline `News intelligence / With scope intact`, repairs the editorial masthead bounds, and reduces repetitive footer attribution.
 
@@ -103,10 +103,33 @@ Local candidate validation completed before protected publication:
 - representative application-export matrix: 7 pages inspected across supported, boundary, unsupported, and long-content cases;
 - model retraining: not performed.
 
-Protected PR, merge, exact-new-main workflow, and post-deployment identifiers are recorded only after those events complete.
+The retained branch was recovered with no stalled dependency-audit process. The bounded production `npm audit --omit=dev` completed in 8.2 seconds: 80 dependencies, zero reported vulnerabilities. The repaired source, UI, tests, four existing Word reports, and existing project PDF were committed as local `a33de69136ad05b6e3514a99b372770e691d27cd` (tree `c9db63a911d6c34cbecd0935336866a6280bde88`). GitHub's protected workflow used the same exact tree on remote head `6d2ac240491a7ac6cf0b7d838f065865242254c6` in [PR #47](https://github.com/DevenGaikwad/NewsLens-AI/pull/47). Its CI and both CodeQL languages passed on that head. The squash merge was `d9291605ac9813982837dcb5fade645035795a34`, with the same resulting tree. Exact-new-main [CI run 36293926319](https://github.com/DevenGaikwad/NewsLens-AI/actions/runs/36293926319) and [CodeQL run 36293926442](https://github.com/DevenGaikwad/NewsLens-AI/actions/runs/36293926442) passed. PR #47 is merged and closed.
+
+### Public Phase 5T verification
+
+On 27 September 2026 the public Streamlit application started and all six pages loaded. The News Desk displayed the two-line punctuation-free tagline and repaired masthead; the publication banner was absent and the footer attribution was concise. In the live Analyse Article page, the authored paired-ledger agreement sample yielded 100.0% **Fields agree** and 0.0% **Fields conflict**; the contradiction sample yielded 0.0% and 100.0%, respectively. These are synthetic comparison probabilities, not factual truth probabilities. Ordinary fictional prose without both ledgers displayed **Outside supported comparison scope**, **Reference-comparison confidence: Not reported**, no directional feature explanation, and a human editorial-review path. A short input produced the 40-word validation message. A fresh browser session had zero archive records; its later analysis appeared only in that session. JSON, PDF, and privacy-safe analytics CSV controls were present. Application-origin console errors were zero; extension metadata errors were excluded.
+
+New PDFs were downloaded from the live application. The agreement and contradiction PDFs were each one A4 page, with separately aligned probability labels and their corresponding 100.0%/0.0% or 0.0%/100.0% values. Their pages were independently rasterized and visually inspected with PyMuPDF; text extraction and page size were checked separately. The seven-page local PDF matrix retained the unsupported-score-withholding and long-content evidence. The live desktop viewport at 1363 CSS pixels had no horizontal overflow; the retained 360/390/768/1366/1920 responsive audit remains the mobile evidence. The browser did not expose an exact Streamlit deployment commit in its public interface.
+
+### Security-relevant dependency follow-up and PR disposition
+
+The `pypdf==6.16.1` pin was within published affected ranges for resource-consumption advisories, including GHSA-jw7q-gvrg-4vj3 and GHSA-php9-fj8v-98fj. [PR #42](https://github.com/DevenGaikwad/NewsLens-AI/pull/42) changed only `requirements-lite.txt` to `pypdf==6.19.0`, the patched version. Its exact head `7d40f439fcd3c8f9f3d3130018dcfbbfddcee522` had successful CI and CodeQL. The complete 165-test suite passed locally with 6.19.0. It was squash merged as `0e58189b8cbfd92126e5f4268bff320bdeb25bd1` (tree `b59b7ccb51a3177ec5044280a66cf7201ee8cfaf`). Exact-new-main [CI run 36296310448](https://github.com/DevenGaikwad/NewsLens-AI/actions/runs/36296310448) and [CodeQL run 36296310449](https://github.com/DevenGaikwad/NewsLens-AI/actions/runs/36296310449) passed. The dataset, model, calibration and binding hashes remained exact. The dependency-only change did not retrain or alter the model.
+
+| PR | Update | Disposition and reason |
+|---|---|---|
+| [#32](https://github.com/DevenGaikwad/NewsLens-AI/pull/32) | ReportLab 5.0.1 | Closed with explanation; major renderer migration needs its own compatibility and visual review. |
+| [#33](https://github.com/DevenGaikwad/NewsLens-AI/pull/33) | react-dom and types 19.3.0 | Closed with explanation; exact-head CI failed and the web package is not deployed. |
+| [#34](https://github.com/DevenGaikwad/NewsLens-AI/pull/34) | joblib 1.6.0 | Closed with explanation; optional model-serialization dependency change needs a separate compatibility gate. |
+| [#36](https://github.com/DevenGaikwad/NewsLens-AI/pull/36) | react and types 19.3.0 | Closed with explanation; optional nondeployed web update should be validated with react-dom. |
+| [#37](https://github.com/DevenGaikwad/NewsLens-AI/pull/37) | pytest 9.1.1 | Closed with explanation; optional development update, existing 165 tests pass. |
+| [#40](https://github.com/DevenGaikwad/NewsLens-AI/pull/40) | @types/node 26.6.1 | Closed with explanation; major types update for nondeployed web package needs separate review. |
+| [#42](https://github.com/DevenGaikwad/NewsLens-AI/pull/42) | pypdf 6.19.0 | Merged; patched the published affected ranges. |
+| [#43](https://github.com/DevenGaikwad/NewsLens-AI/pull/43) | Next.js 16.3.5 | Closed with explanation; nondeployed web package and production npm audit reported zero vulnerabilities. |
+
+The public GitHub open-PR listing returned zero after these actions. `pip-audit` could not complete a new advisory-service lookup within the bounded 55-second command; its historical Phase 5S result is not treated as a current scan. Repository-specific security and Dependabot alert endpoints returned HTTP 401 without an authorized alert-reading permission, so their current open counts remain unverified. The protected CI, CodeQL, dependency review, current npm audit, and the cited upstream pypdf advisories are the available evidence. No zero-alert claim is inferred from a denied endpoint.
 
 ## Publication boundary
 
 All training articles and entities are synthetic. No ISOT row, copied phrase, close paraphrase, transformation, translation, summary, reconstruction, private ISOT-derived classifier/calibration artifact, or external copyrighted article dataset is present in the model, repository, archive, deployment, or release. Noncommercial status was not treated as permission.
 
-Vercel was not deployed. The six retained Dependabot PRs and historical release tag were not modified.
+Vercel was not deployed or modified. The historical release tag was not modified. The earlier six-PR Phase 5S hold was superseded by the owner's Phase 5T instruction to resolve every open PR; the full eight-PR disposition is recorded above.

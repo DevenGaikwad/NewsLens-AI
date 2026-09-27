@@ -30,3 +30,9 @@ State: **complete — protected dataset and model releases merged; public Stream
 ## Boundaries preserved
 
 No ISOT content or private ISOT-derived artifact was published. The six retained Dependabot PRs, historical release tag, and every Vercel deployment remain untouched.
+
+## Phase 5T addendum — 27 September 2026
+
+The earlier Phase 5S hold is preserved above as a historical checkpoint. The later owner instruction authorized a protected presentation correction and zero-open-PR cleanup. [PR #47](https://github.com/DevenGaikwad/NewsLens-AI/pull/47) merged as `d9291605ac9813982837dcb5fade645035795a34` (tree `c9db63a911d6c34cbecd0935336866a6280bde88`); exact-new-main CI and CodeQL passed. Live public UI checks included all six routes, both supported comparison outcomes, unsupported score withholding, input validation, exports, isolated archive, and visually inspected newly downloaded PDF pages.
+
+[PR #42](https://github.com/DevenGaikwad/NewsLens-AI/pull/42) merged the patched pypdf 6.19.0 pin as `0e58189b8cbfd92126e5f4268bff320bdeb25bd1` (tree `b59b7ccb51a3177ec5044280a66cf7201ee8cfaf`); 165 Python tests with 6.19.0 and exact-new-main CI/CodeQL passed. Seven other old dependency PRs closed with individual explanations, leaving zero open PRs. The dataset, model, and calibration hashes stayed unchanged. Repository alert counts and the exact current Streamlit deployment commit await authorized dashboard verification. The historical release tag and Vercel remain untouched.
