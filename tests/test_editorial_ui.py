@@ -142,6 +142,29 @@ def test_public_ui_uses_punctuation_free_tagline_and_concise_authorship() -> Non
     assert "© 2026 · All rights reserved" in web_layout
 
 
+def test_tablet_hero_stacks_only_outer_columns_and_wraps_title() -> None:
+    components = read("ui/components.py")
+    theme = read("ui/theme.py")
+    tablet = theme.split("@media (max-width: 900px) {", 1)[1].split(
+        "@media (max-width: 560px) {", 1
+    )[0]
+    mobile = theme.split("@media (max-width: 560px) {", 1)[1]
+    outer = (
+        '.st-key-nl_hero > [data-testid="stLayoutWrapper"] > '
+        '[data-testid="stHorizontalBlock"]'
+    )
+    assert 'with st.container(key="nl_hero"):' in components
+    assert 'st.columns([1.18, 0.82]' in components
+    assert 'key="nl_hero_actions",' in components
+    assert f"{outer} {{\n    flex-direction: column;" in tablet
+    assert (
+        f'{outer} > [data-testid="stColumn"] {{\n'
+        "    flex: 1 1 auto;\n    width: 100%;\n    min-width: 0;"
+    ) in tablet
+    assert ".hero-title-line {\n    white-space: normal;" in tablet
+    assert '.st-key-nl_hero_actions [data-testid="stPageLink-NavLink"]' in mobile
+
+
 def test_public_ui_removes_publication_banner_and_named_private_dataset() -> None:
     public_sources = "\n".join(
         read(relative)
