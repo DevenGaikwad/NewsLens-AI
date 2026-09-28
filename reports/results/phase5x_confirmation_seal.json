@@ -1,0 +1,12 @@
+{
+  "case_count": 60,
+  "case_set_sha256": "645332dc171bae21f3881b28d244e4e890416801d02b8ae5742c0413d9f261a3",
+  "event_count": 12,
+  "expected_counts": {
+    "agree": 24,
+    "conflict": 24,
+    "review": 12
+  },
+  "purpose": "Independent one-time confirmation for Phase 5X, never used in candidate fitting or threshold selection",
+  "source_sha256": "47b185c13fa82d49c989817374b53e669867596c4360ea3c98a2e260f89aaa31"
+}
