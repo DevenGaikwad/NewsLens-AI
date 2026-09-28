@@ -1016,6 +1016,20 @@ div[data-testid="stAlert"] {
     min-height: 0;
   }
 
+  .st-key-nl_hero > [data-testid="stLayoutWrapper"] > [data-testid="stHorizontalBlock"] {
+    flex-direction: column;
+  }
+
+  .st-key-nl_hero > [data-testid="stLayoutWrapper"] > [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] {
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .hero-title-line {
+    white-space: normal;
+  }
+
   .st-key-nl_hero_actions {
     width: 100%;
   }
