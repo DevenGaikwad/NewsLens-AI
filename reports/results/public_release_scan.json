@@ -24,7 +24,7 @@
     "passed": true
   },
   "broken_local_markdown_links": [],
-  "files_scanned": 207,
+  "files_scanned": 205,
   "forbidden_files": [],
   "internal_navigation_findings": [],
   "legal_policy": {
@@ -34,7 +34,7 @@
   "personal_data_findings": [],
   "public_release_ready": true,
   "publication_gates": [],
-  "release_root": "newslens-phase5x",
+  "release_root": "newslens-phase5x-correction",
   "safe_tree_scan_passed": true,
   "secret_findings": []
 }
