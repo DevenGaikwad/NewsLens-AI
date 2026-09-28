@@ -1,0 +1,1186 @@
+{
+  "confirmation": {
+    "automatic_coverage": 0.75,
+    "automatic_precision": {
+      "agree": 1.0,
+      "conflict": 1.0
+    },
+    "balanced_accuracy": 1.0,
+    "brier": 3.866666666666708e-07,
+    "cases": [
+      {
+        "automatic": true,
+        "category": "exact agreement",
+        "event": "confirmation-01",
+        "expected": "agree",
+        "id": "P5X-001",
+        "ms": 5.1000000000000005,
+        "probability_conflict": 0.0,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "numeric paraphrase agreement",
+        "event": "confirmation-01",
+        "expected": "agree",
+        "id": "P5X-002",
+        "ms": 4.8,
+        "probability_conflict": null,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "single-field counterfactual",
+        "event": "confirmation-01",
+        "expected": "conflict",
+        "id": "P5X-003",
+        "ms": 4.6,
+        "probability_conflict": 0.9994,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 0.9994,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": true,
+        "category": "two-field counterfactual",
+        "event": "confirmation-01",
+        "expected": "conflict",
+        "id": "P5X-004",
+        "ms": 5.8,
+        "probability_conflict": 1.0,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 1.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "missing field",
+        "event": "confirmation-01",
+        "expected": "review",
+        "id": "P5X-005",
+        "ms": 4.4,
+        "probability_conflict": null,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "exact agreement",
+        "event": "confirmation-02",
+        "expected": "agree",
+        "id": "P5X-006",
+        "ms": 4.7,
+        "probability_conflict": 0.0,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "numeric paraphrase agreement",
+        "event": "confirmation-02",
+        "expected": "agree",
+        "id": "P5X-007",
+        "ms": 4.5,
+        "probability_conflict": null,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "single-field counterfactual",
+        "event": "confirmation-02",
+        "expected": "conflict",
+        "id": "P5X-008",
+        "ms": 4.7,
+        "probability_conflict": 0.9981,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 0.9981,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": true,
+        "category": "two-field counterfactual",
+        "event": "confirmation-02",
+        "expected": "conflict",
+        "id": "P5X-009",
+        "ms": 5.8999999999999995,
+        "probability_conflict": 1.0,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 1.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "duplicate field",
+        "event": "confirmation-02",
+        "expected": "review",
+        "id": "P5X-010",
+        "ms": 4.5,
+        "probability_conflict": null,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 0.9979,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "exact agreement",
+        "event": "confirmation-03",
+        "expected": "agree",
+        "id": "P5X-011",
+        "ms": 4.3,
+        "probability_conflict": 0.0,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "numeric paraphrase agreement",
+        "event": "confirmation-03",
+        "expected": "agree",
+        "id": "P5X-012",
+        "ms": 4.6,
+        "probability_conflict": null,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "single-field counterfactual",
+        "event": "confirmation-03",
+        "expected": "conflict",
+        "id": "P5X-013",
+        "ms": 4.3,
+        "probability_conflict": 0.9993,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 0.9993,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": true,
+        "category": "two-field counterfactual",
+        "event": "confirmation-03",
+        "expected": "conflict",
+        "id": "P5X-014",
+        "ms": 4.6,
+        "probability_conflict": 1.0,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 1.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "ordinary prose",
+        "event": "confirmation-03",
+        "expected": "review",
+        "id": "P5X-015",
+        "ms": 4.2,
+        "probability_conflict": null,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 0.857,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "exact agreement",
+        "event": "confirmation-04",
+        "expected": "agree",
+        "id": "P5X-016",
+        "ms": 4.4,
+        "probability_conflict": 0.0,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "numeric paraphrase agreement",
+        "event": "confirmation-04",
+        "expected": "agree",
+        "id": "P5X-017",
+        "ms": 4.3,
+        "probability_conflict": null,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "single-field counterfactual",
+        "event": "confirmation-04",
+        "expected": "conflict",
+        "id": "P5X-018",
+        "ms": 5.0,
+        "probability_conflict": 0.9984,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 0.9984,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": true,
+        "category": "two-field counterfactual",
+        "event": "confirmation-04",
+        "expected": "conflict",
+        "id": "P5X-019",
+        "ms": 4.4,
+        "probability_conflict": 1.0,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 1.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "missing field",
+        "event": "confirmation-04",
+        "expected": "review",
+        "id": "P5X-020",
+        "ms": 4.4,
+        "probability_conflict": null,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "exact agreement",
+        "event": "confirmation-05",
+        "expected": "agree",
+        "id": "P5X-021",
+        "ms": 4.7,
+        "probability_conflict": 0.0,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "numeric paraphrase agreement",
+        "event": "confirmation-05",
+        "expected": "agree",
+        "id": "P5X-022",
+        "ms": 4.7,
+        "probability_conflict": null,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "single-field counterfactual",
+        "event": "confirmation-05",
+        "expected": "conflict",
+        "id": "P5X-023",
+        "ms": 4.8,
+        "probability_conflict": 0.9999,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 0.9999,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": true,
+        "category": "two-field counterfactual",
+        "event": "confirmation-05",
+        "expected": "conflict",
+        "id": "P5X-024",
+        "ms": 4.7,
+        "probability_conflict": 1.0,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 1.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "duplicate field",
+        "event": "confirmation-05",
+        "expected": "review",
+        "id": "P5X-025",
+        "ms": 5.1000000000000005,
+        "probability_conflict": null,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 1.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "exact agreement",
+        "event": "confirmation-06",
+        "expected": "agree",
+        "id": "P5X-026",
+        "ms": 4.6,
+        "probability_conflict": 0.0,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "numeric paraphrase agreement",
+        "event": "confirmation-06",
+        "expected": "agree",
+        "id": "P5X-027",
+        "ms": 5.4,
+        "probability_conflict": null,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "single-field counterfactual",
+        "event": "confirmation-06",
+        "expected": "conflict",
+        "id": "P5X-028",
+        "ms": 5.5,
+        "probability_conflict": 0.9997,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 0.9997,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": true,
+        "category": "two-field counterfactual",
+        "event": "confirmation-06",
+        "expected": "conflict",
+        "id": "P5X-029",
+        "ms": 5.3,
+        "probability_conflict": 0.9997,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 0.9997,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "ordinary prose",
+        "event": "confirmation-06",
+        "expected": "review",
+        "id": "P5X-030",
+        "ms": 4.5,
+        "probability_conflict": null,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 0.855,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "exact agreement",
+        "event": "confirmation-07",
+        "expected": "agree",
+        "id": "P5X-031",
+        "ms": 5.0,
+        "probability_conflict": 0.0,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "numeric paraphrase agreement",
+        "event": "confirmation-07",
+        "expected": "agree",
+        "id": "P5X-032",
+        "ms": 5.1000000000000005,
+        "probability_conflict": null,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "single-field counterfactual",
+        "event": "confirmation-07",
+        "expected": "conflict",
+        "id": "P5X-033",
+        "ms": 4.7,
+        "probability_conflict": 0.9992,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 0.9992,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": true,
+        "category": "two-field counterfactual",
+        "event": "confirmation-07",
+        "expected": "conflict",
+        "id": "P5X-034",
+        "ms": 4.4,
+        "probability_conflict": 1.0,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 1.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "missing field",
+        "event": "confirmation-07",
+        "expected": "review",
+        "id": "P5X-035",
+        "ms": 4.8,
+        "probability_conflict": null,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "exact agreement",
+        "event": "confirmation-08",
+        "expected": "agree",
+        "id": "P5X-036",
+        "ms": 4.4,
+        "probability_conflict": 0.0,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "numeric paraphrase agreement",
+        "event": "confirmation-08",
+        "expected": "agree",
+        "id": "P5X-037",
+        "ms": 4.5,
+        "probability_conflict": null,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "single-field counterfactual",
+        "event": "confirmation-08",
+        "expected": "conflict",
+        "id": "P5X-038",
+        "ms": 4.5,
+        "probability_conflict": 0.9985,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 0.9985,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": true,
+        "category": "two-field counterfactual",
+        "event": "confirmation-08",
+        "expected": "conflict",
+        "id": "P5X-039",
+        "ms": 4.7,
+        "probability_conflict": 1.0,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 1.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "duplicate field",
+        "event": "confirmation-08",
+        "expected": "review",
+        "id": "P5X-040",
+        "ms": 4.8999999999999995,
+        "probability_conflict": null,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 1.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "exact agreement",
+        "event": "confirmation-09",
+        "expected": "agree",
+        "id": "P5X-041",
+        "ms": 4.7,
+        "probability_conflict": 0.0,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "numeric paraphrase agreement",
+        "event": "confirmation-09",
+        "expected": "agree",
+        "id": "P5X-042",
+        "ms": 4.5,
+        "probability_conflict": null,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "single-field counterfactual",
+        "event": "confirmation-09",
+        "expected": "conflict",
+        "id": "P5X-043",
+        "ms": 4.4,
+        "probability_conflict": 0.9971,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 0.9971,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": true,
+        "category": "two-field counterfactual",
+        "event": "confirmation-09",
+        "expected": "conflict",
+        "id": "P5X-044",
+        "ms": 4.5,
+        "probability_conflict": 1.0,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 1.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "ordinary prose",
+        "event": "confirmation-09",
+        "expected": "review",
+        "id": "P5X-045",
+        "ms": 5.8,
+        "probability_conflict": null,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 0.8592,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "exact agreement",
+        "event": "confirmation-10",
+        "expected": "agree",
+        "id": "P5X-046",
+        "ms": 5.3,
+        "probability_conflict": 0.0,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "numeric paraphrase agreement",
+        "event": "confirmation-10",
+        "expected": "agree",
+        "id": "P5X-047",
+        "ms": 4.6,
+        "probability_conflict": null,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "single-field counterfactual",
+        "event": "confirmation-10",
+        "expected": "conflict",
+        "id": "P5X-048",
+        "ms": 4.6,
+        "probability_conflict": 0.9999,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 0.9999,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": true,
+        "category": "two-field counterfactual",
+        "event": "confirmation-10",
+        "expected": "conflict",
+        "id": "P5X-049",
+        "ms": 4.5,
+        "probability_conflict": 1.0,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 1.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "missing field",
+        "event": "confirmation-10",
+        "expected": "review",
+        "id": "P5X-050",
+        "ms": 4.8,
+        "probability_conflict": null,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "exact agreement",
+        "event": "confirmation-11",
+        "expected": "agree",
+        "id": "P5X-051",
+        "ms": 4.4,
+        "probability_conflict": 0.0,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "numeric paraphrase agreement",
+        "event": "confirmation-11",
+        "expected": "agree",
+        "id": "P5X-052",
+        "ms": 4.5,
+        "probability_conflict": null,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "single-field counterfactual",
+        "event": "confirmation-11",
+        "expected": "conflict",
+        "id": "P5X-053",
+        "ms": 4.4,
+        "probability_conflict": 1.0,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 1.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": true,
+        "category": "two-field counterfactual",
+        "event": "confirmation-11",
+        "expected": "conflict",
+        "id": "P5X-054",
+        "ms": 4.4,
+        "probability_conflict": 1.0,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 1.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "duplicate field",
+        "event": "confirmation-11",
+        "expected": "review",
+        "id": "P5X-055",
+        "ms": 4.3,
+        "probability_conflict": null,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 1.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "exact agreement",
+        "event": "confirmation-12",
+        "expected": "agree",
+        "id": "P5X-056",
+        "ms": 6.3,
+        "probability_conflict": 0.0,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "numeric paraphrase agreement",
+        "event": "confirmation-12",
+        "expected": "agree",
+        "id": "P5X-057",
+        "ms": 5.0,
+        "probability_conflict": null,
+        "raw_class": "reliable",
+        "raw_probability_conflict": 0.0,
+        "review": true,
+        "score_withheld": true
+      },
+      {
+        "automatic": true,
+        "category": "single-field counterfactual",
+        "event": "confirmation-12",
+        "expected": "conflict",
+        "id": "P5X-058",
+        "ms": 4.4,
+        "probability_conflict": 0.9998,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 0.9998,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": true,
+        "category": "two-field counterfactual",
+        "event": "confirmation-12",
+        "expected": "conflict",
+        "id": "P5X-059",
+        "ms": 4.4,
+        "probability_conflict": 1.0,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 1.0,
+        "review": false,
+        "score_withheld": false
+      },
+      {
+        "automatic": false,
+        "category": "ordinary prose",
+        "event": "confirmation-12",
+        "expected": "review",
+        "id": "P5X-060",
+        "ms": 4.5,
+        "probability_conflict": null,
+        "raw_class": "misleading",
+        "raw_probability_conflict": 0.8774,
+        "review": true,
+        "score_withheld": true
+      }
+    ],
+    "cases_sha256": "645332dc171bae21f3881b28d244e4e890416801d02b8ae5742c0413d9f261a3",
+    "class_order": [
+      "agree",
+      "conflict"
+    ],
+    "confusion_matrix": [
+      [
+        24,
+        0
+      ],
+      [
+        0,
+        24
+      ]
+    ],
+    "counterfactual_flips": 12,
+    "counterfactual_pairs": 12,
+    "ece_10": 0.00022916666666666918,
+    "expected_reviews_routed": 12,
+    "expected_reviews_total": 12,
+    "f1": [
+      1.0,
+      1.0
+    ],
+    "macro_f1": 1.0,
+    "median_inference_ms": 4.6,
+    "model_size_bytes": 161610,
+    "ordinary_scores_withheld": true,
+    "precision": [
+      1.0,
+      1.0
+    ],
+    "recall": [
+      1.0,
+      1.0
+    ],
+    "reviews_scores_withheld": true,
+    "support": [
+      24,
+      24
+    ]
+  },
+  "decision": "reject",
+  "development": {
+    "abstention_policy_brier": 1.9214397272958438e-06,
+    "calibration_rows": 1200,
+    "original_training_rows": 18000,
+    "policy_table": [
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.5,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.51,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.52,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.53,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.54,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.55,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.56,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.57,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.58,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.59,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.6,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.61,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.62,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.63,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.64,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.65,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.66,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.67,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.68,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.69,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.7,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.71,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.72,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.73,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.74,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.75,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.76,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.77,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.78,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.79,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.8,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.81,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.82,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.83,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.84,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.85,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.86,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.87,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.88,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.89,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.9,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.91,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.92,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.93,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.94,
+        "wilson_lower_95": 0.996808999397265
+      },
+      {
+        "auto_decided": 1200,
+        "coverage": 1.0,
+        "selective_accuracy": 1.0,
+        "threshold": 0.95,
+        "wilson_lower_95": 0.996808999397265
+      }
+    ],
+    "threshold": 0.5,
+    "validation_balanced_accuracy": 1.0,
+    "validation_macro_f1": 1.0
+  },
+  "predeclared_gate": {
+    "agree_recall": true,
+    "agreement_auto_precision": true,
+    "automatic_coverage": false,
+    "balanced_accuracy": true,
+    "brier": true,
+    "conflict_auto_precision": true,
+    "conflict_recall": true,
+    "counterfactual_flips": true,
+    "ece": true,
+    "latency": true,
+    "macro_f1": true,
+    "package_size": true,
+    "policy_brier": true,
+    "review_routing": true,
+    "review_score_withholding": true,
+    "validation_balanced_accuracy": true,
+    "validation_macro_f1": true
+  }
+}

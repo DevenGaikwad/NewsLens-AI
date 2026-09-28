@@ -26,6 +26,8 @@ The final test is not used for candidate selection, calibration fitting, or thre
 
 The independently authored [Phase 5W challenge](PHASE5W_CHALLENGE_AND_ROUTING.md) is separate from those partitions. It exposed poor single-field conflict behavior in the frozen model. Focused scope-guard tests check conservative review routing without retraining or retuning on the accepted locked test. For a demonstration, select each of the three packaged fictional examples on **Analyse Article** as described in [`data/sample/README.md`](../data/sample/README.md); ordinary external prose is outside the classifier's task.
 
+The [Phase 5X model gate](PHASE5X_MODEL_GATE.md) fixed acceptance criteria before an independently authored 60-case confirmation set was used once. The feature-design candidate failed automatic coverage, so no candidate artifact or calibration was published and the original locked final test was not rerun for candidate selection. The gate, seal, source script, and machine-readable study report allow the decision to be reviewed without altering the frozen runtime.
+
 ## Interpretation
 
 Passing tests establishes implementation and in-distribution benchmark behavior. It does not establish factual accuracy on real articles. Deployment smoke tests must separately validate public startup, all three packaged paths, the calibrated-probability explanation, outside-scope withholding, clean live PDF rendering, exports, error handling, session isolation, responsive layout, and absence of raw training-data exposure.
