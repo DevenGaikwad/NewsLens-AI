@@ -67,7 +67,7 @@ configure_page("NewsLens AI | Editorial Archive", active="history")
 history_database = session_history_path()
 page_header(
     "Personal Editorial Archive",
-    "Your analysis record,\nprivate to this session.",
+    "Your analysis record\nPrivate to this session",
     "Search, filter, sort, inspect, reopen, export, or explicitly delete structured analysis "
     "records. Uploaded files and full original article text are not stored.",
 )
@@ -385,8 +385,8 @@ if record:
                     f"from model {record['model_version']}. {record.get('review_reason') or ''}"
                 )
                 if supported_scope
-                else "The required structured reference pair was unavailable, so no directional "
-                "comparison score is displayed."
+                else "This record required editorial review, so no directional comparison "
+                f"score is displayed. {record.get('review_reason') or ''}"
             ),
             scope_supported=supported_scope,
         )

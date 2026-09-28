@@ -14,7 +14,7 @@ from ui import callout, configure_page, footer, metric_strip, page_header, secti
 configure_page("NewsLens AI | Model Accountability", active="performance")
 page_header(
     "Model Accountability · Locked Evidence",
-    "A narrow model,\nmeasured honestly.",
+    "A narrow model\nMeasured honestly",
     "All reported training articles and entities are synthetic. Selection, calibration, policy tuning, and final testing use separate event-grouped partitions.",
 )
 summary = json.loads((REPORTS_DIR / "model_benchmark_summary.json").read_text(encoding="utf-8"))

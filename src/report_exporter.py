@@ -63,6 +63,7 @@ def archive_csv_bytes(frame: pd.DataFrame) -> bytes:
                 "reliable_probability",
                 "misleading_probability",
                 "calibrated_confidence",
+                "predicted_class",
             )
             if column in safe.columns
         ]

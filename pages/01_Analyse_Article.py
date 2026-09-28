@@ -49,7 +49,7 @@ from ui import (
 configure_page("NewsLens AI | Analyse Article", active="analyse")
 page_header(
     "Primary Analysis Desk",
-    "Analyse one article.\nInspect two transparent views.",
+    "Analyse one article\nInspect two transparent views",
     "Deterministic extractive summarization creates a compact reading view. The synthetic-only "
     "classifier compares the visible Reference note and Article account fields.",
 )
@@ -70,9 +70,9 @@ def verdict_interpretation(
 ) -> str:
     if not scope_supported:
         return (
-            "The required Reference note and Article account pair was not available, so the "
-            "application withheld a directional comparison score. Independent editorial "
-            "verification remains necessary."
+            "The application withheld a directional comparison score because this input cannot "
+            "receive an automatic supported outcome. "
+            f"{review_reason} Independent editorial verification remains necessary."
         )
     if label == LOWER_RISK_OUTCOME:
         message = "The visible synthetic account fields are consistent with the visible reference fields."
@@ -125,12 +125,14 @@ if input_method == "Paste text":
         st.text_input("Article title (optional)", placeholder="Enter a concise descriptive title")
         or article_title
     )
-    sample_path = (
-        Path(__file__).resolve().parents[1]
-        / "data"
-        / "sample"
-        / "reliable_style_article.txt"
-    )
+    sample_directory = Path(__file__).resolve().parents[1] / "data" / "sample"
+    sample_options = {
+        "Fields agree · fictional reference": "reliable_style_article.txt",
+        "Fields conflict · fictional reference": "misleading_style_article.txt",
+        "Outside scope · ordinary fictional prose": "uncertain_style_article.txt",
+    }
+    chosen_sample = st.selectbox("Fictional demonstration sample", tuple(sample_options))
+    sample_path = sample_directory / sample_options[chosen_sample]
     sample_value = str(st.session_state.get("loaded_sample", ""))
     article_text = st.text_area(
         "Full article text",
@@ -139,7 +141,7 @@ if input_method == "Paste text":
         placeholder=f"Paste at least {MIN_ARTICLE_WORDS} words of article text…",
     )
     sample_col, clear_col, _ = st.columns([1, 1, 3])
-    if sample_col.button("Load Packaged Sample", use_container_width=True) and sample_path.exists():
+    if sample_col.button("Load Selected Sample", use_container_width=True) and sample_path.exists():
         st.session_state["loaded_sample"] = sample_path.read_text(encoding="utf-8")
         st.rerun()
     if clear_col.button("Clear Text", use_container_width=True, disabled=not bool(sample_value)):
@@ -204,6 +206,7 @@ if analyse_clicked:
                 model,
                 diagnostics=diagnostics,
             )
+        automatic_scope = not diagnostics.domain_mismatch and not prediction.score_withheld
 
         total_time = perf_counter() - started
         record = {
@@ -235,7 +238,7 @@ if analyse_clicked:
             "vocabulary_coverage": diagnostics.vocabulary_coverage,
             "oov_rate": diagnostics.out_of_vocabulary_rate,
             "language_mismatch": int(diagnostics.language_mismatch),
-            "domain_mismatch": int(diagnostics.domain_mismatch),
+            "domain_mismatch": int(not automatic_scope),
             "model_version": prediction.model_version,
             "processing_time": round(total_time, 4),
         }
@@ -258,7 +261,8 @@ if analyse_clicked:
             "confidence": prediction.confidence,
             "calibration_status": prediction.calibration_status,
             "input_diagnostics": diagnostics.to_dict(),
-            "supported_scope": not diagnostics.domain_mismatch,
+            "supported_scope": automatic_scope,
+            "score_withheld": prediction.score_withheld,
             "explanation": prediction.explanation,
         }
         st.session_state["last_analysis"] = payload
