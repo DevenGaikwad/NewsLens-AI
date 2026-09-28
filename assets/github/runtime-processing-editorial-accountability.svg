@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1975" viewBox="0 0 1000 1975" role="img" aria-labelledby="title desc" preserveAspectRatio="xMidYMid meet">
   <title id="title">NewsLens AI runtime processing and editorial accountability flow</title>
-  <desc id="desc">Pasted text, a public URL, TXT, or a text-based PDF is safely extracted and preprocessed. The original cleaned article then enters independent summarisation and classification paths. Their outputs form an editorial result, followed by session-isolated SQLite review and archive, aggregate analytics, and drift readiness. Dataset preparation, benchmarking, calibration fitting, and evaluation remain offline. Runtime never imports training modules and never retrains.</desc>
+  <desc id="desc">Pasted text, a public URL, TXT, or a text-based PDF is safely extracted and preprocessed. Independent summarisation ranks and selects source sentences. Reference comparison uses visible reference-note and article-account signals, a synthetic-trained TF-IDF and Logistic Regression model, model-bound Platt calibration, abstention, and local explanation. Plain-language fields-agree or fields-conflict results support human editorial review; unsupported inputs require review. Results can be exported and reviewed in a session-isolated archive with privacy-safe aggregate analytics. Training and evaluation remain offline; runtime never retrains.</desc>
   <defs>
     <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
       <path d="M 0 0 L 12 6 L 0 12 z" fill="#765B45"/>
@@ -22,7 +22,7 @@
 
   <text x="60" y="58" class="heading" font-size="38">Runtime Processing and</text>
   <text x="60" y="100" class="heading" font-size="38">Editorial Accountability Flow</text>
-  <text x="60" y="137" class="body" font-size="22">Independent ML paths · human review · privacy-safe operational evidence</text>
+  <text x="60" y="137" class="body" font-size="22">Independent processing paths · human review · privacy-safe analytics</text>
 
   <g transform="translate(0 25)">
   <rect x="70" y="155" width="860" height="150" rx="18" class="box"/>
@@ -47,25 +47,26 @@
   <text x="95" y="648" class="eyebrow" font-size="18">INDEPENDENT PATH A</text>
   <text x="95" y="700" class="heading" font-size="32">Summarisation</text>
   <circle cx="108" cy="758" r="6" class="bullet"/>
-  <text x="132" y="767" class="body" font-size="25">Extractive summarisation</text>
+  <text x="132" y="767" class="body" font-size="23">TF-IDF centroid ranking</text>
   <circle cx="108" cy="818" r="6" class="bullet"/>
-  <text x="132" y="827" class="body" font-size="25">Synthetic ledger signals</text>
+  <text x="132" y="827" class="body" font-size="23">Original sentence selection</text>
   <rect x="95" y="870" width="340" height="48" rx="12" fill="#F7F1E8"/>
-  <text x="265" y="901" text-anchor="middle" class="body" font-size="20">Produces the selected-length summary</text>
+  <text x="265" y="901" text-anchor="middle" class="body" font-size="20">Selected-length summary</text>
 
   <rect x="535" y="600" width="400" height="350" rx="20" class="box"/>
   <text x="565" y="648" class="eyebrow" font-size="18">INDEPENDENT PATH B</text>
-  <text x="565" y="700" class="heading" font-size="32">Classification</text>
-  <circle cx="578" cy="751" r="6" class="bullet"/>
-  <text x="602" y="760" class="body" font-size="23">Saved TF-IDF</text>
-  <circle cx="578" cy="796" r="6" class="bullet"/>
-  <text x="602" y="805" class="body" font-size="23">Logistic Regression</text>
-  <circle cx="578" cy="841" r="6" class="bullet"/>
-  <text x="602" y="850" class="body" font-size="23">Private Platt calibration</text>
-  <circle cx="578" cy="886" r="6" class="bullet"/>
-  <text x="602" y="895" class="body" font-size="23">Validation-selected abstention</text>
-  <circle cx="578" cy="931" r="6" class="bullet"/>
-  <text x="602" y="940" class="body" font-size="23">Local coefficient explanation</text>
+  <text x="565" y="700" class="heading" font-size="28">Reference comparison</text>
+  <circle cx="578" cy="746" r="6" class="bullet"/>
+  <text x="602" y="753" class="body" font-size="20">Reference-note and article-account</text>
+  <text x="602" y="779" class="body" font-size="20">comparison signals</text>
+  <circle cx="578" cy="809" r="6" class="bullet"/>
+  <text x="602" y="816" class="body" font-size="20">TF-IDF + Logistic Regression</text>
+  <circle cx="578" cy="846" r="6" class="bullet"/>
+  <text x="602" y="853" class="body" font-size="20">Model-bound Platt calibration</text>
+  <circle cx="578" cy="883" r="6" class="bullet"/>
+  <text x="602" y="890" class="body" font-size="20">Abstain outside supported scope</text>
+  <circle cx="578" cy="920" r="6" class="bullet"/>
+  <text x="602" y="927" class="body" font-size="20">Local coefficient explanation</text>
 
   <path d="M 265 950 L 265 1005 L 500 1005" class="split"/>
   <path d="M 735 950 L 735 1005 L 500 1005 L 500 1040" class="line"/>
@@ -74,7 +75,8 @@
   <circle cx="230" cy="1105" r="27" class="accent"/>
   <text x="230" y="1114" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#FFFDF8">3</text>
   <text x="275" y="1103" class="heading" font-size="32">Editorial result</text>
-  <text x="275" y="1148" class="body" font-size="22">Independent summary and classification evidence</text>
+  <text x="275" y="1143" class="body" font-size="21">Fields agree / fields conflict · or review required</text>
+  <text x="275" y="1174" class="body" font-size="21">Human editorial review · JSON, PDF and CSV exports</text>
 
   <path d="M 500 1190 L 500 1235" class="line"/>
 
@@ -90,7 +92,7 @@
   <circle cx="230" cy="1485" r="27" class="accent"/>
   <text x="230" y="1494" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#FFFDF8">5</text>
   <text x="275" y="1483" class="heading" font-size="30">Aggregate analytics</text>
-  <text x="275" y="1525" class="body" font-size="22">Privacy-safe operational evidence and drift readiness</text>
+  <text x="275" y="1525" class="body" font-size="22">Privacy-safe aggregate operational evidence</text>
 
   <rect x="70" y="1625" width="860" height="185" rx="20" fill="#EADCC9" stroke="#765B45" stroke-width="3" stroke-dasharray="12 9"/>
   <text x="105" y="1672" class="eyebrow" font-size="19">CLEARLY SEPARATED · OFFLINE ONLY</text>
