@@ -56,7 +56,7 @@ The summary uses selected source sentences. The classifier uses the original cle
 
 All training articles and entities were independently authored for this project. No external copyrighted article dataset or non-redistributable model/calibration artifact is included.
 
-The dataset contains only invented articles and entities; the model never uses private ISOT-derived content or artifacts. The released model is the frozen **v1.0.0** package. A bounded Phase 5X relational-feature candidate was rejected because automatic coverage missed a predeclared independent gate; no replacement model, calibration, or dataset was released. The [candidate gate and confirmation report](docs/PHASE5X_MODEL_GATE.md) explain the result.
+The dataset contains only invented articles and entities; the model uses no private legacy content or artifacts. The released model is the frozen **v1.0.0** package. A bounded Phase 5X relational-feature candidate was rejected because automatic coverage missed a predeclared independent gate; no replacement model, calibration, or dataset was released. The [candidate gate and confirmation report](docs/PHASE5X_MODEL_GATE.md) explain the result.
 
 ## Measured evidence
 
