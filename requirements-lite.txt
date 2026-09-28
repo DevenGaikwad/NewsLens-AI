@@ -1,7 +1,7 @@
 # Tested lightweight CPU profile (Python 3.12)
 streamlit==1.59.2
 pandas==2.2.3
-numpy==2.3.5
+numpy==2.5.3
 scikit-learn==1.8.0
 joblib==1.5.3
 plotly==6.9.0
