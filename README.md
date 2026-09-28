@@ -1,21 +1,62 @@
 # NewsLens AI
 
+**Summarise an article, compare its visible fictional reference fields, and keep editorial judgment in human hands.**
+
+[![CI](https://github.com/DevenGaikwad/NewsLens-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/DevenGaikwad/NewsLens-AI/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/DevenGaikwad/NewsLens-AI/actions/workflows/codeql.yml/badge.svg)](https://github.com/DevenGaikwad/NewsLens-AI/actions/workflows/codeql.yml)
+![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB)
+
 NewsLens AI is a noncommercial student and placement-portfolio demonstration built by **Deven Sachin Gaikwad**. It combines deterministic extractive summarisation with an explainable classifier trained exclusively on an independently created synthetic benchmark.
 
 The **Reference comparison** classifier has a deliberately narrow purpose: compare the visible `Reference note` and `Article account` fields in the supported fictional format and indicate whether their ledgers are consistent or contradicting. It is **not** a general fake-news detector and does not establish real-world truth. A separate general-news screening model is not deployed; its candidate data have not passed the licensing and task-fit gate described in the [deployment/model license audit](docs/PUBLIC_DEPLOYMENT_MODEL_LICENSE_AUDIT.md).
 
 **Live application:** [newslens-ai-devengaikwad.streamlit.app](https://newslens-ai-devengaikwad.streamlit.app/)
 
+## Application at a glance
+
+| Page | Purpose |
+|---|---|
+| News Desk | Introduces the supported task, scope, and route into the application. |
+| Analyse Article | Accepts pasted text, a public URL, TXT, or a text-based PDF; shows a summary, Reference comparison, explanation, review status, and exports. |
+| Model Accountability | Presents the synthetic benchmark evaluation and model limits. |
+| Dataset Analysis | Describes the independently authored synthetic corpus and its evaluation profile. |
+| Editorial Archive | Keeps review records within a visitor session and offers aggregate monitoring and CSV export. |
+| Research & About | Explains authorship, evidence, responsible use, and project context. |
+
+![Runtime flow from safe article extraction through independent summarisation, synthetic Reference comparison, human review, session archive, and offline training boundary](assets/github/runtime-processing-editorial-accountability.svg)
+
+### Application decision workflow
+
+```mermaid
+flowchart TD
+    A["Article input"] --> B["Validate and safely extract"]
+    B --> C["Independent extractive summary"]
+    B --> D["Visible Reference note and Article account"]
+    D --> E["Synthetic-trained TF-IDF and Logistic Regression"]
+    E --> F["Model-bound Platt calibration"]
+    F --> G{"Supported structure and review policy?"}
+    G -- "Supported" --> H["Fields agree or fields conflict"]
+    G -- "Review" --> I["Outside scope or editorial review required"]
+    C --> J["Explain, review, export, and session archive"]
+    H --> J
+    I --> J
+```
+
+The summary uses selected source sentences. The classifier uses the original cleaned article; its scores compare the supplied fictional fields and never certify external facts. Ordinary unsupported prose is routed to human review.
+
 ## What is public
 
 - 24,000 original synthetic articles representing 12,000 fictional paired events.
 - Deterministic generator, manifest, audit evidence, and reproducibility tests.
+- Event-grouped five-way splits keep paired accounts of an event together.
 - TF-IDF bigram + Logistic Regression public model.
 - Platt calibration cryptographically bound to the exact model SHA-256.
 - Group-safe training, validation, calibration, abstention-policy, and locked-test partitions.
 - Streamlit interface with summarisation, classification, abstention, explanations, exports, session-local review, and aggregate monitoring.
 
 All training articles and entities were independently authored for this project. No external copyrighted article dataset or non-redistributable model/calibration artifact is included.
+
+![Locked synthetic-test calibration reliability curve; it is not a real-world news-validation result](reports/figures/calibration_reliability.png)
 
 ## Measured evidence
 
@@ -85,7 +126,7 @@ The release scan verifies the dataset ZIP, public model, calibration binding, le
 - PR B: [#45](https://github.com/DevenGaikwad/NewsLens-AI/pull/45)
 - Validated PR B head: `56f6e3e7137bd03fe45a0cd3e88978588968cdd1`
 - Model merge: `214b22745736b25f4c1121822a1811c76687bb00`; tree: `093cdbacf815be22791ae73bf5a581a9e84edd3d`
-- Live smoke checks covered startup, all six pages, summary, both classifier labels, abstention, invalid input, explanations, JSON/PDF/CSV controls, session isolation, and public access.
+- Recorded release smoke checks covered startup, all six pages, summary, both classifier labels, abstention, invalid input, explanations, JSON/PDF/CSV controls, session isolation, and public access. The [deployment report](docs/DEPLOYMENT.md) records the release evidence; the live deployment's commit must be checked separately when verifying its current interface.
 - Vercel was intentionally not deployed.
 
 ## Responsible use
