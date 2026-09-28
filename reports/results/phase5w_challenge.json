@@ -1,0 +1,1898 @@
+{
+  "purpose": "Independent synthetic challenge; exploratory, correlated by fictional event; no training or tuning",
+  "case_count": 60,
+  "event_count": 8,
+  "case_set_sha256": "e3eebcb355278b6615bba474ae17e5b7a8b91c255ec0a1eb18d5b8aeb2ebb95e",
+  "class_order": [
+    "agree",
+    "conflict"
+  ],
+  "confusion_matrix": [
+    [
+      22,
+      0
+    ],
+    [
+      22,
+      0
+    ]
+  ],
+  "precision": [
+    0.5,
+    0.0
+  ],
+  "recall": [
+    1.0,
+    0.0
+  ],
+  "f1": [
+    0.6666666666666666,
+    0.0
+  ],
+  "support": [
+    22,
+    22
+  ],
+  "balanced_accuracy": 0.5,
+  "macro_f1": 0.3333333333333333,
+  "false_positive_rate": 0.0,
+  "false_negative_rate": 1.0,
+  "reported_probability_count": 14,
+  "brier_score_reported_only": null,
+  "ece_10_equal_width_reported_only": null,
+  "reported_calibration_note": "Not estimated: automatic decisions contain only one class",
+  "automatic_coverage_supported": 0.3181818181818182,
+  "automatic_accuracy_supported": 1.0,
+  "review_cases_routed_to_review": 16,
+  "review_cases_total": 16,
+  "outside_scope_probabilities_withheld": true,
+  "counterfactual_pairs": 8,
+  "counterfactual_exact_pair_flip_rate": 0.0,
+  "median_inference_ms": 4.9,
+  "model_size_bytes": 161709,
+  "calibration_size_bytes": 728,
+  "categories": {
+    "exact agreement": {
+      "count": 8,
+      "correct_or_reviewed": 8
+    },
+    "single factual contradiction": {
+      "count": 8,
+      "correct_or_reviewed": 8
+    },
+    "paraphrased agreement": {
+      "count": 8,
+      "correct_or_reviewed": 8
+    },
+    "paraphrased contradiction and negation": {
+      "count": 8,
+      "correct_or_reviewed": 8
+    },
+    "reordered fields": {
+      "count": 4,
+      "correct_or_reviewed": 4
+    },
+    "long distracting prose": {
+      "count": 8,
+      "correct_or_reviewed": 8
+    },
+    "missing comparison field": {
+      "count": 4,
+      "correct_or_reviewed": 4
+    },
+    "duplicate comparison field": {
+      "count": 4,
+      "correct_or_reviewed": 4
+    },
+    "malformed reference heading": {
+      "count": 4,
+      "correct_or_reviewed": 4
+    },
+    "ordinary outside-scope prose": {
+      "count": 4,
+      "correct_or_reviewed": 4
+    }
+  },
+  "cases": [
+    {
+      "id": "P5W-001",
+      "event": "fiction-01",
+      "category": "exact agreement",
+      "expected": "agree",
+      "displayed_outcome": "Synthetic ledger-consistent pattern indicated",
+      "predicted_class": "reliable",
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": 1.0,
+      "fields_conflict_probability": 0.0,
+      "confidence": 1.0,
+      "review_required": false,
+      "supported_scope": true,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.211221,
+      "review_reason": "",
+      "leading_conflict_feature": [
+        {
+          "term": "volunteers",
+          "contribution": 0.00649
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_fields_available_11 signal_mismatch_count_0",
+          "contribution": -1.53382
+        }
+      ],
+      "inference_ms": 5.7
+    },
+    {
+      "id": "P5W-002",
+      "event": "fiction-01",
+      "category": "single factual contradiction",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.20462,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_quantity_mismatch signal_result_match",
+          "contribution": 1.21105
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.61452
+        }
+      ],
+      "inference_ms": 4.9
+    },
+    {
+      "id": "P5W-003",
+      "event": "fiction-01",
+      "category": "paraphrased agreement",
+      "expected": "agree",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.20598,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_quantity_mismatch signal_result_match",
+          "contribution": 1.21105
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.61452
+        }
+      ],
+      "inference_ms": 5.9
+    },
+    {
+      "id": "P5W-004",
+      "event": "fiction-01",
+      "category": "paraphrased contradiction and negation",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.194529,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_status_mismatch signal_sequence_match",
+          "contribution": 1.11053
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_result_match signal_attribution_match",
+          "contribution": -0.57753
+        }
+      ],
+      "inference_ms": 6.2
+    },
+    {
+      "id": "P5W-005",
+      "event": "fiction-01",
+      "category": "reordered fields",
+      "expected": "agree",
+      "displayed_outcome": "Synthetic ledger-consistent pattern indicated",
+      "predicted_class": "reliable",
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": 1.0,
+      "fields_conflict_probability": 0.0,
+      "confidence": 1.0,
+      "review_required": false,
+      "supported_scope": true,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.211221,
+      "review_reason": "",
+      "leading_conflict_feature": [
+        {
+          "term": "volunteers",
+          "contribution": 0.00649
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_fields_available_11 signal_mismatch_count_0",
+          "contribution": -1.53382
+        }
+      ],
+      "inference_ms": 5.0
+    },
+    {
+      "id": "P5W-006",
+      "event": "fiction-01",
+      "category": "long distracting prose",
+      "expected": "agree",
+      "displayed_outcome": "Synthetic ledger-consistent pattern indicated",
+      "predicted_class": "reliable",
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": 1.0,
+      "fields_conflict_probability": 0.0,
+      "confidence": 1.0,
+      "review_required": false,
+      "supported_scope": true,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.193202,
+      "review_reason": "",
+      "leading_conflict_feature": [
+        {
+          "term": "volunteers",
+          "contribution": 0.00442
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_fields_available_11 signal_mismatch_count_0",
+          "contribution": -1.04503
+        }
+      ],
+      "inference_ms": 5.6
+    },
+    {
+      "id": "P5W-007",
+      "event": "fiction-01",
+      "category": "missing comparison field",
+      "expected": "review",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": true,
+      "vocabulary_coverage": 0.198653,
+      "review_reason": "Required comparison fields are incomplete; a human must inspect the pair. The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "volunteers",
+          "contribution": 0.00655
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_mismatch_count_0",
+          "contribution": -1.54933
+        }
+      ],
+      "inference_ms": 4.8
+    },
+    {
+      "id": "P5W-008",
+      "event": "fiction-01",
+      "category": "duplicate comparison field",
+      "expected": "review",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": true,
+      "vocabulary_coverage": 0.20712,
+      "review_reason": "Repeated reference/account headings or fields make the comparison ambiguous.",
+      "leading_conflict_feature": [
+        {
+          "term": "volunteers",
+          "contribution": 0.00649
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_fields_available_11 signal_mismatch_count_0",
+          "contribution": -1.53382
+        }
+      ],
+      "inference_ms": 5.8
+    },
+    {
+      "id": "P5W-009",
+      "event": "fiction-01",
+      "category": "malformed reference heading",
+      "expected": "review",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "misleading",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.140794,
+      "review_reason": "The input is outside the automatic synthetic-comparison scope because its Reference note or Article account is missing. Both a Reference note and an Article account are required for an automatic synthetic consistency outcome.",
+      "leading_conflict_feature": [
+        {
+          "term": "volunteers",
+          "contribution": 0.0068
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "vale",
+          "contribution": -0.03214
+        }
+      ],
+      "inference_ms": 5.1
+    },
+    {
+      "id": "P5W-010",
+      "event": "fiction-01",
+      "category": "ordinary outside-scope prose",
+      "expected": "review",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "misleading",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.258373,
+      "review_reason": "The input is outside the automatic synthetic-comparison scope because its Reference note or Article account is missing. Both a Reference note and an Article account are required for an automatic synthetic consistency outcome.",
+      "leading_conflict_feature": [
+        {
+          "term": "useful",
+          "contribution": 0.03306
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "is",
+          "contribution": -0.01826
+        }
+      ],
+      "inference_ms": 6.0
+    },
+    {
+      "id": "P5W-011",
+      "event": "fiction-02",
+      "category": "exact agreement",
+      "expected": "agree",
+      "displayed_outcome": "Synthetic ledger-consistent pattern indicated",
+      "predicted_class": "reliable",
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": 1.0,
+      "fields_conflict_probability": 0.0,
+      "confidence": 1.0,
+      "review_required": false,
+      "supported_scope": true,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.250836,
+      "review_reason": "",
+      "leading_conflict_feature": [
+        {
+          "term": "orin",
+          "contribution": 0.05405
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_fields_available_11 signal_mismatch_count_0",
+          "contribution": -1.30144
+        }
+      ],
+      "inference_ms": 6.1
+    },
+    {
+      "id": "P5W-012",
+      "event": "fiction-02",
+      "category": "single factual contradiction",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.244147,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_lead_match signal_site_mismatch",
+          "contribution": 0.92824
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.52478
+        }
+      ],
+      "inference_ms": 6.7
+    },
+    {
+      "id": "P5W-013",
+      "event": "fiction-02",
+      "category": "paraphrased agreement",
+      "expected": "agree",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.245791,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_quantity_mismatch signal_result_match",
+          "contribution": 1.03288
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.52411
+        }
+      ],
+      "inference_ms": 5.1
+    },
+    {
+      "id": "P5W-014",
+      "event": "fiction-02",
+      "category": "paraphrased contradiction and negation",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.230769,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_status_mismatch signal_sequence_match",
+          "contribution": 0.9494
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_result_match signal_attribution_match",
+          "contribution": -0.49373
+        }
+      ],
+      "inference_ms": 5.1
+    },
+    {
+      "id": "P5W-015",
+      "event": "fiction-02",
+      "category": "reordered fields",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.244147,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_lead_match signal_site_mismatch",
+          "contribution": 0.92824
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.52478
+        }
+      ],
+      "inference_ms": 4.8
+    },
+    {
+      "id": "P5W-016",
+      "event": "fiction-02",
+      "category": "long distracting prose",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.210811,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_lead_match signal_site_mismatch",
+          "contribution": 0.68978
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.38997
+        }
+      ],
+      "inference_ms": 5.2
+    },
+    {
+      "id": "P5W-017",
+      "event": "fiction-02",
+      "category": "missing comparison field",
+      "expected": "review",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": true,
+      "vocabulary_coverage": 0.238908,
+      "review_reason": "Required comparison fields are incomplete; a human must inspect the pair. The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "orin",
+          "contribution": 0.05444
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_mismatch_count_0",
+          "contribution": -1.31088
+        }
+      ],
+      "inference_ms": 4.8
+    },
+    {
+      "id": "P5W-018",
+      "event": "fiction-02",
+      "category": "duplicate comparison field",
+      "expected": "review",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": true,
+      "vocabulary_coverage": 0.239344,
+      "review_reason": "Repeated reference/account headings or fields make the comparison ambiguous. The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_lead_match signal_site_mismatch",
+          "contribution": 0.92824
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.52478
+        }
+      ],
+      "inference_ms": 5.0
+    },
+    {
+      "id": "P5W-019",
+      "event": "fiction-02",
+      "category": "malformed reference heading",
+      "expected": "review",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "misleading",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.18315,
+      "review_reason": "The input is outside the automatic synthetic-comparison scope because its Reference note or Article account is missing. Both a Reference note and an Article account are required for an automatic synthetic consistency outcome.",
+      "leading_conflict_feature": [
+        {
+          "term": "orin",
+          "contribution": 0.05589
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "merin",
+          "contribution": -0.01916
+        }
+      ],
+      "inference_ms": 4.6
+    },
+    {
+      "id": "P5W-020",
+      "event": "fiction-02",
+      "category": "ordinary outside-scope prose",
+      "expected": "review",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "misleading",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.258537,
+      "review_reason": "The input is outside the automatic synthetic-comparison scope because its Reference note or Article account is missing. Both a Reference note and an Article account are required for an automatic synthetic consistency outcome.",
+      "leading_conflict_feature": [
+        {
+          "term": "orin",
+          "contribution": 0.03576
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "session",
+          "contribution": -0.02139
+        }
+      ],
+      "inference_ms": 4.4
+    },
+    {
+      "id": "P5W-021",
+      "event": "fiction-03",
+      "category": "exact agreement",
+      "expected": "agree",
+      "displayed_outcome": "Synthetic ledger-consistent pattern indicated",
+      "predicted_class": "reliable",
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": 1.0,
+      "fields_conflict_probability": 0.0,
+      "confidence": 1.0,
+      "review_required": false,
+      "supported_scope": true,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.209302,
+      "review_reason": "",
+      "leading_conflict_feature": [
+        {
+          "term": "is not",
+          "contribution": 0.00231
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_fields_available_11 signal_mismatch_count_0",
+          "contribution": -1.48997
+        }
+      ],
+      "inference_ms": 4.8
+    },
+    {
+      "id": "P5W-022",
+      "event": "fiction-03",
+      "category": "single factual contradiction",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.202658,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_date_mismatch",
+          "contribution": 0.99342
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.59649
+        }
+      ],
+      "inference_ms": 4.8
+    },
+    {
+      "id": "P5W-023",
+      "event": "fiction-03",
+      "category": "paraphrased agreement",
+      "expected": "agree",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.204013,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_quantity_mismatch signal_result_match",
+          "contribution": 1.17765
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.59757
+        }
+      ],
+      "inference_ms": 5.0
+    },
+    {
+      "id": "P5W-024",
+      "event": "fiction-03",
+      "category": "paraphrased contradiction and negation",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.192661,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_status_mismatch signal_sequence_match",
+          "contribution": 1.08041
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_result_match signal_attribution_match",
+          "contribution": -0.56187
+        }
+      ],
+      "inference_ms": 4.8
+    },
+    {
+      "id": "P5W-025",
+      "event": "fiction-03",
+      "category": "reordered fields",
+      "expected": "agree",
+      "displayed_outcome": "Synthetic ledger-consistent pattern indicated",
+      "predicted_class": "reliable",
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": 1.0,
+      "fields_conflict_probability": 0.0,
+      "confidence": 1.0,
+      "review_required": false,
+      "supported_scope": true,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.209302,
+      "review_reason": "",
+      "leading_conflict_feature": [
+        {
+          "term": "is not",
+          "contribution": 0.00231
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_fields_available_11 signal_mismatch_count_0",
+          "contribution": -1.48997
+        }
+      ],
+      "inference_ms": 4.8
+    },
+    {
+      "id": "P5W-026",
+      "event": "fiction-03",
+      "category": "long distracting prose",
+      "expected": "agree",
+      "displayed_outcome": "Synthetic ledger-consistent pattern indicated",
+      "predicted_class": "reliable",
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": 1.0,
+      "fields_conflict_probability": 0.0,
+      "confidence": 1.0,
+      "review_required": false,
+      "supported_scope": true,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.192101,
+      "review_reason": "",
+      "leading_conflict_feature": [
+        {
+          "term": "is not",
+          "contribution": 0.00159
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_fields_available_11 signal_mismatch_count_0",
+          "contribution": -1.02954
+        }
+      ],
+      "inference_ms": 5.0
+    },
+    {
+      "id": "P5W-027",
+      "event": "fiction-03",
+      "category": "missing comparison field",
+      "expected": "review",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": true,
+      "vocabulary_coverage": 0.19661,
+      "review_reason": "Required comparison fields are incomplete; a human must inspect the pair. The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "is not",
+          "contribution": 0.00233
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_mismatch_count_0",
+          "contribution": -1.50418
+        }
+      ],
+      "inference_ms": 4.9
+    },
+    {
+      "id": "P5W-028",
+      "event": "fiction-03",
+      "category": "duplicate comparison field",
+      "expected": "review",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": true,
+      "vocabulary_coverage": 0.205212,
+      "review_reason": "Repeated reference/account headings or fields make the comparison ambiguous.",
+      "leading_conflict_feature": [
+        {
+          "term": "is not",
+          "contribution": 0.00231
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_fields_available_11 signal_mismatch_count_0",
+          "contribution": -1.48997
+        }
+      ],
+      "inference_ms": 5.1
+    },
+    {
+      "id": "P5W-029",
+      "event": "fiction-03",
+      "category": "malformed reference heading",
+      "expected": "review",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "misleading",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.138182,
+      "review_reason": "The input is outside the automatic synthetic-comparison scope because its Reference note or Article account is missing. Both a Reference note and an Article account are required for an automatic synthetic consistency outcome.",
+      "leading_conflict_feature": [
+        {
+          "term": "is not",
+          "contribution": 0.00241
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "survey the",
+          "contribution": -0.04527
+        }
+      ],
+      "inference_ms": 4.7
+    },
+    {
+      "id": "P5W-030",
+      "event": "fiction-03",
+      "category": "ordinary outside-scope prose",
+      "expected": "review",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "misleading",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.241546,
+      "review_reason": "The input is outside the automatic synthetic-comparison scope because its Reference note or Article account is missing. Both a Reference note and an Article account are required for an automatic synthetic consistency outcome.",
+      "leading_conflict_feature": [
+        {
+          "term": "useful",
+          "contribution": 0.03341
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "survey the",
+          "contribution": -0.05025
+        }
+      ],
+      "inference_ms": 4.8
+    },
+    {
+      "id": "P5W-031",
+      "event": "fiction-04",
+      "category": "exact agreement",
+      "expected": "agree",
+      "displayed_outcome": "Synthetic ledger-consistent pattern indicated",
+      "predicted_class": "reliable",
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": 1.0,
+      "fields_conflict_probability": 0.0,
+      "confidence": 1.0,
+      "review_required": false,
+      "supported_scope": true,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.237113,
+      "review_reason": "",
+      "leading_conflict_feature": [
+        {
+          "term": "workshop",
+          "contribution": 0.02369
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_fields_available_11 signal_mismatch_count_0",
+          "contribution": -1.43697
+        }
+      ],
+      "inference_ms": 4.9
+    },
+    {
+      "id": "P5W-032",
+      "event": "fiction-04",
+      "category": "single factual contradiction",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.228669,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_lead_mismatch signal_site_match",
+          "contribution": 1.02503
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.57778
+        }
+      ],
+      "inference_ms": 4.7
+    },
+    {
+      "id": "P5W-033",
+      "event": "fiction-04",
+      "category": "paraphrased agreement",
+      "expected": "agree",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.228374,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_quantity_mismatch signal_result_match",
+          "contribution": 1.14373
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.58036
+        }
+      ],
+      "inference_ms": 4.7
+    },
+    {
+      "id": "P5W-034",
+      "event": "fiction-04",
+      "category": "paraphrased contradiction and negation",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.217666,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_status_mismatch signal_sequence_match",
+          "contribution": 1.04382
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_result_match signal_attribution_match",
+          "contribution": -0.54284
+        }
+      ],
+      "inference_ms": 4.6
+    },
+    {
+      "id": "P5W-035",
+      "event": "fiction-04",
+      "category": "reordered fields",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.228669,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_lead_mismatch signal_site_match",
+          "contribution": 1.02503
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.57778
+        }
+      ],
+      "inference_ms": 4.6
+    },
+    {
+      "id": "P5W-036",
+      "event": "fiction-04",
+      "category": "long distracting prose",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.209472,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_lead_mismatch signal_site_match",
+          "contribution": 0.69743
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.39313
+        }
+      ],
+      "inference_ms": 5.1
+    },
+    {
+      "id": "P5W-037",
+      "event": "fiction-04",
+      "category": "missing comparison field",
+      "expected": "review",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": true,
+      "vocabulary_coverage": 0.221053,
+      "review_reason": "Required comparison fields are incomplete; a human must inspect the pair. The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "workshop",
+          "contribution": 0.02405
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_mismatch_count_0",
+          "contribution": -1.45856
+        }
+      ],
+      "inference_ms": 5.0
+    },
+    {
+      "id": "P5W-038",
+      "event": "fiction-04",
+      "category": "duplicate comparison field",
+      "expected": "review",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": true,
+      "vocabulary_coverage": 0.222222,
+      "review_reason": "Repeated reference/account headings or fields make the comparison ambiguous. The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_lead_match signal_site_mismatch",
+          "contribution": 1.03645
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.58595
+        }
+      ],
+      "inference_ms": 4.7
+    },
+    {
+      "id": "P5W-039",
+      "event": "fiction-04",
+      "category": "malformed reference heading",
+      "expected": "review",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "misleading",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.166038,
+      "review_reason": "The input is outside the automatic synthetic-comparison scope because its Reference note or Article account is missing. Both a Reference note and an Article account are required for an automatic synthetic consistency outcome.",
+      "leading_conflict_feature": [
+        {
+          "term": "workshop",
+          "contribution": 0.02469
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "hollow",
+          "contribution": -0.03357
+        }
+      ],
+      "inference_ms": 4.5
+    },
+    {
+      "id": "P5W-040",
+      "event": "fiction-04",
+      "category": "ordinary outside-scope prose",
+      "expected": "review",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "misleading",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.253731,
+      "review_reason": "The input is outside the automatic synthetic-comparison scope because its Reference note or Article account is missing. Both a Reference note and an Article account are required for an automatic synthetic consistency outcome.",
+      "leading_conflict_feature": [
+        {
+          "term": "useful",
+          "contribution": 0.03228
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "from",
+          "contribution": -0.01788
+        }
+      ],
+      "inference_ms": 4.4
+    },
+    {
+      "id": "P5W-041",
+      "event": "fiction-05",
+      "category": "exact agreement",
+      "expected": "agree",
+      "displayed_outcome": "Synthetic ledger-consistent pattern indicated",
+      "predicted_class": "reliable",
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": 1.0,
+      "fields_conflict_probability": 0.0,
+      "confidence": 1.0,
+      "review_required": false,
+      "supported_scope": true,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.206186,
+      "review_reason": "",
+      "leading_conflict_feature": [
+        {
+          "term": "volunteers",
+          "contribution": 0.00638
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_fields_available_11 signal_mismatch_count_0",
+          "contribution": -1.5088
+        }
+      ],
+      "inference_ms": 4.9
+    },
+    {
+      "id": "P5W-042",
+      "event": "fiction-05",
+      "category": "single factual contradiction",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.201365,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_status_mismatch signal_sequence_match",
+          "contribution": 1.10083
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_result_match signal_attribution_match",
+          "contribution": -0.57249
+        }
+      ],
+      "inference_ms": 4.7
+    },
+    {
+      "id": "P5W-043",
+      "event": "fiction-05",
+      "category": "paraphrased agreement",
+      "expected": "agree",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.200692,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_quantity_mismatch signal_result_match",
+          "contribution": 1.192
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.60485
+        }
+      ],
+      "inference_ms": 4.8
+    },
+    {
+      "id": "P5W-044",
+      "event": "fiction-05",
+      "category": "paraphrased contradiction and negation",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.189274,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_status_mismatch signal_sequence_match",
+          "contribution": 1.09336
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_result_match signal_attribution_match",
+          "contribution": -0.5686
+        }
+      ],
+      "inference_ms": 4.7
+    },
+    {
+      "id": "P5W-045",
+      "event": "fiction-05",
+      "category": "long distracting prose",
+      "expected": "agree",
+      "displayed_outcome": "Synthetic ledger-consistent pattern indicated",
+      "predicted_class": "reliable",
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": 1.0,
+      "fields_conflict_probability": 0.0,
+      "confidence": 1.0,
+      "review_required": false,
+      "supported_scope": true,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.190128,
+      "review_reason": "",
+      "leading_conflict_feature": [
+        {
+          "term": "volunteers",
+          "contribution": 0.00446
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_fields_available_11 signal_mismatch_count_0",
+          "contribution": -1.0545
+        }
+      ],
+      "inference_ms": 6.7
+    },
+    {
+      "id": "P5W-046",
+      "event": "fiction-06",
+      "category": "exact agreement",
+      "expected": "agree",
+      "displayed_outcome": "Synthetic ledger-consistent pattern indicated",
+      "predicted_class": "reliable",
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": 1.0,
+      "fields_conflict_probability": 0.0,
+      "confidence": 1.0,
+      "review_required": false,
+      "supported_scope": true,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.217993,
+      "review_reason": "",
+      "leading_conflict_feature": [
+        {
+          "term": "stewards",
+          "contribution": 0.02196
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_fields_available_11 signal_mismatch_count_0",
+          "contribution": -1.60434
+        }
+      ],
+      "inference_ms": 4.8
+    },
+    {
+      "id": "P5W-047",
+      "event": "fiction-06",
+      "category": "single factual contradiction",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.214533,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_result_mismatch signal_attribution_match",
+          "contribution": 1.16892
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.65228
+        }
+      ],
+      "inference_ms": 5.2
+    },
+    {
+      "id": "P5W-048",
+      "event": "fiction-06",
+      "category": "paraphrased agreement",
+      "expected": "agree",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.212544,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_quantity_mismatch signal_result_match",
+          "contribution": 1.26456
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.64167
+        }
+      ],
+      "inference_ms": 4.9
+    },
+    {
+      "id": "P5W-049",
+      "event": "fiction-06",
+      "category": "paraphrased contradiction and negation",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.2,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_status_mismatch signal_sequence_match",
+          "contribution": 1.15869
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_result_match signal_attribution_match",
+          "contribution": -0.60258
+        }
+      ],
+      "inference_ms": 4.9
+    },
+    {
+      "id": "P5W-050",
+      "event": "fiction-06",
+      "category": "long distracting prose",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.194495,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_result_mismatch signal_attribution_match",
+          "contribution": 0.77879
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.43458
+        }
+      ],
+      "inference_ms": 5.0
+    },
+    {
+      "id": "P5W-051",
+      "event": "fiction-07",
+      "category": "exact agreement",
+      "expected": "agree",
+      "displayed_outcome": "Synthetic ledger-consistent pattern indicated",
+      "predicted_class": "reliable",
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": 1.0,
+      "fields_conflict_probability": 0.0,
+      "confidence": 1.0,
+      "review_required": false,
+      "supported_scope": true,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.209059,
+      "review_reason": "",
+      "leading_conflict_feature": [
+        {
+          "term": "session at",
+          "contribution": 0.01586
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_fields_available_11 signal_mismatch_count_0",
+          "contribution": -1.74056
+        }
+      ],
+      "inference_ms": 4.7
+    },
+    {
+      "id": "P5W-052",
+      "event": "fiction-07",
+      "category": "single factual contradiction",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.198606,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_status_match signal_sequence_mismatch",
+          "contribution": 1.43664
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.70337
+        }
+      ],
+      "inference_ms": 4.7
+    },
+    {
+      "id": "P5W-053",
+      "event": "fiction-07",
+      "category": "paraphrased agreement",
+      "expected": "agree",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.203509,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_quantity_mismatch signal_result_match",
+          "contribution": 1.36711
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.69371
+        }
+      ],
+      "inference_ms": 4.8
+    },
+    {
+      "id": "P5W-054",
+      "event": "fiction-07",
+      "category": "paraphrased contradiction and negation",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.191693,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_status_mismatch signal_sequence_match",
+          "contribution": 1.25066
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_result_match signal_attribution_match",
+          "contribution": -0.65041
+        }
+      ],
+      "inference_ms": 4.8
+    },
+    {
+      "id": "P5W-055",
+      "event": "fiction-07",
+      "category": "long distracting prose",
+      "expected": "agree",
+      "displayed_outcome": "Synthetic ledger-consistent pattern indicated",
+      "predicted_class": "reliable",
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": 1.0,
+      "fields_conflict_probability": 0.0,
+      "confidence": 1.0,
+      "review_required": false,
+      "supported_scope": true,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.191529,
+      "review_reason": "",
+      "leading_conflict_feature": [
+        {
+          "term": "session at",
+          "contribution": 0.01006
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_fields_available_11 signal_mismatch_count_0",
+          "contribution": -1.10392
+        }
+      ],
+      "inference_ms": 5.0
+    },
+    {
+      "id": "P5W-056",
+      "event": "fiction-08",
+      "category": "exact agreement",
+      "expected": "agree",
+      "displayed_outcome": "Synthetic ledger-consistent pattern indicated",
+      "predicted_class": "reliable",
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": 1.0,
+      "fields_conflict_probability": 0.0,
+      "confidence": 1.0,
+      "review_required": false,
+      "supported_scope": true,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.221453,
+      "review_reason": "",
+      "leading_conflict_feature": [
+        {
+          "term": "club",
+          "contribution": 0.02937
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_fields_available_11 signal_mismatch_count_0",
+          "contribution": -1.45957
+        }
+      ],
+      "inference_ms": 4.7
+    },
+    {
+      "id": "P5W-057",
+      "event": "fiction-08",
+      "category": "single factual contradiction",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.214533,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_certainty_mismatch",
+          "contribution": 1.16588
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.5867
+        }
+      ],
+      "inference_ms": 4.8
+    },
+    {
+      "id": "P5W-058",
+      "event": "fiction-08",
+      "category": "paraphrased agreement",
+      "expected": "agree",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.216028,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_quantity_mismatch signal_result_match",
+          "contribution": 1.15442
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.58578
+        }
+      ],
+      "inference_ms": 4.9
+    },
+    {
+      "id": "P5W-059",
+      "event": "fiction-08",
+      "category": "paraphrased contradiction and negation",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.203175,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_status_mismatch signal_sequence_match",
+          "contribution": 1.05944
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_result_match signal_attribution_match",
+          "contribution": -0.55096
+        }
+      ],
+      "inference_ms": 4.8
+    },
+    {
+      "id": "P5W-060",
+      "event": "fiction-08",
+      "category": "long distracting prose",
+      "expected": "conflict",
+      "displayed_outcome": "Outside supported comparison scope",
+      "predicted_class": null,
+      "diagnostic_model_class": "reliable",
+      "fields_agree_probability": null,
+      "fields_conflict_probability": null,
+      "confidence": null,
+      "review_required": true,
+      "supported_scope": false,
+      "input_quality_inadequate": false,
+      "vocabulary_coverage": 0.194495,
+      "review_reason": "The model's agreement score conflicts with a visible field difference; a directional score is withheld pending human review.",
+      "leading_conflict_feature": [
+        {
+          "term": "signal_certainty_mismatch",
+          "contribution": 0.82162
+        }
+      ],
+      "leading_agreement_feature": [
+        {
+          "term": "signal_rationale_match signal_status_match",
+          "contribution": -0.41346
+        }
+      ],
+      "inference_ms": 5.1
+    }
+  ]
+}

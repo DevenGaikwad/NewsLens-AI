@@ -13,7 +13,7 @@ from ui import callout, configure_page, footer, metric_strip, page_header, secti
 configure_page("NewsLens AI | Dataset Analysis", active="eda")
 page_header(
     "Dataset Analysis · Synthetic Benchmark",
-    "Original fiction,\nreproducible evidence.",
+    "Original fiction\nReproducible evidence",
     "The benchmark contains only independently authored fictional articles and entities; no external article dataset was used as source material.",
 )
 profile = json.loads((RESULTS_DIR / "dataset_profile.json").read_text(encoding="utf-8"))

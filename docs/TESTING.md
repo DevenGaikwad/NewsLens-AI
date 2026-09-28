@@ -24,6 +24,8 @@ The CI workflow runs the complete test suite with the public model. No private-a
 
 The final test is not used for candidate selection, calibration fitting, or threshold choice. Candidate selection uses model validation; Platt fitting uses calibration; policy selection uses abstention policy. Event pairs never cross partitions. Exact metrics and controls are in `reports/model_benchmark_summary.json`.
 
+The independently authored [Phase 5W challenge](PHASE5W_CHALLENGE_AND_ROUTING.md) is separate from those partitions. It exposed poor single-field conflict behavior in the frozen model. Focused scope-guard tests check conservative review routing without retraining or retuning on the accepted locked test. For a demonstration, select each of the three packaged fictional examples on **Analyse Article** as described in [`data/sample/README.md`](../data/sample/README.md); ordinary external prose is outside the classifier's task.
+
 ## Interpretation
 
 Passing tests establishes implementation and in-distribution benchmark behavior. It does not establish factual accuracy on real articles. Deployment smoke tests must separately validate public startup, all three packaged paths, the calibrated-probability explanation, outside-scope withholding, clean live PDF rendering, exports, error handling, session isolation, responsive layout, and absence of raw training-data exposure.

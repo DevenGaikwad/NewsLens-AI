@@ -72,16 +72,20 @@ All training articles and entities were independently authored for this project.
 | Fact-block ablation balanced accuracy | 0.498 |
 | Metadata-only balanced accuracy | 0.521 |
 
-Perfect in-distribution performance reflects a structured synthetic comparison task; it must not be interpreted as unrestricted news-veracity performance.
+Perfect in-distribution performance reflects a structured synthetic comparison task; it must not be interpreted as unrestricted news-veracity performance. A separate, independently authored [Phase 5W challenge](docs/PHASE5W_CHALLENGE_AND_ROUTING.md) found that the frozen model missed single-field conflicts in unfamiliar fictional examples. The runtime now requests review and withholds scores when its agreement prediction conflicts with a visible field difference. This safety routing does not improve the frozen model's discrimination.
 
 ## Understanding the calibrated probabilities
 
 - **Fields agree - calibrated probability** is the calibrated probability of the synthetic `ledger-consistent` class learned from visible `Reference note` and `Article account` comparison patterns.
 - **Fields conflict - calibrated probability** is the calibrated probability of the synthetic `ledger-contradicting` class learned from those same visible fields.
 - **Reference-comparison confidence** is the calibrated confidence in the selected synthetic consistency class. It is not factual certainty.
-- Inputs without both structured blocks are shown as **Outside supported comparison scope**. Directional probabilities are withheld in the UI, PDF, and archive CSV because they are not meaningful credibility scores for ordinary external articles.
+- Inputs without a complete, unambiguous structured pair, or with a model agreement score that conflicts with a visible field difference, require human review. Directional probabilities are withheld in the UI, PDF, and archive CSV. JSON retains its diagnostic fields with an explicit `score_reporting_status` for compatibility; those internal values are not public credibility scores.
 
 These scores measure agreement with the synthetic benchmark classes. They do not determine whether a real-world article is true or fake.
+
+## Faculty demonstration samples
+
+On **Analyse Article**, choose **Paste text**, select one of the three **Fictional demonstration sample** options, click **Load Selected Sample**, then **Analyse Article**. The options show fields-agree, fields-conflict, and ordinary-prose review paths. The [sample guide](data/sample/README.md) explains what each one demonstrates. Use fictional inputs; an external news article without the required comparison fields is routed to review, not given a real/fake verdict.
 
 ## Run locally
 
@@ -131,7 +135,7 @@ The release scan verifies the dataset ZIP, public model, calibration binding, le
 
 ## Responsible use
 
-- Inputs lacking both supported fact blocks are routed to review and shown as **Outside supported comparison scope**.
+- Inputs lacking a complete, unambiguous supported comparison, and inputs whose visible field difference conflicts with the model's agreement score, are routed to review with public scores withheld.
 - Calibrated class probabilities and reference-comparison confidence are displayed only for supported structured comparisons; they measure synthetic benchmark-class agreement, not factual truth.
 - The app does not expose raw training rows.
 - Public history is isolated to a visitor session; full article text is not persisted.

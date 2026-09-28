@@ -13,7 +13,7 @@ import pandas as pd
 from .config import MIN_ARTICLE_WORDS, MIN_DRIFT_OBSERVATIONS, MODEL_REFERENCE_PROFILE_PATH
 from .text_preprocessor import detect_language_hint, text_for_model
 from .utils import load_json, word_count
-from synthetic_benchmark.signals import augment_text, parse_fact_blocks
+from synthetic_benchmark.signals import FACT_FIELDS, augment_text, parse_fact_blocks
 
 
 INSUFFICIENT_DRIFT_MESSAGE = "Insufficient observations for a reliable drift assessment."
@@ -45,6 +45,31 @@ def _unigram_tokens(text: str) -> list[str]:
     return re.findall(r"[a-z]+(?:'[a-z]+)?", text_for_model(text))
 
 
+def _ambiguous_fact_blocks(text: str) -> bool:
+    """Flag repeated headings or fields without changing the frozen model parser."""
+
+    counts = {"reference": 0, "account": 0}
+    for line in str(text or "").splitlines():
+        for heading, key in (("Reference note", "reference"), ("Article account", "account")):
+            if line[: len(heading)].lower() != heading.lower():
+                continue
+            remainder = line[len(heading):].lstrip()
+            if not remainder.startswith(("-", "—")):
+                continue
+            counts[key] += 1
+            seen: set[str] = set()
+            for segment in remainder[1:].split(";"):
+                name, separator, value = segment.lstrip().partition(":")
+                field = name.strip().lower()
+                if not separator or not value or field not in FACT_FIELDS:
+                    continue
+                if field in seen:
+                    return True
+                seen.add(field)
+            break
+    return any(count > 1 for count in counts.values())
+
+
 def assess_input(
     text: str,
     pipeline: Any,
@@ -74,14 +99,23 @@ def assess_input(
         reasons.append("The packaged model supports English/Latin-script news only.")
     blocks = parse_fact_blocks(text)
     fact_blocks_missing = not blocks.get("reference") or not blocks.get("account")
+    incomplete_fields = bool(blocks.get("reference") and blocks.get("account")) and any(
+        not blocks["reference"].get(field) or not blocks["account"].get(field)
+        for field in FACT_FIELDS
+    )
+    ambiguous_fields = _ambiguous_fact_blocks(text)
     if fact_blocks_missing:
         reasons.append(
             "The input is outside the automatic synthetic-comparison scope because its "
             "Reference note or Article account is missing."
         )
+    if incomplete_fields:
+        reasons.append("Required comparison fields are incomplete; a human must inspect the pair.")
+    if ambiguous_fields:
+        reasons.append("Repeated reference/account headings or fields make the comparison ambiguous.")
 
-    input_quality_inadequate = article_words < MIN_ARTICLE_WORDS or not tokens
-    domain_mismatch = fact_blocks_missing
+    input_quality_inadequate = article_words < MIN_ARTICLE_WORDS or not tokens or incomplete_fields or ambiguous_fields
+    domain_mismatch = fact_blocks_missing or incomplete_fields or ambiguous_fields
     return InputDiagnostics(
         word_count=article_words,
         vocabulary_coverage=round(coverage, 6),

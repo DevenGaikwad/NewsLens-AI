@@ -65,9 +65,10 @@ EDITORIAL_REVIEW_EXPLANATION = (
     "policy even when numerical class probabilities are available."
 )
 OUT_OF_SCOPE_EXPLANATION = (
-    "Outside supported comparison scope: both a Reference note and an Article account are "
-    "required. No calibrated class probability is displayed for ordinary external articles "
-    "because the model does not establish their factual credibility."
+    "Outside supported automatic comparison scope: ordinary prose, missing or repeated fields, "
+    "or a model agreement score that conflicts with a visible field difference requires human "
+    "review. Directional probabilities are withheld in these cases. The model does not "
+    "establish factual credibility for external articles."
 )
 
 LOWER_RISK_OUTCOME = "Synthetic ledger-consistent pattern indicated"

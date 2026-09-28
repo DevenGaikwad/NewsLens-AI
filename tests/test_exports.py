@@ -206,6 +206,7 @@ def test_archive_csv_withholds_out_of_scope_scores() -> None:
                 "reliable_probability": 0.8,
                 "misleading_probability": 0.2,
                 "calibrated_confidence": 0.8,
+                "predicted_class": "reliable",
             },
             {
                 "article_title": "Ordinary external article",
@@ -213,6 +214,7 @@ def test_archive_csv_withholds_out_of_scope_scores() -> None:
                 "reliable_probability": 0.12,
                 "misleading_probability": 0.88,
                 "calibrated_confidence": 0.88,
+                "predicted_class": "misleading",
             },
         ]
     )
@@ -223,3 +225,4 @@ def test_archive_csv_withholds_out_of_scope_scores() -> None:
     assert pd.isna(rows[1]["reliable_probability"])
     assert pd.isna(rows[1]["misleading_probability"])
     assert pd.isna(rows[1]["calibrated_confidence"])
+    assert pd.isna(rows[1]["predicted_class"])

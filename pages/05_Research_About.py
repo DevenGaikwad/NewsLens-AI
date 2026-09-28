@@ -15,7 +15,7 @@ from ui import callout, configure_page, footer, metadata_grid, page_header, sect
 configure_page("NewsLens AI | Research & About", active="about")
 page_header(
     "Research & About",
-    "A transparent academic\nnews-intelligence prototype.",
+    "A transparent academic\nNews-intelligence prototype",
     "NewsLens AI combines deterministic summarization with a narrow synthetic consistency classifier, reference-comparison confidence, human review, privacy-safe analytics, and explicit responsible-use boundaries.",
 )
 metadata = json.loads(MODEL_METADATA_PATH.read_text(encoding="utf-8")) if MODEL_METADATA_PATH.exists() else {}

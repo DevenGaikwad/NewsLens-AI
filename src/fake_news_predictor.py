@@ -26,7 +26,7 @@ from .config import (
 )
 from .explainability import explain_linear_prediction
 from .model_diagnostics import InputDiagnostics
-from synthetic_benchmark.signals import parse_fact_blocks
+from synthetic_benchmark.signals import FACT_FIELDS, parse_fact_blocks
 from .utils import load_json
 
 
@@ -46,6 +46,7 @@ class PredictionResult:
     calibration_status: str
     editorial_review_threshold: float
     review_required: bool
+    score_withheld: bool
     review_reason: str
     model_version: str
     processing_time_seconds: float
@@ -122,6 +123,21 @@ def predict_credibility(
             "Both a Reference note and an Article account are required for an automatic "
             "synthetic consistency outcome."
         )
+    score_withheld = calibration_status != "verified" or (
+        bool(diagnostics.domain_mismatch) if diagnostics is not None else False
+    )
+    if blocks.get("reference") and blocks.get("account") and predicted == "reliable":
+        if any(
+            blocks["reference"].get(field) != blocks["account"].get(field)
+            for field in FACT_FIELDS
+        ):
+            review_reasons.append(
+                "The model's agreement score conflicts with a visible field difference; "
+                "a directional score is withheld pending human review."
+            )
+            score_withheld = True
+    if not blocks.get("reference") or not blocks.get("account"):
+        score_withheld = True
     review_required = bool(review_reasons)
     if review_required:
         display = REVIEW_REQUIRED_OUTCOME
@@ -146,6 +162,7 @@ def predict_credibility(
         calibration_status=calibration_status,
         editorial_review_threshold=round(threshold, 4),
         review_required=review_required,
+        score_withheld=score_withheld,
         review_reason=" ".join(dict.fromkeys(review_reasons)),
         model_version=version,
         processing_time_seconds=round(perf_counter() - started, 4),
