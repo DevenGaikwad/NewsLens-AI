@@ -12,7 +12,7 @@ NewsLens AI is a noncommercial student and internship-portfolio demonstration by
 
 The **Reference comparison** classifier has a deliberately narrow purpose: compare the visible `Reference note` and `Article account` fields in the supported fictional format and indicate whether their ledgers are consistent or contradicting. It is **not** a general fake-news detector and does not establish real-world truth. A separate general-news screening model is not deployed; its candidate data have not passed the licensing and task-fit gate described in the [deployment/model license audit](docs/PUBLIC_DEPLOYMENT_MODEL_LICENSE_AUDIT.md).
 
-**Live application:** [newslens-ai-devengaikwad.streamlit.app](https://newslens-ai-devengaikwad.streamlit.app/). Check the deployed commit before using a live screen as release evidence.
+**Live application:** [newslens-ai-devengaikwad.streamlit.app](https://newslens-ai-devengaikwad.streamlit.app/). Confirm deployment freshness before using a live screen as release evidence.
 
 ## Application at a glance
 
@@ -24,6 +24,10 @@ The **Reference comparison** classifier has a deliberately narrow purpose: compa
 | Dataset Analysis | Describes the independently authored synthetic corpus and its evaluation profile. |
 | Editorial Archive | Keeps review records within a visitor session and offers aggregate monitoring and CSV export. |
 | Research & About | Explains authorship, evidence, responsible use, and project context. |
+
+![Current public News Desk, Analyse Article, fictional fields-agree Reference comparison result, Model Accountability, Dataset Analysis, and session-local Editorial Archive with Research & About](assets/github/current-public-interface.webp)
+
+*Current public Streamlit interface, captured after the 28 September 2026 fresh build. The demonstration content is fictional, and comparison probabilities are not real-world truth judgments.*
 
 ![Compact runtime architecture: safe article extraction branches into independent summarisation and synthetic Reference comparison, then human review, exports, a session-isolated archive, and privacy-safe analytics; training is offline](assets/github/runtime-flow-landscape.svg)
 
