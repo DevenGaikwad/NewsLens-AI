@@ -1,5 +1,5 @@
 # Tested lightweight CPU profile (Python 3.12)
-streamlit==1.59.2
+streamlit==1.66.1
 pandas==2.2.3
 numpy==2.3.5
 scikit-learn==1.8.0
@@ -12,4 +12,5 @@ beautifulsoup4==4.15.0
 trafilatura==2.2.0
 pypdf==6.21.2
 reportlab==4.4.9
+pillow==13.0.0
 pytest==9.0.3
