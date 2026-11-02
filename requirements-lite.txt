@@ -13,4 +13,4 @@ trafilatura==2.2.0
 pypdf==6.21.2
 reportlab==4.4.9
 pillow==13.0.0
-pytest==9.0.3
+pytest==9.2.0
